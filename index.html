@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Swipe File - Guided Discovery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary": "#d1ffc8",
+              "on-error": "#ffefef",
+              "inverse-surface": "#0c0f10",
+              "on-tertiary-fixed": "#2f0e00",
+              "primary-container": "#929bfa",
+              "on-tertiary-fixed-variant": "#642600",
+              "on-secondary-container": "#005c15",
+              "on-primary": "#f3f1ff",
+              "surface-container-low": "#eff1f2",
+              "secondary-fixed-dim": "#90e28a",
+              "error-dim": "#a70138",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed": "#00460e",
+              "surface-tint": "#4953ac",
+              "surface-container-high": "#e0e3e4",
+              "primary-fixed": "#929bfa",
+              "secondary-dim": "#025d16",
+              "surface-variant": "#dadddf",
+              "on-primary-fixed": "#000005",
+              "inverse-on-surface": "#9b9d9e",
+              "inverse-primary": "#929bfa",
+              "on-surface": "#2c2f30",
+              "secondary-container": "#9df197",
+              "primary-fixed-dim": "#858eec",
+              "tertiary-fixed-dim": "#ff7f36",
+              "secondary-fixed": "#9df197",
+              "surface-container": "#e6e8ea",
+              "primary-dim": "#3d469f",
+              "primary": "#4953ac",
+              "error": "#b41340",
+              "tertiary-dim": "#883700",
+              "surface-container-highest": "#dadddf",
+              "error-container": "#f74b6d",
+              "on-error-container": "#510017",
+              "tertiary-fixed": "#ff955e",
+              "on-primary-container": "#0b1574",
+              "surface-dim": "#d1d5d7",
+              "on-secondary-fixed-variant": "#12661e",
+              "secondary": "#176a21",
+              "on-surface-variant": "#595c5d",
+              "on-primary-fixed-variant": "#18217d",
+              "surface": "#f5f6f7",
+              "tertiary": "#9b3f00",
+              "background": "#f5f6f7",
+              "surface-bright": "#f5f6f7",
+              "on-background": "#2c2f30",
+              "on-tertiary": "#fff0ea",
+              "outline-variant": "#abadae",
+              "outline": "#757778",
+              "on-tertiary-container": "#562000",
+              "tertiary-container": "#ff955e"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f5f6f7;
+            font-family: 'Manrope', sans-serif;
+            color: #2c2f30;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 glass-nav shadow-sm">
+<div class="flex justify-between items-center h-16 px-6 md:px-12 max-w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-extrabold tracking-tighter text-blue-800">My Swipe File</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-blue-700 font-bold border-b-2 border-blue-600 pb-1" href="#">Explore</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Frameworks</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Library</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Saved</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-sm">search</span>
+</div>
+<input class="bg-surface-container-highest border-none rounded-full py-1.5 pl-9 pr-4 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest w-48 md:w-64 transition-all" placeholder="Search frameworks..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-slate-50 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-50 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full ml-2 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX9C18KAd9Yv_Qe2Agq9XHAry1T86ftzbTns6dmYfc_rNBHNrQe-vNJSn0VkpaJKBqMtri7NMxL7g2vzmOUJnRe2E4b2cPdTb4v-zMZTzsKfDJP8p6XAG8qJEOyq3J2e9dX39m5dvIwgIkTCEnAkgvnM_pBZLu-22EKO8Bbw_tI0ODgY0QVWn4DnJUQjiRPk3GUEx3c3Ixeewswj6_n9egrSWyXZXoYjKW6e00-N24LQvB5v7oag3syX5ojSmXNZ0zLbG1oguBCws"/>
+</div>
+</div>
+</div>
+<div class="bg-slate-100 h-[1px] w-full"></div>
+</nav>
+<main class="pt-24 pb-32 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Section: What are you trying to solve today? -->
+<section class="mb-16">
+<h1 class="text-3xl font-extrabold tracking-tight mb-8 text-on-surface">What are you trying to solve today?</h1>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Problem Solving -->
+<button class="group flex flex-col items-center justify-center p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-left active:scale-[0.98]">
+<div class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">lightbulb</span>
+</div>
+<span class="text-lg font-bold text-on-surface">Problem Solving</span>
+</button>
+<!-- Communication -->
+<button class="group flex flex-col items-center justify-center p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-left active:scale-[0.98]">
+<div class="w-16 h-16 rounded-2xl bg-secondary-container text-on-secondary-container flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">forum</span>
+</div>
+<span class="text-lg font-bold text-on-surface">Communication</span>
+</button>
+<!-- Organization -->
+<button class="group flex flex-col items-center justify-center p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-left active:scale-[0.98]">
+<div class="w-16 h-16 rounded-2xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center mb-4 group-hover:bg-tertiary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">view_quilt</span>
+</div>
+<span class="text-lg font-bold text-on-surface">Organization</span>
+</button>
+<!-- Leadership -->
+<button class="group flex flex-col items-center justify-center p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-left active:scale-[0.98]">
+<div class="w-16 h-16 rounded-2xl bg-primary-container text-on-primary-container flex items-center justify-center mb-4 group-hover:bg-primary-dim group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">military_tech</span>
+</div>
+<span class="text-lg font-bold text-on-surface">Leadership</span>
+</button>
+</div>
+</section>
+<!-- Section: Recommended for You -->
+<section class="mb-16">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-on-surface">Recommended for You</h2>
+<a class="text-sm font-semibold text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="flex overflow-x-auto gap-6 pb-4 hide-scrollbar">
+<!-- Framework 1 -->
+<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">layers</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">MECE Principle</h3>
+<p class="text-xs text-on-surface-variant">Problem Solving</p>
+</div>
+</div>
+<!-- Framework 2 -->
+<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-secondary transition-colors">Pyramid Principle</h3>
+<p class="text-xs text-on-surface-variant">Communication</p>
+</div>
+</div>
+<!-- Framework 3 -->
+<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">view_agenda</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-tertiary transition-colors">Eisenhower Matrix</h3>
+<p class="text-xs text-on-surface-variant">Organization</p>
+</div>
+</div>
+<!-- Framework 4 -->
+<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-primary-dim">
+<span class="material-symbols-outlined">group_work</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Lencioni Model</h3>
+<p class="text-xs text-on-surface-variant">Leadership</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Recently Viewed -->
+<section>
+<h2 class="text-xl font-bold text-on-surface mb-6">Recently Viewed</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500">show_chart</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Pareto Analysis (80/20)</h4>
+<p class="text-xs text-on-surface-variant">Last viewed 2 hours ago</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500">grid_view</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">First Principles Thinking</h4>
+<p class="text-xs text-on-surface-variant">Last viewed yesterday</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500">account_tree</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Circle of Competence</h4>
+<p class="text-xs text-on-surface-variant">Last viewed 3 days ago</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 backdrop-blur-xl shadow-[0_-4px_20px_0_rgba(0,0,0,0.05)] z-50 rounded-t-3xl border-t border-slate-100">
+<button class="flex flex-col items-center justify-center bg-blue-50 text-blue-700 rounded-2xl px-5 py-2 active:scale-90 transition-all">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Discover</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 active:scale-90 transition-all">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 active:scale-90 transition-all">
+<span class="material-symbols-outlined">style</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Collections</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 active:scale-90 transition-all">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
+</button>
+</nav>
+</body></html>
