@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Human Stack: Daily Quest</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Playfair+Display:wght@700;900&family=Courier+Prime:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,12 +13,40 @@
         }
 
         body {
-            font-family: ‘Poppins’, sans-serif;
-            background: linear-gradient(135deg, #1a0033 0%, #0d001a 100%);
-            color: #d4af37;
+            font-family: 'Courier Prime', monospace;
+            background: linear-gradient(135deg, #0a0015 0%, #1a0a2e 50%, #0d001a 100%);
+            color: #e0d5b7;
             min-height: 100vh;
             overflow-x: hidden;
             padding: 20px;
+            position: relative;
+        }
+
+        /* Animated Starfield Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(2px 2px at 20% 30%, #eee, transparent),
+                radial-gradient(2px 2px at 60% 70%, #fff, transparent),
+                radial-gradient(1px 1px at 50% 50%, #fff, transparent),
+                radial-gradient(1px 1px at 80% 10%, #ddd, transparent),
+                radial-gradient(2px 2px at 90% 60%, #fff, transparent),
+                radial-gradient(1px 1px at 30% 80%, #ccc, transparent);
+            background-size: 200% 200%;
+            pointer-events: none;
+            z-index: -1;
+            animation: twinkle 8s ease-in-out infinite;
+            opacity: 0.2;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
         }
 
         /* Landing Page */
@@ -29,7 +57,9 @@
             justify-content: center;
             min-height: 100vh;
             text-align: center;
-            gap: 40px;
+            gap: 60px;
+            position: relative;
+            z-index: 1;
         }
 
         .landing-page.hidden {
@@ -37,98 +67,147 @@
         }
 
         .title-section {
-            animation: glow-in 1s ease-out;
+            animation: fade-glow-in 2s ease-out;
         }
 
         .title-section h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 10vw, 5.5rem);
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 40px rgba(212, 175, 55, 0.3);
-            margin-bottom: 20px;
+            letter-spacing: 6px;
             color: #d4af37;
+            text-shadow:
+                0 0 10px rgba(212, 175, 55, 0.4),
+                0 0 20px rgba(212, 175, 55, 0.6),
+                0 0 40px rgba(167, 139, 250, 0.3);
+            margin-bottom: 20px;
         }
 
         .title-section p {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            color: #b8a3d1;
-            font-weight: 300;
-            letter-spacing: 1px;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            color: #a78bfa;
+            font-weight: 400;
+            letter-spacing: 2px;
             margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(167, 139, 250, 0.3);
         }
 
         .level-display {
-            background: rgba(0, 0, 0, 0.6);
-            border: 3px solid #d4af37;
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 400px;
+            background: rgba(10, 0, 21, 0.7);
+            border: 2px solid #d4af37;
+            box-shadow:
+                0 0 20px rgba(212, 175, 55, 0.4),
+                inset 0 0 20px rgba(212, 175, 55, 0.1);
+            border-radius: 8px;
+            padding: 35px;
+            max-width: 450px;
             width: 100%;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3), inset 0 0 20px rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                box-shadow:
+                    0 0 20px rgba(212, 175, 55, 0.4),
+                    inset 0 0 20px rgba(212, 175, 55, 0.1);
+            }
+            50% {
+                box-shadow:
+                    0 0 30px rgba(212, 175, 55, 0.6),
+                    inset 0 0 30px rgba(212, 175, 55, 0.2);
+            }
         }
 
         .level-text {
-            font-size: 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            color: #d4af37;
         }
 
         .xp-bar-container {
             background: rgba(0, 0, 0, 0.8);
             border: 2px solid #d4af37;
-            border-radius: 8px;
-            height: 30px;
+            border-radius: 4px;
+            height: 35px;
             overflow: hidden;
             position: relative;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
         }
 
         .xp-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, #d4af37, #ffd700);
-            transition: width 0.6s ease-out;
+            background: linear-gradient(90deg, #d4af37, #ffd700, #d4af37);
+            transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
-            color: #1a0033;
+            color: #0a0015;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
 
         .xp-text {
-            font-size: 0.9rem;
-            margin-top: 15px;
-            color: #b8a3d1;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.95rem;
+            margin-top: 20px;
+            color: #a78bfa;
+            letter-spacing: 1px;
         }
 
         .claim-button {
-            font-family: ‘Poppins’, sans-serif;
-            font-size: 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
             font-weight: 700;
             text-transform: uppercase;
-            padding: 18px 50px;
+            padding: 20px 60px;
             background: linear-gradient(135deg, #d4af37, #ffd700);
-            color: #1a0033;
-            border: none;
-            border-radius: 8px;
+            color: #0a0015;
+            border: 2px solid #d4af37;
+            border-radius: 4px;
             cursor: pointer;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4), 0 0 30px rgba(212, 175, 55, 0.2);
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            margin-top: 20px;
+            letter-spacing: 3px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow:
+                0 0 20px rgba(212, 175, 55, 0.4),
+                0 0 40px rgba(212, 175, 55, 0.2),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse-button 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-button {
+            0%, 100% {
+                box-shadow:
+                    0 0 20px rgba(212, 175, 55, 0.4),
+                    0 0 40px rgba(212, 175, 55, 0.2);
+            }
+            50% {
+                box-shadow:
+                    0 0 30px rgba(212, 175, 55, 0.6),
+                    0 0 60px rgba(212, 175, 55, 0.3);
+            }
         }
 
         .claim-button:hover {
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6), 0 0 50px rgba(212, 175, 55, 0.4);
+            transform: scale(1.08) translateY(-3px);
+            box-shadow:
+                0 0 30px rgba(212, 175, 55, 0.6),
+                0 0 60px rgba(212, 175, 55, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
         }
 
         .claim-button:active {
-            transform: scale(0.98);
+            transform: scale(0.95) translateY(0);
         }
 
         /* Quest Screen */
@@ -139,6 +218,8 @@
             justify-content: center;
             min-height: 100vh;
             gap: 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .quest-page.hidden {
@@ -150,39 +231,47 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            max-width: 600px;
+            max-width: 700px;
             margin-bottom: 20px;
             flex-wrap: wrap;
             gap: 20px;
         }
 
         .quest-back-button {
-            font-family: ‘Poppins’, sans-serif;
-            padding: 10px 20px;
-            background: rgba(212, 175, 55, 0.2);
-            color: #d4af37;
-            border: 2px solid #d4af37;
-            border-radius: 6px;
+            font-family: 'Space Mono', monospace;
+            padding: 12px 25px;
+            background: rgba(167, 139, 250, 0.2);
+            color: #a78bfa;
+            border: 2px solid #a78bfa;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
+            text-transform: uppercase;
         }
 
         .quest-back-button:hover {
-            background: rgba(212, 175, 55, 0.4);
+            background: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.4);
             transform: translateY(-2px);
         }
 
         .mini-level-display {
-            font-size: 0.95rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
             text-align: center;
+            color: #d4af37;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .quest-container {
             perspective: 1200px;
             width: 100%;
-            max-width: 600px;
-            height: 500px;
+            max-width: 700px;
+            height: 550px;
             margin: 20px auto;
         }
 
@@ -191,7 +280,7 @@
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.8s ease-out;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             cursor: pointer;
         }
 
@@ -208,11 +297,34 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 4px solid #d4af37;
-            border-radius: 12px;
-            background: linear-gradient(135deg, rgba(26, 0, 51, 0.95), rgba(13, 0, 26, 0.95));
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3), inset 0 0 30px rgba(212, 175, 55, 0.1);
-            padding: 40px;
+            border: 3px solid #d4af37;
+            border-radius: 0px;
+            background: linear-gradient(135deg, rgba(10, 0, 21, 0.9), rgba(26, 10, 46, 0.9));
+            box-shadow:
+                0 0 30px rgba(212, 175, 55, 0.3),
+                inset 0 0 30px rgba(212, 175, 55, 0.1);
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .quest-card-front::before,
+        .quest-card-back::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 3px solid #d4af37;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: border-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes border-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
         }
 
         .quest-card-front {
@@ -223,44 +335,101 @@
 
         .quest-card-front-content {
             text-align: center;
-            font-size: 2rem;
-            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
             color: #d4af37;
             text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            animation: float-icon 3s ease-in-out infinite;
+        }
+
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
         }
 
         .quest-card-back {
             transform: rotateY(180deg);
             flex-direction: column;
-            gap: 30px;
-        }
-
-        .quest-content {
-            display: none;
-            width: 100%;
-        }
-
-        .quest-content.active {
-            display: block;
+            gap: 25px;
+            overflow-y: auto;
         }
 
         .quest-text {
-            font-family: ‘Courier Prime’, monospace;
+            font-family: 'Courier Prime', monospace;
             font-size: 1.1rem;
-            line-height: 1.6;
+            line-height: 1.8;
             color: #d4af37;
             text-align: center;
-            min-height: 80px;
+            min-height: 60px;
+        }
+
+        .category-badge {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 4px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 2px solid;
+            margin: 15px 0;
+        }
+
+        .category-badge.divination {
+            background: rgba(167, 139, 250, 0.2);
+            border-color: #a78bfa;
+            color: #a78bfa;
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.3);
+        }
+
+        .category-badge.strategy {
+            background: rgba(220, 38, 38, 0.2);
+            border-color: #dc2626;
+            color: #dc2626;
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .category-badge.enchantment {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: #06b6d4;
+            color: #06b6d4;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+        }
+
+        .category-badge.transmutation {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: #10b981;
+            color: #10b981;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .category-badge.iteration {
+            background: rgba(249, 115, 22, 0.2);
+            border-color: #f97316;
+            color: #f97316;
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
+        }
+
+        .category-badge.ascension {
+            background: rgba(251, 191, 36, 0.2);
+            border-color: #fbbf24;
+            color: #fbbf24;
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
         }
 
         .framework-name {
             display: none;
-            font-size: 1.3rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #ffd700;
-            margin: 20px 0;
+            color: #fbbf24;
+            margin: 15px 0;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
+            animation: fade-in 0.6s ease-out;
         }
 
         .framework-name.active {
@@ -276,26 +445,47 @@
 
         .answers-container.active {
             display: flex;
+            animation: answers-appear 0.6s ease-out;
+        }
+
+        @keyframes answers-appear {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .answer-button {
-            font-family: ‘Poppins’, sans-serif;
+            font-family: 'Space Mono', monospace;
             padding: 15px 20px;
             background: rgba(212, 175, 55, 0.1);
             color: #d4af37;
             border: 2px solid #d4af37;
-            border-radius: 8px;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
             text-align: left;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .answer-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(212, 175, 55, 0.1);
+            transition: left 0.3s ease;
         }
 
         .answer-button:hover:not(:disabled) {
-            background: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.2);
             transform: translateX(5px);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
         }
 
         .answer-button:disabled {
@@ -303,25 +493,30 @@
         }
 
         .answer-button.correct {
-            background: rgba(76, 175, 80, 0.4);
-            border-color: #4caf50;
-            color: #4caf50;
+            background: rgba(16, 185, 129, 0.3);
+            border-color: #10b981;
+            color: #10b981;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
         }
 
         .answer-button.incorrect {
-            background: rgba(244, 67, 54, 0.4);
-            border-color: #f44336;
-            color: #f44336;
+            background: rgba(220, 38, 38, 0.3);
+            border-color: #dc2626;
+            color: #dc2626;
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.4);
         }
 
         .feedback {
             display: none;
             text-align: center;
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 4px;
             margin-top: 20px;
+            letter-spacing: 2px;
+            animation: fade-in 0.5s ease-out;
         }
 
         .feedback.active {
@@ -329,27 +524,32 @@
         }
 
         .feedback.correct {
-            background: rgba(76, 175, 80, 0.2);
-            color: #4caf50;
-            border: 2px solid #4caf50;
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 2px solid #10b981;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
         }
 
         .feedback.incorrect {
-            background: rgba(244, 67, 54, 0.2);
-            color: #f44336;
-            border: 2px solid #f44336;
+            background: rgba(220, 38, 38, 0.2);
+            color: #dc2626;
+            border: 2px solid #dc2626;
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
         }
 
         .explanation {
             display: none;
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.7;
             background: rgba(212, 175, 55, 0.1);
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 4px;
             border-left: 4px solid #d4af37;
             margin-top: 20px;
             text-align: left;
+            color: #e0d5b7;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            animation: fade-in 0.6s ease-out;
         }
 
         .explanation.active {
@@ -358,102 +558,110 @@
 
         .next-button {
             display: none;
-            font-family: ‘Poppins’, sans-serif;
-            padding: 15px 40px;
+            font-family: 'Cinzel', serif;
+            padding: 16px 50px;
             background: linear-gradient(135deg, #d4af37, #ffd700);
-            color: #1a0033;
-            border: none;
-            border-radius: 8px;
+            color: #0a0015;
+            border: 2px solid #d4af37;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            letter-spacing: 2px;
             margin-top: 20px;
         }
 
         .next-button.active {
             display: block;
+            animation: fade-in 0.5s ease-out;
         }
 
         .next-button:hover {
             transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
         }
 
         /* Floating XP Animation */
         .floating-xp {
             position: fixed;
             pointer-events: none;
+            font-family: 'Cinzel', serif;
             font-weight: 700;
-            font-size: 2rem;
-            color: #4caf50;
-            text-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
-            animation: float-up 2s ease-out forwards;
+            font-size: 2.5rem;
+            color: #10b981;
+            text-shadow: 0 0 15px rgba(16, 185, 129, 0.8);
+            animation: float-up 2.5s ease-out forwards;
+            z-index: 1000;
         }
 
         @keyframes float-up {
             0% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0) scale(1) rotateZ(0deg);
             }
             100% {
                 opacity: 0;
-                transform: translateY(-100px) scale(1.5);
+                transform: translateY(-120px) scale(1.8) rotateZ(15deg);
             }
         }
 
-        /* Animations */
-        @keyframes glow-in {
+        /* General Animations */
+        @keyframes fade-glow-in {
             from {
                 opacity: 0;
                 text-shadow: 0 0 0 rgba(212, 175, 55, 0);
             }
             to {
                 opacity: 1;
-                text-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 40px rgba(212, 175, 55, 0.3);
+                text-shadow:
+                    0 0 10px rgba(212, 175, 55, 0.4),
+                    0 0 20px rgba(212, 175, 55, 0.6),
+                    0 0 40px rgba(167, 139, 250, 0.3);
             }
         }
 
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         @keyframes typewriter {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
+            from { width: 0; }
+            to { width: 100%; }
         }
 
         .typewriter-effect {
             overflow: hidden;
             white-space: pre-wrap;
-            animation: typewriter 2s steps(80) forwards;
+            animation: typewriter 2.2s steps(90) forwards;
             display: inline-block;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .title-section h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+                letter-spacing: 3px;
             }
 
             .title-section p {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
 
             .level-display {
-                padding: 20px;
+                padding: 25px;
             }
 
             .quest-container {
-                height: 400px;
+                height: 450px;
             }
 
             .quest-card-front,
             .quest-card-back {
-                padding: 30px 20px;
+                padding: 35px 25px;
             }
 
             .quest-text {
@@ -462,40 +670,46 @@
 
             .answer-button {
                 padding: 12px 15px;
-                font-size: 0.95rem;
+                font-size: 0.9rem;
             }
 
             .claim-button {
-                font-size: 1.2rem;
-                padding: 15px 40px;
+                font-size: 1.1rem;
+                padding: 16px 45px;
             }
         }
 
         @media (max-width: 480px) {
             body {
-                padding: 15px;
+                padding: 12px;
             }
 
             .title-section h1 {
                 font-size: 2rem;
+                letter-spacing: 2px;
             }
 
             .level-display {
-                padding: 15px;
+                padding: 20px;
+                max-width: 100%;
             }
 
             .quest-container {
                 height: 350px;
+                max-width: 100%;
             }
 
             .quest-card-front,
             .quest-card-back {
-                padding: 20px 15px;
+                padding: 25px 15px;
             }
 
             .quest-text {
                 font-size: 0.95rem;
-                min-height: 60px;
+            }
+
+            .quest-card-front-content {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -509,352 +723,104 @@
         </div>
 
         <div class="level-display">
-            <div class="level-text">
-                Level <span id="displayLevel">1</span>
-            </div>
+            <div class="level-text">⚡ LEVEL <span id="displayLevel">1</span></div>
             <div class="xp-bar-container">
                 <div class="xp-bar-fill" id="xpBarFill" style="width: 0%">
                     <span id="xpBarText"></span>
                 </div>
             </div>
             <div class="xp-text">
-                <span id="displayXP">0</span>/500 XP
+                ✦ <span id="displayXP">0</span> / 500 XP ✦
             </div>
         </div>
 
-        <button class="claim-button" id="claimButton">Claim Daily Quest</button>
+        <button class="claim-button" id="claimButton">⚔ CLAIM DAILY QUEST ⚔</button>
     </div>
 
     <!-- Quest Page -->
     <div class="quest-page hidden" id="questPage">
         <div class="quest-header">
-            <button class="quest-back-button" id="backButton">← Back to Menu</button>
+            <button class="quest-back-button" id="backButton">← Return</button>
             <div class="mini-level-display">
-                Level <span id="questLevel">1</span> • <span id="questXP">0</span>/500 XP
+                LEVEL <span id="questLevel">1</span> ⋄ <span id="questXP">0</span>/500 XP
             </div>
         </div>
 
         <div class="quest-container">
             <div class="quest-card" id="questCard">
                 <div class="quest-card-front">
-                    <div class="quest-card-front-content">Click to Reveal Quest</div>
+                    <div class="quest-card-front-content">✦</div>
                 </div>
                 <div class="quest-card-back">
+                    <div class="category-badge" id="categoryBadge"></div>
                     <div class="quest-text" id="questText"></div>
                     <div class="framework-name" id="frameworkName"></div>
                     <div class="answers-container" id="answersContainer"></div>
                     <div class="feedback" id="feedback"></div>
                     <div class="explanation" id="explanation"></div>
-                    <button class="next-button" id="nextButton">Next Quest</button>
+                    <button class="next-button" id="nextButton">NEXT QUEST →</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Quest Data - All 43 frameworks
+        // Quest Data - 43 frameworks organized by category
         const questData = [
-            {
-                name: "Inversion",
-                description: "Instead of asking ‘How can I succeed?’, ask ‘How can I fail?’",
-                answers: ["Think backwards from failure", "Avoid obstacles", "Plan for worst case"],
-                correct: 0,
-                explanation: "Inversion flips problems on their head, helping you identify hidden risks and obstacles before they become critical issues."
-            },
-            {
-                name: "Second-Order Thinking",
-                description: "What are the consequences of the consequences?",
-                answers: ["Consider long-term ripple effects", "Stop after first outcome", "Focus only on immediate results"],
-                correct: 0,
-                explanation: "Second-order thinking helps you anticipate indirect effects and unintended consequences of your decisions."
-            },
-            {
-                name: "Map Is Not Territory",
-                description: "The representation of something is not the thing itself",
-                answers: ["Reality differs from models", "Models are always accurate", "Reality and maps are identical"],
-                correct: 0,
-                explanation: "Never confuse abstraction with reality. Your mental models are useful tools, but they’re not the actual territory."
-            },
-            {
-                name: "Hanlon’s Razor",
-                description: "Never attribute to malice what can be adequately explained by stupidity",
-                answers: ["Assume incompetence before malice", "Always assume malice", "Never question motives"],
-                correct: 0,
-                explanation: "Hanlon’s Razor encourages charitable interpretations and saves you from unnecessary conflict and paranoia."
-            },
-            {
-                name: "Empty Boat",
-                description: "If a boat hits your boat, you’d not get angry. If someone in the boat hit you, you’d get angry. Why the difference?",
-                answers: ["Remove personalization from conflict", "Get angry in both cases", "Never respond to conflict"],
-                correct: 0,
-                explanation: "This Zen parable teaches emotional resilience by separating the action from the actor."
-            },
-            {
-                name: "Cobra Effect",
-                description: "Solutions that backfire because they incentivize the wrong behavior",
-                answers: ["Perverse incentives create problems", "All solutions work perfectly", "Incentives never matter"],
-                correct: 0,
-                explanation: "Named after a failed British attempt to reduce cobra population in India by paying for dead cobras—people started breeding them instead."
-            },
-            {
-                name: "Goodhart’s Law",
-                description: "When a measure becomes a target, it ceases to be a good measure",
-                answers: ["Metrics become corrupted when used as goals", "Metrics are always reliable", "Goals and metrics are the same"],
-                correct: 0,
-                explanation: "Once you optimize for a metric, people game it, making it useless as a true measure of what matters."
-            },
-            {
-                name: "Decision Journal",
-                description: "Record your decisions, reasoning, and expected outcomes to learn from results",
-                answers: ["Document decisions to improve", "Trust your gut always", "Never review past decisions"],
-                correct: 0,
-                explanation: "By writing down your reasoning before outcomes are revealed, you create feedback loops that improve decision quality."
-            },
-            {
-                name: "Fear-Setting",
-                description: "Visualize and write down your worst fears to realize they’re manageable",
-                answers: ["Face fears by examining them", "Ignore fears completely", "Fears are always justified"],
-                correct: 0,
-                explanation: "Tim Ferriss’s framework: write down the worst case, probability, and recovery plan. Most fears are less catastrophic than imagined."
-            },
-            {
-                name: "Pre-mortem",
-                description: "Imagine your project failed—what went wrong? Then prevent those things",
-                answers: ["Identify failure points before they happen", "Assume all projects succeed", "Never plan for failure"],
-                correct: 0,
-                explanation: "By working backwards from failure, you uncover risks you’d miss in traditional planning."
-            },
-            {
-                name: "Five Whys",
-                description: "Ask ‘Why?’ five times to reach the root cause of a problem",
-                answers: ["Get to root cause through iteration", "Stop at surface level", "Ask why only once"],
-                correct: 0,
-                explanation: "Each ‘why’ peels back a layer of symptoms to reveal underlying causes."
-            },
-            {
-                name: "3-1-1 Method",
-                description: "Share 3 things you did well, 1 thing to improve, and 1 thing learned",
-                answers: ["Balanced reflection on performance", "Only focus on failures", "Ignore what you learned"],
-                correct: 0,
-                explanation: "This coaching technique creates psychological safety while driving improvement through thoughtful reflection."
-            },
-            {
-                name: "DACI",
-                description: "Driver, Approver, Contributor, Informed—clarify decision roles",
-                answers: ["Define roles in decision-making", "Have everyone decide everything", "One person decides all"],
-                correct: 0,
-                explanation: "Clear roles prevent decision paralysis and ensure accountability while getting input from the right people."
-            },
-            {
-                name: "Bias for Action",
-                description: "Make decisions with incomplete information rather than endlessly analyzing",
-                answers: ["Act decisively despite uncertainty", "Always gather perfect information", "Never make decisions"],
-                correct: 0,
-                explanation: "Perfect information rarely exists. Moving forward with 70% certainty beats perfect analysis that comes too late."
-            },
-            {
-                name: "KWL",
-                description: "Know, Want to know, Learned—structure your learning",
-                answers: ["Map knowledge before, during, after", "Learn randomly", "Never assess knowledge"],
-                correct: 0,
-                explanation: "K-W-L focuses learning by contrasting what you know with what you want to discover and what you actually learned."
-            },
-            {
-                name: "Personal README",
-                description: "Write documentation about yourself: how to work with you, what motivates you",
-                answers: ["Help others understand you", "Never explain yourself", "Assume people know you"],
-                correct: 0,
-                explanation: "A personal README improves team dynamics by being explicit about communication style, values, and working preferences."
-            },
-            {
-                name: "FLIP It",
-                description: "Frame, Learn, Innovate, Prove—step through creative problem-solving",
-                answers: ["Move through problem systematically", "Jump to solutions immediately", "Stay stuck in problems"],
-                correct: 0,
-                explanation: "FLIP structures the journey from problem definition through to testing new solutions."
-            },
-            {
-                name: "One-Pager",
-                description: "Distill your idea into one compelling page—forces clarity",
-                answers: ["Clarity through brevity", "More pages = better ideas", "Ideas are better unexplained"],
-                correct: 0,
-                explanation: "Constraints force you to find the essence of your idea. If you can’t fit it on one page, you don’t understand it yet."
-            },
-            {
-                name: "Weekly Update",
-                description: "Recap what you shipped, what’s blocking you, what’s next",
-                answers: ["Communicate progress and blockers", "Keep progress secret", "Never update on work"],
-                correct: 0,
-                explanation: "Regular updates align teams, surface blockers early, and create accountability without micromanagement."
-            },
-            {
-                name: "Skip-Level",
-                description: "Meet regularly with your manager’s manager to stay aligned",
-                answers: ["Understand broader context", "Never talk to senior leaders", "Only talk to your direct manager"],
-                correct: 0,
-                explanation: "Skip-level conversations prevent silos and help you understand strategy and feedback beyond your immediate team."
-            },
-            {
-                name: "Blue/Green/Red Speakers",
-                description: "Rotate three speakers: status (Blue), strategic (Green), wildcard ideas (Red)",
-                answers: ["Diverse speaking roles in meetings", "Same person always speaks", "No structure to meetings"],
-                correct: 0,
-                explanation: "Rotating roles prevents dominance, ensures different perspectives, and keeps meetings dynamic and valuable."
-            },
-            {
-                name: "Teach-Back",
-                description: "Have someone explain back what they understood to check comprehension",
-                answers: ["Verify understanding through retelling", "Assume understanding", "Never check comprehension"],
-                correct: 0,
-                explanation: "The teach-back method reveals misunderstandings that people are too polite to voice otherwise."
-            },
-            {
-                name: "Working Out Loud",
-                description: "Share your work, thinking, and learnings publicly as you go",
-                answers: ["Build reputation through transparency", "Hide work until perfect", "Never share unfinished work"],
-                correct: 0,
-                explanation: "Working out loud creates serendipitous connections, attracts collaborators, and speeds up feedback loops."
-            },
-            {
-                name: "ONE Thing",
-                description: "Focus on the single thing that makes everything else easier",
-                answers: ["Prioritize the key leverage point", "Do everything equally", "No priorities needed"],
-                correct: 0,
-                explanation: "Not all tasks are equal. Find the one thing whose completion cascades into other successes."
-            },
-            {
-                name: "Energy-Based",
-                description: "Schedule high-energy tasks when you have peak energy",
-                answers: ["Align tasks with energy levels", "Do hard tasks when tired", "Energy doesn’t matter"],
-                correct: 0,
-                explanation: "Understanding your chronotype and energy patterns lets you do important work during peak cognitive hours."
-            },
-            {
-                name: "Parkinson’s Law",
-                description: "Work expands to fill the time allotted—set shorter deadlines",
-                answers: ["Shorter deadlines increase focus", "More time always helps", "Deadlines don’t matter"],
-                correct: 0,
-                explanation: "Tight constraints paradoxically boost productivity by forcing priorities and eliminating perfectionism."
-            },
-            {
-                name: "Two-Minute Rule",
-                description: "If something takes less than 2 minutes, do it now",
-                answers: ["Eliminate small tasks immediately", "Save all tasks for later", "Small tasks don’t matter"],
-                correct: 0,
-                explanation: "This simple rule prevents small tasks from piling up into overwhelm while keeping momentum high."
-            },
-            {
-                name: "Breaking Boxes",
-                description: "Identify your limiting beliefs and reframe them",
-                answers: ["Challenge false constraints", "Accept all constraints", "Never question beliefs"],
-                correct: 0,
-                explanation: "Many of our limitations are self-imposed. Identifying and testing them opens new possibilities."
-            },
-            {
-                name: "Fire and Forget",
-                description: "Send feedback immediately without overthinking; don’t wait for the perfect moment",
-                answers: ["Give timely feedback freely", "Always wait for perfect timing", "Never give feedback"],
-                correct: 0,
-                explanation: "Delayed feedback loses context and impact. Timely feedback (even if imperfect) creates faster learning loops."
-            },
-            {
-                name: "Don’t-Do-It List",
-                description: "Track activities that don’t align with your goals—stop doing them",
-                answers: ["Eliminate misaligned activities", "Do everything that comes up", "Never say no"],
-                correct: 0,
-                explanation: "It’s not just about what to do; it’s about what to stop. This creates space for what actually matters."
-            },
-            {
-                name: "Map Then Automate",
-                description: "First understand a process completely, then automate it",
-                answers: ["Understand before automating", "Automate first, understand later", "Never automate"],
-                correct: 0,
-                explanation: "Automating a poorly understood process scales inefficiency. Map first, then optimize."
-            },
-            {
-                name: "Kaizen",
-                description: "Continuous small improvements compound into transformative change",
-                answers: ["Small increments create big shifts", "Only big changes matter", "Improvement is one-time"],
-                correct: 0,
-                explanation: "The Japanese philosophy of Kaizen shows how 1% daily improvements lead to exponential growth over time."
-            },
-            {
-                name: "Gemba",
-                description: "Go to the actual place where work happens to see reality",
-                answers: ["Observe real work in context", "Stay at your desk", "Trust reports only"],
-                correct: 0,
-                explanation: "Gemba walks reveal what’s actually happening, not what reports claim, surfacing hidden bottlenecks."
-            },
-            {
-                name: "Feedback Flywheel",
-                description: "Create loops where feedback drives iteration drives better feedback",
-                answers: ["Build cycles of learning", "Get feedback once then stop", "Avoid feedback loops"],
-                correct: 0,
-                explanation: "The best products are built through tight feedback cycles that drive rapid iteration and improvement."
-            },
-            {
-                name: "Experiment Log",
-                description: "Record what you tested, results, and what you learned",
-                answers: ["Document experiments systematically", "Trust memory of results", "Never experiment"],
-                correct: 0,
-                explanation: "An experiment log builds a knowledge base of what works, preventing repeated failures and enabling pattern recognition."
-            },
-            {
-                name: "Shu-Ha-Ri",
-                description: "Imitate → Adapt → Transcend—the three stages of mastery",
-                answers: ["Follow the progression to mastery", "Skip to transcending", "Stay imitating forever"],
-                correct: 0,
-                explanation: "This martial arts concept applies to all skill development: learn the fundamentals, adapt them, then innovate."
-            },
-            {
-                name: "Rapid Prototype",
-                description: "Build something quick and rough to test ideas before polish",
-                answers: ["Get feedback on rough ideas fast", "Perfect before showing anyone", "Never prototype"],
-                correct: 0,
-                explanation: "Prototypes that take days beat specs that take months. Speed to feedback beats theoretical perfection."
-            },
-            {
-                name: "Red Team",
-                description: "Assign someone to argue against your idea and find weaknesses",
-                answers: ["Stress-test ideas through adversaries", "Only hear supporting views", "Avoid criticism"],
-                correct: 0,
-                explanation: "Red teams systematically identify flaws and gaps that consensus-seeking groups miss, strengthening decisions."
-            },
-            {
-                name: "Journey Map",
-                description: "Plot the customer experience step-by-step to find pain points",
-                answers: ["Visualize the full customer flow", "Guess at customer needs", "Never map journeys"],
-                correct: 0,
-                explanation: "Journey mapping reveals moments of truth and opportunities that a single perspective misses."
-            },
-            {
-                name: "Johari Window",
-                description: "Four quadrants: Known to self, Unknown to self, Known to others, Unknown to all",
-                answers: ["Understand blind spots through feedback", "Trust only self-perception", "Never ask for feedback"],
-                correct: 0,
-                explanation: "The Johari Window reveals that others see things about you that you don’t, and you’re blind to your own blindspots."
-            },
-            {
-                name: "Swipe File",
-                description: "Keep a collection of great writing, design, marketing to inspire your work",
-                answers: ["Build a reference collection", "Never look at others’ work", "Copy without understanding"],
-                correct: 0,
-                explanation: "A swipe file is your inspiration library—not for plagiarism, but for studying what works and why."
-            },
-            {
-                name: "Parking Lot",
-                description: "Capture off-topic ideas or questions to discuss later, not now",
-                answers: ["Stay focused by noting distractions", "Discuss everything immediately", "Ignore interesting ideas"],
-                correct: 0,
-                explanation: "Parking lots keep meetings focused while ensuring good ideas don’t get lost—you return to them later."
-            },
-            {
-                name: "Work-Sharing Buddy",
-                description: "Partner with someone at your level to share work in progress for feedback",
-                answers: ["Get peer feedback through partnership", "Work entirely alone", "Never share unfinished work"],
-                correct: 0,
-                explanation: "Work-sharing buddies provide psychological safety and fresh perspectives that accelerate improvement."
-            }
+            // Divination (Clear Thinking)
+            { name: "Inversion", category: "divination", description: "Instead of 'How can I succeed?', ask 'How can I fail?'", answers: ["Think backwards from failure", "Avoid obstacles", "Plan for worst case"], correct: 0, explanation: "Inversion flips problems on their head, helping you identify hidden risks and obstacles before they become critical issues." },
+            { name: "Second-Order Thinking", category: "divination", description: "What are the consequences of the consequences?", answers: ["Consider long-term ripple effects", "Stop after first outcome", "Focus only on immediate results"], correct: 0, explanation: "Second-order thinking helps you anticipate indirect effects and unintended consequences of your decisions." },
+            { name: "Map Is Not Territory", category: "divination", description: "The representation of something is not the thing itself", answers: ["Reality differs from models", "Models are always accurate", "Reality and maps are identical"], correct: 0, explanation: "Never confuse abstraction with reality. Your mental models are useful tools, but they're not the actual territory." },
+            { name: "Hanlon's Razor", category: "divination", description: "Never attribute to malice what can be adequately explained by stupidity", answers: ["Assume incompetence before malice", "Always assume malice", "Never question motives"], correct: 0, explanation: "Hanlon's Razor encourages charitable interpretations and saves you from unnecessary conflict and paranoia." },
+            { name: "Empty Boat", category: "divination", description: "If a boat hits your boat, you'd not get angry. If someone in the boat hit you, you'd get angry. Why?", answers: ["Remove personalization from conflict", "Get angry in both cases", "Never respond to conflict"], correct: 0, explanation: "This Zen parable teaches emotional resilience by separating the action from the actor." },
+            { name: "Five Whys", category: "divination", description: "Ask 'Why?' five times to reach the root cause of a problem", answers: ["Get to root cause through iteration", "Stop at surface level", "Ask why only once"], correct: 0, explanation: "Each 'why' peels back a layer of symptoms to reveal underlying causes." },
+            { name: "KWL", category: "divination", description: "Know, Want to know, Learned—structure your learning", answers: ["Map knowledge before, during, after", "Learn randomly", "Never assess knowledge"], correct: 0, explanation: "K-W-L focuses learning by contrasting what you know with what you want to discover and what you actually learned." },
+
+            // Strategy (Better Decisions)
+            { name: "Cobra Effect", category: "strategy", description: "Solutions that backfire because they incentivize the wrong behavior", answers: ["Perverse incentives create problems", "All solutions work perfectly", "Incentives never matter"], correct: 0, explanation: "Named after a failed British attempt to reduce cobra population by paying for dead cobras—people started breeding them." },
+            { name: "Goodhart's Law", category: "strategy", description: "When a measure becomes a target, it ceases to be a good measure", answers: ["Metrics become corrupted when used as goals", "Metrics are always reliable", "Goals and metrics are the same"], correct: 0, explanation: "Once you optimize for a metric, people game it, making it useless as a true measure of what matters." },
+            { name: "Decision Journal", category: "strategy", description: "Record your decisions, reasoning, and expected outcomes to learn from results", answers: ["Document decisions to improve", "Trust your gut always", "Never review past decisions"], correct: 0, explanation: "By writing down your reasoning before outcomes are revealed, you create feedback loops that improve decision quality." },
+            { name: "Fear-Setting", category: "strategy", description: "Visualize and write down your worst fears to realize they're manageable", answers: ["Face fears by examining them", "Ignore fears completely", "Fears are always justified"], correct: 0, explanation: "Tim Ferriss's framework: write down worst case, probability, and recovery plan. Most fears are less catastrophic than imagined." },
+            { name: "Pre-mortem", category: "strategy", description: "Imagine your project failed—what went wrong? Then prevent those things", answers: ["Identify failure points before they happen", "Assume all projects succeed", "Never plan for failure"], correct: 0, explanation: "By working backwards from failure, you uncover risks you'd miss in traditional planning." },
+            { name: "DACI", category: "strategy", description: "Driver, Approver, Contributor, Informed—clarify decision roles", answers: ["Define roles in decision-making", "Have everyone decide everything", "One person decides all"], correct: 0, explanation: "Clear roles prevent decision paralysis and ensure accountability while getting input from the right people." },
+            { name: "Bias for Action", category: "strategy", description: "Make decisions with incomplete information rather than endlessly analyzing", answers: ["Act decisively despite uncertainty", "Always gather perfect information", "Never make decisions"], correct: 0, explanation: "Perfect information rarely exists. Moving forward with 70% certainty beats perfect analysis that comes too late." },
+
+            // Enchantment (Better Communication)
+            { name: "Personal README", category: "enchantment", description: "Write documentation about yourself: how to work with you, what motivates you", answers: ["Help others understand you", "Never explain yourself", "Assume people know you"], correct: 0, explanation: "A personal README improves team dynamics by being explicit about communication style, values, and working preferences." },
+            { name: "3-1-1 Method", category: "enchantment", description: "Share 3 things you did well, 1 thing to improve, and 1 thing learned", answers: ["Balanced reflection on performance", "Only focus on failures", "Ignore what you learned"], correct: 0, explanation: "This coaching technique creates psychological safety while driving improvement through thoughtful reflection." },
+            { name: "FLIP It", category: "enchantment", description: "Frame, Learn, Innovate, Prove—step through creative problem-solving", answers: ["Move through problem systematically", "Jump to solutions immediately", "Stay stuck in problems"], correct: 0, explanation: "FLIP structures the journey from problem definition through to testing new solutions." },
+            { name: "One-Pager", category: "enchantment", description: "Distill your idea into one compelling page—forces clarity", answers: ["Clarity through brevity", "More pages = better ideas", "Ideas are better unexplained"], correct: 0, explanation: "Constraints force you to find the essence of your idea. If you can't fit it on one page, you don't understand it yet." },
+            { name: "Weekly Update", category: "enchantment", description: "Recap what you shipped, what's blocking you, what's next", answers: ["Communicate progress and blockers", "Keep progress secret", "Never update on work"], correct: 0, explanation: "Regular updates align teams, surface blockers early, and create accountability without micromanagement." },
+            { name: "Skip-Level", category: "enchantment", description: "Meet regularly with your manager's manager to stay aligned", answers: ["Understand broader context", "Never talk to senior leaders", "Only talk to your direct manager"], correct: 0, explanation: "Skip-level conversations prevent silos and help you understand strategy and feedback beyond your immediate team." },
+            { name: "Blue/Green/Red Speakers", category: "enchantment", description: "Rotate three speakers: status (Blue), strategic (Green), wildcard ideas (Red)", answers: ["Diverse speaking roles in meetings", "Same person always speaks", "No structure to meetings"], correct: 0, explanation: "Rotating roles prevents dominance, ensures different perspectives, and keeps meetings dynamic and valuable." },
+            { name: "Teach-Back", category: "enchantment", description: "Have someone explain back what they understood to check comprehension", answers: ["Verify understanding through retelling", "Assume understanding", "Never check comprehension"], correct: 0, explanation: "The teach-back method reveals misunderstandings that people are too polite to voice otherwise." },
+            { name: "Working Out Loud", category: "enchantment", description: "Share your work, thinking, and learnings publicly as you go", answers: ["Build reputation through transparency", "Hide work until perfect", "Never share unfinished work"], correct: 0, explanation: "Working out loud creates serendipitous connections, attracts collaborators, and speeds up feedback loops." },
+            { name: "Johari Window", category: "enchantment", description: "Four quadrants: Known to self, Unknown to self, Known to others, Unknown to all", answers: ["Understand blind spots through feedback", "Trust only self-perception", "Never ask for feedback"], correct: 0, explanation: "The Johari Window reveals that others see things about you that you don't, and you're blind to your own blindspots." },
+
+            // Transmutation (Less Friction)
+            { name: "ONE Thing", category: "transmutation", description: "Focus on the single thing that makes everything else easier", answers: ["Prioritize the key leverage point", "Do everything equally", "No priorities needed"], correct: 0, explanation: "Not all tasks are equal. Find the one thing whose completion cascades into other successes." },
+            { name: "Energy-Based", category: "transmutation", description: "Schedule high-energy tasks when you have peak energy", answers: ["Align tasks with energy levels", "Do hard tasks when tired", "Energy doesn't matter"], correct: 0, explanation: "Understanding your chronotype and energy patterns lets you do important work during peak cognitive hours." },
+            { name: "Parkinson's Law", category: "transmutation", description: "Work expands to fill the time allotted—set shorter deadlines", answers: ["Shorter deadlines increase focus", "More time always helps", "Deadlines don't matter"], correct: 0, explanation: "Tight constraints paradoxically boost productivity by forcing priorities and eliminating perfectionism." },
+            { name: "Two-Minute Rule", category: "transmutation", description: "If something takes less than 2 minutes, do it now", answers: ["Eliminate small tasks immediately", "Save all tasks for later", "Small tasks don't matter"], correct: 0, explanation: "This simple rule prevents small tasks from piling up into overwhelm while keeping momentum high." },
+            { name: "Breaking Boxes", category: "transmutation", description: "Identify your limiting beliefs and reframe them", answers: ["Challenge false constraints", "Accept all constraints", "Never question beliefs"], correct: 0, explanation: "Many of our limitations are self-imposed. Identifying and testing them opens new possibilities." },
+            { name: "Fire and Forget", category: "transmutation", description: "Send feedback immediately without overthinking; don't wait for the perfect moment", answers: ["Give timely feedback freely", "Always wait for perfect timing", "Never give feedback"], correct: 0, explanation: "Delayed feedback loses context and impact. Timely feedback (even if imperfect) creates faster learning loops." },
+            { name: "Don't-Do-It List", category: "transmutation", description: "Track activities that don't align with your goals—stop doing them", answers: ["Eliminate misaligned activities", "Do everything that comes up", "Never say no"], correct: 0, explanation: "It's not just about what to do; it's about what to stop. This creates space for what actually matters." },
+            { name: "Map Then Automate", category: "transmutation", description: "First understand a process completely, then automate it", answers: ["Understand before automating", "Automate first, understand later", "Never automate"], correct: 0, explanation: "Automating a poorly understood process scales inefficiency. Map first, then optimize." },
+            { name: "Parking Lot", category: "transmutation", description: "Capture off-topic ideas or questions to discuss later, not now", answers: ["Stay focused by noting distractions", "Discuss everything immediately", "Ignore interesting ideas"], correct: 0, explanation: "Parking lots keep meetings focused while ensuring good ideas don't get lost—you return to them later." },
+
+            // Iteration (Keep Improving)
+            { name: "Kaizen", category: "iteration", description: "Continuous small improvements compound into transformative change", answers: ["Small increments create big shifts", "Only big changes matter", "Improvement is one-time"], correct: 0, explanation: "The Japanese philosophy of Kaizen shows how 1% daily improvements lead to exponential growth over time." },
+            { name: "Gemba", category: "iteration", description: "Go to the actual place where work happens to see reality", answers: ["Observe real work in context", "Stay at your desk", "Trust reports only"], correct: 0, explanation: "Gemba walks reveal what's actually happening, not what reports claim, surfacing hidden bottlenecks." },
+            { name: "Feedback Flywheel", category: "iteration", description: "Create loops where feedback drives iteration drives better feedback", answers: ["Build cycles of learning", "Get feedback once then stop", "Avoid feedback loops"], correct: 0, explanation: "The best products are built through tight feedback cycles that drive rapid iteration and improvement." },
+            { name: "Experiment Log", category: "iteration", description: "Record what you tested, results, and what you learned", answers: ["Document experiments systematically", "Trust memory of results", "Never experiment"], correct: 0, explanation: "An experiment log builds a knowledge base of what works, preventing repeated failures and enabling pattern recognition." },
+            { name: "Shu-Ha-Ri", category: "iteration", description: "Imitate → Adapt → Transcend—the three stages of mastery", answers: ["Follow the progression to mastery", "Skip to transcending", "Stay imitating forever"], correct: 0, explanation: "This martial arts concept applies to all skill development: learn the fundamentals, adapt them, then innovate." },
+            { name: "Rapid Prototype", category: "iteration", description: "Build something quick and rough to test ideas before polish", answers: ["Get feedback on rough ideas fast", "Perfect before showing anyone", "Never prototype"], correct: 0, explanation: "Prototypes that take days beat specs that take months. Speed to feedback beats theoretical perfection." },
+
+            // Ascension (Career Craft)
+            { name: "Red Team", category: "ascension", description: "Assign someone to argue against your idea and find weaknesses", answers: ["Stress-test ideas through adversaries", "Only hear supporting views", "Avoid criticism"], correct: 0, explanation: "Red teams systematically identify flaws and gaps that consensus-seeking groups miss, strengthening decisions." },
+            { name: "Journey Map", category: "ascension", description: "Plot the customer experience step-by-step to find pain points", answers: ["Visualize the full customer flow", "Guess at customer needs", "Never map journeys"], correct: 0, explanation: "Journey mapping reveals moments of truth and opportunities that a single perspective misses." },
+            { name: "Swipe File", category: "ascension", description: "Keep a collection of great writing, design, marketing to inspire your work", answers: ["Build a reference collection", "Never look at others' work", "Copy without understanding"], correct: 0, explanation: "A swipe file is your inspiration library—not for plagiarism, but for studying what works and why." },
+            { name: "Work-Sharing Buddy", category: "ascension", description: "Partner with someone at your level to share work in progress for feedback", answers: ["Get peer feedback through partnership", "Work entirely alone", "Never share unfinished work"], correct: 0, explanation: "Work-sharing buddies provide psychological safety and fresh perspectives that accelerate improvement." }
         ];
 
         // Game State
@@ -876,48 +842,48 @@
 
         // Event Listeners
         function setupEventListeners() {
-            document.getElementById(‘claimButton’).addEventListener(‘click’, startQuest);
-            document.getElementById(‘backButton’).addEventListener(‘click’, backToMenu);
-            document.getElementById(‘questCard’).addEventListener(‘click’, revealQuest);
-            document.getElementById(‘nextButton’).addEventListener(‘click’, nextQuest);
+            document.getElementById('claimButton').addEventListener('click', startQuest);
+            document.getElementById('backButton').addEventListener('click', backToMenu);
+            document.getElementById('questCard').addEventListener('click', revealQuest);
+            document.getElementById('nextButton').addEventListener('click', nextQuest);
         }
 
         // Load/Save Game State
         function loadGameState() {
-            const saved = localStorage.getItem(‘humanStackGameState’);
+            const saved = localStorage.getItem('humanStackGameState');
             if (saved) {
                 gameState = JSON.parse(saved);
             }
         }
 
         function saveGameState() {
-            localStorage.setItem(‘humanStackGameState’, JSON.stringify(gameState));
+            localStorage.setItem('humanStackGameState', JSON.stringify(gameState));
         }
 
         // UI Updates
         function updateUI() {
-            document.getElementById(‘displayLevel’).textContent = gameState.level;
-            document.getElementById(‘displayXP’).textContent = gameState.xp;
-            document.getElementById(‘questLevel’).textContent = gameState.level;
-            document.getElementById(‘questXP’).textContent = gameState.xp;
+            document.getElementById('displayLevel').textContent = gameState.level;
+            document.getElementById('displayXP').textContent = gameState.xp;
+            document.getElementById('questLevel').textContent = gameState.level;
+            document.getElementById('questXP').textContent = gameState.xp;
 
             const xpPercentage = (gameState.xp / XP_PER_LEVEL) * 100;
-            const xpBarFill = document.getElementById(‘xpBarFill’);
-            xpBarFill.style.width = xpPercentage + ‘%’;
-            xpBarFill.querySelector(‘#xpBarText’).textContent = `${gameState.xp}/${XP_PER_LEVEL}`;
+            const xpBarFill = document.getElementById('xpBarFill');
+            xpBarFill.style.width = xpPercentage + '%';
+            xpBarFill.textContent = `${gameState.xp}/${XP_PER_LEVEL}`;
         }
 
         // Start Quest
         function startQuest() {
-            document.getElementById(‘landingPage’).classList.add(‘hidden’);
-            document.getElementById(‘questPage’).classList.remove(‘hidden’);
+            document.getElementById('landingPage').classList.add('hidden');
+            document.getElementById('questPage').classList.remove('hidden');
             resetQuestCard();
         }
 
         // Back to Menu
         function backToMenu() {
-            document.getElementById(‘questPage’).classList.add(‘hidden’);
-            document.getElementById(‘landingPage’).classList.remove(‘hidden’);
+            document.getElementById('questPage').classList.add('hidden');
+            document.getElementById('landingPage').classList.remove('hidden');
             resetQuestCard();
         }
 
@@ -929,26 +895,25 @@
 
         // Reset Quest Card
         function resetQuestCard() {
-            const card = document.getElementById(‘questCard’);
-            card.classList.remove(‘flipped’);
+            const card = document.getElementById('questCard');
+            card.classList.remove('flipped');
 
-            const questContent = document.querySelector(‘.quest-content’);
-            if (questContent) questContent.remove();
-
-            document.getElementById(‘questText’).textContent = ‘’;
-            document.getElementById(‘frameworkName’).classList.remove(‘active’);
-            document.getElementById(‘answersContainer’).classList.remove(‘active’);
-            document.getElementById(‘answersContainer’).innerHTML = ‘’;
-            document.getElementById(‘feedback’).classList.remove(‘active’);
-            document.getElementById(‘explanation’).classList.remove(‘active’);
-            document.getElementById(‘nextButton’).classList.remove(‘active’);
+            document.getElementById('questText').textContent = '';
+            document.getElementById('frameworkName').classList.remove('active');
+            document.getElementById('answersContainer').classList.remove('active');
+            document.getElementById('answersContainer').innerHTML = '';
+            document.getElementById('feedback').classList.remove('active');
+            document.getElementById('explanation').classList.remove('active');
+            document.getElementById('nextButton').classList.remove('active');
+            document.getElementById('categoryBadge').textContent = '';
+            document.getElementById('categoryBadge').className = 'category-badge';
         }
 
         // Reveal Quest
         function revealQuest() {
-            const card = document.getElementById(‘questCard’);
-            if (!card.classList.contains(‘flipped’)) {
-                card.classList.add(‘flipped’);
+            const card = document.getElementById('questCard');
+            if (!card.classList.contains('flipped')) {
+                card.classList.add('flipped');
                 displayQuestContent();
             }
         }
@@ -958,37 +923,42 @@
             const currentQuest = window.currentQuest || getRandomQuest();
             window.currentQuest = currentQuest;
 
-            const questTextEl = document.getElementById(‘questText’);
-            questTextEl.innerHTML = ‘’;
+            // Category badge
+            const categoryBadge = document.getElementById('categoryBadge');
+            categoryBadge.textContent = '◆ ' + currentQuest.category.toUpperCase() + ' ◆';
+            categoryBadge.classList.add(currentQuest.category);
+
+            const questTextEl = document.getElementById('questText');
+            questTextEl.innerHTML = '';
 
             // Typewriter effect
-            const typewriterSpan = document.createElement(‘span’);
-            typewriterSpan.className = ‘typewriter-effect’;
+            const typewriterSpan = document.createElement('span');
+            typewriterSpan.className = 'typewriter-effect';
             typewriterSpan.textContent = currentQuest.description;
             questTextEl.appendChild(typewriterSpan);
 
             // Framework name appears after typewriter
             setTimeout(() => {
-                const frameworkNameEl = document.getElementById(‘frameworkName’);
+                const frameworkNameEl = document.getElementById('frameworkName');
                 frameworkNameEl.textContent = currentQuest.name;
-                frameworkNameEl.classList.add(‘active’);
+                frameworkNameEl.classList.add('active');
 
                 // Answers appear after framework name
                 setTimeout(() => {
                     displayAnswers(currentQuest);
                 }, 500);
-            }, 2200);
+            }, 2400);
         }
 
         // Display Answers
         function displayAnswers(quest) {
-            const container = document.getElementById(‘answersContainer’);
-            container.innerHTML = ‘’;
-            container.classList.add(‘active’);
+            const container = document.getElementById('answersContainer');
+            container.innerHTML = '';
+            container.classList.add('active');
 
             quest.answers.forEach((answer, index) => {
-                const button = document.createElement(‘button’);
-                button.className = ‘answer-button’;
+                const button = document.createElement('button');
+                button.className = 'answer-button';
                 button.textContent = answer;
                 button.onclick = () => selectAnswer(index, quest);
                 button.disabled = window.answerSelected;
@@ -999,44 +969,44 @@
         // Select Answer
         function selectAnswer(selectedIndex, quest) {
             window.answerSelected = true;
-            const buttons = document.querySelectorAll(‘.answer-button’);
+            const buttons = document.querySelectorAll('.answer-button');
             const isCorrect = selectedIndex === quest.correct;
 
             buttons.forEach((btn, index) => {
                 btn.disabled = true;
                 if (index === quest.correct) {
-                    btn.classList.add(‘correct’);
+                    btn.classList.add('correct');
                 } else if (index === selectedIndex && !isCorrect) {
-                    btn.classList.add(‘incorrect’);
+                    btn.classList.add('incorrect');
                 }
             });
 
             // Show feedback
-            const feedbackEl = document.getElementById(‘feedback’);
-            feedbackEl.classList.add(‘active’);
+            const feedbackEl = document.getElementById('feedback');
+            feedbackEl.classList.add('active');
             if (isCorrect) {
-                feedbackEl.classList.add(‘correct’);
-                feedbackEl.classList.remove(‘incorrect’);
-                feedbackEl.textContent = ‘✓ Correct!’;
+                feedbackEl.classList.add('correct');
+                feedbackEl.classList.remove('incorrect');
+                feedbackEl.textContent = '✓ CORRECT ✓';
                 addXP(50);
-                createFloatingXP(event);
+                createFloatingXP();
             } else {
-                feedbackEl.classList.add(‘incorrect’);
-                feedbackEl.classList.remove(‘correct’);
-                feedbackEl.textContent = ‘✗ Incorrect’;
+                feedbackEl.classList.add('incorrect');
+                feedbackEl.classList.remove('correct');
+                feedbackEl.textContent = '✗ INCORRECT ✗';
             }
 
             // Show explanation
             setTimeout(() => {
-                const explanationEl = document.getElementById(‘explanation’);
+                const explanationEl = document.getElementById('explanation');
                 explanationEl.textContent = quest.explanation;
-                explanationEl.classList.add(‘active’);
+                explanationEl.classList.add('active');
 
                 // Show next button
                 setTimeout(() => {
-                    document.getElementById(‘nextButton’).classList.add(‘active’);
-                }, 500);
-            }, 1500);
+                    document.getElementById('nextButton').classList.add('active');
+                }, 600);
+            }, 1800);
         }
 
         // Add XP
@@ -1054,18 +1024,18 @@
         }
 
         // Create Floating XP
-        function createFloatingXP(event) {
-            const floatingXP = document.createElement(‘div’);
-            floatingXP.className = ‘floating-xp’;
-            floatingXP.textContent = ‘+50 XP’;
+        function createFloatingXP() {
+            const floatingXP = document.createElement('div');
+            floatingXP.className = 'floating-xp';
+            floatingXP.textContent = '+50 XP';
 
-            const rect = document.getElementById(‘questCard’).getBoundingClientRect();
-            floatingXP.style.left = rect.left + rect.width / 2 + ‘px’;
-            floatingXP.style.top = rect.top + rect.height / 2 + ‘px’;
+            const rect = document.getElementById('questCard').getBoundingClientRect();
+            floatingXP.style.left = rect.left + rect.width / 2 + 'px';
+            floatingXP.style.top = rect.top + rect.height / 2 + 'px';
 
             document.body.appendChild(floatingXP);
 
-            setTimeout(() => floatingXP.remove(), 2000);
+            setTimeout(() => floatingXP.remove(), 2500);
         }
 
         // Next Quest
