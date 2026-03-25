@@ -217,6 +217,19 @@
         margin-top: 0.6rem;
       }
 
+      .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 40px rgba(128, 0, 255, 0.2);
+      }
+
+      .stats-container {
+        margin-top: 0.8rem;
+        padding: 1rem;
+      }
+
       .stat-row {
         margin-top: 0.8rem;
         display: grid;
@@ -257,6 +270,12 @@
         border-radius: 12px;
         border: 1px solid color-mix(in srgb, var(--rarity-color) 42%, transparent);
         background: rgba(17, 12, 31, 0.58);
+      }
+
+      .detail-box.glass-card {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
       }
 
       .detail-box h5 {
@@ -586,17 +605,19 @@
 
             <section class="framework-section">
               <h4>Stats</h4>
-              <div class="stat-row">
-                <span>Adaptability</span>
-                <div class="bar"><i style="width: ${adaptability}%"></i></div>
-              </div>
-              <div class="stat-row">
-                <span>Logic Flow</span>
-                <div class="bar"><i style="width: ${logic}%"></i></div>
-              </div>
-              <div class="stat-row">
-                <span>Efficiency</span>
-                <div class="bar"><i style="width: ${efficiency}%"></i></div>
+              <div class="stats-container glass-card">
+                <div class="stat-row">
+                  <span>Adaptability</span>
+                  <div class="bar"><i style="width: ${adaptability}%"></i></div>
+                </div>
+                <div class="stat-row">
+                  <span>Logic Flow</span>
+                  <div class="bar"><i style="width: ${logic}%"></i></div>
+                </div>
+                <div class="stat-row">
+                  <span>Efficiency</span>
+                  <div class="bar"><i style="width: ${efficiency}%"></i></div>
+                </div>
               </div>
             </section>
 
@@ -604,7 +625,7 @@
               <h4>Detailed Mechanics</h4>
               <p>${framework.mechanics || framework.description || "No detailed mechanics provided."}</p>
               <div class="detail-box-grid">
-                <article class="detail-box">
+                <article class="detail-box glass-card">
                   <h5>Application Tip</h5>
                   <p>${framework.application || "Apply this framework to your next major decision cycle."}</p>
                 </article>
@@ -612,7 +633,7 @@
                   <h5>Try This Today</h5>
                   <p>${getTryThisToday(framework)}</p>
                 </article>
-                <article class="detail-box">
+                <article class="detail-box glass-card">
                   <h5>Flavor Text</h5>
                   <p>${framework.flavor || "\"Wisdom sharpens where reflection meets action.\""}</p>
                 </article>
