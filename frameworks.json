@@ -4,89 +4,159 @@
     "name": "Inversion",
     "category": "Decision-Making",
     "rarity": "Epic",
-    "description": "Solve by identifying what causes failure and avoiding those paths first.",
-    "flavor": "Turn the map upside down and traps reveal themselves.",
-    "effect": "+12% risk avoidance"
+    "tagline": "Failure-First Decision Lens",
+    "description": "Inversion improves judgment by asking how a plan could fail before asking how it could succeed. Instead of chasing ideal outcomes, you map avoidable errors, weak links, and irreversible moves. This makes decision quality more robust under pressure and uncertainty.",
+    "mechanics": "Start by defining the desired outcome in concrete terms and a clear time horizon. Next, invert the goal: list the conditions that would almost guarantee failure, including process mistakes, bad assumptions, and ignored constraints. Convert that failure list into pre-decision checks, guardrails, and no-go criteria that must be satisfied before execution. Stress-test the plan by running extreme scenarios and identifying single points of fragility. Rank risks by impact multiplied by likelihood, then remove or reduce the top risks first. Run a quick red-team pass where someone argues against the plan with evidence rather than opinions. Revisit the inversion checklist at key milestones so new risks are caught before they compound.",
+    "application": "Before launching any major project, ask the team for the top five ways this could fail and make each item a required pre-launch check.",
+    "flavor": "\"When heroes chase glory, sages study ruins.\"",
+    "stats": {
+      "adaptability": 82,
+      "logic": 91,
+      "efficiency": 78
+    }
   },
   {
     "id": "second-order-thinking",
     "name": "Second-Order Thinking",
     "category": "Strategy",
     "rarity": "Legendary",
-    "description": "Evaluate choices by considering downstream consequences beyond immediate results.",
-    "flavor": "See the second wave before the first one breaks.",
-    "effect": "+10 foresight"
+    "tagline": "Consequence Chain Navigator",
+    "description": "Second-Order Thinking evaluates choices beyond immediate effects to uncover delayed consequences and feedback loops. It helps you avoid local wins that create larger downstream losses. Strategic advantage comes from seeing where first-order logic is incomplete.",
+    "mechanics": "Describe the immediate result of each option in one sentence so first-order effects are explicit. Then map second-order effects by asking what this first outcome changes in behavior, incentives, costs, and constraints over time. Extend the map to third-order effects only where stakes are high, because over-modeling low-stakes choices wastes time. Identify who adapts after your move, since competitors, users, or teammates will not stay static. Add a timeline to the consequence chain so short-term pain and long-term payoff are visible separately. Use leading indicators that signal whether second-order effects are materializing as expected. Build contingency actions for the two most damaging side effects before you commit. Review outcomes after execution to improve your future consequence models.",
+    "application": "When comparing two options, force yourself to write one likely outcome at 30 days and another at 6 months before choosing.",
+    "flavor": "\"The novice counts the first wave; the strategist reads the tides behind it.\"",
+    "stats": {
+      "adaptability": 88,
+      "logic": 94,
+      "efficiency": 74
+    }
   },
   {
     "id": "five-whys",
     "name": "Five Whys",
     "category": "Problem Solving",
     "rarity": "Common",
-    "description": "Ask why repeatedly to trace symptoms back to the root cause.",
-    "flavor": "Each why peels another layer from the hidden core.",
-    "effect": "+15 root-cause accuracy"
+    "tagline": "Root-Cause Excavation Method",
+    "description": "Five Whys is a disciplined questioning method for tracing surface symptoms to underlying causes. It prevents teams from treating recurring issues as isolated incidents. The framework is simple, but it works only when each answer is evidence-based.",
+    "mechanics": "State the problem as a specific observable event, not a broad complaint. Ask why it happened and answer with facts from logs, interviews, or direct observation. For each answer, ask why again, moving one causal level deeper rather than changing topics. Stop when the cause is actionable and systemic, not when the team gets uncomfortable. Validate the final cause by checking whether fixing it would prevent similar failures in adjacent cases. If the chain depends on guesswork, pause and gather missing evidence before concluding. Convert the root cause into a countermeasure with an owner and completion date. Track recurrence for several cycles to confirm the fix addressed cause, not just symptoms.",
+    "application": "Use Five Whys in incident reviews, and require each \"why\" answer to reference a concrete artifact like a metric, log entry, or observed behavior.",
+    "flavor": "\"Each why is a torch deeper into the mine.\"",
+    "stats": {
+      "adaptability": 70,
+      "logic": 86,
+      "efficiency": 84
+    }
   },
   {
     "id": "kaizen",
     "name": "Kaizen",
     "category": "Continuous Improvement",
     "rarity": "Rare",
-    "description": "Pursue steady, incremental improvements to processes and outcomes.",
-    "flavor": "Small daily gains forge legendary mastery.",
-    "effect": "+2% progress per cycle"
+    "tagline": "Compounding Improvement Loop",
+    "description": "Kaizen focuses on continuous, incremental improvement rather than dramatic one-time overhauls. Small process gains compound into major performance shifts over time. It builds a culture where everyone can improve the system, not just leadership.",
+    "mechanics": "Choose one repeatable workflow and define a baseline metric such as cycle time, defects, or handoff delay. Break the workflow into steps and identify friction points that create rework or waiting. Propose very small experiments that can run within days, not months, so learning velocity stays high. Implement one change at a time to preserve causal clarity about what actually improved. Measure the same metric after each experiment and keep a visible log of wins, misses, and next hypotheses. Standardize successful changes with lightweight documentation and simple checklists. Invite frontline contributors to propose the next iteration because they see practical bottlenecks first. Repeat the loop continuously so improvements compound instead of fading.",
+    "application": "Run a 15-minute weekly Kaizen review where each person proposes one small process tweak and one metric to monitor.",
+    "flavor": "\"A thousand tiny sharpenings can split a mountain.\"",
+    "stats": {
+      "adaptability": 85,
+      "logic": 79,
+      "efficiency": 90
+    }
   },
   {
     "id": "swipe-file",
     "name": "Swipe File",
     "category": "Creativity",
     "rarity": "Common",
-    "description": "Collect and organize strong examples to inspire faster, better execution.",
-    "flavor": "A vault of past brilliance fuels your next spell.",
-    "effect": "+8 idea generation"
+    "tagline": "Pattern Library for Makers",
+    "description": "A Swipe File is a curated archive of high-performing examples, broken down by context and intent. It accelerates ideation by giving you proven patterns instead of blank-page guessing. The value comes from analysis and recombination, not imitation.",
+    "mechanics": "Collect examples from campaigns, products, interfaces, and writing that achieved clear outcomes in their original context. Store each item with metadata such as audience, objective, channel, and why it likely worked. Tag assets by pattern type so retrieval is fast when you face a similar challenge. During planning, pull 3-5 relevant references and deconstruct their structure, sequencing, and framing. Extract reusable components like hooks, layouts, proof formats, or call-to-action patterns. Recombine those components to fit your audience and brand constraints rather than copying language verbatim. After publishing, add your own results back into the file to close the learning loop. Periodically prune outdated examples so the library reflects current standards.",
+    "application": "Before creating a new landing page or campaign, review three examples in your swipe file and write what you will adapt from each.",
+    "flavor": "\"The archive does not steal fire; it teaches where sparks survive.\"",
+    "stats": {
+      "adaptability": 83,
+      "logic": 72,
+      "efficiency": 88
+    }
   },
   {
     "id": "first-principles",
     "name": "First Principles",
     "category": "Problem Solving",
     "rarity": "Epic",
-    "description": "Break assumptions down to fundamentals and rebuild from basic truths.",
-    "flavor": "From bedrock truths, new worlds are crafted.",
-    "effect": "+11 innovation"
+    "tagline": "Fundamental Truth Rebuilder",
+    "description": "First Principles reasoning strips away analogy and inherited assumptions to rebuild solutions from basic truths. It is especially useful when conventional wisdom is expensive, stale, or contradictory. The framework creates room for breakthroughs by questioning default constraints.",
+    "mechanics": "Define the problem with precision, including objective, boundary conditions, and non-negotiable constraints. List all assumptions currently shaping your approach, especially those framed as 'how it is always done.' Break the problem into primitive facts that are physically, mathematically, or operationally true. Challenge each assumption by testing whether it follows from those facts or from convention. Reconstruct the solution from the ground up using only validated truths and explicit tradeoffs. Compare the rebuilt model against status-quo alternatives for cost, feasibility, and risk. Prototype the highest-leverage difference quickly to validate whether first-principles insights survive real-world constraints. Document what assumptions changed so future decisions do not drift back to default thinking.",
+    "application": "When a project feels blocked by \"standard practice,\" write down three assumed constraints and verify which ones are truly immutable.",
+    "flavor": "\"When old maps fail, return to the bedrock and redraw the world.\"",
+    "stats": {
+      "adaptability": 89,
+      "logic": 95,
+      "efficiency": 73
+    }
   },
   {
     "id": "pareto-principle",
     "name": "Pareto Principle",
     "category": "Prioritization",
     "rarity": "Rare",
-    "description": "Focus on the vital few inputs that generate most of the results.",
-    "flavor": "Strike the critical twenty and claim the eighty.",
-    "effect": "+14% efficiency"
+    "tagline": "Vital Few Focus Filter",
+    "description": "The Pareto Principle highlights that a minority of inputs often creates the majority of results. It helps teams direct effort toward high-leverage activities instead of evenly spreading attention. Used well, it improves throughput without increasing workload.",
+    "mechanics": "Start with a measurable outcome such as revenue, resolved tickets, defect reduction, or learning gains. List the input categories that contribute to that outcome and quantify their impact over a fixed period. Rank contributors from highest to lowest and compute cumulative contribution percentages. Identify the small set responsible for the dominant share of results, even if it is not exactly 80/20. Reallocate time, budget, and talent toward those high-leverage contributors first. Reduce or automate low-yield activities that consume disproportionate effort. Re-run the analysis on a cadence because leverage shifts as systems and markets change. Pair Pareto with quality checks so optimization does not erode long-term value.",
+    "application": "At the end of each month, rank your tasks by measurable impact and intentionally cut or automate the bottom tier.",
+    "flavor": "\"Master the vital few, and the trivial many lose their grip.\"",
+    "stats": {
+      "adaptability": 81,
+      "logic": 87,
+      "efficiency": 93
+    }
   },
   {
     "id": "ooda-loop",
     "name": "OODA Loop",
     "category": "Execution",
     "rarity": "Rare",
-    "description": "Cycle quickly through observe, orient, decide, and act to adapt faster.",
-    "flavor": "Move before chaos can name your position.",
-    "effect": "+9 agility"
+    "tagline": "Rapid Adaptation Cycle",
+    "description": "OODA Loop is a fast decision cycle: Observe, Orient, Decide, Act. Its power comes from repeatedly updating your model as reality changes. The goal is not perfect prediction, but faster, higher-quality adaptation.",
+    "mechanics": "Observe by collecting fresh signals from users, systems, competitors, and the operating environment. Orient by interpreting those signals through context, prior experience, and current objectives. Decide on the best next action given uncertainty, selecting options that preserve future flexibility. Act quickly with a bounded experiment or operational move instead of waiting for total certainty. Capture immediate feedback and feed it back into the next observation phase. Shorten cycle time by reducing approval bottlenecks and information latency. Maintain clear decision rights so speed does not become chaos. Use post-loop reviews to improve orientation quality and decision heuristics.",
+    "application": "For fast-moving projects, schedule short daily OODA checkpoints to update assumptions and adjust the day’s top action.",
+    "flavor": "\"In the storm, victory belongs to the one who loops faster.\"",
+    "stats": {
+      "adaptability": 94,
+      "logic": 82,
+      "efficiency": 86
+    }
   },
   {
     "id": "jobs-to-be-done",
     "name": "Jobs to Be Done",
     "category": "Product",
     "rarity": "Epic",
-    "description": "Design solutions around the real progress users are trying to make.",
-    "flavor": "Hear the quest behind the request.",
-    "effect": "+13 user insight"
+    "tagline": "Progress-Centered Design Lens",
+    "description": "Jobs to Be Done reframes product strategy around the progress users are trying to make in specific situations. It shifts focus from demographics and features to motives, constraints, and desired outcomes. Products win when they help users complete important jobs better than alternatives.",
+    "mechanics": "Identify the core job by interviewing users about real situations where they switched, improvised, or abandoned solutions. Separate functional, emotional, and social dimensions of the job so design tradeoffs are explicit. Map the job steps from trigger to completion, including pain points and moments of uncertainty. Analyze competing alternatives, including non-consumption and workarounds, because they reveal what users truly hire. Prioritize opportunities where job importance is high and current satisfaction is low. Design features, messaging, and onboarding around reducing friction in critical job steps. Validate with behavior-based tests such as activation, retention, and switch intent rather than stated preference alone. Iterate positioning and product scope as job context evolves over time.",
+    "application": "In customer interviews, ask \"What were you trying to get done in that moment?\" before asking what feature they want.",
+    "flavor": "\"Hear not the request alone—hear the quest beneath it.\"",
+    "stats": {
+      "adaptability": 90,
+      "logic": 88,
+      "efficiency": 80
+    }
   },
   {
     "id": "premortem",
     "name": "Pre-Mortem",
     "category": "Risk Management",
     "rarity": "Rare",
-    "description": "Imagine a future failure and work backward to prevent it now.",
-    "flavor": "Foresee the ruin, and the ruin loses power.",
-    "effect": "+10% failure prevention"
+    "tagline": "Future-Failure Prevention Ritual",
+    "description": "A Pre-Mortem assumes your project has failed and asks the team to explain why. This reverses optimism bias and surfaces hidden risks early. The method improves planning quality without waiting for real damage.",
+    "mechanics": "Gather key stakeholders before execution and state the project objective, scope, and timeline clearly. Ask everyone to imagine it is a future date where the project failed badly despite good intentions. Have participants independently write plausible failure causes to reduce groupthink. Cluster the causes into themes such as strategy, execution, dependencies, communication, and resourcing. Score each risk by severity and probability, then assign owners to mitigation actions. Convert mitigations into concrete checkpoints, triggers, and contingency plans inside the execution roadmap. Re-run mini pre-mortems at major milestones because risk profiles change over time. Close the loop with a post-project review comparing predicted failures to actual outcomes.",
+    "application": "Run a 30-minute pre-mortem before kickoff and require every high-risk item to have both an owner and an early warning signal.",
+    "flavor": "\"Name the ghosts before the battle, and fewer will rise.\"",
+    "stats": {
+      "adaptability": 84,
+      "logic": 89,
+      "efficiency": 82
+    }
   }
 ]
