@@ -431,16 +431,51 @@
     </main>
 
     <script>
-      const button = document.getElementById("blessBtn");
-      const shrineShell = document.getElementById("shrineShell");
-      const frameworkView = document.getElementById("frameworkView");
-      const discoveryCount = document.getElementById("discoveryCount");
-      const blessingStorageKey = "dailyBlessing";
-      let frameworks = [];
-      let todaysBlessingId = null;
+      const UI_TEXT = {
+        loading: "Loading frameworks...",
+        loadError: "Could not load frameworks.",
+        idleButton: "Receive Today’s Blessing",
+        loadingButton: "Channeling wisdom...",
+        ready: "Today's blessing is waiting. Enter when ready.",
+      };
 
-      function readBlessing() {
-        const raw = localStorage.getItem(blessingStorageKey);
+      const STORAGE_KEY = "dailyBlessing";
+      const TRY_TODAY_BY_ID = {
+        inversion: "List 3 ways your current project could fail.",
+        "second-order-thinking": "Write 1 likely consequence at 30, 90, and 365 days.",
+        "five-whys": "Pick one issue and ask why five times using evidence only.",
+        kaizen: "Improve one recurring step today and measure the before/after.",
+        "swipe-file": "Study 3 examples and adapt one pattern into your draft.",
+        "first-principles": "Challenge one assumption and restate the problem from facts.",
+        "pareto-principle": "Rank tasks by impact and delete one low-yield task today.",
+        "ooda-loop": "Run one quick Observe→Orient→Decide→Act cycle before lunch.",
+        "jobs-to-be-done": "Ask one user what progress they were trying to make.",
+        premortem: "Name the top 3 risks and assign one owner to each.",
+      };
+
+      const state = {
+        frameworks: [],
+        todaysBlessingId: null,
+      };
+
+      const elements = {
+        button: document.getElementById("blessBtn"),
+        shrineShell: document.getElementById("shrineShell"),
+        frameworkView: document.getElementById("frameworkView"),
+        discoveryCount: document.getElementById("discoveryCount"),
+      };
+
+      const toDateString = (date) => date.toISOString().slice(0, 10);
+      const getTodayString = () => toDateString(new Date());
+
+      function getYesterdayString(todayString) {
+        const yesterday = new Date(`${todayString}T00:00:00`);
+        yesterday.setDate(yesterday.getDate() - 1);
+        return toDateString(yesterday);
+      }
+
+      function readSavedBlessing() {
+        const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return {};
 
         try {
@@ -451,73 +486,44 @@
         }
       }
 
-      function writeBlessing(blessing) {
-        localStorage.setItem(blessingStorageKey, JSON.stringify(blessing));
+      function saveBlessing(blessing) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(blessing));
       }
 
       function setStatus(message) {
-        discoveryCount.textContent = message;
+        elements.discoveryCount.textContent = message;
       }
 
-      function showShrineView() {
-        frameworkView.hidden = true;
-        shrineShell.hidden = false;
+      function showView({ detail }) {
+        elements.frameworkView.hidden = !detail;
+        elements.shrineShell.hidden = detail;
       }
 
-      function showDetailView() {
-        shrineShell.hidden = true;
-        frameworkView.hidden = false;
+      function pickFramework(excludedId = null) {
+        const candidates =
+          excludedId && state.frameworks.length > 1
+            ? state.frameworks.filter((framework) => framework.id !== excludedId)
+            : state.frameworks;
+
+        if (candidates.length === 0) return null;
+        return candidates[Math.floor(Math.random() * candidates.length)];
       }
-
-      function getTodayString() {
-        return new Date().toISOString().slice(0, 10);
-      }
-
-      function getYesterdayString(todayString) {
-        const date = new Date(`${todayString}T00:00:00`);
-        date.setDate(date.getDate() - 1);
-        return date.toISOString().slice(0, 10);
-      }
-
-      function pickFramework(excludedId) {
-        const pool =
-          excludedId && frameworks.length > 1
-            ? frameworks.filter((framework) => framework.id !== excludedId)
-            : frameworks;
-
-        if (pool.length === 0) return null;
-        return pool[Math.floor(Math.random() * pool.length)];
-      }
-
-      function sleep(ms) {
-        return new Promise((resolve) => setTimeout(resolve, ms));
-      }
-
 
       function getTryThisToday(framework) {
-        const byId = {
-          inversion: "List 3 ways your current project could fail.",
-          "second-order-thinking": "Write 1 likely consequence at 30, 90, and 365 days.",
-          "five-whys": "Pick one issue and ask why five times using evidence only.",
-          kaizen: "Improve one recurring step today and measure the before/after.",
-          "swipe-file": "Study 3 examples and adapt one pattern into your draft.",
-          "first-principles": "Challenge one assumption and restate the problem from facts.",
-          "pareto-principle": "Rank tasks by impact and delete one low-yield task today.",
-          "ooda-loop": "Run one quick Observe→Orient→Decide→Act cycle before lunch.",
-          "jobs-to-be-done": "Ask one user what progress they were trying to make.",
-          premortem: "Name the top 3 risks and assign one owner to each."
-        };
+        if (framework?.id && TRY_TODAY_BY_ID[framework.id]) {
+          return TRY_TODAY_BY_ID[framework.id];
+        }
 
-        if (framework?.id && byId[framework.id]) return byId[framework.id];
         return "Pick one decision today and write the next concrete action in one sentence.";
       }
 
-      // Optional sound support:
-      // function playRevealChime() {
-      //   const audio = new Audio("./chime.mp3");
-      //   audio.volume = 0.2;
-      //   audio.play().catch(() => {});
-      // }
+      function bindDetailActions() {
+        const backButton = document.getElementById("backToShrine");
+        const saveAsPdfButton = document.getElementById("saveAsPdf");
+
+        backButton?.addEventListener("click", () => showView({ detail: false }));
+        saveAsPdfButton?.addEventListener("click", () => window.print());
+      }
 
       function renderBlessing(framework) {
         const rarityClass = `rarity-${(framework.rarity || "Common").toLowerCase()}`;
@@ -526,8 +532,8 @@
         const logic = Number(stats.logic || 0);
         const efficiency = Number(stats.efficiency || 0);
 
-        showDetailView();
-        frameworkView.innerHTML = `
+        showView({ detail: true });
+        elements.frameworkView.innerHTML = `
           <article class="blessing-card blessing-enter framework-panel ${rarityClass}">
             <div class="framework-top">
               <div class="framework-left">
@@ -596,86 +602,67 @@
           </article>
         `;
 
-        const backButton = document.getElementById("backToShrine");
-        if (backButton) {
-          backButton.addEventListener("click", () => {
-            showShrineView();
-          });
-        }
-
-        const saveAsPdfButton = document.getElementById("saveAsPdf");
-        if (saveAsPdfButton) {
-          saveAsPdfButton.addEventListener("click", () => {
-            window.print();
-          });
-        }
+        bindDetailActions();
       }
 
       async function loadFrameworks() {
-        button.disabled = true;
-        setStatus("Loading frameworks...");
+        elements.button.disabled = true;
+        setStatus(UI_TEXT.loading);
 
         try {
           const response = await fetch("./frameworks.json");
-          frameworks = await response.json();
-          const blessing = readBlessing();
-          const today = getTodayString();
+          state.frameworks = await response.json();
 
+          const blessing = readSavedBlessing();
+          const today = getTodayString();
           if (blessing.date === today) {
-            todaysBlessingId = blessing.id;
-            setStatus("Today's blessing is waiting. Enter when ready.");
+            state.todaysBlessingId = blessing.id;
+            setStatus(UI_TEXT.ready);
           } else {
             setStatus("");
           }
 
-          button.disabled = false;
+          elements.button.disabled = false;
         } catch {
-          setStatus("Could not load frameworks.");
+          setStatus(UI_TEXT.loadError);
         }
       }
 
-      button.addEventListener("click", async () => {
-        if (frameworks.length === 0 || button.disabled) return;
+      function resolveTodaysBlessing() {
+        const savedToday = state.frameworks.find((item) => item.id === state.todaysBlessingId);
+        if (savedToday) return savedToday;
 
-        const defaultLabel = "Receive Today’s Blessing";
-        button.disabled = true;
-        button.textContent = "Channeling wisdom...";
-
-        const previous = readBlessing();
+        const previous = readSavedBlessing();
         const today = getTodayString();
         const yesterday = getYesterdayString(today);
-        const savedToday = frameworks.find((item) => item.id === todaysBlessingId);
-        if (savedToday) {
-          renderBlessing(savedToday);
-          button.textContent = defaultLabel;
-          button.disabled = false;
-          return;
-        }
-
         const excludedId = previous.date === yesterday ? previous.id : null;
         const framework = pickFramework(excludedId);
-        if (!framework) {
-          button.textContent = defaultLabel;
-          button.disabled = false;
-          return;
+
+        if (!framework) return null;
+
+        state.todaysBlessingId = framework.id;
+        saveBlessing({ id: framework.id, date: today });
+        return framework;
+      }
+
+      async function onBlessClick() {
+        if (state.frameworks.length === 0 || elements.button.disabled) return;
+
+        elements.button.disabled = true;
+        elements.button.textContent = UI_TEXT.loadingButton;
+
+        const framework = resolveTodaysBlessing();
+        if (framework) {
+          renderBlessing(framework);
+          setStatus(UI_TEXT.ready);
         }
 
-        writeBlessing({
-          id: framework.id,
-          date: today,
-        });
-        todaysBlessingId = framework.id;
-        renderBlessing(framework);
-        setStatus("Today's blessing is waiting. Enter when ready.");
+        await new Promise((resolve) => setTimeout(resolve, 420));
+        elements.button.textContent = UI_TEXT.idleButton;
+        elements.button.disabled = false;
+      }
 
-        // Optional audio cue:
-        // playRevealChime();
-
-        await sleep(420);
-        button.textContent = defaultLabel;
-        button.disabled = false;
-      });
-
+      elements.button.addEventListener("click", onBlessClick);
       loadFrameworks();
     </script>
   </body>
