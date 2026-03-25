@@ -64,6 +64,13 @@
         transform: translateY(0);
       }
 
+      .blessing-button:disabled {
+        cursor: wait;
+        opacity: 0.88;
+        transform: none;
+        filter: saturate(0.9);
+      }
+
       .reveal {
         margin-top: 1.5rem;
         min-height: 7.5rem;
@@ -219,6 +226,17 @@
         return undiscovered[Math.floor(Math.random() * undiscovered.length)];
       }
 
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      // Optional sound support:
+      // function playRevealChime() {
+      //   const audio = new Audio("./chime.mp3");
+      //   audio.volume = 0.2;
+      //   audio.play().catch(() => {});
+      // }
+
       let discoveredIds = [];
 
       async function loadFrameworks() {
@@ -240,8 +258,12 @@
         }
       }
 
-      button.addEventListener("click", () => {
-        if (frameworks.length === 0) return;
+      button.addEventListener("click", async () => {
+        if (frameworks.length === 0 || button.disabled) return;
+
+        const defaultLabel = "Receive Blessing";
+        button.disabled = true;
+        button.textContent = "Channeling wisdom...";
 
         if (discoveredIds.length === frameworks.length) {
           discoveredIds = [];
@@ -249,6 +271,8 @@
 
         const framework = pickUndiscoveredFramework(discoveredIds);
         if (!framework) {
+          button.textContent = defaultLabel;
+          button.disabled = false;
           return;
         }
 
@@ -264,6 +288,13 @@
             <p class="rarity-label">${framework.rarity || "Common"}</p>
           </article>
         `;
+
+        // Optional audio cue:
+        // playRevealChime();
+
+        await sleep(420);
+        button.textContent = defaultLabel;
+        button.disabled = false;
       });
 
       loadFrameworks();
