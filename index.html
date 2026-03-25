@@ -1,15 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Human Stack: Daily Quest</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Playfair+Display:wght@700;900&family=Courier+Prime:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Working Playbook – 43 Frameworks</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary": "#d1ffc8",
+              "on-error": "#ffefef",
+              "inverse-surface": "#0c0f10",
+              "on-tertiary-fixed": "#2f0e00",
+              "primary-container": "#929bfa",
+              "on-tertiary-fixed-variant": "#642600",
+              "on-secondary-container": "#005c15",
+              "on-primary": "#f3f1ff",
+              "surface-container-low": "#eff1f2",
+              "secondary-fixed-dim": "#90e28a",
+              "error-dim": "#a70138",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed": "#00460e",
+              "surface-tint": "#4953ac",
+              "surface-container-high": "#e0e3e4",
+              "primary-fixed": "#929bfa",
+              "secondary-dim": "#025d16",
+              "surface-variant": "#dadddf",
+              "on-primary-fixed": "#000005",
+              "inverse-on-surface": "#9b9d9e",
+              "inverse-primary": "#929bfa",
+              "on-surface": "#2c2f30",
+              "secondary-container": "#9df197",
+              "primary-fixed-dim": "#858eec",
+              "tertiary-fixed-dim": "#ff7f36",
+              "secondary-fixed": "#9df197",
+              "surface-container": "#e6e8ea",
+              "primary-dim": "#3d469f",
+              "primary": "#4953ac",
+              "error": "#b41340",
+              "tertiary-dim": "#883700",
+              "surface-container-highest": "#dadddf",
+              "error-container": "#f74b6d",
+              "on-error-container": "#510017",
+              "tertiary-fixed": "#ff955e",
+              "on-primary-container": "#0b1574",
+              "surface-dim": "#d1d5d7",
+              "on-secondary-fixed-variant": "#12661e",
+              "secondary": "#176a21",
+              "on-surface-variant": "#595c5d",
+              "on-primary-fixed-variant": "#18217d",
+              "surface": "#f5f6f7",
+              "tertiary": "#9b3f00",
+              "background": "#f5f6f7",
+              "surface-bright": "#f5f6f7",
+              "on-background": "#2c2f30",
+              "on-tertiary": "#fff0ea",
+              "outline-variant": "#abadae",
+              "outline": "#757778",
+              "on-tertiary-container": "#562000",
+              "tertiary-container": "#ff955e"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
         body {
@@ -491,513 +558,480 @@
         }
     </style>
 </head>
-<body>
-    <!-- Landing Page -->
-    <div class="landing-page" id="landingPage">
-        <div class="title-section">
-            <h1>THE HUMAN STACK</h1>
-            <p>AI is leveling up. So are you.</p>
-        </div>
-        <button class="claim-button" id="claimButton">CLAIM YOUR DAILY QUEST</button>
-    </div>
+<body class="bg-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 glass-nav shadow-sm">
+<div class="flex justify-between items-center h-16 px-6 md:px-12 max-w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-extrabold tracking-tighter text-blue-800">The Working Playbook</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-blue-700 font-bold border-b-2 border-blue-600 pb-1" href="#">Explore</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Frameworks</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Library</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Saved</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-sm">search</span>
+</div>
+<input class="bg-surface-container-highest border-none rounded-full py-1.5 pl-9 pr-4 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest w-48 md:w-64 transition-all" placeholder="Search 43 frameworks..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-slate-50 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-50 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full ml-2 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX9C18KAd9Yv_Qe2Agq9XHAry1T86ftzbTns6dmYfc_rNBHNrQe-vNJSn0VkpaJKBqMtri7NMxL7g2vzmOUJnRe2E4b2cPdTb4v-zMZTzsKfDJP8p6XAG8qJEOyq3J2e9dX39m5dvIwgIkTCEnAkgvnM_pBZLu-22EKO8Bbw_tI0ODgY0QVWn4DnJUQjiRPk3GUEx3c3Ixeewswj6_n9egrSWyXZXoYjKW6e00-N24LQvB5v7oag3syX5ojSmXNZ0zLbG1oguBCws"/>
+</div>
+</div>
+</div>
+<div class="bg-slate-100 h-[1px] w-full"></div>
+</nav>
+<main class="pt-24 pb-32 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Section: What are you trying to solve today? -->
+<section class="mb-16">
+<h1 class="text-3xl font-extrabold tracking-tight mb-8 text-on-surface">What are you trying to solve today?</h1>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+<!-- I: Think More Clearly -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
+<div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">lightbulb</span>
+</div>
+<span class="text-sm font-bold text-on-surface leading-tight">Think More Clearly</span>
+<span class="text-xs text-on-surface-variant mt-1">7 frameworks</span>
+</button>
+<!-- II: Make Better Decisions -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
+<div class="w-14 h-14 rounded-2xl bg-secondary-container text-on-secondary-container flex items-center justify-center mb-3 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">analytics</span>
+</div>
+<span class="text-sm font-bold text-on-surface leading-tight">Make Better Decisions</span>
+<span class="text-xs text-on-surface-variant mt-1">8 frameworks</span>
+</button>
+<!-- III: Communicate Effectively -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
+<div class="w-14 h-14 rounded-2xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center mb-3 group-hover:bg-tertiary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">forum</span>
+</div>
+<span class="text-sm font-bold text-on-surface leading-tight">Communicate Effectively</span>
+<span class="text-xs text-on-surface-variant mt-1">8 frameworks</span>
+</button>
+<!-- IV: Get More Done -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
+<div class="w-14 h-14 rounded-2xl bg-primary-container/30 text-primary-dim flex items-center justify-center mb-3 group-hover:bg-primary-dim group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">bolt</span>
+</div>
+<span class="text-sm font-bold text-on-surface leading-tight">Get More Done</span>
+<span class="text-xs text-on-surface-variant mt-1">8 frameworks</span>
+</button>
+<!-- V: Keep Improving -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
+<div class="w-14 h-14 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-3 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">trending_up</span>
+</div>
+<span class="text-sm font-bold text-on-surface leading-tight">Keep Improving</span>
+<span class="text-xs text-on-surface-variant mt-1">9 frameworks</span>
+</button>
+<!-- VI: Build a Career -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
+<div class="w-14 h-14 rounded-2xl bg-tertiary/10 text-tertiary flex items-center justify-center mb-3 group-hover:bg-tertiary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">work</span>
+</div>
+<span class="text-sm font-bold text-on-surface leading-tight">Build a Career</span>
+<span class="text-xs text-on-surface-variant mt-1">3 frameworks</span>
+</button>
+</div>
+</section>
+<!-- Section: Recommended for You -->
+<section class="mb-16">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-on-surface">Recommended for You</h2>
+<a class="text-sm font-semibold text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="flex overflow-x-auto gap-6 pb-4 hide-scrollbar">
+<!-- Inversion -->
+<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">swap_vert</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Inversion</h3>
+<p class="text-xs text-on-surface-variant">Think More Clearly</p>
+</div>
+</div>
+<!-- The Decision Journal -->
+<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-secondary transition-colors">The Decision Journal</h3>
+<p class="text-xs text-on-surface-variant">Make Better Decisions</p>
+</div>
+</div>
+<!-- FLIP It Email -->
+<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">forward_to_inbox</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-tertiary transition-colors">FLIP It Email</h3>
+<p class="text-xs text-on-surface-variant">Communicate Effectively</p>
+</div>
+</div>
+<!-- The ONE Thing -->
+<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-primary-dim">
+<span class="material-symbols-outlined">filter_1</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">The ONE Thing</h3>
+<p class="text-xs text-on-surface-variant">Get More Done</p>
+</div>
+</div>
+<!-- Kaizen -->
+<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">autorenew</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-secondary transition-colors">Kaizen</h3>
+<p class="text-xs text-on-surface-variant">Keep Improving</p>
+</div>
+</div>
+<!-- The Swipe File -->
+<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">collections_bookmark</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-tertiary transition-colors">The Swipe File</h3>
+<p class="text-xs text-on-surface-variant">Build a Career</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Browse All Frameworks -->
+<section class="mb-16">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-on-surface">Browse All 43 Frameworks</h2>
+</div>
 
-    <!-- Quest Page -->
-    <div class="quest-page hidden" id="questPage">
-        <div class="quest-container">
-            <div class="quest-card" id="questCard">
-                <!-- Front -->
-                <div class="quest-card-front">
-                    <div class="quest-icon">✦</div>
-                    <div class="quest-front-text">DAILY QUEST</div>
-                </div>
+<!-- I. Think More Clearly -->
+<div class="mb-10">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-7 h-7 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-base">lightbulb</span>
+</div>
+<h3 class="text-base font-bold text-primary">I. How Do I Think More Clearly?</h3>
+<span class="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">7</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">swap_vert</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">Inversion</h4><p class="text-xs text-on-surface-variant mt-0.5">Ask how to guarantee failure, then avoid those things.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">account_tree</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">Second-Order Thinking</h4><p class="text-xs text-on-surface-variant mt-0.5">Ask 'and then what?' to see consequences behind consequences.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">map</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">The Map Is Not the Territory</h4><p class="text-xs text-on-surface-variant mt-0.5">Every model is a simplification. Go see the real thing.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">sentiment_neutral</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">Hanlon's Razor</h4><p class="text-xs text-on-surface-variant mt-0.5">Don't assume malice when neglect is the likelier explanation.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">directions_boat</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">The Empty Boat</h4><p class="text-xs text-on-surface-variant mt-0.5">Most workplace friction has no villain.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">bug_report</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">The Cobra Effect</h4><p class="text-xs text-on-surface-variant mt-0.5">Good intentions + wrong incentives = worse problems.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">target</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">Goodhart's Law</h4><p class="text-xs text-on-surface-variant mt-0.5">When a measure becomes a target, it stops being a good measure.</p></div>
+</div>
+</div>
+</div>
 
-                <!-- Back -->
-                <div class="quest-card-back">
-                    <div class="category-badge" id="categoryBadge">DIVINATION</div>
-                    <div class="quest-title" id="questTitle"></div>
-                    <div class="quest-scenario" id="questScenario"></div>
-                    <div class="answers-container" id="answersContainer"></div>
-                    <div class="feedback" id="feedback"></div>
-                    <div class="explanation" id="explanation"></div>
-                    <button class="next-button" id="nextButton">TAKE ANOTHER QUEST →</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- II. Make Better Decisions -->
+<div class="mb-10">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-7 h-7 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-base">analytics</span>
+</div>
+<h3 class="text-base font-bold text-secondary">II. How Do I Make Better Decisions?</h3>
+<span class="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">8</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">menu_book</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">The Decision Journal</h4><p class="text-xs text-on-surface-variant mt-0.5">Track decisions, reasoning, and outcomes. Review quarterly.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">shield</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Fear-Setting</h4><p class="text-xs text-on-surface-variant mt-0.5">Define worst fears, prevention, and recovery plans.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">history</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Pre-mortem</h4><p class="text-xs text-on-surface-variant mt-0.5">Imagine the project failed. Write down what went wrong.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">help</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">The Five Whys</h4><p class="text-xs text-on-surface-variant mt-0.5">Ask 'why?' five times to reach the root cause.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">looks_3</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">The 3-1-1 Method</h4><p class="text-xs text-on-surface-variant mt-0.5">One problem, three solutions, one recommendation.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">groups</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">DACI</h4><p class="text-xs text-on-surface-variant mt-0.5">Driver, Approver, Contributors, Informed. Clarify who decides.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">bolt</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Bias for Action</h4><p class="text-xs text-on-surface-variant mt-0.5">Most decisions are reversible. Decide fast, learn, adjust.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">school</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">KWL</h4><p class="text-xs text-on-surface-variant mt-0.5">What I Know, What I Wonder, What I Learned.</p></div>
+</div>
+</div>
+</div>
 
-    <script>
-        // All 43 Quests with exact scenarios and answers
-        const quests = [
-            // DIVINATION (1-7)
-            {
-                title: "Inversion",
-                category: "DIVINATION",
-                scenario: "Designing onboarding. What would make it terrible?",
-                answers: ["Think backwards from failure", "Copy competitors", "Add more features"],
-                correct: 0,
-                explanation: "Inversion flips problems on their head. By asking 'how can this fail?' you spot real risks competitors miss."
-            },
-            {
-                title: "Second-Order Thinking",
-                category: "DIVINATION",
-                scenario: "KM budget cut. First-order: costs drop. What's the ripple?",
-                answers: ["Agents ask Slack instead", "Reduced expenses", "Fewer meetings"],
-                correct: 0,
-                explanation: "Every action has second-order effects. Cut KB costs, agents find info elsewhere. Systems shift, not just budgets."
-            },
-            {
-                title: "Map Is Not Territory",
-                category: "DIVINATION",
-                scenario: "Dashboard shows 94% KB freshness. Agents skip KB, ask Slack. Why the gap?",
-                answers: ["Reality differs from the metric", "Dashboard is broken", "Agents are lazy"],
-                correct: 0,
-                explanation: "The map (dashboard) isn't the territory (actual behavior). Trust what you see on the ground."
-            },
-            {
-                title: "Hanlon's Razor",
-                category: "DIVINATION",
-                scenario: "Harsh feedback feels personal. Before escalating?",
-                answers: ["Assume incompetence before malice", "Fire them", "Ignore it"],
-                correct: 0,
-                explanation: "Most friction is miscommunication, not intent. Assume good intent first. Saves relationships and drama."
-            },
-            {
-                title: "Empty Boat",
-                category: "DIVINATION",
-                scenario: "Proposal sent. 3 days, no response. Brain spirals. What's real?",
-                answers: ["Separate the action from the actor", "They hate your idea", "You're doomed"],
-                correct: 0,
-                explanation: "No response is absence, not rejection. Don't personalize silence. It's just a boat passing by."
-            },
-            {
-                title: "Cobra Effect",
-                category: "DIVINATION",
-                scenario: "KPI: resolve support tickets in 4 hours. Metrics improve. Satisfaction tanks. Why?",
-                answers: ["Perverse incentives backfire", "Team is incompetent", "Customers are ungrateful"],
-                correct: 0,
-                explanation: "The incentive (speed) breaks what matters (quality). Game the metric, lose the mission. Classic cobra effect."
-            },
-            {
-                title: "Goodhart's Law",
-                category: "DIVINATION",
-                scenario: "Measure 'articles published per month.' Output explodes. Quality collapses. Fix?",
-                answers: ["Metrics corrupt when optimized", "Publish fewer articles", "Fire the writer"],
-                correct: 0,
-                explanation: "Once a measure becomes a target, it stops being useful. The metric gets gamed. Measure outcomes, not outputs."
-            },
+<!-- III. Communicate More Effectively -->
+<div class="mb-10">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-7 h-7 rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-base">forum</span>
+</div>
+<h3 class="text-base font-bold text-tertiary">III. How Do I Communicate More Effectively?</h3>
+<span class="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">8</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">person</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The Personal README</h4><p class="text-xs text-on-surface-variant mt-0.5">A one-page user manual for working with you.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">forward_to_inbox</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">FLIP It Email</h4><p class="text-xs text-on-surface-variant mt-0.5">Put the ask first, context second.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">article</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The One-Pager</h4><p class="text-xs text-on-surface-variant mt-0.5">Condense updates to one page for executives.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">calendar_today</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The Weekly Update</h4><p class="text-xs text-on-surface-variant mt-0.5">52 weekly summaries = your annual review, pre-written.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">stairs</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">Skip-Level Meetings</h4><p class="text-xs text-on-surface-variant mt-0.5">Align your work to the skip-level person's goals.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">record_voice_over</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">Blue/Green/Red Speakers</h4><p class="text-xs text-on-surface-variant mt-0.5">Categorise meeting contributions by value.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">repeat</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The Teach-Back Method</h4><p class="text-xs text-on-surface-variant mt-0.5">Ask them to explain it back to confirm understanding.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">campaign</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">Working Out Loud</h4><p class="text-xs text-on-surface-variant mt-0.5">Make work visible, narrate it, frame it as contribution.</p></div>
+</div>
+</div>
+</div>
 
-            // STRATEGY (8-15)
-            {
-                title: "Decision Journal",
-                category: "STRATEGY",
-                scenario: "Made a big decision 6 months ago. It took 3x longer, but worked. How do you learn from it?",
-                answers: ["Write down reasoning before outcome revealed", "Trust your memory", "Ignore it"],
-                correct: 0,
-                explanation: "Documenting decisions before results keeps you honest. Reveals your actual reasoning, not hindsight-biased memory."
-            },
-            {
-                title: "Fear-Setting",
-                category: "STRATEGY",
-                scenario: "Considering leaving a stable job for freelance. Rational way to evaluate?",
-                answers: ["Write worst case, probability, recovery plan", "Trust your gut", "Ask others"],
-                correct: 0,
-                explanation: "Tim Ferriss's framework: most catastrophes are survivable. Writing it down reveals fears are smaller than they feel."
-            },
-            {
-                title: "Pre-mortem",
-                category: "STRATEGY",
-                scenario: "Portal launching in 6 weeks. Imagine it failed. What went wrong?",
-                answers: ["Work backwards from failure to prevent it", "Stay optimistic", "Cross fingers"],
-                correct: 0,
-                explanation: "Imagine failure before it happens. Uncovers risks traditional planning misses. 30min now saves months later."
-            },
-            {
-                title: "Five Whys",
-                category: "STRATEGY",
-                scenario: "Customer got wrong info. Why? Article was old. Why? No review schedule. Why? Why? Why?",
-                answers: ["Ask why five times to reach root cause", "Fix the symptom", "Blame the writer"],
-                correct: 0,
-                explanation: "Each 'why' peels back a layer. Symptoms vs. root causes. Stop at surface, you fix nothing."
-            },
-            {
-                title: "3-1-1 Method",
-                category: "STRATEGY",
-                scenario: "API timing out. 200 customers affected. Three options to fix it. How present to leadership?",
-                answers: ["3 wins, 1 challenge, 1 learn", "One monologue", "Ask for advice"],
-                correct: 0,
-                explanation: "Balanced reflection. 3-1-1 creates psychological safety while driving toward solutions. Leaders trust this structure."
-            },
-            {
-                title: "DACI",
-                category: "STRATEGY",
-                scenario: "Choosing a CMS. 6 people think veto power. 3 meetings, no decision. Fix?",
-                answers: ["Define roles: Driver, Approver, Contributor, Informed", "Vote", "CEO decides alone"],
-                correct: 0,
-                explanation: "Clear decision roles prevent paralysis. One Driver, one Approver, get input from others. Moves things."
-            },
-            {
-                title: "Bias for Action",
-                category: "STRATEGY",
-                scenario: "Choosing a project tool (reversible decision). How long to deliberate?",
-                answers: ["Act decisively with 70% info", "Wait for perfection", "Endless analysis"],
-                correct: 0,
-                explanation: "Perfect information never arrives. Moving forward with 70% certainty beats perfect analysis that comes too late."
-            },
-            {
-                title: "KWL",
-                category: "STRATEGY",
-                scenario: "Evaluating an AI writing tool. Know? Wonder? Discover (after testing)?",
-                answers: ["Map knowledge before, during, after", "Jump to conclusions", "Skip learning"],
-                correct: 0,
-                explanation: "K-W-L structures learning. What do you know? What do you wonder? What did you learn? Focuses discovery."
-            },
+<!-- IV. Get More Done -->
+<div class="mb-10">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-7 h-7 rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center">
+<span class="material-symbols-outlined text-base">bolt</span>
+</div>
+<h3 class="text-base font-bold text-primary-dim">IV. How Do I Get More Done with Less Friction?</h3>
+<span class="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">8</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">filter_1</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">The ONE Thing</h4><p class="text-xs text-on-surface-variant mt-0.5">The one task that makes everything else easier or unnecessary.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">battery_charging_full</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">Energy-Based Scheduling</h4><p class="text-xs text-on-surface-variant mt-0.5">Schedule by energy peaks, not arbitrary time slots.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">timer</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">Parkinson's Law</h4><p class="text-xs text-on-surface-variant mt-0.5">Work expands to fill the time. Set tighter deadlines.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">schedule</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">The Two-Minute Rule</h4><p class="text-xs text-on-surface-variant mt-0.5">Under two minutes? Do it now.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">inbox</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">Breaking Down the Boxes</h4><p class="text-xs text-on-surface-variant mt-0.5">Small boring tasks pile up into crises. Do them now.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">rocket_launch</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">Fire and Forget</h4><p class="text-xs text-on-surface-variant mt-0.5">Be the employee trusted to solve problems independently.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">block</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">The Don't-Do-It List</h4><p class="text-xs text-on-surface-variant mt-0.5">Negative commitments are stronger than positive intentions.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">auto_fix_high</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">Map Then Automate</h4><p class="text-xs text-on-surface-variant mt-0.5">Understand your workflow before optimising with tools.</p></div>
+</div>
+</div>
+</div>
 
-            // ENCHANTMENT (16-23)
-            {
-                title: "Personal README",
-                category: "ENCHANTMENT",
-                scenario: "New team asks: When are you sharpest? How do you prefer feedback? Make yourself understood?",
-                answers: ["Write a personal README", "Assume they'll figure you out", "Never explain"],
-                correct: 0,
-                explanation: "A personal README prevents misunderstandings. Share communication style, values, work habits. Team knows you."
-            },
-            {
-                title: "FLIP It",
-                category: "ENCHANTMENT",
-                scenario: "Need approval for a 1-week delay. Write 4 paragraphs of context, then ask. Better way?",
-                answers: ["Frame, Learn, Innovate, Prove", "More paragraphs", "Just ask"],
-                correct: 0,
-                explanation: "FLIP structures problem-solving. Frame → Learn from data → Innovate solution → Prove it works. Persuasive."
-            },
-            {
-                title: "One-Pager",
-                category: "ENCHANTMENT",
-                scenario: "Complex project. Status, developments, decisions, risks. Fit on one page?",
-                answers: ["Constraints force clarity", "Need more detail", "Skip the plan"],
-                correct: 0,
-                explanation: "If you can't fit it on one page, you don't understand it yet. Constraints force essence. Execs love one-pagers."
-            },
-            {
-                title: "Weekly Update",
-                category: "ENCHANTMENT",
-                scenario: "Annual review due. Remember what you shipped in March? How solve?",
-                answers: ["Send weekly updates", "Keep detailed journal", "Hope they remember"],
-                correct: 0,
-                explanation: "Regular updates align teams, surface blockers, create accountability without micromanagement. Future you thanks you."
-            },
-            {
-                title: "Skip-Level",
-                category: "ENCHANTMENT",
-                scenario: "Meeting with your skip-level. Talk daily tasks or their strategic goals?",
-                answers: ["Ask about their context and strategy", "Talk about tasks", "Stay quiet"],
-                correct: 0,
-                explanation: "Skip-level conversations prevent silos. Understand strategy, get feedback beyond your manager. Game-changer."
-            },
-            {
-                title: "Blue/Green/Red Speakers",
-                category: "ENCHANTMENT",
-                scenario: "Three speaker types: quiet (Blue), raises concerns (Green), complains (Red). How facilitate?",
-                answers: ["Rotate speaker roles each meeting", "Let dominant person lead", "No structure"],
-                correct: 0,
-                explanation: "Rotating roles ensures different perspectives. Blue (status), Green (strategy), Red (wildcards). Keeps meetings alive."
-            },
-            {
-                title: "Teach-Back",
-                category: "ENCHANTMENT",
-                scenario: "Explain workflow. They say 'I understand.' Believe them?",
-                answers: ["Have them explain it back to you", "Trust their word", "Assume they got it"],
-                correct: 0,
-                explanation: "Teach-back reveals misunderstandings people won't voice. 'I understand' ≠ true comprehension. Have them teach back."
-            },
-            {
-                title: "Working Out Loud",
-                category: "ENCHANTMENT",
-                scenario: "Building dashboard for 2 weeks. Colleague: 'I built something similar.' Prevent duplicates?",
-                answers: ["Share work publicly as you go", "Work in secret", "Ask permission first"],
-                correct: 0,
-                explanation: "Working out loud creates serendipitous connections. Prevents duplicate work, attracts collaborators, speeds feedback."
-            },
+<!-- V. Keep Improving -->
+<div class="mb-10">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-7 h-7 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-base">trending_up</span>
+</div>
+<h3 class="text-base font-bold text-secondary">V. How Do I Keep Improving?</h3>
+<span class="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">9</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">autorenew</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Kaizen</h4><p class="text-xs text-on-surface-variant mt-0.5">Small daily improvements, compounded over time.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">location_on</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Go to Gemba</h4><p class="text-xs text-on-surface-variant mt-0.5">Go where the work happens. Observe, listen, learn.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">loop</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">The Feedback Flywheel</h4><p class="text-xs text-on-surface-variant mt-0.5">Embed feedback loops so improvement sustains itself.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">science</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">The Experiment Log</h4><p class="text-xs text-on-surface-variant mt-0.5">Record hypotheses and results. Build your evidence base.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">military_tech</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Shu-Ha-Ri</h4><p class="text-xs text-on-surface-variant mt-0.5">Follow rules, bend rules, transcend rules. Three mastery stages.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">build</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Rapid Prototyping</h4><p class="text-xs text-on-surface-variant mt-0.5">Build rough, test fast, learn cheap.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">security</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Red Teaming &amp; Dogfooding</h4><p class="text-xs text-on-surface-variant mt-0.5">Attack your own work. Use what you build.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">route</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Customer Journey Mapping</h4><p class="text-xs text-on-surface-variant mt-0.5">Map the full experience including feelings and friction.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">grid_view</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">The Johari Window</h4><p class="text-xs text-on-surface-variant mt-0.5">What you know vs. what others see. Expand the overlap.</p></div>
+</div>
+</div>
+</div>
 
-            // TRANSMUTATION (24-31)
-            {
-                title: "ONE Thing",
-                category: "TRANSMUTATION",
-                scenario: "Monday: 23 items on list. ONE Thing: what makes rest easier?",
-                answers: ["Find the leverage point", "Do them all equally", "Skip the hard ones"],
-                correct: 0,
-                explanation: "Not all tasks are equal. Find the one thing whose completion cascades into other successes. Usually hard, but payoff is massive."
-            },
-            {
-                title: "Energy-Based",
-                category: "TRANSMUTATION",
-                scenario: "Sharp 9-11am, then 3-4:30pm. Rest is fog. How structure?",
-                answers: ["Schedule hard work during peak energy", "Work linearly", "Ignore energy patterns"],
-                correct: 0,
-                explanation: "Align important work with peak energy. Your chronotype matters. Do deep work when sharp, admin when foggy."
-            },
-            {
-                title: "Parkinson's Law",
-                category: "TRANSMUTATION",
-                scenario: "1-hour meeting. Agenda is 20min, tangents eat 40. What if you'd said 25min?",
-                answers: ["Work expands to fill allotted time", "More time = better", "Time doesn't matter"],
-                correct: 0,
-                explanation: "Constraints force focus. Tight deadlines kill perfectionism, tangents, waste. 25min meeting probably finishes in 25."
-            },
-            {
-                title: "Two-Minute Rule",
-                category: "TRANSMUTATION",
-                scenario: "Email: confirm meeting. 15sec reply. You think 'later.' Sits, nags, buried. Cost?",
-                answers: ["Do it now if under 2 minutes", "Batch small tasks", "Defer everything"],
-                correct: 0,
-                explanation: "Small tasks pile into overwhelm. Do them now (15sec), not later (haunts you). Kills the nag weight."
-            },
-            {
-                title: "Breaking Boxes",
-                category: "TRANSMUTATION",
-                scenario: "KB needs 5min update. You defer it. 2 weeks later: customer disaster. Why defer?",
-                answers: ["Identify limiting beliefs and reframe", "Accept constraints", "Never question limits"],
-                correct: 0,
-                explanation: "Many limits are self-imposed. 'I don't have time for that' is often a belief, not reality. Challenge it."
-            },
-            {
-                title: "Fire and Forget",
-                category: "TRANSMUTATION",
-                scenario: "Manager: understand why self-service dropped. Send feedback immediately (imperfect) or wait for perfect data?",
-                answers: ["Send timely feedback freely", "Wait for perfect moment", "Never give feedback"],
-                correct: 0,
-                explanation: "Delayed feedback loses context and impact. Timely feedback (imperfect) beats perfect analysis that arrives too late."
-            },
-            {
-                title: "Don't-Do List",
-                category: "TRANSMUTATION",
-                scenario: "Overcommitted: meetings, side projects, stakeholders. How protect time?",
-                answers: ["Track what NOT to do and stop", "Say yes to everything", "Hope for balance"],
-                correct: 0,
-                explanation: "It's not just what to do; it's what to stop. Explicitly decide what doesn't align with goals. Say no."
-            },
-            {
-                title: "Map Then Automate",
-                category: "TRANSMUTATION",
-                scenario: "Use AI to 'speed up writing.' Paste → generic output → heavy editing. Time saved: zero. Fix?",
-                answers: ["Understand the process first, then automate", "Automate without understanding", "Give up"],
-                correct: 0,
-                explanation: "Automating a broken process scales the problem. Map first (understand), then optimize. AI magnifies, doesn't fix."
-            },
+<!-- VI. Build a Career -->
+<div class="mb-10">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-7 h-7 rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-base">work</span>
+</div>
+<h3 class="text-base font-bold text-tertiary">VI. How Do I Build a Career, Not Just Do a Job?</h3>
+<span class="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">3</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">collections_bookmark</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The Swipe File</h4><p class="text-xs text-on-surface-variant mt-0.5">Collect examples of excellent work. Borrow patterns.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">local_parking</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The Parking Lot</h4><p class="text-xs text-on-surface-variant mt-0.5">Capture ideas that aren't ready yet. Revisit them.</p></div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="w-8 h-8 flex-none rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">handshake</span></div>
+<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The Work-Sharing Buddy</h4><p class="text-xs text-on-surface-variant mt-0.5">A trusted peer for mutual pre-stakeholder feedback.</p></div>
+</div>
+</div>
+</div>
+</section>
 
-            // ITERATION (32-40)
-            {
-                title: "Kaizen",
-                category: "ITERATION",
-                scenario: "Friday 15min: find one unnecessary step, one friction point. After a year?",
-                answers: ["Small increments compound into transformation", "Big changes only", "Ignore friction"],
-                correct: 0,
-                explanation: "1% daily improvement compounds. After a year, you've redesigned the workflow. Kaizen is relentless small progress."
-            },
-            {
-                title: "Gemba",
-                category: "ITERATION",
-                scenario: "KB metrics look good. Agents skip it, ask Slack instead. Discover?",
-                answers: ["Go observe where work actually happens", "Trust the metrics", "Ignore reality"],
-                correct: 0,
-                explanation: "Gemba walks reveal what's actually happening, not what reports claim. Go to the source. See for yourself."
-            },
-            {
-                title: "Feedback Flywheel",
-                category: "ITERATION",
-                scenario: "Ship something. Make improvement a built-in loop (feedback → iteration → better feedback)?",
-                answers: ["Build cycles of learning from feedback", "Get feedback once and done", "Avoid feedback loops"],
-                correct: 0,
-                explanation: "Best products are built through tight feedback cycles. Ship, gather signal, iterate, improve. Repeat."
-            },
-            {
-                title: "Experiment Log",
-                category: "ITERATION",
-                scenario: "Hypothesis: 30-sec videos reduce support tickets 20%. How prove it?",
-                answers: ["Document experiments systematically", "Trust gut", "Never test"],
-                correct: 0,
-                explanation: "An experiment log builds knowledge: what works, what doesn't. Prevents repeated failures, enables pattern recognition."
-            },
-            {
-                title: "Shu-Ha-Ri",
-                category: "ITERATION",
-                scenario: "Writer follows guide (Shu). After 6mo, adapts (Ha). After 2yr, rewrites (Ri). Three stages of?",
-                answers: ["Progression to mastery", "Types of writers", "Skill levels"],
-                correct: 0,
-                explanation: "Shu-Ha-Ri: Imitate → Adapt → Transcend. Learn fundamentals, adapt them, then innovate. Universal to all mastery."
-            },
-            {
-                title: "Rapid Prototype",
-                category: "ITERATION",
-                scenario: "Newsletter proposal: spend 2 weeks designing OR send 30min email mock-up. Signal faster?",
-                answers: ["Quick prototype beats perfect plan", "Invest time upfront", "Skip testing"],
-                correct: 0,
-                explanation: "Prototypes that take days beat specs that take months. Speed to signal beats theoretical perfection."
-            },
-            {
-                title: "Red Teaming",
-                category: "ITERATION",
-                scenario: "Redesigned onboarding. Step 4: missing access. Step 7: form buried. Catch it?",
-                answers: ["Assign someone to argue against your idea", "Only positive feedback", "Skip critique"],
-                correct: 0,
-                explanation: "Red teams systematically find flaws. Stress-test ideas before launch. Catches blind spots consensus misses."
-            },
-            {
-                title: "Journey Map",
-                category: "ITERATION",
-                scenario: "Customer cancels: Google → article → greyed button → 12min call → decline. Map the feelings?",
-                answers: ["Visualize full customer flow and emotions", "Trust your guess", "Ignore experience"],
-                correct: 0,
-                explanation: "Journey mapping reveals moments of truth and frustration. Understand the full path, not just one step."
-            },
-            {
-                title: "Johari Window",
-                category: "ITERATION",
-                scenario: "You believe you communicate well. Feedback: you dominate. You know imposter, don't share. Grow?",
-                answers: ["Understand blind spots through feedback", "Trust self-perception", "Avoid feedback"],
-                correct: 0,
-                explanation: "The Johari Window: others see things you don't. You're blind to your blindspots. Ask for feedback to grow."
-            },
-
-            // ASCENSION (41-43)
-            {
-                title: "Swipe File",
-                category: "ASCENSION",
-                scenario: "Read brilliant email. 'Wish I wrote like that.' Save it, tag it. 3mo later, use the structure. Building?",
-                answers: ["A reference library of what works", "Copy their exact words", "Ignore great writing"],
-                correct: 0,
-                explanation: "A swipe file is your inspiration library. Not for plagiarism—for studying what works and why. Steal techniques, not content."
-            },
-            {
-                title: "Parking Lot",
-                category: "ASCENSION",
-                scenario: "Quarterly planning: 'Build community forum.' Brilliant, out of scope. 6mo later, need retention. Execute?",
-                answers: ["Capture ideas, discuss them later", "Discuss everything now", "Forget good ideas"],
-                correct: 0,
-                explanation: "Parking lots keep meetings focused while good ideas aren't lost. Write it down, revisit later. Genius often waits."
-            },
-            {
-                title: "Work-Sharing Buddy",
-                category: "ASCENSION",
-                scenario: "Send proposal to VP. Buddy: 'Bury recommendation. Lead with it.' You send deck. Buddy catches: slide 7 vs 3 mismatch. Value?",
-                answers: ["Get peer feedback through partnership", "Work entirely alone", "Never share drafts"],
-                correct: 0,
-                explanation: "Work-sharing buddies provide psychological safety and fresh eyes. They catch what you miss. Accelerates improvement."
-            }
-        ];
-
-        let currentQuestIndex = 0;
-
-        function init() {
-            setupEventListeners();
-            shuffleQuests();
-        }
-
-        function setupEventListeners() {
-            document.getElementById('claimButton').addEventListener('click', startQuest);
-            document.getElementById('questCard').addEventListener('click', revealQuest);
-            document.getElementById('nextButton').addEventListener('click', nextQuest);
-        }
-
-        function shuffleQuests() {
-            for (let i = quests.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [quests[i], quests[j]] = [quests[j], quests[i]];
-            }
-            currentQuestIndex = 0;
-        }
-
-        function startQuest() {
-            document.getElementById('landingPage').classList.add('hidden');
-            document.getElementById('questPage').classList.remove('hidden');
-            resetCard();
-        }
-
-        function resetCard() {
-            const card = document.getElementById('questCard');
-            card.classList.remove('flipped');
-            document.getElementById('answersContainer').classList.remove('active');
-            document.getElementById('answersContainer').innerHTML = '';
-            document.getElementById('feedback').classList.remove('active');
-            document.getElementById('explanation').classList.remove('active');
-            document.getElementById('nextButton').classList.remove('active');
-        }
-
-        function revealQuest() {
-            const card = document.getElementById('questCard');
-            if (!card.classList.contains('flipped')) {
-                card.classList.add('flipped');
-                loadQuest();
-            }
-        }
-
-        function loadQuest() {
-            const quest = quests[currentQuestIndex];
-
-            document.getElementById('categoryBadge').textContent = quest.category;
-            document.getElementById('questTitle').textContent = quest.title;
-
-            const scenarioEl = document.getElementById('questScenario');
-            scenarioEl.innerHTML = '';
-            const typewriterSpan = document.createElement('span');
-            typewriterSpan.className = 'typewriter-effect';
-            typewriterSpan.textContent = quest.scenario;
-            scenarioEl.appendChild(typewriterSpan);
-
-            setTimeout(() => {
-                loadAnswers(quest);
-            }, 2400);
-        }
-
-        function loadAnswers(quest) {
-            const container = document.getElementById('answersContainer');
-            container.innerHTML = '';
-            container.classList.add('active');
-
-            quest.answers.forEach((answer, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'answer-button';
-                btn.textContent = answer;
-                btn.disabled = false;
-                btn.onclick = () => selectAnswer(index, quest);
-                container.appendChild(btn);
-            });
-        }
-
-        function selectAnswer(index, quest) {
-            const buttons = document.querySelectorAll('.answer-button');
-            buttons.forEach(btn => btn.disabled = true);
-
-            const isCorrect = index === quest.correct;
-            buttons[index].classList.add(isCorrect ? 'correct' : 'incorrect');
-            if (quest.correct !== index) {
-                buttons[quest.correct].classList.add('correct');
-            }
-
-            const feedback = document.getElementById('feedback');
-            feedback.classList.add('active');
-            feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
-            feedback.textContent = isCorrect ? '✓ CORRECT' : '✗ INCORRECT';
-
-            setTimeout(() => {
-                const explanation = document.getElementById('explanation');
-                explanation.textContent = quest.explanation;
-                explanation.classList.add('active');
-
-                setTimeout(() => {
-                    document.getElementById('nextButton').classList.add('active');
-                }, 600);
-            }, 1800);
-        }
-
-        function nextQuest() {
-            currentQuestIndex++;
-            if (currentQuestIndex >= quests.length) {
-                shuffleQuests();
-            }
-            resetCard();
-        }
-
-        init();
-    </script>
-</body>
-</html>
+<!-- Section: Recently Viewed -->
+<section>
+<h2 class="text-xl font-bold text-on-surface mb-6">Recently Viewed</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500">target</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Goodhart's Law</h4>
+<p class="text-xs text-on-surface-variant">Last viewed 2 hours ago · Think More Clearly</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500">history</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Pre-mortem</h4>
+<p class="text-xs text-on-surface-variant">Last viewed yesterday · Make Better Decisions</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500">campaign</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Working Out Loud</h4>
+<p class="text-xs text-on-surface-variant">Last viewed 3 days ago · Communicate Effectively</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 backdrop-blur-xl shadow-[0_-4px_20px_0_rgba(0,0,0,0.05)] z-50 rounded-t-3xl border-t border-slate-100">
+<button class="flex flex-col items-center justify-center bg-blue-50 text-blue-700 rounded-2xl px-5 py-2 active:scale-90 transition-all">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Discover</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 active:scale-90 transition-all">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 active:scale-90 transition-all">
+<span class="material-symbols-outlined">style</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Collections</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 active:scale-90 transition-all">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
+</button>
+</nav>
+</body></html>
