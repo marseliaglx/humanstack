@@ -76,13 +76,16 @@
       }
 
       .blessing-card {
+        --rarity-color: #9a9aa4;
+        --rarity-border: rgba(154, 154, 164, 0.5);
+        --rarity-glow: rgba(154, 154, 164, 0.22);
         position: relative;
         border-radius: 14px;
         padding: 1.2rem;
         text-align: left;
         background: rgba(18, 13, 31, 0.64);
-        border: 1px solid rgba(222, 192, 106, 0.45);
-        box-shadow: 0 0 18px rgba(189, 158, 255, 0.24), inset 0 0 0 1px rgba(169, 118, 255, 0.28);
+        border: 1px solid var(--rarity-border);
+        box-shadow: 0 0 16px var(--rarity-glow), inset 0 0 0 1px color-mix(in srgb, var(--rarity-color) 38%, transparent);
         backdrop-filter: blur(2px);
       }
 
@@ -91,13 +94,13 @@
         position: absolute;
         inset: 0;
         border-radius: inherit;
-        border: 1px solid rgba(164, 109, 255, 0.36);
+        border: 1px solid color-mix(in srgb, var(--rarity-color) 58%, transparent);
         pointer-events: none;
       }
 
       .blessing-card h2 {
         margin: 0;
-        color: #f7eecf;
+        color: var(--rarity-color);
         font-size: 1.15rem;
       }
 
@@ -107,8 +110,59 @@
         line-height: 1.45;
       }
 
+      .rarity-label {
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: color-mix(in srgb, var(--rarity-color) 85%, #fff 15%);
+      }
+
+      .rarity-common {
+        --rarity-color: #b4bac8;
+        --rarity-border: rgba(164, 172, 187, 0.55);
+        --rarity-glow: rgba(146, 152, 165, 0.2);
+      }
+
+      .rarity-rare {
+        --rarity-color: #7ea7ff;
+        --rarity-border: rgba(126, 167, 255, 0.62);
+        --rarity-glow: rgba(96, 146, 255, 0.24);
+      }
+
+      .rarity-epic {
+        --rarity-color: #be8dff;
+        --rarity-border: rgba(190, 141, 255, 0.66);
+        --rarity-glow: rgba(188, 117, 255, 0.32);
+      }
+
+      .rarity-legendary {
+        --rarity-color: #f1cc6a;
+        --rarity-border: rgba(241, 204, 106, 0.75);
+        --rarity-glow: rgba(251, 218, 113, 0.44);
+        box-shadow: 0 0 26px rgba(251, 218, 113, 0.36),
+          0 0 42px rgba(251, 186, 77, 0.2),
+          inset 0 0 0 1px rgba(241, 204, 106, 0.44);
+      }
+
       .blessing-enter {
         animation: blessingFade 450ms ease;
+      }
+
+      .rarity-epic.blessing-enter {
+        animation: blessingFade 450ms ease, epicPulse 2.4s ease-in-out infinite;
+      }
+
+      @keyframes epicPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 15px rgba(188, 117, 255, 0.24),
+            inset 0 0 0 1px rgba(190, 141, 255, 0.34);
+        }
+        50% {
+          box-shadow: 0 0 24px rgba(188, 117, 255, 0.38),
+            inset 0 0 0 1px rgba(190, 141, 255, 0.5);
+        }
       }
 
       @keyframes blessingFade {
@@ -201,11 +255,13 @@
         discoveredIds.push(framework.id);
         writeDiscoveredIds(discoveredIds);
         updateDiscoveryText(discoveredIds.length, frameworks.length);
+        const rarityClass = `rarity-${(framework.rarity || "Common").toLowerCase()}`;
 
         reveal.innerHTML = `
-          <article class="blessing-card blessing-enter">
+          <article class="blessing-card blessing-enter ${rarityClass}">
             <h2>Your Blessing Appears</h2>
             <p>${framework.name} — ${framework.description}</p>
+            <p class="rarity-label">${framework.rarity || "Common"}</p>
           </article>
         `;
       });
