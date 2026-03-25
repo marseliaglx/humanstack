@@ -3,64 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shrine of Knowledge</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>The Shrine of Knowledge</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: radial-gradient(circle at top, #3f2a6b 0%, #201433 45%, #0b1128 100%);
+        color: #f3e8ff;
+      }
+
+      .landing {
+        width: min(90vw, 620px);
+        text-align: center;
+        padding: 3rem 2rem;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 5vw, 3rem);
+        letter-spacing: 0.02em;
+      }
+
+      .subtitle {
+        margin: 0.85rem 0 2rem;
+        font-size: clamp(1rem, 2.3vw, 1.2rem);
+        color: #d8c7ff;
+      }
+
+      .blessing-button {
+        padding: 0.85rem 1.8rem;
+        border: 1px solid #aa9bf7;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #7050c7, #4d75d8);
+        color: #f9f5ff;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .reveal {
+        margin-top: 1.5rem;
+        min-height: 2.5rem;
+      }
+    </style>
   </head>
   <body>
-    <main class="shrine">
-      <p class="eyebrow">Arcane Archive</p>
-      <h1>Shrine of Knowledge</h1>
-      <p class="subtitle">Draw one Wisdom Blessing from your playbook.</p>
-
-      <button id="drawBlessing" type="button">Receive Blessing</button>
-
-      <section id="blessingCard" class="card" aria-live="polite">
-        <h2 id="frameworkName">Awaiting your invocation…</h2>
-        <p id="frameworkBlessing">Press the button to reveal a random framework.</p>
-      </section>
+    <main class="landing">
+      <h1>The Shrine of Knowledge</h1>
+      <p class="subtitle">Seek your wisdom blessing</p>
+      <button class="blessing-button" type="button">Receive Blessing</button>
+      <div class="reveal" aria-live="polite"></div>
     </main>
-
-    <script>
-      const drawButton = document.getElementById("drawBlessing");
-      const frameworkName = document.getElementById("frameworkName");
-      const frameworkBlessing = document.getElementById("frameworkBlessing");
-
-      async function loadFrameworks() {
-        const response = await fetch("frameworks.json");
-
-        if (!response.ok) {
-          throw new Error("Could not load frameworks.json");
-        }
-
-        return response.json();
-      }
-
-      function pickRandomFramework(frameworks) {
-        const randomIndex = Math.floor(Math.random() * frameworks.length);
-        return frameworks[randomIndex];
-      }
-
-      async function drawBlessing() {
-        try {
-          drawButton.disabled = true;
-          drawButton.textContent = "Channeling…";
-
-          const frameworks = await loadFrameworks();
-          const blessing = pickRandomFramework(frameworks);
-
-          frameworkName.textContent = blessing.name;
-          frameworkBlessing.textContent = blessing.blessing;
-        } catch (error) {
-          frameworkName.textContent = "The shrine is silent";
-          frameworkBlessing.textContent = "Unable to load your playbook right now.";
-          console.error(error);
-        } finally {
-          drawButton.disabled = false;
-          drawButton.textContent = "Receive Blessing";
-        }
-      }
-
-      drawButton.addEventListener("click", drawBlessing);
-    </script>
   </body>
 </html>
