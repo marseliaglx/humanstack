@@ -1,175 +1,1082 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Obsidian Ledger — Human Skills Questboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Human Stack: Daily Quest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <style>
-      :root {
-        --night: #070a14;
-        --night-soft: #0f1324;
-        --ink: #e8dbbd;
-        --lavender: #8f82ff;
-        --arcane: #35e4ff;
-        --ember: #ffcf66;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      body {
-        font-family: Inter, system-ui, sans-serif;
-        background:
-          radial-gradient(circle at 12% 85%, rgba(53, 228, 255, 0.16), transparent 24%),
-          radial-gradient(circle at 92% 15%, rgba(143, 130, 255, 0.18), transparent 20%),
-          linear-gradient(145deg, #05070f, #0b1020 58%, #090d1a);
-        color: #ecedf3;
-      }
+        body {
+            font-family: ‘Poppins’, sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #0d001a 100%);
+            color: #d4af37;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
 
-      .title-font {
-        font-family: Cinzel, serif;
-      }
+        /* Landing Page */
+        .landing-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            gap: 40px;
+        }
 
-      .arcane-card {
-        background: linear-gradient(165deg, rgba(20, 24, 42, 0.95), rgba(10, 13, 24, 0.9));
-        border: 1px solid rgba(232, 219, 189, 0.16);
-      }
+        .landing-page.hidden {
+            display: none;
+        }
 
-      .sigil {
-        box-shadow: 0 0 0 1px rgba(232, 219, 189, 0.18), 0 0 22px rgba(143, 130, 255, 0.2);
-      }
+        .title-section {
+            animation: glow-in 1s ease-out;
+        }
+
+        .title-section h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 40px rgba(212, 175, 55, 0.3);
+            margin-bottom: 20px;
+            color: #d4af37;
+        }
+
+        .title-section p {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: #b8a3d1;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+        }
+
+        .level-display {
+            background: rgba(0, 0, 0, 0.6);
+            border: 3px solid #d4af37;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3), inset 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .level-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .xp-bar-container {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .xp-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #ffd700);
+            transition: width 0.6s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #1a0033;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .xp-text {
+            font-size: 0.9rem;
+            margin-top: 15px;
+            color: #b8a3d1;
+        }
+
+        .claim-button {
+            font-family: ‘Poppins’, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #1a0033;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4), 0 0 30px rgba(212, 175, 55, 0.2);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+
+        .claim-button:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6), 0 0 50px rgba(212, 175, 55, 0.4);
+        }
+
+        .claim-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Quest Screen */
+        .quest-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            gap: 30px;
+        }
+
+        .quest-page.hidden {
+            display: none;
+        }
+
+        .quest-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .quest-back-button {
+            font-family: ‘Poppins’, sans-serif;
+            padding: 10px 20px;
+            background: rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            border: 2px solid #d4af37;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .quest-back-button:hover {
+            background: rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .mini-level-display {
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .quest-container {
+            perspective: 1200px;
+            width: 100%;
+            max-width: 600px;
+            height: 500px;
+            margin: 20px auto;
+        }
+
+        .quest-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s ease-out;
+            cursor: pointer;
+        }
+
+        .quest-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .quest-card-front,
+        .quest-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid #d4af37;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(26, 0, 51, 0.95), rgba(13, 0, 26, 0.95));
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3), inset 0 0 30px rgba(212, 175, 55, 0.1);
+            padding: 40px;
+        }
+
+        .quest-card-front {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quest-card-front-content {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #d4af37;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .quest-card-back {
+            transform: rotateY(180deg);
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .quest-content {
+            display: none;
+            width: 100%;
+        }
+
+        .quest-content.active {
+            display: block;
+        }
+
+        .quest-text {
+            font-family: ‘Courier Prime’, monospace;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #d4af37;
+            text-align: center;
+            min-height: 80px;
+        }
+
+        .framework-name {
+            display: none;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffd700;
+            margin: 20px 0;
+        }
+
+        .framework-name.active {
+            display: block;
+        }
+
+        .answers-container {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .answers-container.active {
+            display: flex;
+        }
+
+        .answer-button {
+            font-family: ‘Poppins’, sans-serif;
+            padding: 15px 20px;
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .answer-button:hover:not(:disabled) {
+            background: rgba(212, 175, 55, 0.3);
+            transform: translateX(5px);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .answer-button:disabled {
+            cursor: not-allowed;
+        }
+
+        .answer-button.correct {
+            background: rgba(76, 175, 80, 0.4);
+            border-color: #4caf50;
+            color: #4caf50;
+        }
+
+        .answer-button.incorrect {
+            background: rgba(244, 67, 54, 0.4);
+            border-color: #f44336;
+            color: #f44336;
+        }
+
+        .feedback {
+            display: none;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .feedback.active {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border: 2px solid #4caf50;
+        }
+
+        .feedback.incorrect {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border: 2px solid #f44336;
+        }
+
+        .explanation {
+            display: none;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #d4af37;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .explanation.active {
+            display: block;
+        }
+
+        .next-button {
+            display: none;
+            font-family: ‘Poppins’, sans-serif;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #1a0033;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .next-button.active {
+            display: block;
+        }
+
+        .next-button:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Floating XP Animation */
+        .floating-xp {
+            position: fixed;
+            pointer-events: none;
+            font-weight: 700;
+            font-size: 2rem;
+            color: #4caf50;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
+            animation: float-up 2s ease-out forwards;
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1.5);
+            }
+        }
+
+        /* Animations */
+        @keyframes glow-in {
+            from {
+                opacity: 0;
+                text-shadow: 0 0 0 rgba(212, 175, 55, 0);
+            }
+            to {
+                opacity: 1;
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 40px rgba(212, 175, 55, 0.3);
+            }
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        .typewriter-effect {
+            overflow: hidden;
+            white-space: pre-wrap;
+            animation: typewriter 2s steps(80) forwards;
+            display: inline-block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .title-section p {
+                font-size: 1.2rem;
+            }
+
+            .level-display {
+                padding: 20px;
+            }
+
+            .quest-container {
+                height: 400px;
+            }
+
+            .quest-card-front,
+            .quest-card-back {
+                padding: 30px 20px;
+            }
+
+            .quest-text {
+                font-size: 1rem;
+            }
+
+            .answer-button {
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+
+            .claim-button {
+                font-size: 1.2rem;
+                padding: 15px 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            .title-section h1 {
+                font-size: 2rem;
+            }
+
+            .level-display {
+                padding: 15px;
+            }
+
+            .quest-container {
+                height: 350px;
+            }
+
+            .quest-card-front,
+            .quest-card-back {
+                padding: 20px 15px;
+            }
+
+            .quest-text {
+                font-size: 0.95rem;
+                min-height: 60px;
+            }
+        }
     </style>
-  </head>
-  <body class="min-h-screen">
-    <div class="mx-auto grid min-h-screen max-w-[1400px] grid-cols-1 lg:grid-cols-[260px_1fr_320px]">
-      <aside class="border-r border-indigo-200/10 bg-black/30 p-6 backdrop-blur-sm">
-        <h1 class="title-font text-4xl font-bold text-[var(--ink)]">The Obsidian Ledger</h1>
-        <p class="mt-2 text-xs uppercase tracking-[0.3em] text-indigo-200/70">Level 42 Skillcaster</p>
-
-        <nav class="mt-10 space-y-2 text-sm">
-          <p class="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-indigo-200/50">Arcane Paths</p>
-          <a class="block rounded-lg border border-[var(--ember)]/40 bg-[var(--lavender)]/15 px-4 py-3 font-semibold text-[var(--ink)]" href="#">I • Clear Thinking</a>
-          <a class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-white/5" href="#">II • Better Decisions</a>
-          <a class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-white/5" href="#">III • Better Communication</a>
-          <a class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-white/5" href="#">IV • Less Friction</a>
-          <a class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-white/5" href="#">V • Keep Improving</a>
-          <a class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-white/5" href="#">VI • Career Craft</a>
-        </nav>
-
-        <button class="mt-10 w-full rounded-md bg-amber-400 px-4 py-3 text-sm font-bold uppercase tracking-[0.2em] text-[#1f1b10]">Inscribe New Quest</button>
-        <p class="mt-6 text-xs text-slate-400">Daily cycle resets at dawn (06:00). Complete 3 quests to unlock a relic challenge.</p>
-      </aside>
-
-      <main class="p-6 lg:p-10">
-        <div class="mb-8 flex items-center justify-between">
-          <div>
-            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/70">Grimoire • Daily Quests</p>
-            <h2 class="title-font mt-2 text-5xl text-[var(--ink)]">The Human Arcana</h2>
-            <p class="mt-3 max-w-3xl text-xl text-slate-300">
-              A daily quest game for improving human skills at work and in life. Pick short quests, train one framework or
-              method, and level up through practical real-world actions.
-            </p>
-          </div>
-          <span class="rounded-full border border-cyan-300/40 px-4 py-2 text-sm text-cyan-200">Today: 3/5 quests completed</span>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div class="landing-page" id="landingPage">
+        <div class="title-section">
+            <h1>THE HUMAN STACK</h1>
+            <p>AI is leveling up. So are you.</p>
         </div>
 
-        <section class="mb-8 rounded-xl border border-cyan-300/30 bg-cyan-300/10 p-5">
-          <h3 class="title-font text-2xl text-[var(--ink)]">What is this and how do you play?</h3>
-          <p class="mt-2 text-slate-200">
-            Think of this as your solo skill-RPG campaign (minus the 40-person raid scheduling drama). Every day, choose quests
-            from different types, complete 1–3 quick challenges, and gain XP in practical human skills.
-          </p>
-          <ol class="mt-4 space-y-2 text-sm text-slate-200">
-            <li><strong>1) Pick your quest type:</strong> Micro Quest, Guild Quest, Streak Mission, or Boss Trial.</li>
-            <li><strong>2) Run the mission:</strong> each quest teaches a framework or methodology you can use immediately.</li>
-            <li><strong>3) Claim loot:</strong> track XP, keep your streak alive, and unlock tougher challenge chains.</li>
-          </ol>
-        </section>
-
-        <section class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          <article class="arcane-card sigil rounded-xl p-5">
-            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/60">Quest 01 · Inversion</p>
-            <h3 class="title-font mt-2 text-3xl text-[var(--ink)]">The Failure Oracle</h3>
-            <p class="mt-3 text-slate-300">Write a "how to fail" list for today’s biggest task, then cast the opposite as your action plan.</p>
-            <div class="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-amber-200/90"><span>Reward: +20 Clarity</span><span>15 min</span></div>
-          </article>
-
-          <article class="arcane-card rounded-xl p-5">
-            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/60">Quest 02 · Second-Order Thinking</p>
-            <h3 class="title-font mt-2 text-3xl text-[var(--ink)]">Chain of Consequence</h3>
-            <p class="mt-3 text-slate-300">Pick a decision and trace "and then what?" five steps out before you commit.</p>
-            <div class="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-amber-200/90"><span>Reward: +18 Judgment</span><span>12 min</span></div>
-          </article>
-
-          <article class="arcane-card rounded-xl p-5">
-            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/60">Quest 03 · Hanlon + Empty Boat</p>
-            <h3 class="title-font mt-2 text-3xl text-[var(--ink)]">No Villains Today</h3>
-            <p class="mt-3 text-slate-300">Reframe one frustrating interaction using non-malice assumptions, then send a kinder follow-up.</p>
-            <div class="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-amber-200/90"><span>Reward: +14 Influence</span><span>8 min</span></div>
-          </article>
-
-          <article class="arcane-card rounded-xl p-5">
-            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/60">Boss Trial · Goodhart + Cobra</p>
-            <h3 class="title-font mt-2 text-3xl text-[var(--ink)]">Metric Mimic</h3>
-            <p class="mt-3 text-slate-300">Audit one KPI in your team. How could it be gamed? Add one balancing metric to neutralize the exploit.</p>
-            <div class="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-amber-200/90"><span>Reward: Rare Relic</span><span>25 min</span></div>
-          </article>
-
-          <article class="arcane-card rounded-xl p-5">
-            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/60">Streak Mission · Decision Journal</p>
-            <h3 class="title-font mt-2 text-3xl text-[var(--ink)]">Chronicle of Choices</h3>
-            <p class="mt-3 text-slate-300">Log one real decision (options, rationale, confidence, mood). Review every seventh day to gain XP multipliers.</p>
-            <div class="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-amber-200/90"><span>Reward: +1 Wisdom/day</span><span>5 min</span></div>
-          </article>
-
-          <article class="arcane-card rounded-xl p-5">
-            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/60">Guild Quest · 3-1-1 + Teach-Back</p>
-            <h3 class="title-font mt-2 text-3xl text-[var(--ink)]">Council Briefing</h3>
-            <p class="mt-3 text-slate-300">Bring one problem, three options, one recommendation. End by asking a teammate to teach-back your plan.</p>
-            <div class="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-amber-200/90"><span>Reward: +22 Presence</span><span>20 min</span></div>
-          </article>
-        </section>
-
-        <section class="mt-8 rounded-xl border border-indigo-200/20 bg-black/20 p-5">
-          <h4 class="title-font text-2xl text-[var(--ink)]">Campaign Structure (43 Skills = 6 Realms)</h4>
-          <p class="mt-2 text-slate-300">
-            Each realm unlocks in sequence: <strong>Think Clearly → Decide Better → Communicate → Execute → Improve → Build Career</strong>.
-            Every day offers one micro-quest, one collaboration quest, and one optional boss trial. No grinding boars required.
-          </p>
-        </section>
-      </main>
-
-      <aside class="border-l border-indigo-200/10 bg-black/25 p-6 backdrop-blur-sm">
-        <div class="arcane-card rounded-xl p-5">
-          <div class="mx-auto h-24 w-24 rounded-md border border-indigo-200/40 bg-gradient-to-b from-indigo-400/30 to-cyan-300/20"></div>
-          <h3 class="title-font mt-4 text-center text-3xl text-[var(--ink)]">Marcela the Curator</h3>
-          <p class="text-center text-xs uppercase tracking-[0.24em] text-indigo-200/70">Keeper of 43 Frameworks</p>
-
-          <div class="mt-6 space-y-4 text-sm">
-            <div>
-              <div class="mb-1 flex justify-between text-slate-300"><span>Clarity</span><span class="text-cyan-300">84/100</span></div>
-              <div class="h-2 rounded bg-white/10"><div class="h-2 w-[84%] rounded bg-cyan-300"></div></div>
+        <div class="level-display">
+            <div class="level-text">
+                Level <span id="displayLevel">1</span>
             </div>
-            <div>
-              <div class="mb-1 flex justify-between text-slate-300"><span>Judgment</span><span class="text-amber-200">62/100</span></div>
-              <div class="h-2 rounded bg-white/10"><div class="h-2 w-[62%] rounded bg-amber-200"></div></div>
+            <div class="xp-bar-container">
+                <div class="xp-bar-fill" id="xpBarFill" style="width: 0%">
+                    <span id="xpBarText"></span>
+                </div>
             </div>
-            <div>
-              <div class="mb-1 flex justify-between text-slate-300"><span>Career Mana</span><span class="text-violet-300">2,450 MP</span></div>
-              <div class="h-2 rounded bg-white/10"><div class="h-2 w-[78%] rounded bg-violet-300"></div></div>
+            <div class="xp-text">
+                <span id="displayXP">0</span>/500 XP
             </div>
-          </div>
-
-          <div class="mt-6 rounded-lg border border-amber-200/25 bg-amber-100/10 p-3 text-sm text-amber-100">
-            <p class="font-semibold">Daily Lore Drop</p>
-            <p class="mt-1">"Easy choices, hard life. Hard choices, easy life." Complete one hard quest before noon.</p>
-          </div>
         </div>
-      </aside>
+
+        <button class="claim-button" id="claimButton">Claim Daily Quest</button>
     </div>
-  </body>
+
+    <!-- Quest Page -->
+    <div class="quest-page hidden" id="questPage">
+        <div class="quest-header">
+            <button class="quest-back-button" id="backButton">← Back to Menu</button>
+            <div class="mini-level-display">
+                Level <span id="questLevel">1</span> • <span id="questXP">0</span>/500 XP
+            </div>
+        </div>
+
+        <div class="quest-container">
+            <div class="quest-card" id="questCard">
+                <div class="quest-card-front">
+                    <div class="quest-card-front-content">Click to Reveal Quest</div>
+                </div>
+                <div class="quest-card-back">
+                    <div class="quest-text" id="questText"></div>
+                    <div class="framework-name" id="frameworkName"></div>
+                    <div class="answers-container" id="answersContainer"></div>
+                    <div class="feedback" id="feedback"></div>
+                    <div class="explanation" id="explanation"></div>
+                    <button class="next-button" id="nextButton">Next Quest</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quest Data - All 43 frameworks
+        const questData = [
+            {
+                name: "Inversion",
+                description: "Instead of asking ‘How can I succeed?’, ask ‘How can I fail?’",
+                answers: ["Think backwards from failure", "Avoid obstacles", "Plan for worst case"],
+                correct: 0,
+                explanation: "Inversion flips problems on their head, helping you identify hidden risks and obstacles before they become critical issues."
+            },
+            {
+                name: "Second-Order Thinking",
+                description: "What are the consequences of the consequences?",
+                answers: ["Consider long-term ripple effects", "Stop after first outcome", "Focus only on immediate results"],
+                correct: 0,
+                explanation: "Second-order thinking helps you anticipate indirect effects and unintended consequences of your decisions."
+            },
+            {
+                name: "Map Is Not Territory",
+                description: "The representation of something is not the thing itself",
+                answers: ["Reality differs from models", "Models are always accurate", "Reality and maps are identical"],
+                correct: 0,
+                explanation: "Never confuse abstraction with reality. Your mental models are useful tools, but they’re not the actual territory."
+            },
+            {
+                name: "Hanlon’s Razor",
+                description: "Never attribute to malice what can be adequately explained by stupidity",
+                answers: ["Assume incompetence before malice", "Always assume malice", "Never question motives"],
+                correct: 0,
+                explanation: "Hanlon’s Razor encourages charitable interpretations and saves you from unnecessary conflict and paranoia."
+            },
+            {
+                name: "Empty Boat",
+                description: "If a boat hits your boat, you’d not get angry. If someone in the boat hit you, you’d get angry. Why the difference?",
+                answers: ["Remove personalization from conflict", "Get angry in both cases", "Never respond to conflict"],
+                correct: 0,
+                explanation: "This Zen parable teaches emotional resilience by separating the action from the actor."
+            },
+            {
+                name: "Cobra Effect",
+                description: "Solutions that backfire because they incentivize the wrong behavior",
+                answers: ["Perverse incentives create problems", "All solutions work perfectly", "Incentives never matter"],
+                correct: 0,
+                explanation: "Named after a failed British attempt to reduce cobra population in India by paying for dead cobras—people started breeding them instead."
+            },
+            {
+                name: "Goodhart’s Law",
+                description: "When a measure becomes a target, it ceases to be a good measure",
+                answers: ["Metrics become corrupted when used as goals", "Metrics are always reliable", "Goals and metrics are the same"],
+                correct: 0,
+                explanation: "Once you optimize for a metric, people game it, making it useless as a true measure of what matters."
+            },
+            {
+                name: "Decision Journal",
+                description: "Record your decisions, reasoning, and expected outcomes to learn from results",
+                answers: ["Document decisions to improve", "Trust your gut always", "Never review past decisions"],
+                correct: 0,
+                explanation: "By writing down your reasoning before outcomes are revealed, you create feedback loops that improve decision quality."
+            },
+            {
+                name: "Fear-Setting",
+                description: "Visualize and write down your worst fears to realize they’re manageable",
+                answers: ["Face fears by examining them", "Ignore fears completely", "Fears are always justified"],
+                correct: 0,
+                explanation: "Tim Ferriss’s framework: write down the worst case, probability, and recovery plan. Most fears are less catastrophic than imagined."
+            },
+            {
+                name: "Pre-mortem",
+                description: "Imagine your project failed—what went wrong? Then prevent those things",
+                answers: ["Identify failure points before they happen", "Assume all projects succeed", "Never plan for failure"],
+                correct: 0,
+                explanation: "By working backwards from failure, you uncover risks you’d miss in traditional planning."
+            },
+            {
+                name: "Five Whys",
+                description: "Ask ‘Why?’ five times to reach the root cause of a problem",
+                answers: ["Get to root cause through iteration", "Stop at surface level", "Ask why only once"],
+                correct: 0,
+                explanation: "Each ‘why’ peels back a layer of symptoms to reveal underlying causes."
+            },
+            {
+                name: "3-1-1 Method",
+                description: "Share 3 things you did well, 1 thing to improve, and 1 thing learned",
+                answers: ["Balanced reflection on performance", "Only focus on failures", "Ignore what you learned"],
+                correct: 0,
+                explanation: "This coaching technique creates psychological safety while driving improvement through thoughtful reflection."
+            },
+            {
+                name: "DACI",
+                description: "Driver, Approver, Contributor, Informed—clarify decision roles",
+                answers: ["Define roles in decision-making", "Have everyone decide everything", "One person decides all"],
+                correct: 0,
+                explanation: "Clear roles prevent decision paralysis and ensure accountability while getting input from the right people."
+            },
+            {
+                name: "Bias for Action",
+                description: "Make decisions with incomplete information rather than endlessly analyzing",
+                answers: ["Act decisively despite uncertainty", "Always gather perfect information", "Never make decisions"],
+                correct: 0,
+                explanation: "Perfect information rarely exists. Moving forward with 70% certainty beats perfect analysis that comes too late."
+            },
+            {
+                name: "KWL",
+                description: "Know, Want to know, Learned—structure your learning",
+                answers: ["Map knowledge before, during, after", "Learn randomly", "Never assess knowledge"],
+                correct: 0,
+                explanation: "K-W-L focuses learning by contrasting what you know with what you want to discover and what you actually learned."
+            },
+            {
+                name: "Personal README",
+                description: "Write documentation about yourself: how to work with you, what motivates you",
+                answers: ["Help others understand you", "Never explain yourself", "Assume people know you"],
+                correct: 0,
+                explanation: "A personal README improves team dynamics by being explicit about communication style, values, and working preferences."
+            },
+            {
+                name: "FLIP It",
+                description: "Frame, Learn, Innovate, Prove—step through creative problem-solving",
+                answers: ["Move through problem systematically", "Jump to solutions immediately", "Stay stuck in problems"],
+                correct: 0,
+                explanation: "FLIP structures the journey from problem definition through to testing new solutions."
+            },
+            {
+                name: "One-Pager",
+                description: "Distill your idea into one compelling page—forces clarity",
+                answers: ["Clarity through brevity", "More pages = better ideas", "Ideas are better unexplained"],
+                correct: 0,
+                explanation: "Constraints force you to find the essence of your idea. If you can’t fit it on one page, you don’t understand it yet."
+            },
+            {
+                name: "Weekly Update",
+                description: "Recap what you shipped, what’s blocking you, what’s next",
+                answers: ["Communicate progress and blockers", "Keep progress secret", "Never update on work"],
+                correct: 0,
+                explanation: "Regular updates align teams, surface blockers early, and create accountability without micromanagement."
+            },
+            {
+                name: "Skip-Level",
+                description: "Meet regularly with your manager’s manager to stay aligned",
+                answers: ["Understand broader context", "Never talk to senior leaders", "Only talk to your direct manager"],
+                correct: 0,
+                explanation: "Skip-level conversations prevent silos and help you understand strategy and feedback beyond your immediate team."
+            },
+            {
+                name: "Blue/Green/Red Speakers",
+                description: "Rotate three speakers: status (Blue), strategic (Green), wildcard ideas (Red)",
+                answers: ["Diverse speaking roles in meetings", "Same person always speaks", "No structure to meetings"],
+                correct: 0,
+                explanation: "Rotating roles prevents dominance, ensures different perspectives, and keeps meetings dynamic and valuable."
+            },
+            {
+                name: "Teach-Back",
+                description: "Have someone explain back what they understood to check comprehension",
+                answers: ["Verify understanding through retelling", "Assume understanding", "Never check comprehension"],
+                correct: 0,
+                explanation: "The teach-back method reveals misunderstandings that people are too polite to voice otherwise."
+            },
+            {
+                name: "Working Out Loud",
+                description: "Share your work, thinking, and learnings publicly as you go",
+                answers: ["Build reputation through transparency", "Hide work until perfect", "Never share unfinished work"],
+                correct: 0,
+                explanation: "Working out loud creates serendipitous connections, attracts collaborators, and speeds up feedback loops."
+            },
+            {
+                name: "ONE Thing",
+                description: "Focus on the single thing that makes everything else easier",
+                answers: ["Prioritize the key leverage point", "Do everything equally", "No priorities needed"],
+                correct: 0,
+                explanation: "Not all tasks are equal. Find the one thing whose completion cascades into other successes."
+            },
+            {
+                name: "Energy-Based",
+                description: "Schedule high-energy tasks when you have peak energy",
+                answers: ["Align tasks with energy levels", "Do hard tasks when tired", "Energy doesn’t matter"],
+                correct: 0,
+                explanation: "Understanding your chronotype and energy patterns lets you do important work during peak cognitive hours."
+            },
+            {
+                name: "Parkinson’s Law",
+                description: "Work expands to fill the time allotted—set shorter deadlines",
+                answers: ["Shorter deadlines increase focus", "More time always helps", "Deadlines don’t matter"],
+                correct: 0,
+                explanation: "Tight constraints paradoxically boost productivity by forcing priorities and eliminating perfectionism."
+            },
+            {
+                name: "Two-Minute Rule",
+                description: "If something takes less than 2 minutes, do it now",
+                answers: ["Eliminate small tasks immediately", "Save all tasks for later", "Small tasks don’t matter"],
+                correct: 0,
+                explanation: "This simple rule prevents small tasks from piling up into overwhelm while keeping momentum high."
+            },
+            {
+                name: "Breaking Boxes",
+                description: "Identify your limiting beliefs and reframe them",
+                answers: ["Challenge false constraints", "Accept all constraints", "Never question beliefs"],
+                correct: 0,
+                explanation: "Many of our limitations are self-imposed. Identifying and testing them opens new possibilities."
+            },
+            {
+                name: "Fire and Forget",
+                description: "Send feedback immediately without overthinking; don’t wait for the perfect moment",
+                answers: ["Give timely feedback freely", "Always wait for perfect timing", "Never give feedback"],
+                correct: 0,
+                explanation: "Delayed feedback loses context and impact. Timely feedback (even if imperfect) creates faster learning loops."
+            },
+            {
+                name: "Don’t-Do-It List",
+                description: "Track activities that don’t align with your goals—stop doing them",
+                answers: ["Eliminate misaligned activities", "Do everything that comes up", "Never say no"],
+                correct: 0,
+                explanation: "It’s not just about what to do; it’s about what to stop. This creates space for what actually matters."
+            },
+            {
+                name: "Map Then Automate",
+                description: "First understand a process completely, then automate it",
+                answers: ["Understand before automating", "Automate first, understand later", "Never automate"],
+                correct: 0,
+                explanation: "Automating a poorly understood process scales inefficiency. Map first, then optimize."
+            },
+            {
+                name: "Kaizen",
+                description: "Continuous small improvements compound into transformative change",
+                answers: ["Small increments create big shifts", "Only big changes matter", "Improvement is one-time"],
+                correct: 0,
+                explanation: "The Japanese philosophy of Kaizen shows how 1% daily improvements lead to exponential growth over time."
+            },
+            {
+                name: "Gemba",
+                description: "Go to the actual place where work happens to see reality",
+                answers: ["Observe real work in context", "Stay at your desk", "Trust reports only"],
+                correct: 0,
+                explanation: "Gemba walks reveal what’s actually happening, not what reports claim, surfacing hidden bottlenecks."
+            },
+            {
+                name: "Feedback Flywheel",
+                description: "Create loops where feedback drives iteration drives better feedback",
+                answers: ["Build cycles of learning", "Get feedback once then stop", "Avoid feedback loops"],
+                correct: 0,
+                explanation: "The best products are built through tight feedback cycles that drive rapid iteration and improvement."
+            },
+            {
+                name: "Experiment Log",
+                description: "Record what you tested, results, and what you learned",
+                answers: ["Document experiments systematically", "Trust memory of results", "Never experiment"],
+                correct: 0,
+                explanation: "An experiment log builds a knowledge base of what works, preventing repeated failures and enabling pattern recognition."
+            },
+            {
+                name: "Shu-Ha-Ri",
+                description: "Imitate → Adapt → Transcend—the three stages of mastery",
+                answers: ["Follow the progression to mastery", "Skip to transcending", "Stay imitating forever"],
+                correct: 0,
+                explanation: "This martial arts concept applies to all skill development: learn the fundamentals, adapt them, then innovate."
+            },
+            {
+                name: "Rapid Prototype",
+                description: "Build something quick and rough to test ideas before polish",
+                answers: ["Get feedback on rough ideas fast", "Perfect before showing anyone", "Never prototype"],
+                correct: 0,
+                explanation: "Prototypes that take days beat specs that take months. Speed to feedback beats theoretical perfection."
+            },
+            {
+                name: "Red Team",
+                description: "Assign someone to argue against your idea and find weaknesses",
+                answers: ["Stress-test ideas through adversaries", "Only hear supporting views", "Avoid criticism"],
+                correct: 0,
+                explanation: "Red teams systematically identify flaws and gaps that consensus-seeking groups miss, strengthening decisions."
+            },
+            {
+                name: "Journey Map",
+                description: "Plot the customer experience step-by-step to find pain points",
+                answers: ["Visualize the full customer flow", "Guess at customer needs", "Never map journeys"],
+                correct: 0,
+                explanation: "Journey mapping reveals moments of truth and opportunities that a single perspective misses."
+            },
+            {
+                name: "Johari Window",
+                description: "Four quadrants: Known to self, Unknown to self, Known to others, Unknown to all",
+                answers: ["Understand blind spots through feedback", "Trust only self-perception", "Never ask for feedback"],
+                correct: 0,
+                explanation: "The Johari Window reveals that others see things about you that you don’t, and you’re blind to your own blindspots."
+            },
+            {
+                name: "Swipe File",
+                description: "Keep a collection of great writing, design, marketing to inspire your work",
+                answers: ["Build a reference collection", "Never look at others’ work", "Copy without understanding"],
+                correct: 0,
+                explanation: "A swipe file is your inspiration library—not for plagiarism, but for studying what works and why."
+            },
+            {
+                name: "Parking Lot",
+                description: "Capture off-topic ideas or questions to discuss later, not now",
+                answers: ["Stay focused by noting distractions", "Discuss everything immediately", "Ignore interesting ideas"],
+                correct: 0,
+                explanation: "Parking lots keep meetings focused while ensuring good ideas don’t get lost—you return to them later."
+            },
+            {
+                name: "Work-Sharing Buddy",
+                description: "Partner with someone at your level to share work in progress for feedback",
+                answers: ["Get peer feedback through partnership", "Work entirely alone", "Never share unfinished work"],
+                correct: 0,
+                explanation: "Work-sharing buddies provide psychological safety and fresh perspectives that accelerate improvement."
+            }
+        ];
+
+        // Game State
+        let gameState = {
+            level: 1,
+            xp: 0,
+            completedQuests: [],
+            totalXP: 0
+        };
+
+        const XP_PER_LEVEL = 500;
+
+        // Initialize
+        function init() {
+            loadGameState();
+            updateUI();
+            setupEventListeners();
+        }
+
+        // Event Listeners
+        function setupEventListeners() {
+            document.getElementById(‘claimButton’).addEventListener(‘click’, startQuest);
+            document.getElementById(‘backButton’).addEventListener(‘click’, backToMenu);
+            document.getElementById(‘questCard’).addEventListener(‘click’, revealQuest);
+            document.getElementById(‘nextButton’).addEventListener(‘click’, nextQuest);
+        }
+
+        // Load/Save Game State
+        function loadGameState() {
+            const saved = localStorage.getItem(‘humanStackGameState’);
+            if (saved) {
+                gameState = JSON.parse(saved);
+            }
+        }
+
+        function saveGameState() {
+            localStorage.setItem(‘humanStackGameState’, JSON.stringify(gameState));
+        }
+
+        // UI Updates
+        function updateUI() {
+            document.getElementById(‘displayLevel’).textContent = gameState.level;
+            document.getElementById(‘displayXP’).textContent = gameState.xp;
+            document.getElementById(‘questLevel’).textContent = gameState.level;
+            document.getElementById(‘questXP’).textContent = gameState.xp;
+
+            const xpPercentage = (gameState.xp / XP_PER_LEVEL) * 100;
+            const xpBarFill = document.getElementById(‘xpBarFill’);
+            xpBarFill.style.width = xpPercentage + ‘%’;
+            xpBarFill.querySelector(‘#xpBarText’).textContent = `${gameState.xp}/${XP_PER_LEVEL}`;
+        }
+
+        // Start Quest
+        function startQuest() {
+            document.getElementById(‘landingPage’).classList.add(‘hidden’);
+            document.getElementById(‘questPage’).classList.remove(‘hidden’);
+            resetQuestCard();
+        }
+
+        // Back to Menu
+        function backToMenu() {
+            document.getElementById(‘questPage’).classList.add(‘hidden’);
+            document.getElementById(‘landingPage’).classList.remove(‘hidden’);
+            resetQuestCard();
+        }
+
+        // Get Random Quest
+        function getRandomQuest() {
+            const randomIndex = Math.floor(Math.random() * questData.length);
+            return questData[randomIndex];
+        }
+
+        // Reset Quest Card
+        function resetQuestCard() {
+            const card = document.getElementById(‘questCard’);
+            card.classList.remove(‘flipped’);
+
+            const questContent = document.querySelector(‘.quest-content’);
+            if (questContent) questContent.remove();
+
+            document.getElementById(‘questText’).textContent = ‘’;
+            document.getElementById(‘frameworkName’).classList.remove(‘active’);
+            document.getElementById(‘answersContainer’).classList.remove(‘active’);
+            document.getElementById(‘answersContainer’).innerHTML = ‘’;
+            document.getElementById(‘feedback’).classList.remove(‘active’);
+            document.getElementById(‘explanation’).classList.remove(‘active’);
+            document.getElementById(‘nextButton’).classList.remove(‘active’);
+        }
+
+        // Reveal Quest
+        function revealQuest() {
+            const card = document.getElementById(‘questCard’);
+            if (!card.classList.contains(‘flipped’)) {
+                card.classList.add(‘flipped’);
+                displayQuestContent();
+            }
+        }
+
+        // Display Quest Content
+        function displayQuestContent() {
+            const currentQuest = window.currentQuest || getRandomQuest();
+            window.currentQuest = currentQuest;
+
+            const questTextEl = document.getElementById(‘questText’);
+            questTextEl.innerHTML = ‘’;
+
+            // Typewriter effect
+            const typewriterSpan = document.createElement(‘span’);
+            typewriterSpan.className = ‘typewriter-effect’;
+            typewriterSpan.textContent = currentQuest.description;
+            questTextEl.appendChild(typewriterSpan);
+
+            // Framework name appears after typewriter
+            setTimeout(() => {
+                const frameworkNameEl = document.getElementById(‘frameworkName’);
+                frameworkNameEl.textContent = currentQuest.name;
+                frameworkNameEl.classList.add(‘active’);
+
+                // Answers appear after framework name
+                setTimeout(() => {
+                    displayAnswers(currentQuest);
+                }, 500);
+            }, 2200);
+        }
+
+        // Display Answers
+        function displayAnswers(quest) {
+            const container = document.getElementById(‘answersContainer’);
+            container.innerHTML = ‘’;
+            container.classList.add(‘active’);
+
+            quest.answers.forEach((answer, index) => {
+                const button = document.createElement(‘button’);
+                button.className = ‘answer-button’;
+                button.textContent = answer;
+                button.onclick = () => selectAnswer(index, quest);
+                button.disabled = window.answerSelected;
+                container.appendChild(button);
+            });
+        }
+
+        // Select Answer
+        function selectAnswer(selectedIndex, quest) {
+            window.answerSelected = true;
+            const buttons = document.querySelectorAll(‘.answer-button’);
+            const isCorrect = selectedIndex === quest.correct;
+
+            buttons.forEach((btn, index) => {
+                btn.disabled = true;
+                if (index === quest.correct) {
+                    btn.classList.add(‘correct’);
+                } else if (index === selectedIndex && !isCorrect) {
+                    btn.classList.add(‘incorrect’);
+                }
+            });
+
+            // Show feedback
+            const feedbackEl = document.getElementById(‘feedback’);
+            feedbackEl.classList.add(‘active’);
+            if (isCorrect) {
+                feedbackEl.classList.add(‘correct’);
+                feedbackEl.classList.remove(‘incorrect’);
+                feedbackEl.textContent = ‘✓ Correct!’;
+                addXP(50);
+                createFloatingXP(event);
+            } else {
+                feedbackEl.classList.add(‘incorrect’);
+                feedbackEl.classList.remove(‘correct’);
+                feedbackEl.textContent = ‘✗ Incorrect’;
+            }
+
+            // Show explanation
+            setTimeout(() => {
+                const explanationEl = document.getElementById(‘explanation’);
+                explanationEl.textContent = quest.explanation;
+                explanationEl.classList.add(‘active’);
+
+                // Show next button
+                setTimeout(() => {
+                    document.getElementById(‘nextButton’).classList.add(‘active’);
+                }, 500);
+            }, 1500);
+        }
+
+        // Add XP
+        function addXP(amount) {
+            gameState.xp += amount;
+            gameState.totalXP += amount;
+
+            while (gameState.xp >= XP_PER_LEVEL) {
+                gameState.xp -= XP_PER_LEVEL;
+                gameState.level++;
+            }
+
+            updateUI();
+            saveGameState();
+        }
+
+        // Create Floating XP
+        function createFloatingXP(event) {
+            const floatingXP = document.createElement(‘div’);
+            floatingXP.className = ‘floating-xp’;
+            floatingXP.textContent = ‘+50 XP’;
+
+            const rect = document.getElementById(‘questCard’).getBoundingClientRect();
+            floatingXP.style.left = rect.left + rect.width / 2 + ‘px’;
+            floatingXP.style.top = rect.top + rect.height / 2 + ‘px’;
+
+            document.body.appendChild(floatingXP);
+
+            setTimeout(() => floatingXP.remove(), 2000);
+        }
+
+        // Next Quest
+        function nextQuest() {
+            window.answerSelected = false;
+            window.currentQuest = null;
+            resetQuestCard();
+        }
+
+        // Start the app
+        init();
+    </script>
+</body>
 </html>
