@@ -352,6 +352,7 @@
       const discoveryCount = document.getElementById("discoveryCount");
       const blessingStorageKey = "dailyBlessing";
       let frameworks = [];
+      let todaysBlessingId = null;
 
       function readBlessing() {
         const raw = localStorage.getItem(blessingStorageKey);
@@ -371,6 +372,16 @@
 
       function setStatus(message) {
         discoveryCount.textContent = message;
+      }
+
+      function showShrineView() {
+        frameworkView.hidden = true;
+        shrineShell.hidden = false;
+      }
+
+      function showDetailView() {
+        shrineShell.hidden = true;
+        frameworkView.hidden = false;
       }
 
       function getTodayString() {
@@ -411,8 +422,7 @@
         const logic = Number(stats.logic || 0);
         const efficiency = Number(stats.efficiency || 0);
 
-        shrineShell.hidden = true;
-        frameworkView.hidden = false;
+        showDetailView();
         frameworkView.innerHTML = `
           <article class="blessing-card blessing-enter framework-panel ${rarityClass}">
             <div class="framework-top">
@@ -478,8 +488,7 @@
         const backButton = document.getElementById("backToShrine");
         if (backButton) {
           backButton.addEventListener("click", () => {
-            frameworkView.hidden = true;
-            shrineShell.hidden = false;
+            showShrineView();
           });
         }
       }
@@ -495,17 +504,12 @@
           const today = getTodayString();
 
           if (blessing.date === today) {
-            const savedFramework = frameworks.find((framework) => framework.id === blessing.id);
-
-            if (savedFramework) {
-              renderBlessing(savedFramework);
-              setStatus("You have already received today's wisdom. Return tomorrow.");
-              button.disabled = true;
-              return;
-            }
+            todaysBlessingId = blessing.id;
+            setStatus("Today's blessing is waiting. Enter when ready.");
+          } else {
+            setStatus("");
           }
 
-          setStatus("");
           button.disabled = false;
         } catch {
           setStatus("Could not load frameworks.");
@@ -522,6 +526,14 @@
         const previous = readBlessing();
         const today = getTodayString();
         const yesterday = getYesterdayString(today);
+        const savedToday = frameworks.find((item) => item.id === todaysBlessingId);
+        if (savedToday) {
+          renderBlessing(savedToday);
+          button.textContent = defaultLabel;
+          button.disabled = false;
+          return;
+        }
+
         const excludedId = previous.date === yesterday ? previous.id : null;
         const framework = pickFramework(excludedId);
         if (!framework) {
@@ -534,15 +546,16 @@
           id: framework.id,
           date: today,
         });
+        todaysBlessingId = framework.id;
         renderBlessing(framework);
-        setStatus("You have already received today's wisdom. Return tomorrow.");
+        setStatus("Today's blessing is waiting. Enter when ready.");
 
         // Optional audio cue:
         // playRevealChime();
 
         await sleep(420);
         button.textContent = defaultLabel;
-        button.disabled = true;
+        button.disabled = false;
       });
 
       loadFrameworks();
