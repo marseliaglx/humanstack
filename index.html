@@ -1,278 +1,162 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>My Swipe File - Guided Discovery</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "on-secondary": "#d1ffc8",
-              "on-error": "#ffefef",
-              "inverse-surface": "#0c0f10",
-              "on-tertiary-fixed": "#2f0e00",
-              "primary-container": "#929bfa",
-              "on-tertiary-fixed-variant": "#642600",
-              "on-secondary-container": "#005c15",
-              "on-primary": "#f3f1ff",
-              "surface-container-low": "#eff1f2",
-              "secondary-fixed-dim": "#90e28a",
-              "error-dim": "#a70138",
-              "surface-container-lowest": "#ffffff",
-              "on-secondary-fixed": "#00460e",
-              "surface-tint": "#4953ac",
-              "surface-container-high": "#e0e3e4",
-              "primary-fixed": "#929bfa",
-              "secondary-dim": "#025d16",
-              "surface-variant": "#dadddf",
-              "on-primary-fixed": "#000005",
-              "inverse-on-surface": "#9b9d9e",
-              "inverse-primary": "#929bfa",
-              "on-surface": "#2c2f30",
-              "secondary-container": "#9df197",
-              "primary-fixed-dim": "#858eec",
-              "tertiary-fixed-dim": "#ff7f36",
-              "secondary-fixed": "#9df197",
-              "surface-container": "#e6e8ea",
-              "primary-dim": "#3d469f",
-              "primary": "#4953ac",
-              "error": "#b41340",
-              "tertiary-dim": "#883700",
-              "surface-container-highest": "#dadddf",
-              "error-container": "#f74b6d",
-              "on-error-container": "#510017",
-              "tertiary-fixed": "#ff955e",
-              "on-primary-container": "#0b1574",
-              "surface-dim": "#d1d5d7",
-              "on-secondary-fixed-variant": "#12661e",
-              "secondary": "#176a21",
-              "on-surface-variant": "#595c5d",
-              "on-primary-fixed-variant": "#18217d",
-              "surface": "#f5f6f7",
-              "tertiary": "#9b3f00",
-              "background": "#f5f6f7",
-              "surface-bright": "#f5f6f7",
-              "on-background": "#2c2f30",
-              "on-tertiary": "#fff0ea",
-              "outline-variant": "#abadae",
-              "outline": "#757778",
-              "on-tertiary-container": "#562000",
-              "tertiary-container": "#ff955e"
-            },
-            fontFamily: {
-              "headline": ["Manrope"],
-              "body": ["Manrope"],
-              "label": ["Manrope"]
-            },
-            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-          },
-        },
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Obsidian Ledger — Human Skills Questboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --night: #070a14;
+        --night-soft: #0f1324;
+        --ink: #e8dbbd;
+        --lavender: #8f82ff;
+        --arcane: #35e4ff;
+        --ember: #ffcf66;
       }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        body {
-            background-color: #f5f6f7;
-            font-family: 'Manrope', sans-serif;
-            color: #2c2f30;
-        }
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+
+      body {
+        font-family: Inter, system-ui, sans-serif;
+        background:
+          radial-gradient(circle at 12% 85%, rgba(53, 228, 255, 0.16), transparent 24%),
+          radial-gradient(circle at 92% 15%, rgba(143, 130, 255, 0.18), transparent 20%),
+          linear-gradient(145deg, #05070f, #0b1020 58%, #090d1a);
+        color: #ecedf3;
+      }
+
+      .title-font {
+        font-family: Cinzel, serif;
+      }
+
+      .arcane-card {
+        background: linear-gradient(165deg, rgba(20, 24, 42, 0.95), rgba(10, 13, 24, 0.9));
+        border: 1px solid rgba(232, 219, 189, 0.16);
+      }
+
+      .sigil {
+        box-shadow: 0 0 0 1px rgba(232, 219, 189, 0.18), 0 0 22px rgba(143, 130, 255, 0.2);
+      }
     </style>
-</head>
-<body class="bg-surface font-body selection:bg-primary-container selection:text-on-primary-container">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 glass-nav shadow-sm">
-<div class="flex justify-between items-center h-16 px-6 md:px-12 max-w-full">
-<div class="flex items-center gap-8">
-<span class="text-xl font-extrabold tracking-tighter text-blue-800">My Swipe File</span>
-<div class="hidden md:flex gap-6 items-center">
-<a class="text-blue-700 font-bold border-b-2 border-blue-600 pb-1" href="#">Explore</a>
-<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Frameworks</a>
-<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Library</a>
-<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Saved</a>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<div class="relative hidden sm:block">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<span class="material-symbols-outlined text-slate-400 text-sm">search</span>
-</div>
-<input class="bg-surface-container-highest border-none rounded-full py-1.5 pl-9 pr-4 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest w-48 md:w-64 transition-all" placeholder="Search frameworks..." type="text"/>
-</div>
-<div class="flex items-center gap-2">
-<button class="p-2 hover:bg-slate-50 rounded-full transition-colors active:scale-95">
-<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
-</button>
-<button class="p-2 hover:bg-slate-50 rounded-full transition-colors active:scale-95">
-<span class="material-symbols-outlined text-on-surface-variant">settings</span>
-</button>
-<img alt="User profile avatar" class="w-8 h-8 rounded-full ml-2 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX9C18KAd9Yv_Qe2Agq9XHAry1T86ftzbTns6dmYfc_rNBHNrQe-vNJSn0VkpaJKBqMtri7NMxL7g2vzmOUJnRe2E4b2cPdTb4v-zMZTzsKfDJP8p6XAG8qJEOyq3J2e9dX39m5dvIwgIkTCEnAkgvnM_pBZLu-22EKO8Bbw_tI0ODgY0QVWn4DnJUQjiRPk3GUEx3c3Ixeewswj6_n9egrSWyXZXoYjKW6e00-N24LQvB5v7oag3syX5ojSmXNZ0zLbG1oguBCws"/>
-</div>
-</div>
-</div>
-<div class="bg-slate-100 h-[1px] w-full"></div>
-</nav>
-<main class="pt-24 pb-32 px-6 md:px-12 max-w-7xl mx-auto">
-<!-- Section: What are you trying to solve today? -->
-<section class="mb-16">
-<h1 class="text-3xl font-extrabold tracking-tight mb-8 text-on-surface">What are you trying to solve today?</h1>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-<!-- Problem Solving -->
-<button class="group flex flex-col items-center justify-center p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-left active:scale-[0.98]">
-<div class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-3xl">lightbulb</span>
-</div>
-<span class="text-lg font-bold text-on-surface">Problem Solving</span>
-</button>
-<!-- Communication -->
-<button class="group flex flex-col items-center justify-center p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-left active:scale-[0.98]">
-<div class="w-16 h-16 rounded-2xl bg-secondary-container text-on-secondary-container flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-3xl">forum</span>
-</div>
-<span class="text-lg font-bold text-on-surface">Communication</span>
-</button>
-<!-- Organization -->
-<button class="group flex flex-col items-center justify-center p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-left active:scale-[0.98]">
-<div class="w-16 h-16 rounded-2xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center mb-4 group-hover:bg-tertiary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-3xl">view_quilt</span>
-</div>
-<span class="text-lg font-bold text-on-surface">Organization</span>
-</button>
-<!-- Leadership -->
-<button class="group flex flex-col items-center justify-center p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-left active:scale-[0.98]">
-<div class="w-16 h-16 rounded-2xl bg-primary-container text-on-primary-container flex items-center justify-center mb-4 group-hover:bg-primary-dim group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-3xl">military_tech</span>
-</div>
-<span class="text-lg font-bold text-on-surface">Leadership</span>
-</button>
-</div>
-</section>
-<!-- Section: Recommended for You -->
-<section class="mb-16">
-<div class="flex items-center justify-between mb-6">
-<h2 class="text-xl font-bold text-on-surface">Recommended for You</h2>
-<a class="text-sm font-semibold text-primary hover:underline" href="#">View All</a>
-</div>
-<div class="flex overflow-x-auto gap-6 pb-4 hide-scrollbar">
-<!-- Framework 1 -->
-<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
-<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-primary">
-<span class="material-symbols-outlined">layers</span>
-</div>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">MECE Principle</h3>
-<p class="text-xs text-on-surface-variant">Problem Solving</p>
-</div>
-</div>
-<!-- Framework 2 -->
-<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
-<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-secondary">
-<span class="material-symbols-outlined">psychology</span>
-</div>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-secondary transition-colors">Pyramid Principle</h3>
-<p class="text-xs text-on-surface-variant">Communication</p>
-</div>
-</div>
-<!-- Framework 3 -->
-<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
-<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-tertiary">
-<span class="material-symbols-outlined">view_agenda</span>
-</div>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-tertiary transition-colors">Eisenhower Matrix</h3>
-<p class="text-xs text-on-surface-variant">Organization</p>
-</div>
-</div>
-<!-- Framework 4 -->
-<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
-<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-primary-dim">
-<span class="material-symbols-outlined">group_work</span>
-</div>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Lencioni Model</h3>
-<p class="text-xs text-on-surface-variant">Leadership</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Section: Recently Viewed -->
-<section>
-<h2 class="text-xl font-bold text-on-surface mb-6">Recently Viewed</h2>
-<div class="space-y-4">
-<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-slate-500">show_chart</span>
-</div>
-<div>
-<h4 class="font-bold text-on-surface">Pareto Analysis (80/20)</h4>
-<p class="text-xs text-on-surface-variant">Last viewed 2 hours ago</p>
-</div>
-</div>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
-</div>
-<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-slate-500">grid_view</span>
-</div>
-<div>
-<h4 class="font-bold text-on-surface">First Principles Thinking</h4>
-<p class="text-xs text-on-surface-variant">Last viewed yesterday</p>
-</div>
-</div>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
-</div>
-<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-slate-500">account_tree</span>
-</div>
-<div>
-<h4 class="font-bold text-on-surface">Circle of Competence</h4>
-<p class="text-xs text-on-surface-variant">Last viewed 3 days ago</p>
-</div>
-</div>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
-</div>
-</div>
-</section>
-</main>
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 backdrop-blur-xl shadow-[0_-4px_20px_0_rgba(0,0,0,0.05)] z-50 rounded-t-3xl border-t border-slate-100">
-<button class="flex flex-col items-center justify-center bg-blue-50 text-blue-700 rounded-2xl px-5 py-2 active:scale-90 transition-all">
-<span class="material-symbols-outlined">explore</span>
-<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Discover</span>
-</button>
-<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 active:scale-90 transition-all">
-<span class="material-symbols-outlined">search</span>
-<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Search</span>
-</button>
-<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 active:scale-90 transition-all">
-<span class="material-symbols-outlined">style</span>
-<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Collections</span>
-</button>
-<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 active:scale-90 transition-all">
-<span class="material-symbols-outlined">person</span>
-<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
-</button>
-</nav>
-</body></html>
+  </head>
+  <body class="min-h-screen">
+    <div class="mx-auto grid min-h-screen max-w-[1400px] grid-cols-1 lg:grid-cols-[260px_1fr_320px]">
+      <aside class="border-r border-indigo-200/10 bg-black/30 p-6 backdrop-blur-sm">
+        <h1 class="title-font text-4xl font-bold text-[var(--ink)]">The Obsidian Ledger</h1>
+        <p class="mt-2 text-xs uppercase tracking-[0.3em] text-indigo-200/70">Level 42 Skillcaster</p>
+
+        <nav class="mt-10 space-y-2 text-sm">
+          <p class="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-indigo-200/50">Arcane Paths</p>
+          <a class="block rounded-lg border border-[var(--ember)]/40 bg-[var(--lavender)]/15 px-4 py-3 font-semibold text-[var(--ink)]" href="#">I • Clear Thinking</a>
+          <a class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-white/5" href="#">II • Better Decisions</a>
+          <a class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-white/5" href="#">III • Better Communication</a>
+          <a class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-white/5" href="#">IV • Less Friction</a>
+          <a class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-white/5" href="#">V • Keep Improving</a>
+          <a class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-white/5" href="#">VI • Career Craft</a>
+        </nav>
+
+        <button class="mt-10 w-full rounded-md bg-amber-400 px-4 py-3 text-sm font-bold uppercase tracking-[0.2em] text-[#1f1b10]">Inscribe New Quest</button>
+        <p class="mt-6 text-xs text-slate-400">Daily cycle resets at dawn (06:00). Complete 3 quests to unlock a relic challenge.</p>
+      </aside>
+
+      <main class="p-6 lg:p-10">
+        <div class="mb-8 flex items-center justify-between">
+          <div>
+            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/70">Grimoire • Daily Quests</p>
+            <h2 class="title-font mt-2 text-5xl text-[var(--ink)]">The Human Arcana</h2>
+            <p class="mt-3 max-w-3xl text-xl text-slate-300">
+              Nerdy daily quests inspired by <em>The Working Playbook</em>: master 43 frameworks through practical missions,
+              boss fights, and tiny real-world actions.
+            </p>
+          </div>
+          <span class="rounded-full border border-cyan-300/40 px-4 py-2 text-sm text-cyan-200">Today: 3/5 quests completed</span>
+        </div>
+
+        <section class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <article class="arcane-card sigil rounded-xl p-5">
+            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/60">Quest 01 · Inversion</p>
+            <h3 class="title-font mt-2 text-3xl text-[var(--ink)]">The Failure Oracle</h3>
+            <p class="mt-3 text-slate-300">Write a "how to fail" list for today’s biggest task, then cast the opposite as your action plan.</p>
+            <div class="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-amber-200/90"><span>Reward: +20 Clarity</span><span>15 min</span></div>
+          </article>
+
+          <article class="arcane-card rounded-xl p-5">
+            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/60">Quest 02 · Second-Order Thinking</p>
+            <h3 class="title-font mt-2 text-3xl text-[var(--ink)]">Chain of Consequence</h3>
+            <p class="mt-3 text-slate-300">Pick a decision and trace "and then what?" five steps out before you commit.</p>
+            <div class="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-amber-200/90"><span>Reward: +18 Judgment</span><span>12 min</span></div>
+          </article>
+
+          <article class="arcane-card rounded-xl p-5">
+            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/60">Quest 03 · Hanlon + Empty Boat</p>
+            <h3 class="title-font mt-2 text-3xl text-[var(--ink)]">No Villains Today</h3>
+            <p class="mt-3 text-slate-300">Reframe one frustrating interaction using non-malice assumptions, then send a kinder follow-up.</p>
+            <div class="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-amber-200/90"><span>Reward: +14 Influence</span><span>8 min</span></div>
+          </article>
+
+          <article class="arcane-card rounded-xl p-5">
+            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/60">Boss Trial · Goodhart + Cobra</p>
+            <h3 class="title-font mt-2 text-3xl text-[var(--ink)]">Metric Mimic</h3>
+            <p class="mt-3 text-slate-300">Audit one KPI in your team. How could it be gamed? Add one balancing metric to neutralize the exploit.</p>
+            <div class="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-amber-200/90"><span>Reward: Rare Relic</span><span>25 min</span></div>
+          </article>
+
+          <article class="arcane-card rounded-xl p-5">
+            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/60">Streak Mission · Decision Journal</p>
+            <h3 class="title-font mt-2 text-3xl text-[var(--ink)]">Chronicle of Choices</h3>
+            <p class="mt-3 text-slate-300">Log one real decision (options, rationale, confidence, mood). Review every seventh day to gain XP multipliers.</p>
+            <div class="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-amber-200/90"><span>Reward: +1 Wisdom/day</span><span>5 min</span></div>
+          </article>
+
+          <article class="arcane-card rounded-xl p-5">
+            <p class="text-xs uppercase tracking-[0.28em] text-indigo-200/60">Guild Quest · 3-1-1 + Teach-Back</p>
+            <h3 class="title-font mt-2 text-3xl text-[var(--ink)]">Council Briefing</h3>
+            <p class="mt-3 text-slate-300">Bring one problem, three options, one recommendation. End by asking a teammate to teach-back your plan.</p>
+            <div class="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-amber-200/90"><span>Reward: +22 Presence</span><span>20 min</span></div>
+          </article>
+        </section>
+
+        <section class="mt-8 rounded-xl border border-indigo-200/20 bg-black/20 p-5">
+          <h4 class="title-font text-2xl text-[var(--ink)]">Campaign Structure (43 Skills = 6 Realms)</h4>
+          <p class="mt-2 text-slate-300">
+            Each realm unlocks in sequence: <strong>Think Clearly → Decide Better → Communicate → Execute → Improve → Build Career</strong>.
+            Every day offers one micro-quest, one collaboration quest, and one optional boss trial.
+          </p>
+        </section>
+      </main>
+
+      <aside class="border-l border-indigo-200/10 bg-black/25 p-6 backdrop-blur-sm">
+        <div class="arcane-card rounded-xl p-5">
+          <div class="mx-auto h-24 w-24 rounded-md border border-indigo-200/40 bg-gradient-to-b from-indigo-400/30 to-cyan-300/20"></div>
+          <h3 class="title-font mt-4 text-center text-3xl text-[var(--ink)]">Marcela the Curator</h3>
+          <p class="text-center text-xs uppercase tracking-[0.24em] text-indigo-200/70">Keeper of 43 Frameworks</p>
+
+          <div class="mt-6 space-y-4 text-sm">
+            <div>
+              <div class="mb-1 flex justify-between text-slate-300"><span>Clarity</span><span class="text-cyan-300">84/100</span></div>
+              <div class="h-2 rounded bg-white/10"><div class="h-2 w-[84%] rounded bg-cyan-300"></div></div>
+            </div>
+            <div>
+              <div class="mb-1 flex justify-between text-slate-300"><span>Judgment</span><span class="text-amber-200">62/100</span></div>
+              <div class="h-2 rounded bg-white/10"><div class="h-2 w-[62%] rounded bg-amber-200"></div></div>
+            </div>
+            <div>
+              <div class="mb-1 flex justify-between text-slate-300"><span>Career Mana</span><span class="text-violet-300">2,450 MP</span></div>
+              <div class="h-2 rounded bg-white/10"><div class="h-2 w-[78%] rounded bg-violet-300"></div></div>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-lg border border-amber-200/25 bg-amber-100/10 p-3 text-sm text-amber-100">
+            <p class="font-semibold">Daily Lore Drop</p>
+            <p class="mt-1">"Easy choices, hard life. Hard choices, easy life." Complete one hard quest before noon.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </body>
+</html>
