@@ -595,6 +595,19 @@
 <!-- Section: What are you trying to solve today? -->
 <section class="mb-16">
 <h1 class="text-3xl font-extrabold tracking-tight mb-8 text-on-surface">What are you trying to solve today?</h1>
+<div class="mb-12">
+<div class="bg-surface-container-lowest rounded-2xl border border-slate-200 p-6 shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+<div>
+<h2 class="text-2xl font-extrabold text-on-surface">Learn one new human skill</h2>
+<p class="text-sm text-on-surface-variant mt-1">Click once to draw a random skill you can practice right now.</p>
+</div>
+<button id="skill-lottery-button" class="inline-flex items-center justify-center rounded-xl bg-primary text-white font-bold px-5 py-3 hover:opacity-90 transition active:scale-[0.98]">Learn one new human skill</button>
+</div>
+<div id="skill-lottery-result" class="mt-4 rounded-xl bg-surface-container p-4 text-sm text-on-surface-variant">No skill drawn yet. Try your first draw.</div>
+</div>
+</div>
+
 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
 <!-- I: Think More Clearly -->
 <button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
@@ -1034,4 +1047,27 @@
 <span class="text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
 </button>
 </nav>
+<script>
+  const HUMAN_SKILLS = [
+    "Inversion", "Second-Order Thinking", "The Map Is Not the Territory", "Hanlon's Razor", "The Empty Boat", "The Cobra Effect", "Goodhart's Law",
+    "The Decision Journal", "Fear-Setting", "Pre-mortem", "The Five Whys", "The 3-1-1 Method", "DACI", "Bias for Action", "KWL",
+    "The Personal README", "FLIP It Email", "The One-Pager", "The Weekly Update", "Skip-Level Meetings", "Blue/Green/Red Speakers", "The Teach-Back Method", "Working Out Loud",
+    "The ONE Thing", "Energy-Based Scheduling", "Parkinson's Law", "The Two-Minute Rule", "Breaking Down the Boxes", "Fire and Forget", "The Don't-Do-It List", "Map Then Automate",
+    "Kaizen", "Go to Gemba", "The Feedback Flywheel", "The Experiment Log", "Shu-Ha-Ri", "Rapid Prototyping", "Red Teaming & Dogfooding", "Customer Journey Mapping", "The Johari Window",
+    "The Swipe File", "The Parking Lot", "The Work-Sharing Buddy"
+  ];
+
+  const lotteryButton = document.getElementById('skill-lottery-button');
+  const lotteryResult = document.getElementById('skill-lottery-result');
+
+  if (lotteryButton && lotteryResult) {
+    lotteryButton.addEventListener('click', () => {
+      const randomSkill = HUMAN_SKILLS[Math.floor(Math.random() * HUMAN_SKILLS.length)];
+      lotteryResult.textContent = `Your skill to learn next: ${randomSkill}`;
+      lotteryResult.classList.remove('text-on-surface-variant');
+      lotteryResult.classList.add('font-semibold');
+    });
+  }
+</script>
 </body></html>
+
