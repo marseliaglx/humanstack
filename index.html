@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
+
+<html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>The Working Playbook – 43 Frameworks</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700;800&amp;family=Work+Sans:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
@@ -12,1062 +13,226 @@
         theme: {
           extend: {
             colors: {
-              "on-secondary": "#d1ffc8",
-              "on-error": "#ffefef",
-              "inverse-surface": "#0c0f10",
-              "on-tertiary-fixed": "#2f0e00",
-              "primary-container": "#929bfa",
-              "on-tertiary-fixed-variant": "#642600",
-              "on-secondary-container": "#005c15",
-              "on-primary": "#f3f1ff",
-              "surface-container-low": "#eff1f2",
-              "secondary-fixed-dim": "#90e28a",
-              "error-dim": "#a70138",
-              "surface-container-lowest": "#ffffff",
-              "on-secondary-fixed": "#00460e",
-              "surface-tint": "#4953ac",
-              "surface-container-high": "#e0e3e4",
-              "primary-fixed": "#929bfa",
-              "secondary-dim": "#025d16",
-              "surface-variant": "#dadddf",
-              "on-primary-fixed": "#000005",
-              "inverse-on-surface": "#9b9d9e",
-              "inverse-primary": "#929bfa",
-              "on-surface": "#2c2f30",
-              "secondary-container": "#9df197",
-              "primary-fixed-dim": "#858eec",
-              "tertiary-fixed-dim": "#ff7f36",
-              "secondary-fixed": "#9df197",
-              "surface-container": "#e6e8ea",
-              "primary-dim": "#3d469f",
-              "primary": "#4953ac",
-              "error": "#b41340",
-              "tertiary-dim": "#883700",
-              "surface-container-highest": "#dadddf",
-              "error-container": "#f74b6d",
-              "on-error-container": "#510017",
-              "tertiary-fixed": "#ff955e",
-              "on-primary-container": "#0b1574",
-              "surface-dim": "#d1d5d7",
-              "on-secondary-fixed-variant": "#12661e",
-              "secondary": "#176a21",
-              "on-surface-variant": "#595c5d",
-              "on-primary-fixed-variant": "#18217d",
-              "surface": "#f5f6f7",
-              "tertiary": "#9b3f00",
-              "background": "#f5f6f7",
-              "surface-bright": "#f5f6f7",
-              "on-background": "#2c2f30",
-              "on-tertiary": "#fff0ea",
-              "outline-variant": "#abadae",
-              "outline": "#757778",
-              "on-tertiary-container": "#562000",
-              "tertiary-container": "#ff955e"
+              "on-surface-variant": "#cec3d3",
+              "on-background": "#e2e0fc",
+              "tertiary": "#2ae500",
+              "on-primary-fixed-variant": "#6e208c",
+              "inverse-surface": "#e2e0fc",
+              "on-primary-container": "#c979e7",
+              "secondary-fixed": "#ffe16d",
+              "surface-dim": "#111125",
+              "surface-container-lowest": "#0c0c1f",
+              "tertiary-fixed-dim": "#2ae500",
+              "error-container": "#93000a",
+              "inverse-primary": "#883ca6",
+              "surface-variant": "#333348",
+              "secondary-fixed-dim": "#e9c400",
+              "primary-fixed-dim": "#edb1ff",
+              "outline": "#978d9d",
+              "on-secondary-container": "#725f00",
+              "primary": "#edb1ff",
+              "on-primary": "#520070",
+              "on-error-container": "#ffdad6",
+              "on-surface": "#e2e0fc",
+              "tertiary-container": "#053a00",
+              "secondary": "#fff9ef",
+              "surface-container": "#1e1e32",
+              "background": "#111125",
+              "surface-container-high": "#28283d",
+              "inverse-on-surface": "#2f2e43",
+              "on-secondary-fixed": "#221b00",
+              "outline-variant": "#4c4451",
+              "on-tertiary-fixed": "#022100",
+              "on-tertiary-fixed-variant": "#095300",
+              "on-tertiary": "#053900",
+              "secondary-container": "#ffdb3c",
+              "primary-container": "#540072",
+              "on-primary-fixed": "#320046",
+              "surface-container-low": "#1a1a2e",
+              "on-error": "#690005",
+              "on-secondary": "#3a3000",
+              "on-secondary-fixed-variant": "#544600",
+              "on-tertiary-container": "#1fb100",
+              "error": "#ffb4ab",
+              "tertiary-fixed": "#79ff5b",
+              "primary-fixed": "#f9d8ff",
+              "surface": "#111125",
+              "surface-bright": "#37374d",
+              "surface-container-highest": "#333348",
+              "surface-tint": "#edb1ff"
             },
             fontFamily: {
               "headline": ["Manrope"],
-              "body": ["Manrope"],
+              "body": ["Work Sans"],
               "label": ["Manrope"]
             },
-            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
           },
         },
       }
     </script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-
-        body {
-            font-family: 'Courier Prime', monospace;
-            background: linear-gradient(135deg, #0a0015 0%, #1a0a2e 50%, #0d001a 100%);
-            color: #e0d5b7;
-            min-height: 100vh;
-            overflow-x: hidden;
-            padding: 20px;
-            position: relative;
-        }
-
-        /* Starfield Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                radial-gradient(1px 1px at 20% 30%, #fff, transparent),
-                radial-gradient(1px 1px at 60% 70%, #fff, transparent),
-                radial-gradient(1px 1px at 50% 50%, #fff, transparent),
-                radial-gradient(1px 1px at 80% 10%, #fff, transparent),
-                radial-gradient(1px 1px at 90% 60%, #fff, transparent),
-                radial-gradient(1px 1px at 30% 80%, #fff, transparent);
-            background-size: 200% 200%;
-            pointer-events: none;
-            z-index: -1;
-            animation: twinkle 8s ease-in-out infinite;
-            opacity: 0.15;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.15; }
-            50% { opacity: 0.3; }
-        }
-
-        /* Landing Page */
-        .landing-page {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            gap: 50px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .landing-page.hidden {
-            display: none;
-        }
-
-        .title-section {
-            animation: fade-glow-in 1.5s ease-out;
-        }
-
-        .title-section h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 12vw, 5rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            color: #d4af37;
-            text-shadow:
-                0 0 10px rgba(212, 175, 55, 0.4),
-                0 0 20px rgba(212, 175, 55, 0.6),
-                0 0 40px rgba(167, 139, 250, 0.3);
-            margin-bottom: 15px;
-        }
-
-        .title-section p {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1rem, 3vw, 1.4rem);
-            color: #a78bfa;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(167, 139, 250, 0.3);
-        }
-
-        .claim-button {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 18px 55px;
-            background: linear-gradient(135deg, #d4af37, #ffd700);
-            color: #0a0015;
-            border: 2px solid #d4af37;
-            border-radius: 0;
-            cursor: pointer;
-            letter-spacing: 3px;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow:
-                0 0 20px rgba(212, 175, 55, 0.4),
-                0 0 40px rgba(212, 175, 55, 0.2);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            animation: pulse-button 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-button {
-            0%, 100% {
-                box-shadow:
-                    0 0 20px rgba(212, 175, 55, 0.4),
-                    0 0 40px rgba(212, 175, 55, 0.2);
-            }
-            50% {
-                box-shadow:
-                    0 0 30px rgba(212, 175, 55, 0.6),
-                    0 0 60px rgba(212, 175, 55, 0.3);
-            }
-        }
-
-        .claim-button:hover {
-            transform: scale(1.08) translateY(-3px);
-            box-shadow:
-                0 0 30px rgba(212, 175, 55, 0.6),
-                0 0 60px rgba(212, 175, 55, 0.4);
-        }
-
-        .claim-button:active {
-            transform: scale(0.96);
-        }
-
-        /* Quest Page */
-        .quest-page {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-        }
-
-        .quest-page.hidden {
-            display: none;
-        }
-
-        .quest-container {
-            perspective: 1200px;
-            width: 100%;
-            max-width: 650px;
-            height: 500px;
-        }
-
-        .quest-card {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            cursor: pointer;
-        }
-
-        .quest-card.flipped {
-            transform: rotateY(180deg);
-        }
-
-        .quest-card-front,
-        .quest-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid #d4af37;
-            border-radius: 0;
-            background: linear-gradient(135deg, rgba(10, 0, 21, 0.95), rgba(26, 10, 46, 0.95));
-            box-shadow:
-                0 0 30px rgba(212, 175, 55, 0.3),
-                inset 0 0 30px rgba(212, 175, 55, 0.1);
-            padding: 45px;
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-
-        .quest-card-front::before,
-        .quest-card-back::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            right: -8px;
-            bottom: -8px;
-            border: 2px solid #d4af37;
-            opacity: 0.2;
-            pointer-events: none;
-            animation: border-glow 3s ease-in-out infinite;
-        }
-
-        @keyframes border-glow {
-            0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
-            50% { box-shadow: 0 0 35px rgba(212, 175, 55, 0.5); }
-        }
-
-        .quest-card-front {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .quest-icon {
-            font-size: 4rem;
-            animation: float-icon 3s ease-in-out infinite;
-        }
-
-        @keyframes float-icon {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .quest-front-text {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #d4af37;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-
-        .quest-card-back {
-            transform: rotateY(180deg);
-            flex-direction: column;
-            gap: 20px;
-            overflow-y: auto;
-        }
-
-        .category-badge {
-            display: inline-block;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 6px 14px;
-            border-radius: 0;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            border: 1px solid #a78bfa;
-            background: rgba(167, 139, 250, 0.15);
-            color: #a78bfa;
-            box-shadow: 0 0 10px rgba(167, 139, 250, 0.2);
-        }
-
-        .quest-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #fbbf24;
-            text-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
-        }
-
-        .quest-scenario {
-            font-family: 'Courier Prime', monospace;
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #d4af37;
-            text-align: center;
-            white-space: pre-wrap;
-            min-height: 50px;
-        }
-
-        .typewriter-effect {
-            overflow: hidden;
-            animation: typewriter 2.2s steps(100) forwards;
-            display: inline-block;
-        }
-
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        .answers-container {
-            display: none;
-            flex-direction: column;
-            gap: 12px;
-            width: 100%;
-            margin-top: 15px;
-        }
-
-        .answers-container.active {
-            display: flex;
-            animation: fade-in 0.5s ease-out;
-        }
-
-        .answer-button {
-            font-family: 'Space Mono', monospace;
-            padding: 12px 16px;
-            background: rgba(212, 175, 55, 0.1);
-            color: #d4af37;
-            border: 2px solid #d4af37;
-            border-radius: 0;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            text-align: left;
-            letter-spacing: 0.5px;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
-        }
-
-        .answer-button:hover:not(:disabled) {
-            background: rgba(212, 175, 55, 0.25);
-            transform: translateX(5px);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .answer-button:disabled {
-            cursor: not-allowed;
-        }
-
-        .answer-button.correct {
-            background: rgba(16, 185, 129, 0.3);
-            border-color: #10b981;
-            color: #10b981;
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-        }
-
-        .answer-button.incorrect {
-            background: rgba(220, 38, 38, 0.3);
-            border-color: #dc2626;
-            color: #dc2626;
-            box-shadow: 0 0 15px rgba(220, 38, 38, 0.4);
-        }
-
-        .feedback {
-            display: none;
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-align: center;
-            padding: 12px;
-            border: 2px solid;
-            border-radius: 0;
-            letter-spacing: 1px;
-            animation: fade-in 0.5s ease-out;
-        }
-
-        .feedback.active {
-            display: block;
-        }
-
-        .feedback.correct {
-            border-color: #10b981;
-            color: #10b981;
-            background: rgba(16, 185, 129, 0.15);
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
-        }
-
-        .feedback.incorrect {
-            border-color: #dc2626;
-            color: #dc2626;
-            background: rgba(220, 38, 38, 0.15);
-            box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
-        }
-
-        .explanation {
-            display: none;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            background: rgba(212, 175, 55, 0.1);
-            padding: 15px;
-            border-left: 3px solid #d4af37;
-            color: #e0d5b7;
-            text-align: left;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
-            animation: fade-in 0.6s ease-out;
-        }
-
-        .explanation.active {
-            display: block;
-        }
-
-        .next-button {
-            display: none;
-            font-family: 'Cinzel', serif;
-            padding: 14px 45px;
-            background: linear-gradient(135deg, #d4af37, #ffd700);
-            color: #0a0015;
-            border: 2px solid #d4af37;
-            border-radius: 0;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-            letter-spacing: 1.5px;
-            margin-top: 15px;
-        }
-
-        .next-button.active {
-            display: block;
-            animation: fade-in 0.5s ease-out;
-        }
-
-        .next-button:hover {
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
-        }
-
-        @keyframes fade-glow-in {
-            from {
-                opacity: 0;
-                text-shadow: 0 0 0 rgba(212, 175, 55, 0);
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fade-in {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @media (max-width: 768px) {
-            .title-section h1 {
-                font-size: 2.8rem;
-            }
-
-            .quest-container {
-                height: 450px;
-            }
-
-            .quest-card-front,
-            .quest-card-back {
-                padding: 35px 25px;
-            }
-
-            .quest-scenario {
-                font-size: 0.95rem;
-            }
-
-            .answer-button {
-                padding: 11px 14px;
-                font-size: 0.85rem;
-            }
-
-            .claim-button {
-                font-size: 1rem;
-                padding: 15px 40px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body { padding: 15px; }
-
-            .title-section h1 {
-                font-size: 2rem;
-                letter-spacing: 3px;
-            }
-
-            .quest-container {
-                height: 350px;
-            }
-
-            .quest-card-front,
-            .quest-card-back {
-                padding: 25px 20px;
-            }
-
-            .quest-icon {
-                font-size: 3rem;
-            }
-
-            .quest-scenario {
-                font-size: 0.9rem;
-            }
-        }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .arcane-glow {
+        text-shadow: 0 0 15px rgba(237, 177, 255, 0.5);
+      }
+      .legendary-shimmer {
+        background: linear-gradient(135deg, rgba(255,219,60,0.1) 0%, rgba(255,219,60,0) 50%, rgba(255,219,60,0.1) 100%);
+      }
+      .mana-pulse {
+        box-shadow: 0 0 30px rgba(84, 0, 114, 0.6);
+      }
     </style>
 </head>
-<body class="bg-surface font-body selection:bg-primary-container selection:text-on-primary-container">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 glass-nav shadow-sm">
-<div class="flex justify-between items-center h-16 px-6 md:px-12 max-w-full">
-<div class="flex items-center gap-8">
-<span class="text-xl font-extrabold tracking-tighter text-blue-800">The Working Playbook</span>
+<body class="bg-surface-dim text-on-surface font-body selection:bg-primary/30 min-h-screen overflow-hidden relative">
+<!-- Background Environment -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&amp;w=2564&amp;auto=format&amp;fit=crop')] bg-cover bg-center opacity-20 mix-blend-luminosity" data-alt="interior of a dark gothic stone shrine with massive pillars shadowy corners and mystical purple fog rolling across the floor"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-surface-dim/80"></div>
+<!-- Floating Wisps -->
+<div class="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/10 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-primary-container/20 rounded-full blur-[120px]"></div>
+</div>
+<!-- HUD Overlay (TopAppBar mapping) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 bg-transparent">
+<div class="flex flex-col">
+<span class="font-headline font-extrabold uppercase tracking-widest text-xs text-purple-300">The Arcane Archive</span>
+<span class="text-xl font-black text-purple-200 tracking-tighter">SHRINE ENTRANCE</span>
+</div>
+<div class="flex items-center gap-6">
+<!-- HUD: Arcane Level -->
+<div class="flex items-center gap-3 px-4 py-2 bg-surface-container-high/40 backdrop-blur-md rounded-lg border border-outline-variant/15">
+<span class="material-symbols-outlined text-secondary-fixed" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<div class="flex flex-col leading-none">
+<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-tighter">Arcane Level</span>
+<span class="font-headline font-black text-secondary-fixed text-lg leading-none">7</span>
+</div>
+</div>
+<!-- HUD: Mana Pool -->
+<div class="flex items-center gap-3 px-4 py-2 bg-surface-container-high/40 backdrop-blur-md rounded-lg border border-outline-variant/15">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<div class="flex flex-col leading-none">
+<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-tighter">Mana Pool</span>
+<div class="flex items-center gap-1">
+<span class="font-headline font-black text-primary text-lg leading-none">420</span>
+<span class="text-[10px] text-on-surface-variant">/ 500</span>
+</div>
+</div>
+</div>
+<!-- Top Actions -->
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-purple-300 hover:text-yellow-200 transition-colors duration-300">auto_awesome</button>
+<button class="material-symbols-outlined text-purple-300 hover:text-yellow-200 transition-colors duration-300">menu_book</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 pt-24 pb-32 text-center">
+<!-- Animated Intro Text -->
+<div class="mb-12 space-y-2">
+<p class="font-label text-secondary-fixed tracking-[0.5em] uppercase text-xs opacity-80">Ancient Sanctuary Found</p>
+<h1 class="font-headline text-5xl md:text-7xl font-extrabold text-secondary tracking-tight arcane-glow">Place of Power Discovered</h1>
+<div class="h-1 w-24 bg-gradient-to-r from-transparent via-secondary-container to-transparent mx-auto mt-4"></div>
+</div>
+<!-- Central Visual: The Legendary Card -->
+<div class="relative group">
+<!-- Card Summoning Aura -->
+<div class="absolute -inset-20 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
+<div class="absolute -inset-4 bg-gradient-to-tr from-secondary-container/30 to-primary/30 rounded-xl blur-2xl opacity-50"></div>
+<!-- The Card Artifact -->
+<div class="relative w-72 md:w-80 aspect-[2/3] bg-surface-container-highest rounded-xl border-[3px] border-secondary-container overflow-hidden shadow-2xl mana-pulse flex flex-col">
+<!-- Rarity Frame (Legendary) -->
+<div class="absolute inset-0 legendary-shimmer pointer-events-none"></div>
+<!-- Card Image -->
+<div class="h-1/2 w-full relative overflow-hidden">
+<img class="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-700" data-alt="a majestic glowing stone altar in a dark void with floating crystalline particles and a central energy core" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCWogOurxD6cUtIVFNe07lDzUGKWAIkgJiBXm8cDdHMDfyzdCZQcNht8YnqFj0niMlD-nkPs6-ml0HYRY-FXW1eeGW66JslRVYbcJS_7Xr9BVXgSwp_spWRmRscVUOP9wdHPDgEdM0ntBE1LCQeBp6tvhBe7NP8aM3BYdBO93nq8qKhjoUBLbJP2jWH2_t_v7BpiX7u9QAw7uXgCckxBr-MkDCwIYEz98tH4ishbB6_Qiz2tTJqjRRGGYIc40GkEZKK0i3SPzCqxM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-highest to-transparent"></div>
+<div class="absolute top-3 right-3 px-2 py-1 bg-surface-container-lowest/80 backdrop-blur-sm rounded border border-secondary-container/30 flex items-center gap-1">
+<span class="text-[10px] font-black text-secondary-fixed tracking-widest uppercase">Mana 8</span>
+</div>
+</div>
+<!-- Card Content -->
+<div class="p-5 flex-1 flex flex-col justify-between text-left">
+<div>
+<span class="font-label text-[10px] text-secondary-fixed uppercase tracking-widest mb-1 block">Legendary Wisdom</span>
+<h2 class="font-headline text-2xl font-black text-on-surface leading-tight tracking-tight mb-2">First Principles</h2>
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">Deconstruct complex problems into fundamental truths and build up from there. Negates all illusion-based debuffs for 24 hours.</p>
+</div>
+<!-- Card Stats / Footer -->
+<div class="flex justify-between items-end mt-4">
+<div class="flex gap-2">
+<div class="w-8 h-10 bg-surface-container-low flex flex-col items-center justify-center rounded border border-outline-variant/30 overflow-hidden">
+<span class="text-[8px] text-on-surface-variant uppercase font-label">WIS</span>
+<span class="text-sm font-bold text-secondary-fixed">+14</span>
+</div>
+<div class="w-8 h-10 bg-surface-container-low flex flex-col items-center justify-center rounded border border-outline-variant/30 overflow-hidden">
+<span class="text-[8px] text-on-surface-variant uppercase font-label">FCS</span>
+<span class="text-sm font-bold text-tertiary">+8</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[8px] text-on-surface-variant uppercase tracking-widest font-label">Duration</span>
+<span class="text-xs font-bold text-on-surface italic">One Solar Cycle</span>
+</div>
+</div>
+</div>
+<!-- Bottom Rarity Overlap -->
+<div class="absolute -bottom-1 left-1/2 -translate-x-1/2 px-4 py-1 bg-secondary-container rounded-sm transform">
+<span class="font-headline font-black text-[10px] text-on-secondary uppercase tracking-[0.2em]">Ascended</span>
+</div>
+</div>
+</div>
+<!-- Call to Action -->
+<div class="mt-16 flex flex-col items-center gap-6">
+<p class="text-on-surface-variant text-sm max-w-md font-body leading-relaxed">
+                The ancient archive recognizes your progress. This framework will serve as your guiding light through the digital wilderness today.
+            </p>
+<button class="group relative flex items-center gap-4 px-12 py-5 bg-gradient-to-br from-primary to-primary-container rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(237,177,255,0.3)]">
+<!-- Inner Glow -->
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-headline font-black text-on-primary text-xl uppercase tracking-widest">Accept Blessing</span>
+<span class="material-symbols-outlined text-on-primary text-2xl group-hover:translate-x-1 transition-transform" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary-fixed transition-colors text-xs font-label uppercase tracking-widest flex items-center gap-2">
+                Consult the Grimoire
+                <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</main>
+<!-- Bottom XP Bar UI (Stat specific from Screen 30) -->
+<footer class="fixed bottom-0 w-full px-12 py-8 z-40 bg-gradient-to-t from-surface-dim to-transparent">
+<div class="max-w-4xl mx-auto flex items-center gap-8">
+<div class="flex flex-col gap-1 flex-1">
+<div class="flex justify-between items-end mb-1">
+<span class="font-label text-[10px] text-tertiary uppercase tracking-widest">Wisdom Accumulation</span>
+<span class="text-[10px] font-bold text-on-surface-variant">7,240 / 10,000 XP</span>
+</div>
+<!-- XP Bar -->
+<div class="h-2 w-full bg-surface-container-lowest rounded-full overflow-hidden border border-outline-variant/10">
+<div class="h-full w-[72%] bg-gradient-to-r from-tertiary-container to-tertiary relative">
+<div class="absolute right-0 top-0 bottom-0 w-4 bg-tertiary shadow-[0_0_15px_#2ae500]"></div>
+</div>
+</div>
+</div>
+<!-- Side Metrics -->
 <div class="hidden md:flex gap-6 items-center">
-<a class="text-blue-700 font-bold border-b-2 border-blue-600 pb-1" href="#">Explore</a>
-<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Frameworks</a>
-<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Library</a>
-<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Saved</a>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed text-lg" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+<div class="flex flex-col leading-tight">
+<span class="text-[9px] text-on-surface-variant uppercase font-label">Daily Streak</span>
+<span class="text-sm font-bold">14 Days</span>
 </div>
-</div>
-<div class="flex items-center gap-4">
-<div class="relative hidden sm:block">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<span class="material-symbols-outlined text-slate-400 text-sm">search</span>
-</div>
-<input class="bg-surface-container-highest border-none rounded-full py-1.5 pl-9 pr-4 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest w-48 md:w-64 transition-all" placeholder="Search 43 frameworks..." type="text"/>
 </div>
 <div class="flex items-center gap-2">
-<button class="p-2 hover:bg-slate-50 rounded-full transition-colors active:scale-95">
-<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
-</button>
-<button class="p-2 hover:bg-slate-50 rounded-full transition-colors active:scale-95">
-<span class="material-symbols-outlined text-on-surface-variant">settings</span>
-</button>
-<img alt="User profile avatar" class="w-8 h-8 rounded-full ml-2 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX9C18KAd9Yv_Qe2Agq9XHAry1T86ftzbTns6dmYfc_rNBHNrQe-vNJSn0VkpaJKBqMtri7NMxL7g2vzmOUJnRe2E4b2cPdTb4v-zMZTzsKfDJP8p6XAG8qJEOyq3J2e9dX39m5dvIwgIkTCEnAkgvnM_pBZLu-22EKO8Bbw_tI0ODgY0QVWn4DnJUQjiRPk3GUEx3c3Ixeewswj6_n9egrSWyXZXoYjKW6e00-N24LQvB5v7oag3syX5ojSmXNZ0zLbG1oguBCws"/>
+<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<div class="flex flex-col leading-tight">
+<span class="text-[9px] text-on-surface-variant uppercase font-label">Cards Collected</span>
+<span class="text-sm font-bold">128</span>
 </div>
 </div>
 </div>
-<div class="bg-slate-100 h-[1px] w-full"></div>
-</nav>
-<main class="pt-24 pb-32 px-6 md:px-12 max-w-7xl mx-auto">
-<!-- Section: What are you trying to solve today? -->
-<section class="mb-16">
-<h1 class="text-3xl font-extrabold tracking-tight mb-8 text-on-surface">What are you trying to solve today?</h1>
-<div class="mb-12">
-<div class="bg-surface-container-lowest rounded-2xl border border-slate-200 p-6 shadow-sm">
-<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-<div>
-<h2 class="text-2xl font-extrabold text-on-surface">Learn one new human skill</h2>
-<p class="text-sm text-on-surface-variant mt-1">Click once to draw a random skill you can practice right now.</p>
 </div>
-<button id="skill-lottery-button" class="inline-flex items-center justify-center rounded-xl bg-primary text-white font-bold px-5 py-3 hover:opacity-90 transition active:scale-[0.98]">Learn one new human skill</button>
-</div>
-<div id="skill-lottery-result" class="mt-4 rounded-xl bg-surface-container p-4 text-sm text-on-surface-variant">No skill drawn yet. Try your first draw.</div>
-</div>
-</div>
-
-<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-<!-- I: Think More Clearly -->
-<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
-<div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-2xl">lightbulb</span>
-</div>
-<span class="text-sm font-bold text-on-surface leading-tight">Think More Clearly</span>
-<span class="text-xs text-on-surface-variant mt-1">7 frameworks</span>
-</button>
-<!-- II: Make Better Decisions -->
-<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
-<div class="w-14 h-14 rounded-2xl bg-secondary-container text-on-secondary-container flex items-center justify-center mb-3 group-hover:bg-secondary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-2xl">analytics</span>
-</div>
-<span class="text-sm font-bold text-on-surface leading-tight">Make Better Decisions</span>
-<span class="text-xs text-on-surface-variant mt-1">8 frameworks</span>
-</button>
-<!-- III: Communicate Effectively -->
-<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
-<div class="w-14 h-14 rounded-2xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center mb-3 group-hover:bg-tertiary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-2xl">forum</span>
-</div>
-<span class="text-sm font-bold text-on-surface leading-tight">Communicate Effectively</span>
-<span class="text-xs text-on-surface-variant mt-1">8 frameworks</span>
-</button>
-<!-- IV: Get More Done -->
-<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
-<div class="w-14 h-14 rounded-2xl bg-primary-container/30 text-primary-dim flex items-center justify-center mb-3 group-hover:bg-primary-dim group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-2xl">bolt</span>
-</div>
-<span class="text-sm font-bold text-on-surface leading-tight">Get More Done</span>
-<span class="text-xs text-on-surface-variant mt-1">8 frameworks</span>
-</button>
-<!-- V: Keep Improving -->
-<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
-<div class="w-14 h-14 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-3 group-hover:bg-secondary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-2xl">trending_up</span>
-</div>
-<span class="text-sm font-bold text-on-surface leading-tight">Keep Improving</span>
-<span class="text-xs text-on-surface-variant mt-1">9 frameworks</span>
-</button>
-<!-- VI: Build a Career -->
-<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all border-none text-center active:scale-[0.98]">
-<div class="w-14 h-14 rounded-2xl bg-tertiary/10 text-tertiary flex items-center justify-center mb-3 group-hover:bg-tertiary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-2xl">work</span>
-</div>
-<span class="text-sm font-bold text-on-surface leading-tight">Build a Career</span>
-<span class="text-xs text-on-surface-variant mt-1">3 frameworks</span>
-</button>
-</div>
-</section>
-<!-- Section: Recommended for You -->
-<section class="mb-16">
-<div class="flex items-center justify-between mb-6">
-<h2 class="text-xl font-bold text-on-surface">Recommended for You</h2>
-<a class="text-sm font-semibold text-primary hover:underline" href="#">View All</a>
-</div>
-<div class="flex overflow-x-auto gap-6 pb-4 hide-scrollbar">
-<!-- Inversion -->
-<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
-<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-primary">
-<span class="material-symbols-outlined">swap_vert</span>
-</div>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Inversion</h3>
-<p class="text-xs text-on-surface-variant">Think More Clearly</p>
-</div>
-</div>
-<!-- The Decision Journal -->
-<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
-<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-secondary">
-<span class="material-symbols-outlined">menu_book</span>
-</div>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-secondary transition-colors">The Decision Journal</h3>
-<p class="text-xs text-on-surface-variant">Make Better Decisions</p>
-</div>
-</div>
-<!-- FLIP It Email -->
-<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
-<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-tertiary">
-<span class="material-symbols-outlined">forward_to_inbox</span>
-</div>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-tertiary transition-colors">FLIP It Email</h3>
-<p class="text-xs text-on-surface-variant">Communicate Effectively</p>
-</div>
-</div>
-<!-- The ONE Thing -->
-<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
-<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-primary-dim">
-<span class="material-symbols-outlined">filter_1</span>
-</div>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">The ONE Thing</h3>
-<p class="text-xs text-on-surface-variant">Get More Done</p>
-</div>
-</div>
-<!-- Kaizen -->
-<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
-<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-secondary">
-<span class="material-symbols-outlined">autorenew</span>
-</div>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-secondary transition-colors">Kaizen</h3>
-<p class="text-xs text-on-surface-variant">Keep Improving</p>
-</div>
-</div>
-<!-- The Swipe File -->
-<div class="flex-none w-72 p-6 bg-surface-container rounded-xl flex items-center gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
-<div class="w-12 h-12 flex-none rounded-full bg-white flex items-center justify-center text-tertiary">
-<span class="material-symbols-outlined">collections_bookmark</span>
-</div>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-tertiary transition-colors">The Swipe File</h3>
-<p class="text-xs text-on-surface-variant">Build a Career</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Section: Browse All Frameworks -->
-<section class="mb-16">
-<div class="flex items-center justify-between mb-6">
-<h2 class="text-xl font-bold text-on-surface">Browse All 43 Frameworks</h2>
-</div>
-
-<!-- I. Think More Clearly -->
-<div class="mb-10">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-7 h-7 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
-<span class="material-symbols-outlined text-base">lightbulb</span>
-</div>
-<h3 class="text-base font-bold text-primary">I. How Do I Think More Clearly?</h3>
-<span class="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">7</span>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">swap_vert</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">Inversion</h4><p class="text-xs text-on-surface-variant mt-0.5">Ask how to guarantee failure, then avoid those things.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">account_tree</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">Second-Order Thinking</h4><p class="text-xs text-on-surface-variant mt-0.5">Ask 'and then what?' to see consequences behind consequences.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">map</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">The Map Is Not the Territory</h4><p class="text-xs text-on-surface-variant mt-0.5">Every model is a simplification. Go see the real thing.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">sentiment_neutral</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">Hanlon's Razor</h4><p class="text-xs text-on-surface-variant mt-0.5">Don't assume malice when neglect is the likelier explanation.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">directions_boat</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">The Empty Boat</h4><p class="text-xs text-on-surface-variant mt-0.5">Most workplace friction has no villain.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">bug_report</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">The Cobra Effect</h4><p class="text-xs text-on-surface-variant mt-0.5">Good intentions + wrong incentives = worse problems.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary/10 text-primary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">target</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">Goodhart's Law</h4><p class="text-xs text-on-surface-variant mt-0.5">When a measure becomes a target, it stops being a good measure.</p></div>
-</div>
-</div>
-</div>
-
-<!-- II. Make Better Decisions -->
-<div class="mb-10">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-7 h-7 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center">
-<span class="material-symbols-outlined text-base">analytics</span>
-</div>
-<h3 class="text-base font-bold text-secondary">II. How Do I Make Better Decisions?</h3>
-<span class="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">8</span>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">menu_book</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">The Decision Journal</h4><p class="text-xs text-on-surface-variant mt-0.5">Track decisions, reasoning, and outcomes. Review quarterly.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">shield</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Fear-Setting</h4><p class="text-xs text-on-surface-variant mt-0.5">Define worst fears, prevention, and recovery plans.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">history</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Pre-mortem</h4><p class="text-xs text-on-surface-variant mt-0.5">Imagine the project failed. Write down what went wrong.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">help</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">The Five Whys</h4><p class="text-xs text-on-surface-variant mt-0.5">Ask 'why?' five times to reach the root cause.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">looks_3</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">The 3-1-1 Method</h4><p class="text-xs text-on-surface-variant mt-0.5">One problem, three solutions, one recommendation.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">groups</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">DACI</h4><p class="text-xs text-on-surface-variant mt-0.5">Driver, Approver, Contributors, Informed. Clarify who decides.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">bolt</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Bias for Action</h4><p class="text-xs text-on-surface-variant mt-0.5">Most decisions are reversible. Decide fast, learn, adjust.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">school</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">KWL</h4><p class="text-xs text-on-surface-variant mt-0.5">What I Know, What I Wonder, What I Learned.</p></div>
-</div>
-</div>
-</div>
-
-<!-- III. Communicate More Effectively -->
-<div class="mb-10">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-7 h-7 rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
-<span class="material-symbols-outlined text-base">forum</span>
-</div>
-<h3 class="text-base font-bold text-tertiary">III. How Do I Communicate More Effectively?</h3>
-<span class="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">8</span>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">person</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The Personal README</h4><p class="text-xs text-on-surface-variant mt-0.5">A one-page user manual for working with you.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">forward_to_inbox</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">FLIP It Email</h4><p class="text-xs text-on-surface-variant mt-0.5">Put the ask first, context second.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">article</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The One-Pager</h4><p class="text-xs text-on-surface-variant mt-0.5">Condense updates to one page for executives.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">calendar_today</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The Weekly Update</h4><p class="text-xs text-on-surface-variant mt-0.5">52 weekly summaries = your annual review, pre-written.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">stairs</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">Skip-Level Meetings</h4><p class="text-xs text-on-surface-variant mt-0.5">Align your work to the skip-level person's goals.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">record_voice_over</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">Blue/Green/Red Speakers</h4><p class="text-xs text-on-surface-variant mt-0.5">Categorise meeting contributions by value.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">repeat</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The Teach-Back Method</h4><p class="text-xs text-on-surface-variant mt-0.5">Ask them to explain it back to confirm understanding.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-tertiary-container text-on-tertiary-container flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">campaign</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">Working Out Loud</h4><p class="text-xs text-on-surface-variant mt-0.5">Make work visible, narrate it, frame it as contribution.</p></div>
-</div>
-</div>
-</div>
-
-<!-- IV. Get More Done -->
-<div class="mb-10">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-7 h-7 rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center">
-<span class="material-symbols-outlined text-base">bolt</span>
-</div>
-<h3 class="text-base font-bold text-primary-dim">IV. How Do I Get More Done with Less Friction?</h3>
-<span class="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">8</span>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">filter_1</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">The ONE Thing</h4><p class="text-xs text-on-surface-variant mt-0.5">The one task that makes everything else easier or unnecessary.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">battery_charging_full</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">Energy-Based Scheduling</h4><p class="text-xs text-on-surface-variant mt-0.5">Schedule by energy peaks, not arbitrary time slots.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">timer</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">Parkinson's Law</h4><p class="text-xs text-on-surface-variant mt-0.5">Work expands to fill the time. Set tighter deadlines.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">schedule</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">The Two-Minute Rule</h4><p class="text-xs text-on-surface-variant mt-0.5">Under two minutes? Do it now.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">inbox</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">Breaking Down the Boxes</h4><p class="text-xs text-on-surface-variant mt-0.5">Small boring tasks pile up into crises. Do them now.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">rocket_launch</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">Fire and Forget</h4><p class="text-xs text-on-surface-variant mt-0.5">Be the employee trusted to solve problems independently.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">block</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">The Don't-Do-It List</h4><p class="text-xs text-on-surface-variant mt-0.5">Negative commitments are stronger than positive intentions.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-primary-container/30 text-primary-dim flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">auto_fix_high</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-primary-dim transition-colors">Map Then Automate</h4><p class="text-xs text-on-surface-variant mt-0.5">Understand your workflow before optimising with tools.</p></div>
-</div>
-</div>
-</div>
-
-<!-- V. Keep Improving -->
-<div class="mb-10">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-7 h-7 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
-<span class="material-symbols-outlined text-base">trending_up</span>
-</div>
-<h3 class="text-base font-bold text-secondary">V. How Do I Keep Improving?</h3>
-<span class="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">9</span>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">autorenew</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Kaizen</h4><p class="text-xs text-on-surface-variant mt-0.5">Small daily improvements, compounded over time.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">location_on</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Go to Gemba</h4><p class="text-xs text-on-surface-variant mt-0.5">Go where the work happens. Observe, listen, learn.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">loop</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">The Feedback Flywheel</h4><p class="text-xs text-on-surface-variant mt-0.5">Embed feedback loops so improvement sustains itself.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">science</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">The Experiment Log</h4><p class="text-xs text-on-surface-variant mt-0.5">Record hypotheses and results. Build your evidence base.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">military_tech</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Shu-Ha-Ri</h4><p class="text-xs text-on-surface-variant mt-0.5">Follow rules, bend rules, transcend rules. Three mastery stages.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">build</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Rapid Prototyping</h4><p class="text-xs text-on-surface-variant mt-0.5">Build rough, test fast, learn cheap.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">security</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Red Teaming &amp; Dogfooding</h4><p class="text-xs text-on-surface-variant mt-0.5">Attack your own work. Use what you build.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">route</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">Customer Journey Mapping</h4><p class="text-xs text-on-surface-variant mt-0.5">Map the full experience including feelings and friction.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">grid_view</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-secondary transition-colors">The Johari Window</h4><p class="text-xs text-on-surface-variant mt-0.5">What you know vs. what others see. Expand the overlap.</p></div>
-</div>
-</div>
-</div>
-
-<!-- VI. Build a Career -->
-<div class="mb-10">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-7 h-7 rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center">
-<span class="material-symbols-outlined text-base">work</span>
-</div>
-<h3 class="text-base font-bold text-tertiary">VI. How Do I Build a Career, Not Just Do a Job?</h3>
-<span class="text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">3</span>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">collections_bookmark</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The Swipe File</h4><p class="text-xs text-on-surface-variant mt-0.5">Collect examples of excellent work. Borrow patterns.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">local_parking</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The Parking Lot</h4><p class="text-xs text-on-surface-variant mt-0.5">Capture ideas that aren't ready yet. Revisit them.</p></div>
-</div>
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="w-8 h-8 flex-none rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center mt-0.5"><span class="material-symbols-outlined text-sm">handshake</span></div>
-<div><h4 class="font-bold text-on-surface text-sm group-hover:text-tertiary transition-colors">The Work-Sharing Buddy</h4><p class="text-xs text-on-surface-variant mt-0.5">A trusted peer for mutual pre-stakeholder feedback.</p></div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Section: Recently Viewed -->
-<section>
-<h2 class="text-xl font-bold text-on-surface mb-6">Recently Viewed</h2>
-<div class="space-y-4">
-<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-slate-500">target</span>
-</div>
-<div>
-<h4 class="font-bold text-on-surface">Goodhart's Law</h4>
-<p class="text-xs text-on-surface-variant">Last viewed 2 hours ago · Think More Clearly</p>
-</div>
-</div>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
-</div>
-<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-slate-500">history</span>
-</div>
-<div>
-<h4 class="font-bold text-on-surface">Pre-mortem</h4>
-<p class="text-xs text-on-surface-variant">Last viewed yesterday · Make Better Decisions</p>
-</div>
-</div>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
-</div>
-<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-white/60 transition-colors cursor-pointer group">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-slate-500">campaign</span>
-</div>
-<div>
-<h4 class="font-bold text-on-surface">Working Out Loud</h4>
-<p class="text-xs text-on-surface-variant">Last viewed 3 days ago · Communicate Effectively</p>
-</div>
-</div>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
-</div>
-</div>
-</section>
-</main>
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 backdrop-blur-xl shadow-[0_-4px_20px_0_rgba(0,0,0,0.05)] z-50 rounded-t-3xl border-t border-slate-100">
-<button class="flex flex-col items-center justify-center bg-blue-50 text-blue-700 rounded-2xl px-5 py-2 active:scale-90 transition-all">
-<span class="material-symbols-outlined">explore</span>
-<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Discover</span>
-</button>
-<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 active:scale-90 transition-all">
-<span class="material-symbols-outlined">search</span>
-<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Search</span>
-</button>
-<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 active:scale-90 transition-all">
-<span class="material-symbols-outlined">style</span>
-<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Collections</span>
-</button>
-<button class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-600 active:scale-90 transition-all">
-<span class="material-symbols-outlined">person</span>
-<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
-</button>
-</nav>
-<script>
-  const HUMAN_SKILLS = [
-    "Inversion", "Second-Order Thinking", "The Map Is Not the Territory", "Hanlon's Razor", "The Empty Boat", "The Cobra Effect", "Goodhart's Law",
-    "The Decision Journal", "Fear-Setting", "Pre-mortem", "The Five Whys", "The 3-1-1 Method", "DACI", "Bias for Action", "KWL",
-    "The Personal README", "FLIP It Email", "The One-Pager", "The Weekly Update", "Skip-Level Meetings", "Blue/Green/Red Speakers", "The Teach-Back Method", "Working Out Loud",
-    "The ONE Thing", "Energy-Based Scheduling", "Parkinson's Law", "The Two-Minute Rule", "Breaking Down the Boxes", "Fire and Forget", "The Don't-Do-It List", "Map Then Automate",
-    "Kaizen", "Go to Gemba", "The Feedback Flywheel", "The Experiment Log", "Shu-Ha-Ri", "Rapid Prototyping", "Red Teaming & Dogfooding", "Customer Journey Mapping", "The Johari Window",
-    "The Swipe File", "The Parking Lot", "The Work-Sharing Buddy"
-  ];
-
-  const lotteryButton = document.getElementById('skill-lottery-button');
-  const lotteryResult = document.getElementById('skill-lottery-result');
-
-  if (lotteryButton && lotteryResult) {
-    lotteryButton.addEventListener('click', () => {
-      const randomSkill = HUMAN_SKILLS[Math.floor(Math.random() * HUMAN_SKILLS.length)];
-      lotteryResult.textContent = `Your skill to learn next: ${randomSkill}`;
-      lotteryResult.classList.remove('text-on-surface-variant');
-      lotteryResult.classList.add('font-semibold');
-    });
-  }
-</script>
+</footer>
 </body></html>
-
