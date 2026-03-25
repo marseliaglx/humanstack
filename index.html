@@ -1,238 +1,66 @@
 <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shrine of Knowledge</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shrine">
+      <p class="eyebrow">Arcane Archive</p>
+      <h1>Shrine of Knowledge</h1>
+      <p class="subtitle">Draw one Wisdom Blessing from your playbook.</p>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700;800&amp;family=Work+Sans:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "on-surface-variant": "#cec3d3",
-              "on-background": "#e2e0fc",
-              "tertiary": "#2ae500",
-              "on-primary-fixed-variant": "#6e208c",
-              "inverse-surface": "#e2e0fc",
-              "on-primary-container": "#c979e7",
-              "secondary-fixed": "#ffe16d",
-              "surface-dim": "#111125",
-              "surface-container-lowest": "#0c0c1f",
-              "tertiary-fixed-dim": "#2ae500",
-              "error-container": "#93000a",
-              "inverse-primary": "#883ca6",
-              "surface-variant": "#333348",
-              "secondary-fixed-dim": "#e9c400",
-              "primary-fixed-dim": "#edb1ff",
-              "outline": "#978d9d",
-              "on-secondary-container": "#725f00",
-              "primary": "#edb1ff",
-              "on-primary": "#520070",
-              "on-error-container": "#ffdad6",
-              "on-surface": "#e2e0fc",
-              "tertiary-container": "#053a00",
-              "secondary": "#fff9ef",
-              "surface-container": "#1e1e32",
-              "background": "#111125",
-              "surface-container-high": "#28283d",
-              "inverse-on-surface": "#2f2e43",
-              "on-secondary-fixed": "#221b00",
-              "outline-variant": "#4c4451",
-              "on-tertiary-fixed": "#022100",
-              "on-tertiary-fixed-variant": "#095300",
-              "on-tertiary": "#053900",
-              "secondary-container": "#ffdb3c",
-              "primary-container": "#540072",
-              "on-primary-fixed": "#320046",
-              "surface-container-low": "#1a1a2e",
-              "on-error": "#690005",
-              "on-secondary": "#3a3000",
-              "on-secondary-fixed-variant": "#544600",
-              "on-tertiary-container": "#1fb100",
-              "error": "#ffb4ab",
-              "tertiary-fixed": "#79ff5b",
-              "primary-fixed": "#f9d8ff",
-              "surface": "#111125",
-              "surface-bright": "#37374d",
-              "surface-container-highest": "#333348",
-              "surface-tint": "#edb1ff"
-            },
-            fontFamily: {
-              "headline": ["Manrope"],
-              "body": ["Work Sans"],
-              "label": ["Manrope"]
-            },
-            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
-          },
-        },
+      <button id="drawBlessing" type="button">Receive Blessing</button>
+
+      <section id="blessingCard" class="card" aria-live="polite">
+        <h2 id="frameworkName">Awaiting your invocation…</h2>
+        <p id="frameworkBlessing">Press the button to reveal a random framework.</p>
+      </section>
+    </main>
+
+    <script>
+      const drawButton = document.getElementById("drawBlessing");
+      const frameworkName = document.getElementById("frameworkName");
+      const frameworkBlessing = document.getElementById("frameworkBlessing");
+
+      async function loadFrameworks() {
+        const response = await fetch("frameworks.json");
+
+        if (!response.ok) {
+          throw new Error("Could not load frameworks.json");
+        }
+
+        return response.json();
       }
+
+      function pickRandomFramework(frameworks) {
+        const randomIndex = Math.floor(Math.random() * frameworks.length);
+        return frameworks[randomIndex];
+      }
+
+      async function drawBlessing() {
+        try {
+          drawButton.disabled = true;
+          drawButton.textContent = "Channeling…";
+
+          const frameworks = await loadFrameworks();
+          const blessing = pickRandomFramework(frameworks);
+
+          frameworkName.textContent = blessing.name;
+          frameworkBlessing.textContent = blessing.blessing;
+        } catch (error) {
+          frameworkName.textContent = "The shrine is silent";
+          frameworkBlessing.textContent = "Unable to load your playbook right now.";
+          console.error(error);
+        } finally {
+          drawButton.disabled = false;
+          drawButton.textContent = "Receive Blessing";
+        }
+      }
+
+      drawButton.addEventListener("click", drawBlessing);
     </script>
-<style>
-      .material-symbols-outlined {
-        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      }
-      .arcane-glow {
-        text-shadow: 0 0 15px rgba(237, 177, 255, 0.5);
-      }
-      .legendary-shimmer {
-        background: linear-gradient(135deg, rgba(255,219,60,0.1) 0%, rgba(255,219,60,0) 50%, rgba(255,219,60,0.1) 100%);
-      }
-      .mana-pulse {
-        box-shadow: 0 0 30px rgba(84, 0, 114, 0.6);
-      }
-    </style>
-</head>
-<body class="bg-surface-dim text-on-surface font-body selection:bg-primary/30 min-h-screen overflow-hidden relative">
-<!-- Background Environment -->
-<div class="absolute inset-0 z-0">
-<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&amp;w=2564&amp;auto=format&amp;fit=crop')] bg-cover bg-center opacity-20 mix-blend-luminosity" data-alt="interior of a dark gothic stone shrine with massive pillars shadowy corners and mystical purple fog rolling across the floor"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-surface-dim/80"></div>
-<!-- Floating Wisps -->
-<div class="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/10 rounded-full blur-[100px]"></div>
-<div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-primary-container/20 rounded-full blur-[120px]"></div>
-</div>
-<!-- HUD Overlay (TopAppBar mapping) -->
-<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 bg-transparent">
-<div class="flex flex-col">
-<span class="font-headline font-extrabold uppercase tracking-widest text-xs text-purple-300">The Arcane Archive</span>
-<span class="text-xl font-black text-purple-200 tracking-tighter">SHRINE ENTRANCE</span>
-</div>
-<div class="flex items-center gap-6">
-<!-- HUD: Arcane Level -->
-<div class="flex items-center gap-3 px-4 py-2 bg-surface-container-high/40 backdrop-blur-md rounded-lg border border-outline-variant/15">
-<span class="material-symbols-outlined text-secondary-fixed" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
-<div class="flex flex-col leading-none">
-<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-tighter">Arcane Level</span>
-<span class="font-headline font-black text-secondary-fixed text-lg leading-none">7</span>
-</div>
-</div>
-<!-- HUD: Mana Pool -->
-<div class="flex items-center gap-3 px-4 py-2 bg-surface-container-high/40 backdrop-blur-md rounded-lg border border-outline-variant/15">
-<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
-<div class="flex flex-col leading-none">
-<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-tighter">Mana Pool</span>
-<div class="flex items-center gap-1">
-<span class="font-headline font-black text-primary text-lg leading-none">420</span>
-<span class="text-[10px] text-on-surface-variant">/ 500</span>
-</div>
-</div>
-</div>
-<!-- Top Actions -->
-<div class="flex gap-4">
-<button class="material-symbols-outlined text-purple-300 hover:text-yellow-200 transition-colors duration-300">auto_awesome</button>
-<button class="material-symbols-outlined text-purple-300 hover:text-yellow-200 transition-colors duration-300">menu_book</button>
-</div>
-</div>
-</header>
-<!-- Main Content Area -->
-<main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 pt-24 pb-32 text-center">
-<!-- Animated Intro Text -->
-<div class="mb-12 space-y-2">
-<p class="font-label text-secondary-fixed tracking-[0.5em] uppercase text-xs opacity-80">Ancient Sanctuary Found</p>
-<h1 class="font-headline text-5xl md:text-7xl font-extrabold text-secondary tracking-tight arcane-glow">Place of Power Discovered</h1>
-<div class="h-1 w-24 bg-gradient-to-r from-transparent via-secondary-container to-transparent mx-auto mt-4"></div>
-</div>
-<!-- Central Visual: The Legendary Card -->
-<div class="relative group">
-<!-- Card Summoning Aura -->
-<div class="absolute -inset-20 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
-<div class="absolute -inset-4 bg-gradient-to-tr from-secondary-container/30 to-primary/30 rounded-xl blur-2xl opacity-50"></div>
-<!-- The Card Artifact -->
-<div class="relative w-72 md:w-80 aspect-[2/3] bg-surface-container-highest rounded-xl border-[3px] border-secondary-container overflow-hidden shadow-2xl mana-pulse flex flex-col">
-<!-- Rarity Frame (Legendary) -->
-<div class="absolute inset-0 legendary-shimmer pointer-events-none"></div>
-<!-- Card Image -->
-<div class="h-1/2 w-full relative overflow-hidden">
-<img class="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-700" data-alt="a majestic glowing stone altar in a dark void with floating crystalline particles and a central energy core" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCWogOurxD6cUtIVFNe07lDzUGKWAIkgJiBXm8cDdHMDfyzdCZQcNht8YnqFj0niMlD-nkPs6-ml0HYRY-FXW1eeGW66JslRVYbcJS_7Xr9BVXgSwp_spWRmRscVUOP9wdHPDgEdM0ntBE1LCQeBp6tvhBe7NP8aM3BYdBO93nq8qKhjoUBLbJP2jWH2_t_v7BpiX7u9QAw7uXgCckxBr-MkDCwIYEz98tH4ishbB6_Qiz2tTJqjRRGGYIc40GkEZKK0i3SPzCqxM"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-highest to-transparent"></div>
-<div class="absolute top-3 right-3 px-2 py-1 bg-surface-container-lowest/80 backdrop-blur-sm rounded border border-secondary-container/30 flex items-center gap-1">
-<span class="text-[10px] font-black text-secondary-fixed tracking-widest uppercase">Mana 8</span>
-</div>
-</div>
-<!-- Card Content -->
-<div class="p-5 flex-1 flex flex-col justify-between text-left">
-<div>
-<span class="font-label text-[10px] text-secondary-fixed uppercase tracking-widest mb-1 block">Legendary Wisdom</span>
-<h2 class="font-headline text-2xl font-black text-on-surface leading-tight tracking-tight mb-2">First Principles</h2>
-<p class="font-body text-xs text-on-surface-variant leading-relaxed">Deconstruct complex problems into fundamental truths and build up from there. Negates all illusion-based debuffs for 24 hours.</p>
-</div>
-<!-- Card Stats / Footer -->
-<div class="flex justify-between items-end mt-4">
-<div class="flex gap-2">
-<div class="w-8 h-10 bg-surface-container-low flex flex-col items-center justify-center rounded border border-outline-variant/30 overflow-hidden">
-<span class="text-[8px] text-on-surface-variant uppercase font-label">WIS</span>
-<span class="text-sm font-bold text-secondary-fixed">+14</span>
-</div>
-<div class="w-8 h-10 bg-surface-container-low flex flex-col items-center justify-center rounded border border-outline-variant/30 overflow-hidden">
-<span class="text-[8px] text-on-surface-variant uppercase font-label">FCS</span>
-<span class="text-sm font-bold text-tertiary">+8</span>
-</div>
-</div>
-<div class="flex flex-col items-end">
-<span class="text-[8px] text-on-surface-variant uppercase tracking-widest font-label">Duration</span>
-<span class="text-xs font-bold text-on-surface italic">One Solar Cycle</span>
-</div>
-</div>
-</div>
-<!-- Bottom Rarity Overlap -->
-<div class="absolute -bottom-1 left-1/2 -translate-x-1/2 px-4 py-1 bg-secondary-container rounded-sm transform">
-<span class="font-headline font-black text-[10px] text-on-secondary uppercase tracking-[0.2em]">Ascended</span>
-</div>
-</div>
-</div>
-<!-- Call to Action -->
-<div class="mt-16 flex flex-col items-center gap-6">
-<p class="text-on-surface-variant text-sm max-w-md font-body leading-relaxed">
-                The ancient archive recognizes your progress. This framework will serve as your guiding light through the digital wilderness today.
-            </p>
-<button class="group relative flex items-center gap-4 px-12 py-5 bg-gradient-to-br from-primary to-primary-container rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(237,177,255,0.3)]">
-<!-- Inner Glow -->
-<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-<span class="font-headline font-black text-on-primary text-xl uppercase tracking-widest">Accept Blessing</span>
-<span class="material-symbols-outlined text-on-primary text-2xl group-hover:translate-x-1 transition-transform" style="font-variation-settings: 'FILL' 1;">bolt</span>
-</button>
-<button class="text-on-surface-variant hover:text-secondary-fixed transition-colors text-xs font-label uppercase tracking-widest flex items-center gap-2">
-                Consult the Grimoire
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-</button>
-</div>
-</main>
-<!-- Bottom XP Bar UI (Stat specific from Screen 30) -->
-<footer class="fixed bottom-0 w-full px-12 py-8 z-40 bg-gradient-to-t from-surface-dim to-transparent">
-<div class="max-w-4xl mx-auto flex items-center gap-8">
-<div class="flex flex-col gap-1 flex-1">
-<div class="flex justify-between items-end mb-1">
-<span class="font-label text-[10px] text-tertiary uppercase tracking-widest">Wisdom Accumulation</span>
-<span class="text-[10px] font-bold text-on-surface-variant">7,240 / 10,000 XP</span>
-</div>
-<!-- XP Bar -->
-<div class="h-2 w-full bg-surface-container-lowest rounded-full overflow-hidden border border-outline-variant/10">
-<div class="h-full w-[72%] bg-gradient-to-r from-tertiary-container to-tertiary relative">
-<div class="absolute right-0 top-0 bottom-0 w-4 bg-tertiary shadow-[0_0_15px_#2ae500]"></div>
-</div>
-</div>
-</div>
-<!-- Side Metrics -->
-<div class="hidden md:flex gap-6 items-center">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-secondary-fixed text-lg" style="font-variation-settings: 'FILL' 1;">history_edu</span>
-<div class="flex flex-col leading-tight">
-<span class="text-[9px] text-on-surface-variant uppercase font-label">Daily Streak</span>
-<span class="text-sm font-bold">14 Days</span>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
-<div class="flex flex-col leading-tight">
-<span class="text-[9px] text-on-surface-variant uppercase font-label">Cards Collected</span>
-<span class="text-sm font-bold">128</span>
-</div>
-</div>
-</div>
-</div>
-</footer>
-</body></html>
+  </body>
+</html>
