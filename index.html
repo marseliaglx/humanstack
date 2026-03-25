@@ -188,7 +188,7 @@
     <main class="landing">
       <h1>The Shrine of Knowledge</h1>
       <p class="subtitle">Seek your wisdom blessing</p>
-      <button class="blessing-button" id="blessBtn" type="button">Receive Blessing</button>
+      <button class="blessing-button" id="blessBtn" type="button">Receive Today’s Blessing</button>
       <p class="discovery-count" id="discoveryCount" aria-live="polite"></p>
       <div class="reveal" id="reveal" aria-live="polite"></div>
     </main>
@@ -197,33 +197,47 @@
       const button = document.getElementById("blessBtn");
       const reveal = document.getElementById("reveal");
       const discoveryCount = document.getElementById("discoveryCount");
-      const discoveredStorageKey = "discoveredFrameworkIds";
+      const blessingStorageKey = "dailyBlessing";
       let frameworks = [];
 
-      function readDiscoveredIds() {
-        const raw = localStorage.getItem(discoveredStorageKey);
-        if (!raw) return [];
+      function readBlessing() {
+        const raw = localStorage.getItem(blessingStorageKey);
+        if (!raw) return {};
 
         try {
           const parsed = JSON.parse(raw);
-          return Array.isArray(parsed) ? parsed : [];
+          return parsed && typeof parsed === "object" ? parsed : {};
         } catch {
-          return [];
+          return {};
         }
       }
 
-      function writeDiscoveredIds(ids) {
-        localStorage.setItem(discoveredStorageKey, JSON.stringify(ids));
+      function writeBlessing(blessing) {
+        localStorage.setItem(blessingStorageKey, JSON.stringify(blessing));
       }
 
-      function updateDiscoveryText(count, total) {
-        discoveryCount.textContent = `You have discovered ${count} / ${total} frameworks`;
+      function setStatus(message) {
+        discoveryCount.textContent = message;
       }
 
-      function pickUndiscoveredFramework(discoveredIds) {
-        const undiscovered = frameworks.filter((framework) => !discoveredIds.includes(framework.id));
-        if (undiscovered.length === 0) return null;
-        return undiscovered[Math.floor(Math.random() * undiscovered.length)];
+      function getTodayString() {
+        return new Date().toISOString().slice(0, 10);
+      }
+
+      function getYesterdayString(todayString) {
+        const date = new Date(`${todayString}T00:00:00`);
+        date.setDate(date.getDate() - 1);
+        return date.toISOString().slice(0, 10);
+      }
+
+      function pickFramework(excludedId) {
+        const pool =
+          excludedId && frameworks.length > 1
+            ? frameworks.filter((framework) => framework.id !== excludedId)
+            : frameworks;
+
+        if (pool.length === 0) return null;
+        return pool[Math.floor(Math.random() * pool.length)];
       }
 
       function sleep(ms) {
@@ -237,48 +251,7 @@
       //   audio.play().catch(() => {});
       // }
 
-      let discoveredIds = [];
-
-      async function loadFrameworks() {
-        button.disabled = true;
-        discoveryCount.textContent = "Loading frameworks...";
-
-        try {
-          const response = await fetch("./frameworks.json");
-          frameworks = await response.json();
-
-          discoveredIds = readDiscoveredIds().filter((id) =>
-            frameworks.some((framework) => framework.id === id)
-          );
-
-          updateDiscoveryText(discoveredIds.length, frameworks.length);
-          button.disabled = false;
-        } catch {
-          discoveryCount.textContent = "Could not load frameworks.";
-        }
-      }
-
-      button.addEventListener("click", async () => {
-        if (frameworks.length === 0 || button.disabled) return;
-
-        const defaultLabel = "Receive Blessing";
-        button.disabled = true;
-        button.textContent = "Channeling wisdom...";
-
-        if (discoveredIds.length === frameworks.length) {
-          discoveredIds = [];
-        }
-
-        const framework = pickUndiscoveredFramework(discoveredIds);
-        if (!framework) {
-          button.textContent = defaultLabel;
-          button.disabled = false;
-          return;
-        }
-
-        discoveredIds.push(framework.id);
-        writeDiscoveredIds(discoveredIds);
-        updateDiscoveryText(discoveredIds.length, frameworks.length);
+      function renderBlessing(framework) {
         const rarityClass = `rarity-${(framework.rarity || "Common").toLowerCase()}`;
 
         reveal.innerHTML = `
@@ -288,13 +261,67 @@
             <p class="rarity-label">${framework.rarity || "Common"}</p>
           </article>
         `;
+      }
+
+      async function loadFrameworks() {
+        button.disabled = true;
+        setStatus("Loading frameworks...");
+
+        try {
+          const response = await fetch("./frameworks.json");
+          frameworks = await response.json();
+          const blessing = readBlessing();
+          const today = getTodayString();
+
+          if (blessing.date === today) {
+            const savedFramework = frameworks.find((framework) => framework.id === blessing.id);
+
+            if (savedFramework) {
+              renderBlessing(savedFramework);
+              setStatus("You have already received today's wisdom. Return tomorrow.");
+              button.disabled = true;
+              return;
+            }
+          }
+
+          setStatus("");
+          button.disabled = false;
+        } catch {
+          setStatus("Could not load frameworks.");
+        }
+      }
+
+      button.addEventListener("click", async () => {
+        if (frameworks.length === 0 || button.disabled) return;
+
+        const defaultLabel = "Receive Today’s Blessing";
+        button.disabled = true;
+        button.textContent = "Channeling wisdom...";
+
+        const previous = readBlessing();
+        const today = getTodayString();
+        const yesterday = getYesterdayString(today);
+        const excludedId = previous.date === yesterday ? previous.id : null;
+        const framework = pickFramework(excludedId);
+        if (!framework) {
+          button.textContent = defaultLabel;
+          button.disabled = false;
+          return;
+        }
+
+        writeBlessing({
+          id: framework.id,
+          date: today,
+        });
+        renderBlessing(framework);
+        setStatus("You have already received today's wisdom. Return tomorrow.");
 
         // Optional audio cue:
         // playRevealChime();
 
         await sleep(420);
         button.textContent = defaultLabel;
-        button.disabled = false;
+        button.disabled = true;
       });
 
       loadFrameworks();
