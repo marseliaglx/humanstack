@@ -69,6 +69,12 @@
         min-height: 7.5rem;
       }
 
+      .discovery-count {
+        margin-top: 0.85rem;
+        font-size: 0.86rem;
+        color: #cbb8f4;
+      }
+
       .blessing-card {
         position: relative;
         border-radius: 14px;
@@ -122,30 +128,89 @@
       <h1>The Shrine of Knowledge</h1>
       <p class="subtitle">Seek your wisdom blessing</p>
       <button class="blessing-button" id="blessBtn" type="button">Receive Blessing</button>
+      <p class="discovery-count" id="discoveryCount" aria-live="polite"></p>
       <div class="reveal" id="reveal" aria-live="polite"></div>
     </main>
 
     <script>
-      const blessings = [
-        "Inversion — Solve by seeing what causes failure first.",
-        "Second-Order Thinking — Look beyond immediate outcomes.",
-        "First Principles — Rebuild from fundamental truths.",
-        "Pareto Principle — Focus on the critical few actions.",
-        "Pre-Mortem — Imagine failure now to prevent it later."
-      ];
-
       const button = document.getElementById("blessBtn");
       const reveal = document.getElementById("reveal");
+      const discoveryCount = document.getElementById("discoveryCount");
+      const discoveredStorageKey = "discoveredFrameworkIds";
+      let frameworks = [];
+
+      function readDiscoveredIds() {
+        const raw = localStorage.getItem(discoveredStorageKey);
+        if (!raw) return [];
+
+        try {
+          const parsed = JSON.parse(raw);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch {
+          return [];
+        }
+      }
+
+      function writeDiscoveredIds(ids) {
+        localStorage.setItem(discoveredStorageKey, JSON.stringify(ids));
+      }
+
+      function updateDiscoveryText(count, total) {
+        discoveryCount.textContent = `You have discovered ${count} / ${total} frameworks`;
+      }
+
+      function pickUndiscoveredFramework(discoveredIds) {
+        const undiscovered = frameworks.filter((framework) => !discoveredIds.includes(framework.id));
+        if (undiscovered.length === 0) return null;
+        return undiscovered[Math.floor(Math.random() * undiscovered.length)];
+      }
+
+      let discoveredIds = [];
+
+      async function loadFrameworks() {
+        button.disabled = true;
+        discoveryCount.textContent = "Loading frameworks...";
+
+        try {
+          const response = await fetch("./frameworks.json");
+          frameworks = await response.json();
+
+          discoveredIds = readDiscoveredIds().filter((id) =>
+            frameworks.some((framework) => framework.id === id)
+          );
+
+          updateDiscoveryText(discoveredIds.length, frameworks.length);
+          button.disabled = false;
+        } catch {
+          discoveryCount.textContent = "Could not load frameworks.";
+        }
+      }
 
       button.addEventListener("click", () => {
-        const blessing = blessings[Math.floor(Math.random() * blessings.length)];
+        if (frameworks.length === 0) return;
+
+        if (discoveredIds.length === frameworks.length) {
+          discoveredIds = [];
+        }
+
+        const framework = pickUndiscoveredFramework(discoveredIds);
+        if (!framework) {
+          return;
+        }
+
+        discoveredIds.push(framework.id);
+        writeDiscoveredIds(discoveredIds);
+        updateDiscoveryText(discoveredIds.length, frameworks.length);
+
         reveal.innerHTML = `
           <article class="blessing-card blessing-enter">
             <h2>Your Blessing Appears</h2>
-            <p>${blessing}</p>
+            <p>${framework.name} — ${framework.description}</p>
           </article>
         `;
       });
+
+      loadFrameworks();
     </script>
   </body>
 </html>
