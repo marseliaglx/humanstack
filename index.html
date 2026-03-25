@@ -24,7 +24,7 @@
       }
 
       .landing {
-        width: min(90vw, 620px);
+        width: min(92vw, 640px);
         text-align: center;
         padding: 3rem 2rem;
       }
@@ -43,18 +43,77 @@
 
       .blessing-button {
         padding: 0.85rem 1.8rem;
-        border: 1px solid #aa9bf7;
+        border: 1px solid #c5b3ff;
         border-radius: 999px;
         background: linear-gradient(135deg, #7050c7, #4d75d8);
         color: #f9f5ff;
         font-size: 1rem;
         font-weight: 600;
         cursor: pointer;
+        transition: transform 180ms ease, box-shadow 220ms ease, filter 220ms ease;
+        box-shadow: 0 0 0 rgba(142, 116, 255, 0);
+      }
+
+      .blessing-button:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.07);
+        box-shadow: 0 0 20px rgba(169, 136, 255, 0.65), 0 0 34px rgba(91, 149, 255, 0.35);
+      }
+
+      .blessing-button:active {
+        transform: translateY(0);
       }
 
       .reveal {
         margin-top: 1.5rem;
-        min-height: 2.5rem;
+        min-height: 7.5rem;
+      }
+
+      .blessing-card {
+        position: relative;
+        border-radius: 14px;
+        padding: 1.2rem;
+        text-align: left;
+        background: rgba(18, 13, 31, 0.64);
+        border: 1px solid rgba(222, 192, 106, 0.45);
+        box-shadow: 0 0 18px rgba(189, 158, 255, 0.24), inset 0 0 0 1px rgba(169, 118, 255, 0.28);
+        backdrop-filter: blur(2px);
+      }
+
+      .blessing-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid rgba(164, 109, 255, 0.36);
+        pointer-events: none;
+      }
+
+      .blessing-card h2 {
+        margin: 0;
+        color: #f7eecf;
+        font-size: 1.15rem;
+      }
+
+      .blessing-card p {
+        margin: 0.55rem 0 0;
+        color: #e1d8ff;
+        line-height: 1.45;
+      }
+
+      .blessing-enter {
+        animation: blessingFade 450ms ease;
+      }
+
+      @keyframes blessingFade {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
     </style>
   </head>
@@ -62,8 +121,31 @@
     <main class="landing">
       <h1>The Shrine of Knowledge</h1>
       <p class="subtitle">Seek your wisdom blessing</p>
-      <button class="blessing-button" type="button">Receive Blessing</button>
-      <div class="reveal" aria-live="polite"></div>
+      <button class="blessing-button" id="blessBtn" type="button">Receive Blessing</button>
+      <div class="reveal" id="reveal" aria-live="polite"></div>
     </main>
+
+    <script>
+      const blessings = [
+        "Inversion — Solve by seeing what causes failure first.",
+        "Second-Order Thinking — Look beyond immediate outcomes.",
+        "First Principles — Rebuild from fundamental truths.",
+        "Pareto Principle — Focus on the critical few actions.",
+        "Pre-Mortem — Imagine failure now to prevent it later."
+      ];
+
+      const button = document.getElementById("blessBtn");
+      const reveal = document.getElementById("reveal");
+
+      button.addEventListener("click", () => {
+        const blessing = blessings[Math.floor(Math.random() * blessings.length)];
+        reveal.innerHTML = `
+          <article class="blessing-card blessing-enter">
+            <h2>Your Blessing Appears</h2>
+            <p>${blessing}</p>
+          </article>
+        `;
+      });
+    </script>
   </body>
 </html>
