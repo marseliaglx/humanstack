@@ -1,1137 +1,547 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Arcane Archive</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <style>
-      :root {
-        --primary: #edb1ff;
-        --primary-dark: #d291ff;
-        --secondary: #fff9ef;
-        --secondary-container: #ffdb3c;
-        --tertiary: #2ae500;
-        --surface: #111125;
-        --surface-variant: #1a1a2e;
-        --outline: #3a3a5a;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
-      }
-
-      body {
-        background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #0f0f1e 100%);
-        color: #e0e0ff;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      }
-
-      .material-symbols-outlined {
-        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-      }
-
-      .material-symbols-outlined.filled {
-        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
-      }
-
-      /* Main layout */
-      .app-container {
-        display: flex;
-        height: 100vh;
-        flex-direction: column;
-      }
-
-      @media (min-width: 768px) {
-        .app-container {
-          flex-direction: row;
-        }
-      }
-
-      /* Header */
-      .app-header {
-        background: linear-gradient(90deg, #0f0f1e 0%, #1a1a2e 50%, #0f0f1e 100%);
-        border-bottom: 1px solid var(--outline);
-        padding: 1rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      @media (min-width: 768px) {
-        .app-header {
-          display: none;
-        }
-      }
-
-      .app-header h1 {
-        margin: 0;
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--primary);
-      }
-
-      .header-nav {
-        display: flex;
-        gap: 0.5rem;
-      }
-
-      .header-nav button {
-        background: transparent;
-        border: none;
-        color: var(--primary);
-        cursor: pointer;
-        padding: 0.5rem;
-        font-size: 1.25rem;
-        transition: color 0.2s;
-      }
-
-      .header-nav button:hover,
-      .header-nav button.active {
-        color: var(--secondary-container);
-      }
-
-      /* Sidebar */
-      .app-sidebar {
-        display: none;
-        width: 280px;
-        background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
-        border-right: 1px solid var(--outline);
-        padding: 2rem 1.5rem;
-        flex-direction: column;
-        overflow-y: auto;
-        gap: 2rem;
-      }
-
-      @media (min-width: 768px) {
-        .app-sidebar {
-          display: flex;
-        }
-      }
-
-      .sidebar-header {
-        text-align: center;
-        border-bottom: 1px solid var(--outline);
-        padding-bottom: 1.5rem;
-      }
-
-      .sidebar-header h1 {
-        margin: 0;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--primary);
-      }
-
-      .sidebar-header .tagline {
-        margin-top: 0.25rem;
-        font-size: 0.85rem;
-        color: #9090a8;
-      }
-
-      .sidebar-profile {
-        background: rgba(237, 177, 255, 0.08);
-        border: 1px solid rgba(237, 177, 255, 0.2);
-        border-radius: 12px;
-        padding: 1rem;
-        text-align: center;
-      }
-
-      .sidebar-profile .stat {
-        margin-bottom: 0.75rem;
-      }
-
-      .sidebar-profile .stat-label {
-        font-size: 0.75rem;
-        color: #9090a8;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      .sidebar-profile .stat-value {
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: var(--primary);
-      }
-
-      .sidebar-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .sidebar-nav button {
-        width: 100%;
-        background: transparent;
-        border: 1px solid transparent;
-        border-radius: 8px;
-        padding: 0.75rem 1rem;
-        text-align: left;
-        color: #b0b0c8;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-size: 0.95rem;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-
-      .sidebar-nav button:hover {
-        background: rgba(237, 177, 255, 0.12);
-        color: var(--primary);
-      }
-
-      .sidebar-nav button.active {
-        background: rgba(237, 177, 255, 0.2);
-        border-color: var(--primary);
-        color: var(--primary);
-      }
-
-      .sidebar-nav .material-symbols-outlined {
-        font-size: 1.25rem;
-      }
-
-      .blessing-button-sidebar {
-        width: 100%;
-        background: linear-gradient(135deg, #7e4db8 0%, #5a2f88 100%);
-        border: 1px solid rgba(237, 177, 255, 0.4);
-        border-radius: 8px;
-        padding: 0.85rem 1rem;
-        color: #fff9ef;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-        margin-top: auto;
-      }
-
-      .blessing-button-sidebar:hover {
-        background: linear-gradient(135deg, #9260d1 0%, #6e3fa3 100%);
-        box-shadow: 0 0 20px rgba(237, 177, 255, 0.3);
-      }
-
-      /* Main content */
-      .app-main {
-        flex: 1;
-        overflow-y: auto;
-        padding: 1.5rem 1rem;
-      }
-
-      @media (min-width: 768px) {
-        .app-main {
-          padding: 2rem;
-        }
-      }
-
-      /* Views */
-      .view {
-        display: none;
-        animation: fadeIn 0.3s ease-in;
-      }
-
-      .view.active {
-        display: block;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Grimoire View */
-      .grimoire-hero {
-        margin-bottom: 2rem;
-      }
-
-      .grimoire-header {
-        text-align: center;
-        margin-bottom: 2rem;
-      }
-
-      .grimoire-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--primary);
-        margin: 0;
-      }
-
-      .grimoire-subtitle {
-        color: var(--secondary-container);
-        font-size: 1.1rem;
-        margin: 0.5rem 0 0;
-      }
-
-      .grimoire-card {
-        background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(15, 15, 30, 0.4) 100%);
-        border: 1px solid rgba(237, 177, 255, 0.2);
-        border-radius: 16px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-      }
-
-      .grimoire-description {
-        color: #c0c0d8;
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
-      }
-
-      .grimoire-flavor {
-        background: rgba(237, 177, 255, 0.08);
-        border-left: 3px solid var(--primary);
-        padding: 1rem 1.25rem;
-        border-radius: 4px;
-        margin: 1.5rem 0;
-        font-style: italic;
-        color: #d0d0e8;
-        font-size: 0.95rem;
-      }
-
-      .grimoire-stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 1rem;
-        margin: 1.5rem 0;
-      }
-
-      .stat-card {
-        background: rgba(237, 177, 255, 0.08);
-        border: 1px solid rgba(237, 177, 255, 0.15);
-        border-radius: 8px;
-        padding: 1rem;
-        text-align: center;
-      }
-
-      .stat-card-label {
-        font-size: 0.8rem;
-        color: #9090a8;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.5rem;
-      }
-
-      .stat-card-value {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--primary);
-      }
-
-      .grimoire-ritual {
-        margin: 2rem 0;
-      }
-
-      .ritual-title {
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: var(--secondary-container);
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-
-      .ritual-steps {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-      }
-
-      .ritual-step {
-        background: rgba(237, 177, 255, 0.08);
-        border: 1px solid rgba(237, 177, 255, 0.15);
-        border-radius: 12px;
-        padding: 1.5rem;
-        position: relative;
-      }
-
-      .ritual-step::before {
-        content: attr(data-step);
-        position: absolute;
-        top: -12px;
-        left: 20px;
-        background: #111125;
-        width: 24px;
-        height: 24px;
-        border: 2px solid var(--primary);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        color: var(--primary);
-        font-size: 0.8rem;
-      }
-
-      .ritual-step-title {
-        font-weight: 600;
-        color: var(--primary);
-        margin-bottom: 0.5rem;
-      }
-
-      .ritual-step-content {
-        font-size: 0.95rem;
-        color: #c0c0d8;
-        line-height: 1.5;
-      }
-
-      .reflection-box {
-        background: rgba(42, 229, 0, 0.08);
-        border: 1px solid rgba(42, 229, 0, 0.2);
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin: 2rem 0;
-      }
-
-      .reflection-label {
-        font-size: 0.85rem;
-        color: #9090a8;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.5rem;
-      }
-
-      .reflection-prompt {
-        font-size: 1rem;
-        color: #d0d0e8;
-        font-style: italic;
-      }
-
-      .action-buttons {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: 2rem;
-      }
-
-      .btn {
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        border: 1px solid transparent;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 0.95rem;
-        transition: all 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .btn-primary {
-        background: linear-gradient(135deg, #7e4db8 0%, #5a2f88 100%);
-        color: #fff9ef;
-        border-color: rgba(237, 177, 255, 0.3);
-      }
-
-      .btn-primary:hover {
-        background: linear-gradient(135deg, #9260d1 0%, #6e3fa3 100%);
-        box-shadow: 0 0 15px rgba(237, 177, 255, 0.25);
-      }
-
-      .btn-secondary {
-        background: transparent;
-        color: var(--primary);
-        border-color: var(--primary);
-      }
-
-      .btn-secondary:hover {
-        background: rgba(237, 177, 255, 0.1);
-      }
-
-      /* Quest Grid View */
-      .quest-filters {
-        display: flex;
-        gap: 0.75rem;
-        flex-wrap: wrap;
-        margin-bottom: 2rem;
-        justify-content: center;
-      }
-
-      .filter-btn {
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        border: 1px solid rgba(237, 177, 255, 0.3);
-        background: transparent;
-        color: #b0b0c8;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-size: 0.9rem;
-      }
-
-      .filter-btn:hover,
-      .filter-btn.active {
-        background: rgba(237, 177, 255, 0.2);
-        border-color: var(--primary);
-        color: var(--primary);
-      }
-
-      .quest-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1.5rem;
-      }
-
-      .framework-card {
-        background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(15, 15, 30, 0.4) 100%);
-        border: 1px solid rgba(237, 177, 255, 0.15);
-        border-radius: 12px;
-        padding: 1.5rem;
-        cursor: pointer;
-        transition: all 0.2s;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .framework-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: var(--primary);
-        opacity: 0;
-        transition: opacity 0.2s;
-      }
-
-      .framework-card:hover {
-        transform: translateY(-4px);
-        border-color: var(--primary);
-        box-shadow: 0 8px 20px rgba(237, 177, 255, 0.15);
-      }
-
-      .framework-card:hover::before {
-        opacity: 1;
-      }
-
-      .framework-card.discovered {
-        border-color: rgba(42, 229, 0, 0.3);
-      }
-
-      .framework-card.discovered::before {
-        background: var(--tertiary);
-      }
-
-      .framework-card-name {
-        font-weight: 700;
-        color: var(--primary);
-        margin-bottom: 0.5rem;
-      }
-
-      .framework-card-tagline {
-        font-size: 0.85rem;
-        color: #a0a0b8;
-        margin-bottom: 1rem;
-      }
-
-      .framework-card-rarity {
-        display: inline-block;
-        font-size: 0.75rem;
-        padding: 0.3rem 0.6rem;
-        border-radius: 4px;
-        background: rgba(237, 177, 255, 0.1);
-        color: var(--primary);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      .framework-card.discovered .framework-card-rarity {
-        background: rgba(42, 229, 0, 0.1);
-        color: var(--tertiary);
-      }
-
-      /* Profile View */
-      .profile-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 3rem;
-      }
-
-      .profile-stat {
-        background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(15, 15, 30, 0.4) 100%);
-        border: 1px solid rgba(237, 177, 255, 0.2);
-        border-radius: 12px;
-        padding: 2rem 1.5rem;
-        text-align: center;
-      }
-
-      .profile-stat-label {
-        font-size: 0.85rem;
-        color: #9090a8;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.75rem;
-      }
-
-      .profile-stat-value {
-        font-size: 3rem;
-        font-weight: 700;
-        color: var(--primary);
-      }
-
-      .profile-frameworks-title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--primary);
-        margin-bottom: 1.5rem;
-      }
-
-      .profile-frameworks {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 1rem;
-      }
-
-      .profile-framework-item {
-        background: rgba(237, 177, 255, 0.08);
-        border: 1px solid rgba(42, 229, 0, 0.3);
-        border-radius: 8px;
-        padding: 1rem;
-        text-align: center;
-      }
-
-      .profile-framework-name {
-        font-weight: 600;
-        color: var(--tertiary);
-        margin-bottom: 0.25rem;
-      }
-
-      .profile-framework-tagline {
-        font-size: 0.8rem;
-        color: #a0a0b8;
-      }
-
-      /* Mobile bottom nav */
-      .mobile-nav {
-        display: flex;
-        gap: 1rem;
-        padding: 1rem;
-        background: linear-gradient(180deg, rgba(15, 15, 30, 0.8) 0%, #0f0f1e 100%);
-        border-top: 1px solid var(--outline);
-        justify-content: space-around;
-      }
-
-      @media (min-width: 768px) {
-        .mobile-nav {
-          display: none;
-        }
-      }
-
-      .mobile-nav button {
-        background: transparent;
-        border: none;
-        color: #b0b0c8;
-        cursor: pointer;
-        padding: 0.5rem;
-        border-radius: 8px;
-        transition: all 0.2s;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.25rem;
-        font-size: 0.75rem;
-      }
-
-      .mobile-nav button.active {
-        color: var(--primary);
-      }
-
-      .mobile-nav .material-symbols-outlined {
-        font-size: 1.5rem;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="app-container">
-      <!-- Mobile Header -->
-      <div class="app-header">
-        <h1>Arcane Archive</h1>
-        <div class="header-nav">
-          <button id="mobile-menu-btn" class="material-symbols-outlined">menu</button>
-        </div>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>The Arcane Archive - Place of Power</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-bright": "#37374d",
+            "surface-container-lowest": "#0c0c1f",
+            "inverse-surface": "#e2e0fc",
+            "surface-container": "#1e1e32",
+            "outline": "#978d9d",
+            "on-secondary-fixed": "#221b00",
+            "inverse-primary": "#883ca6",
+            "tertiary-fixed-dim": "#2ae500",
+            "outline-variant": "#4c4451",
+            "on-surface": "#e2e0fc",
+            "error": "#ffb4ab",
+            "tertiary-fixed": "#79ff5b",
+            "surface-variant": "#333348",
+            "on-error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#544600",
+            "on-tertiary-container": "#1fb100",
+            "secondary": "#fff9ef",
+            "primary-fixed": "#f9d8ff",
+            "secondary-container": "#ffdb3c",
+            "on-background": "#e2e0fc",
+            "secondary-fixed-dim": "#e9c400",
+            "tertiary-container": "#053a00",
+            "on-primary-container": "#c979e7",
+            "surface": "#111125",
+            "on-secondary-container": "#725f00",
+            "on-tertiary-fixed-variant": "#095300",
+            "on-surface-variant": "#cec3d3",
+            "surface-container-low": "#1a1a2e",
+            "background": "#111125",
+            "on-tertiary-fixed": "#022100",
+            "on-primary": "#520070",
+            "on-error": "#690005",
+            "on-primary-fixed": "#320046",
+            "surface-container-high": "#28283d",
+            "surface-dim": "#111125",
+            "primary-fixed-dim": "#edb1ff",
+            "tertiary": "#2ae500",
+            "on-secondary": "#3a3000",
+            "secondary-fixed": "#ffe16d",
+            "inverse-on-surface": "#2f2e43",
+            "surface-container-highest": "#333348",
+            "on-primary-fixed-variant": "#6e208c",
+            "primary": "#edb1ff",
+            "error-container": "#93000a",
+            "on-tertiary": "#053900",
+            "surface-tint": "#edb1ff",
+            "primary-container": "#540072"
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Work Sans"],
+            "label": ["Manrope"]
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .arcane-glow {
+      text-shadow: 0 0 15px rgba(237, 177, 255, 0.6);
+    }
+    .mana-gradient {
+      background: linear-gradient(135deg, #edb1ff 0%, #540072 100%);
+    }
+    .altar-gradient {
+      background: radial-gradient(circle at center, #1e1e32 0%, #111125 70%);
+    }
+    .view {
+      display: none;
+    }
+    .view.active {
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-primary min-h-screen overflow-x-hidden">
+  <header class="bg-[#111125] dark:bg-[#111125] text-[#edb1ff] shadow-[0_10px_30px_-15px_rgba(84,0,114,0.3)] docked full-width top-0 flex justify-between items-center w-full px-8 py-4 z-50 fixed">
+    <div class="text-2xl font-black text-[#fff9ef] tracking-widest font-headline uppercase">The Arcane Archive</div>
+    <nav class="hidden md:flex items-center gap-8 font-headline font-extrabold tracking-tight uppercase">
+      <button class="nav-btn" data-view="grimoire">
+        <span class="text-[#edb1ff] border-b-2 border-[#edb1ff] pb-1">Grimoire</span>
+      </button>
+      <button class="nav-btn" data-view="quest">
+        <span class="text-[#978d9d] hover:text-[#fff9ef] transition-colors hover:bg-[#37374d] duration-300 px-2 py-1">Quest Grid</span>
+      </button>
+      <button class="nav-btn" data-view="profile">
+        <span class="text-[#978d9d] hover:text-[#fff9ef] transition-colors hover:bg-[#37374d] duration-300 px-2 py-1">Altar</span>
+      </button>
+    </nav>
+    <div class="flex items-center gap-4">
+      <div id="quick-blessing" class="p-2 text-[#edb1ff] hover:bg-[#37374d] duration-300 active:scale-95 transition-transform cursor-pointer">
+        <span class="material-symbols-outlined">auto_awesome</span>
       </div>
-
-      <!-- Sidebar -->
-      <div class="app-sidebar">
-        <div class="sidebar-header">
-          <h1>Arcane Archive</h1>
-          <p class="tagline">Master The Working Playbook</p>
-        </div>
-
-        <div class="sidebar-profile">
-          <div class="stat">
-            <div class="stat-label">Streak</div>
-            <div class="stat-value" id="sidebar-streak">0</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Discovered</div>
-            <div class="stat-value"><span id="sidebar-discovered">0</span>/43</div>
-          </div>
-        </div>
-
-        <div class="sidebar-nav">
-          <button id="nav-grimoire" class="active">
-            <span class="material-symbols-outlined">book_2</span>
-            Grimoire
-          </button>
-          <button id="nav-quest">
-            <span class="material-symbols-outlined">grid_3x3</span>
-            Quest Grid
-          </button>
-          <button id="nav-profile">
-            <span class="material-symbols-outlined">person</span>
-            Profile
-          </button>
-        </div>
-
-        <button class="blessing-button-sidebar" id="blessing-btn-sidebar">
-          <span class="material-symbols-outlined">auto_awesome</span>
-          Daily Blessing
-        </button>
+      <div class="p-2 text-[#edb1ff] hover:bg-[#37374d] duration-300 active:scale-95 transition-transform cursor-pointer">
+        <span class="material-symbols-outlined">database</span>
       </div>
-
-      <!-- Main Content -->
-      <div class="app-main">
-        <!-- Grimoire View -->
-        <div id="grimoire-view" class="view active">
-          <div class="grimoire-header">
-            <h2 class="grimoire-title" id="grimoire-name">Daily Framework</h2>
-            <p class="grimoire-subtitle" id="grimoire-tagline">Loading...</p>
-          </div>
-
-          <div class="grimoire-card">
-            <p class="grimoire-description" id="grimoire-description"></p>
-
-            <div class="grimoire-flavor" id="grimoire-flavor"></div>
-
-            <h3 class="ritual-title">Framework Stats</h3>
-            <div class="grimoire-stats">
-              <div class="stat-card">
-                <div class="stat-card-label">Adaptability</div>
-                <div class="stat-card-value" id="stat-adaptability">0</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-card-label">Logic</div>
-                <div class="stat-card-value" id="stat-logic">0</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-card-label">Efficiency</div>
-                <div class="stat-card-value" id="stat-efficiency">0</div>
-              </div>
-            </div>
-
-            <h3 class="ritual-title">Ritual of Application</h3>
-            <div class="ritual-steps">
-              <div class="ritual-step" data-step="1">
-                <div class="ritual-step-title" id="mechanic-title">Understand</div>
-                <div class="ritual-step-content" id="grimoire-mechanics"></div>
-              </div>
-              <div class="ritual-step" data-step="2">
-                <div class="ritual-step-title">Apply</div>
-                <div class="ritual-step-content" id="grimoire-application"></div>
-              </div>
-              <div class="ritual-step" data-step="3">
-                <div class="ritual-step-title">Reflect</div>
-                <div class="ritual-step-content" id="grimoire-reflection"></div>
-              </div>
-            </div>
-
-            <div class="reflection-box">
-              <div class="reflection-label">Daily Reflection Prompt</div>
-              <div class="reflection-prompt" id="reflection-prompt"></div>
-            </div>
-
-            <div class="action-buttons">
-              <button class="btn btn-primary" id="share-twitter">
-                <span class="material-symbols-outlined">share</span>
-                Share on Twitter
-              </button>
-              <button class="btn btn-secondary" id="copy-link">
-                <span class="material-symbols-outlined">content_copy</span>
-                Copy Link
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Quest Grid View -->
-        <div id="quest-view" class="view">
-          <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Quest Grid</h2>
-
-          <div class="quest-filters" id="filters-container"></div>
-
-          <div class="quest-grid" id="quest-grid"></div>
-        </div>
-
-        <!-- Profile View -->
-        <div id="profile-view" class="view">
-          <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Your Journey</h2>
-
-          <div class="profile-grid">
-            <div class="profile-stat">
-              <div class="profile-stat-label">Current Streak</div>
-              <div class="profile-stat-value" id="profile-streak">0</div>
-            </div>
-            <div class="profile-stat">
-              <div class="profile-stat-label">Frameworks Discovered</div>
-              <div class="profile-stat-value"><span id="profile-discovered">0</span>/<span id="profile-total">43</span></div>
-            </div>
-            <div class="profile-stat">
-              <div class="profile-stat-label">Discovery Rate</div>
-              <div class="profile-stat-value" id="profile-percentage">0%</div>
-            </div>
-          </div>
-
-          <h3 class="profile-frameworks-title">Your Discovered Frameworks</h3>
-          <div class="profile-frameworks" id="profile-frameworks-list"></div>
-        </div>
+      <div class="p-2 text-[#edb1ff] hover:bg-[#37374d] duration-300 active:scale-95 transition-transform cursor-pointer">
+        <span class="material-symbols-outlined">person</span>
       </div>
+    </div>
+  </header>
 
-      <!-- Mobile Bottom Navigation -->
-      <div class="mobile-nav">
-        <button id="mobile-nav-grimoire" class="active">
-          <span class="material-symbols-outlined">book_2</span>
-          <span>Grimoire</span>
-        </button>
-        <button id="mobile-nav-quest">
-          <span class="material-symbols-outlined">grid_3x3</span>
-          <span>Quest</span>
-        </button>
-        <button id="mobile-nav-profile">
-          <span class="material-symbols-outlined">person</span>
-          <span>Profile</span>
-        </button>
+  <!-- Grimoire View -->
+  <main id="grimoire-view" class="view active relative min-h-screen flex flex-col pt-24 items-center justify-center px-6 overflow-hidden">
+    <div class="absolute inset-0 z-0 opacity-40">
+      <img class="w-full h-full object-cover mix-blend-overlay" data-alt="Cinematic wide shot of a dark ancient stone chamber with ethereal purple and gold light rays filtering through a vaulted ceiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3tk-3OEVcLxAqvFwGebW1BIFl0l4ONIBwe-BmCf_vyv1jN6rU72todRu8mXt35SzTZMLhGD2C-3Ct-z5sJRJcaWXhC0FqreNQQf0pcmE3xttrM09jafPFLWLihEYBI5Auos14ZsauoLfThfgR4RII39G0iwZndeuxya-VC4cH2hv1-71eCiuPwUZtjltNp-vj347vQNpuynb5AIwHHlM6smKYHMDSRXr76KdbfxRYQCBWFznWYAu4KiqosRPFMAm5VUW6sG3fDMk"/>
+      <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background"></div>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="fixed top-28 left-8 z-10 flex flex-col gap-4 hidden lg:flex">
+      <div class="bg-surface-container-high p-4 rounded-lg shadow-xl border-l-4 border-secondary-container">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+            <img class="w-full h-full object-cover" data-alt="Grizzled archmage character portrait with glowing violet eyes and intricate facial tattoos in dark fantasy style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJjUep7nc6_t8c9Afj1mrnjoq-_JqpqOSmo0-miIbg-PksD5RFr26orYX_8tKEexEO_XUFZx8ZxLoq4J7DsLz0P6UIv4Fs-jBkWl-Vs5AlBl4b1S-YuYSI_DV5KEZKk5BRzkmKqIhBR2qYApzndMB_hQH-gzU6ioRg-GiXGXKcr0U-qgY-yZEOLI2KKOQ-X1wAPjSRCJhGBFPivdbGVkhNTwubPeFSMtBvUAgkS14LkDv1gNMNbjIWnTP5CZ3s5ERNX8c6wtkUo74"/>
+          </div>
+          <div>
+            <p class="font-headline font-extrabold text-[#fff9ef] uppercase tracking-tighter">Seeker</p>
+            <p class="text-xs font-label text-primary-fixed-dim" id="profile-level">Level 0 Initiate</p>
+          </div>
+        </div>
+        <div class="mt-4 space-y-2">
+          <div class="flex justify-between text-[10px] font-label uppercase text-outline">
+            <span>Frameworks Discovered</span>
+            <span id="profile-mana">0 / 43</span>
+          </div>
+          <div class="w-full h-2 bg-surface-container-lowest rounded-full overflow-hidden">
+            <div id="profile-bar" class="h-full bg-gradient-to-r from-tertiary-container to-tertiary shadow-[0_0_10px_rgba(42,229,0,0.5)] w-0%"></div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <script>
-      const categories = [
-        "How Do I Think More Clearly?",
-        "How Do I Make Better Decisions?",
-        "How Do I Communicate More Effectively?",
-        "How Do I Get More Done with Less Friction?",
-        "How Do I Keep Improving?",
-        "How Do I Build a Career, Not Just Do a Job?"
-      ];
+    <div class="relative z-10 flex flex-col items-center max-w-5xl w-full">
+      <div class="mb-12 text-center">
+        <span class="font-label text-secondary-container tracking-[0.3em] uppercase text-xs mb-2 block font-bold">New Wisdom Detected</span>
+        <h1 class="font-headline text-5xl md:text-7xl font-extrabold text-secondary tracking-tighter uppercase arcane-glow" id="grimoire-title">The Place of Power</h1>
+        <p class="text-on-surface-variant max-w-xl mx-auto mt-4 text-lg font-light leading-relaxed" id="grimoire-flavor">
+          Stand before the altar of ancient logic. A new framework has manifested from the void, waiting to be woven into your grimoire.
+        </p>
+      </div>
 
-      const reflectionPrompts = {
-        "How Do I Think More Clearly?": [
-          "Where did a clearer perspective shift your decision today?",
-          "What assumption did you challenge this week?",
-          "How did mental clarity improve one situation?"
-        ],
-        "How Do I Make Better Decisions?": [
-          "What decision felt more confident using this framework?",
-          "How did you evaluate your options differently?",
-          "What outcome surprised you positively?"
-        ],
-        "How Do I Communicate More Effectively?": [
-          "How did your message land differently today?",
-          "What feedback helped you refine your communication?",
-          "Who understood you better with this approach?"
-        ],
-        "How Do I Get More Done with Less Friction?": [
-          "What obstacle disappeared with this method?",
-          "How much time or energy did you save?",
-          "What felt easier than before?"
-        ],
-        "How Do I Keep Improving?": [
-          "What progress did you notice this week?",
-          "How did you build on yesterday's learning?",
-          "What will you do differently next time?"
-        ],
-        "How Do I Build a Career, Not Just Do a Job?": [
-          "How did this framework shape your career thinking?",
-          "What opportunity emerged from this perspective?",
-          "How does this align with your career vision?"
-        ]
-      };
+      <div class="relative w-full flex justify-center py-20">
+        <div class="absolute w-[600px] h-[300px] altar-gradient rounded-[50%] blur-3xl opacity-50 -bottom-10 border border-primary/20"></div>
+        <div class="relative group">
+          <div class="absolute -inset-1 bg-gradient-to-r from-secondary-container via-primary to-secondary-container rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+          <div class="relative w-72 h-[420px] bg-surface-container-high rounded-lg overflow-hidden border-2 border-secondary-container shadow-[0_0_50px_rgba(255,219,60,0.2)] flex flex-col">
+            <div class="h-2/3 relative overflow-hidden">
+              <img id="grimoire-image" class="w-full h-full object-cover" data-alt="Abstract sacred geometry pattern glowing in neon violet and gold against a pitch black background with floating dust particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKrYS5PJUiBZBOvDbWB4MCB2k9_VC2-6OH2XM9RTyxER5PWfdw4gfrM7Ym9vIDF1tXsQocxzIBir4Zuv_eksaACwrfehD5XPIiyEebK7KR4S2xoDVazGbGY3sDvkcAM5D2cEPehTZfAcFfhS682biePHtUkRu4gIwWGy6PqQrjROFQudl0ck2BXnjJ5E1FZLxoWh_3F0jnmseZfawhj3CLNOyZrc-nMIMCpKhL7EGz2vu1Pl5JfWSg4g7ygyRY3I1AcDu4ycs3uOA"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-high via-transparent to-transparent"></div>
+              <div class="absolute top-4 left-4">
+                <span class="bg-surface-container-highest text-secondary-fixed text-[10px] font-black px-2 py-1 rounded-sm border border-secondary-fixed/30 tracking-widest uppercase" id="grimoire-rarity">Rank: Epic</span>
+              </div>
+            </div>
+            <div class="px-6 py-4 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-headline text-xl font-extrabold text-secondary tracking-tight uppercase leading-none" id="card-name">First Principles</h3>
+                <p class="text-[10px] font-label text-outline mt-1 uppercase tracking-widest" id="card-tagline">The Foundation Spell</p>
+                <p class="text-xs text-on-surface-variant mt-3 leading-relaxed" id="card-description">
+                  Deconstruct complex problems into their basic elements and reassemble them from the ground up.
+                </p>
+              </div>
+              <div class="flex justify-between items-end gap-2">
+                <div class="bg-surface-container-highest px-3 py-1 rounded-sm border border-outline-variant/30">
+                  <span class="text-[10px] font-label text-outline block leading-none">Adaptability</span>
+                  <span class="font-headline font-black text-secondary-fixed" id="stat-adapt">+14</span>
+                </div>
+                <div class="bg-surface-container-highest px-3 py-1 rounded-sm border border-outline-variant/30">
+                  <span class="text-[10px] font-label text-outline block leading-none">Logic</span>
+                  <span class="font-headline font-black text-secondary-fixed" id="stat-logic">+14</span>
+                </div>
+                <div class="bg-surface-container-highest px-3 py-1 rounded-sm border border-outline-variant/30">
+                  <span class="text-[10px] font-label text-outline block leading-none">Efficiency</span>
+                  <span class="font-headline font-black text-tertiary-fixed" id="stat-eff">+14</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -left-12 top-1/4 hidden lg:block opacity-40 hover:opacity-100 transition-opacity">
+            <div class="w-48 h-64 bg-surface-container-low rounded-lg border border-outline/20 -rotate-12 translate-y-10"></div>
+          </div>
+          <div class="absolute -right-12 top-1/4 hidden lg:block opacity-40 hover:opacity-100 transition-opacity">
+            <div class="w-48 h-64 bg-surface-container-low rounded-lg border border-outline/20 rotate-12 translate-y-10"></div>
+          </div>
+        </div>
 
-      const state = {
-        frameworks: [],
-        currentFramework: null,
-        discoveredFrameworks: [],
-        currentView: 'grimoire',
-        lastBlessingDate: null,
-        streakStartDate: null,
-        currentFilter: 'all'
-      };
+        <div class="mt-8 flex flex-col items-center gap-6 pb-20">
+          <button id="accept-btn" class="mana-gradient px-12 py-5 rounded-lg text-secondary font-headline font-extrabold text-xl uppercase tracking-widest shadow-[0_0_30px_rgba(237,177,255,0.4)] hover:shadow-[0_0_50px_rgba(237,177,255,0.6)] active:scale-95 transition-all duration-300 group flex items-center gap-4">
+            <span>Accept Assignment</span>
+            <span class="material-symbols-outlined text-2xl group-hover:translate-x-1 transition-transform">auto_stories</span>
+          </button>
+          <button class="text-outline font-label uppercase text-sm tracking-widest hover:text-secondary transition-colors px-6 py-2">
+            Share Framework
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
 
-      // Load frameworks from JSON
-      async function loadFrameworks() {
-        try {
-          const response = await fetch('frameworks.json');
-          state.frameworks = await response.json();
-          initializeApp();
-        } catch (error) {
-          console.error('Error loading frameworks:', error);
+  <!-- Quest Grid View -->
+  <main id="quest-view" class="view relative min-h-screen flex flex-col pt-24 items-center justify-start px-6 py-12 overflow-auto">
+    <div class="absolute inset-0 z-0 opacity-40">
+      <img class="w-full h-full object-cover mix-blend-overlay" data-alt="Cinematic wide shot of a dark ancient stone chamber with ethereal purple and gold light rays filtering through a vaulted ceiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3tk-3OEVcLxAqvFwGebW1BIFl0l4ONIBwe-BmCf_vyv1jN6rU72todRu8mXt35SzTZMLhGD2C-3Ct-z5sJRJcaWXhC0FqreNQQf0pcmE3xttrM09jafPFLWLihEYBI5Auos14ZsauoLfThfgR4RII39G0iwZndeuxya-VC4cH2hv1-71eCiuPwUZtjltNp-vj347vQNpuynb5AIwHHlM6smKYHMDSRXr76KdbfxRYQCBWFznWYAu4KiqosRPFMAm5VUW6sG3fDMk"/>
+      <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background"></div>
+    </div>
+    <div class="relative z-10 w-full max-w-6xl">
+      <h2 class="text-5xl font-headline font-extrabold text-secondary tracking-tighter uppercase arcane-glow mb-8">Quest Grid</h2>
+      <div id="quest-filters" class="flex flex-wrap gap-3 mb-8"></div>
+      <div id="quest-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </main>
+
+  <!-- Profile/Altar View -->
+  <main id="profile-view" class="view relative min-h-screen flex flex-col pt-24 items-center justify-start px-6 py-12 overflow-auto">
+    <div class="absolute inset-0 z-0 opacity-40">
+      <img class="w-full h-full object-cover mix-blend-overlay" data-alt="Cinematic wide shot of a dark ancient stone chamber with ethereal purple and gold light rays filtering through a vaulted ceiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3tk-3OEVcLxAqvFwGebW1BIFl0l4ONIBwe-BmCf_vyv1jN6rU72todRu8mXt35SzTZMLhGD2C-3Ct-z5sJRJcaWXhC0FqreNQQf0pcmE3xttrM09jafPFLWLihEYBI5Auos14ZsauoLfThfgR4RII39G0iwZndeuxya-VC4cH2hv1-71eCiuPwUZtjltNp-vj347vQNpuynb5AIwHHlM6smKYHMDSRXr76KdbfxRYQCBWFznWYAu4KiqosRPFMAm5VUW6sG3fDMk"/>
+      <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background"></div>
+    </div>
+    <div class="relative z-10 w-full max-w-6xl">
+      <h2 class="text-5xl font-headline font-extrabold text-secondary tracking-tighter uppercase arcane-glow mb-8">Your Altar</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-surface-container-high p-6 rounded-lg border border-secondary-container shadow-[0_0_30px_rgba(255,219,60,0.2)]">
+          <p class="text-outline uppercase text-xs font-label tracking-widest mb-2">Current Streak</p>
+          <p class="text-5xl font-headline font-extrabold text-secondary-fixed" id="altar-streak">0</p>
+          <p class="text-on-surface-variant text-xs mt-2">Days of consecutive discovery</p>
+        </div>
+        <div class="bg-surface-container-high p-6 rounded-lg border border-primary shadow-[0_0_30px_rgba(237,177,255,0.2)]">
+          <p class="text-outline uppercase text-xs font-label tracking-widest mb-2">Frameworks Mastered</p>
+          <p class="text-5xl font-headline font-extrabold text-primary" id="altar-discovered">0<span class="text-2xl text-outline">/43</span></p>
+          <p class="text-on-surface-variant text-xs mt-2">Frameworks discovered</p>
+        </div>
+        <div class="bg-surface-container-high p-6 rounded-lg border border-tertiary shadow-[0_0_30px_rgba(42,229,0,0.2)]">
+          <p class="text-outline uppercase text-xs font-label tracking-widest mb-2">Progress</p>
+          <p class="text-5xl font-headline font-extrabold text-tertiary-fixed" id="altar-percentage">0%</p>
+          <p class="text-on-surface-variant text-xs mt-2">Collection complete</p>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-2xl font-headline font-extrabold text-secondary tracking-tight uppercase mb-4">Discovered Frameworks</h3>
+        <div id="discovered-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Mobile Footer Navigation -->
+  <footer class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-low flex justify-around py-4 z-50 shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
+    <button class="view-btn mobile-active flex flex-col items-center text-primary" data-view="grimoire">
+      <span class="material-symbols-outlined">auto_stories</span>
+      <span class="text-[10px] font-label uppercase mt-1">Grimoire</span>
+    </button>
+    <button class="view-btn flex flex-col items-center text-outline" data-view="quest">
+      <span class="material-symbols-outlined">grid_view</span>
+      <span class="text-[10px] font-label uppercase mt-1">Quest Grid</span>
+    </button>
+    <button class="view-btn flex flex-col items-center text-outline" data-view="profile">
+      <span class="material-symbols-outlined">castle</span>
+      <span class="text-[10px] font-label uppercase mt-1">Altar</span>
+    </button>
+  </footer>
+
+  <script>
+    const categories = [
+      "How Do I Think More Clearly?",
+      "How Do I Make Better Decisions?",
+      "How Do I Communicate More Effectively?",
+      "How Do I Get More Done with Less Friction?",
+      "How Do I Keep Improving?",
+      "How Do I Build a Career, Not Just Do a Job?"
+    ];
+
+    const state = {
+      frameworks: [],
+      currentFramework: null,
+      discoveredFrameworks: [],
+      currentView: 'grimoire',
+      lastBlessingDate: null,
+      streakStartDate: null,
+      currentFilter: 'all'
+    };
+
+    async function loadFrameworks() {
+      try {
+        const response = await fetch('frameworks.json');
+        state.frameworks = await response.json();
+        initializeApp();
+      } catch (error) {
+        console.error('Error loading frameworks:', error);
+      }
+    }
+
+    function initializeApp() {
+      loadFromLocalStorage();
+      pickDailyFramework();
+      setupEventListeners();
+      updateProfile();
+    }
+
+    function loadFromLocalStorage() {
+      const discovered = localStorage.getItem('discoveredFrameworks');
+      if (discovered) {
+        state.discoveredFrameworks = JSON.parse(discovered);
+      }
+      state.lastBlessingDate = localStorage.getItem('lastBlessingDate');
+      state.streakStartDate = localStorage.getItem('streakStartDate');
+    }
+
+    function saveToLocalStorage() {
+      localStorage.setItem('discoveredFrameworks', JSON.stringify(state.discoveredFrameworks));
+      localStorage.setItem('lastBlessingDate', state.lastBlessingDate);
+      localStorage.setItem('streakStartDate', state.streakStartDate);
+    }
+
+    function getStreak() {
+      if (!state.streakStartDate) return 0;
+      const startDate = new Date(state.streakStartDate);
+      const today = new Date();
+      const days = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+      return Math.max(0, days + 1);
+    }
+
+    function pickDailyFramework() {
+      const today = new Date().toDateString();
+      if (state.lastBlessingDate === today && state.currentFramework) {
+        renderGrimoire();
+        return;
+      }
+
+      const undiscovered = state.frameworks.filter(f => !state.discoveredFrameworks.includes(f.id));
+      const available = undiscovered.length > 0 ? undiscovered : state.frameworks;
+
+      let yesterdayFramework = null;
+      if (state.lastBlessingDate) {
+        const lastDate = new Date(state.lastBlessingDate);
+        if (today !== state.lastBlessingDate) {
+          const lastFramework = state.currentFramework;
+          if (lastFramework) yesterdayFramework = lastFramework.id;
         }
       }
 
-      function initializeApp() {
-        loadFromLocalStorage();
-        renderCurrentView();
-        setupEventListeners();
-        pickDailyFramework();
+      const choices = available.filter(f => f.id !== yesterdayFramework);
+      const selected = choices[Math.floor(Math.random() * choices.length)];
+
+      state.currentFramework = selected;
+      state.lastBlessingDate = today;
+
+      if (!state.discoveredFrameworks.includes(selected.id)) {
+        state.discoveredFrameworks.push(selected.id);
       }
 
-      function loadFromLocalStorage() {
-        const discovered = localStorage.getItem('discoveredFrameworks');
-        if (discovered) {
-          state.discoveredFrameworks = JSON.parse(discovered);
-        }
-        state.lastBlessingDate = localStorage.getItem('lastBlessingDate');
-        state.streakStartDate = localStorage.getItem('streakStartDate');
+      if (!state.streakStartDate) {
+        state.streakStartDate = today;
       }
 
-      function saveToLocalStorage() {
-        localStorage.setItem('discoveredFrameworks', JSON.stringify(state.discoveredFrameworks));
-        localStorage.setItem('lastBlessingDate', state.lastBlessingDate);
-        localStorage.setItem('streakStartDate', state.streakStartDate);
-      }
+      saveToLocalStorage();
+      renderGrimoire();
+      updateProfile();
+    }
 
-      function getStreak() {
-        if (!state.streakStartDate) return 0;
-        const startDate = new Date(state.streakStartDate);
-        const today = new Date();
-        const days = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-        return Math.max(0, days + 1);
-      }
-
-      function pickDailyFramework() {
-        const today = new Date().toDateString();
-        if (state.lastBlessingDate === today && state.currentFramework) {
-          return;
-        }
-
-        const undiscovered = state.frameworks.filter(f => !state.discoveredFrameworks.includes(f.id));
-        const available = undiscovered.length > 0 ? undiscovered : state.frameworks;
-
-        // Exclude yesterday's framework if possible
-        let yesterdayFramework = null;
-        if (state.lastBlessingDate) {
-          const lastDate = new Date(state.lastBlessingDate);
-          const today = new Date();
-          if (today.getTime() - lastDate.getTime() < 24 * 60 * 60 * 1000) {
-            yesterdayFramework = state.currentFramework?.id;
-          }
-        }
-
-        const choices = available.filter(f => f.id !== yesterdayFramework);
-        const selected = choices[Math.floor(Math.random() * choices.length)];
-
-        state.currentFramework = selected;
-        state.lastBlessingDate = today;
-
-        if (!state.discoveredFrameworks.includes(selected.id)) {
-          state.discoveredFrameworks.push(selected.id);
-        }
-
-        if (!state.streakStartDate) {
-          state.streakStartDate = today;
-        }
-
-        saveToLocalStorage();
-        renderCurrentView();
-      }
-
-      function setupEventListeners() {
-        // Navigation
-        document.getElementById('nav-grimoire')?.addEventListener('click', () => switchView('grimoire'));
-        document.getElementById('nav-quest')?.addEventListener('click', () => switchView('quest'));
-        document.getElementById('nav-profile')?.addEventListener('click', () => switchView('profile'));
-
-        document.getElementById('mobile-nav-grimoire')?.addEventListener('click', () => switchView('grimoire'));
-        document.getElementById('mobile-nav-quest')?.addEventListener('click', () => switchView('quest'));
-        document.getElementById('mobile-nav-profile')?.addEventListener('click', () => switchView('profile'));
-
-        // Blessing buttons
-        document.getElementById('blessing-btn-sidebar')?.addEventListener('click', pickDailyFramework);
-
-        // Share buttons
-        document.getElementById('share-twitter')?.addEventListener('click', shareTwitter);
-        document.getElementById('copy-link')?.addEventListener('click', copyLink);
-
-        // Quest grid framework cards
-        document.addEventListener('click', (e) => {
-          if (e.target.closest('.framework-card')) {
-            const name = e.target.closest('.framework-card').dataset.framework;
-            const fw = state.frameworks.find(f => f.id === name);
-            if (fw) {
-              state.currentFramework = fw;
-              if (!state.discoveredFrameworks.includes(fw.id)) {
-                state.discoveredFrameworks.push(fw.id);
-                saveToLocalStorage();
-              }
-              switchView('grimoire');
-            }
-          }
+    function setupEventListeners() {
+      document.querySelectorAll('[data-view]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const view = btn.dataset.view;
+          switchView(view);
         });
-      }
+      });
 
-      function switchView(view) {
-        state.currentView = view;
-
-        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        document.getElementById(`${view}-view`).classList.add('active');
-
-        // Update nav buttons
-        document.querySelectorAll('[id^="nav-"], [id^="mobile-nav-"]').forEach(btn => {
-          btn.classList.remove('active');
+      document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const view = btn.dataset.view;
+          switchView(view);
         });
-        document.getElementById(`nav-${view}`)?.classList.add('active');
-        document.getElementById(`mobile-nav-${view}`)?.classList.add('active');
+      });
 
-        if (view === 'quest') {
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const view = btn.dataset.view;
+          switchView(view);
+        });
+      });
+
+      document.getElementById('accept-btn').addEventListener('click', pickDailyFramework);
+      document.getElementById('quick-blessing').addEventListener('click', pickDailyFramework);
+    }
+
+    function switchView(view) {
+      state.currentView = view;
+
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(`${view}-view`).classList.add('active');
+
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('text-primary', 'mobile-active'));
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.add('text-outline'));
+      document.querySelector(`.view-btn[data-view="${view}"]`)?.classList.add('text-primary', 'mobile-active');
+
+      if (view === 'quest') {
+        renderQuestGrid();
+      } else if (view === 'profile') {
+        renderProfileView();
+      } else {
+        renderGrimoire();
+      }
+    }
+
+    function renderGrimoire() {
+      if (!state.currentFramework) return;
+      const fw = state.currentFramework;
+
+      document.getElementById('grimoire-title').textContent = fw.name;
+      document.getElementById('grimoire-flavor').textContent = fw.flavor;
+      document.getElementById('card-name').textContent = fw.name;
+      document.getElementById('card-tagline').textContent = fw.tagline;
+      document.getElementById('card-description').textContent = fw.description;
+      document.getElementById('grimoire-rarity').textContent = `Rank: ${fw.rarity}`;
+
+      document.getElementById('stat-adapt').textContent = `+${fw.stats?.adaptability || 0}`;
+      document.getElementById('stat-logic').textContent = `+${fw.stats?.logic || 0}`;
+      document.getElementById('stat-eff').textContent = `+${fw.stats?.efficiency || 0}`;
+    }
+
+    function renderQuestGrid() {
+      const container = document.getElementById('quest-grid');
+      const filtersContainer = document.getElementById('quest-filters');
+
+      if (filtersContainer.children.length === 0) {
+        const allBtn = document.createElement('button');
+        allBtn.className = 'px-4 py-2 rounded-lg text-secondary-fixed bg-surface-container-high border border-secondary-container font-label uppercase text-xs tracking-widest transition-all';
+        allBtn.textContent = 'All';
+        allBtn.addEventListener('click', () => {
+          state.currentFilter = 'all';
+          document.querySelectorAll('#quest-filters button').forEach(b => {
+            b.classList.remove('bg-primary-container', 'text-secondary');
+            b.classList.add('bg-surface-container-high', 'text-secondary-fixed');
+          });
+          allBtn.classList.add('bg-primary-container', 'text-secondary');
           renderQuestGrid();
-        } else if (view === 'profile') {
-          renderProfile();
-        } else {
-          renderGrimoire();
-        }
-      }
+        });
+        allBtn.classList.add('bg-primary-container', 'text-secondary');
+        filtersContainer.appendChild(allBtn);
 
-      function renderGrimoire() {
-        if (!state.currentFramework) return;
-        const fw = state.currentFramework;
-
-        document.getElementById('grimoire-name').textContent = fw.name;
-        document.getElementById('grimoire-tagline').textContent = fw.tagline;
-        document.getElementById('grimoire-description').textContent = fw.description;
-        document.getElementById('grimoire-flavor').textContent = fw.flavor;
-        document.getElementById('grimoire-mechanics').textContent = fw.mechanics;
-        document.getElementById('grimoire-application').textContent = fw.application;
-
-        document.getElementById('stat-adaptability').textContent = fw.stats?.adaptability || 0;
-        document.getElementById('stat-logic').textContent = fw.stats?.logic || 0;
-        document.getElementById('stat-efficiency').textContent = fw.stats?.efficiency || 0;
-
-        const prompts = reflectionPrompts[fw.category] || [];
-        const prompt = prompts[Math.floor(Math.random() * prompts.length)];
-        document.getElementById('reflection-prompt').textContent = prompt;
-
-        updateStats();
-      }
-
-      function renderQuestGrid() {
-        const container = document.getElementById('quest-grid');
-        const filtersContainer = document.getElementById('filters-container');
-
-        // Render filters
-        if (!filtersContainer.hasChildNodes()) {
-          const allBtn = document.createElement('button');
-          allBtn.className = 'filter-btn active';
-          allBtn.textContent = 'All Frameworks';
-          allBtn.addEventListener('click', () => {
-            state.currentFilter = 'all';
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            allBtn.classList.add('active');
+        categories.forEach(cat => {
+          const btn = document.createElement('button');
+          btn.className = 'px-4 py-2 rounded-lg text-secondary-fixed bg-surface-container-high border border-surface-container-high font-label uppercase text-xs tracking-widest transition-all hover:border-outline';
+          btn.textContent = cat.substring(0, 15) + '...';
+          btn.title = cat;
+          btn.addEventListener('click', () => {
+            state.currentFilter = cat;
+            document.querySelectorAll('#quest-filters button').forEach(b => {
+              b.classList.remove('bg-primary-container', 'text-secondary');
+              b.classList.add('bg-surface-container-high', 'text-secondary-fixed');
+            });
+            btn.classList.add('bg-primary-container', 'text-secondary');
             renderQuestGrid();
           });
-          filtersContainer.appendChild(allBtn);
-
-          categories.forEach(cat => {
-            const btn = document.createElement('button');
-            btn.className = 'filter-btn';
-            btn.textContent = cat.substring(0, 20) + '...';
-            btn.title = cat;
-            btn.addEventListener('click', () => {
-              state.currentFilter = cat;
-              document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-              btn.classList.add('active');
-              renderQuestGrid();
-            });
-            filtersContainer.appendChild(btn);
-          });
-        }
-
-        // Render grid
-        const filtered = state.currentFilter === 'all'
-          ? state.frameworks
-          : state.frameworks.filter(f => f.category === state.currentFilter);
-
-        container.innerHTML = filtered.map(fw => {
-          const discovered = state.discoveredFrameworks.includes(fw.id);
-          return `
-            <div class="framework-card ${discovered ? 'discovered' : ''}" data-framework="${fw.id}">
-              <div class="framework-card-name">${fw.name}</div>
-              <div class="framework-card-tagline">${fw.tagline}</div>
-              <span class="framework-card-rarity">${fw.rarity}</span>
-            </div>
-          `;
-        }).join('');
-      }
-
-      function renderProfile() {
-        const discovered = state.discoveredFrameworks.length;
-        const total = state.frameworks.length;
-        const percentage = Math.round((discovered / total) * 100);
-
-        document.getElementById('profile-streak').textContent = getStreak();
-        document.getElementById('profile-discovered').textContent = discovered;
-        document.getElementById('profile-total').textContent = total;
-        document.getElementById('profile-percentage').textContent = percentage + '%';
-
-        const list = document.getElementById('profile-frameworks-list');
-        list.innerHTML = state.discoveredFrameworks.map(id => {
-          const fw = state.frameworks.find(f => f.id === id);
-          return fw ? `
-            <div class="profile-framework-item">
-              <div class="profile-framework-name">${fw.name}</div>
-              <div class="profile-framework-tagline">${fw.tagline}</div>
-            </div>
-          ` : '';
-        }).join('');
-      }
-
-      function renderCurrentView() {
-        updateStats();
-
-        if (state.currentView === 'grimoire') {
-          renderGrimoire();
-        } else if (state.currentView === 'quest') {
-          renderQuestGrid();
-        } else if (state.currentView === 'profile') {
-          renderProfile();
-        }
-      }
-
-      function updateStats() {
-        const streak = getStreak();
-        const discovered = state.discoveredFrameworks.length;
-
-        document.getElementById('sidebar-streak').textContent = streak;
-        document.getElementById('sidebar-discovered').textContent = discovered;
-      }
-
-      function shareTwitter() {
-        if (!state.currentFramework) return;
-        const fw = state.currentFramework;
-        const text = `Today's framework from The Arcane Archive: ${fw.name} - "${fw.tagline}" 📚✨`;
-        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-        window.open(url, '_blank');
-      }
-
-      function copyLink() {
-        const url = window.location.href;
-        navigator.clipboard.writeText(url).then(() => {
-          alert('Link copied to clipboard!');
+          filtersContainer.appendChild(btn);
         });
       }
 
-      // Initialize
-      loadFrameworks();
-    </script>
-  </body>
+      const filtered = state.currentFilter === 'all'
+        ? state.frameworks
+        : state.frameworks.filter(f => f.category === state.currentFilter);
+
+      container.innerHTML = filtered.map(fw => {
+        const discovered = state.discoveredFrameworks.includes(fw.id);
+        return `
+          <div class="cursor-pointer framework-card bg-surface-container-high border-2 ${discovered ? 'border-tertiary' : 'border-secondary-container'} rounded-lg p-6 hover:shadow-[0_0_30px_rgba(237,177,255,0.3)] transition-all hover:-translate-y-1" data-id="${fw.id}">
+            <p class="text-outline uppercase text-xs font-label tracking-widest mb-2">Rank: ${fw.rarity}</p>
+            <h4 class="font-headline font-extrabold text-secondary text-lg uppercase mb-1">${fw.name}</h4>
+            <p class="text-on-surface-variant text-xs mb-4">${fw.tagline}</p>
+            <p class="text-outline text-xs">${discovered ? '✓ Discovered' : 'Awaiting discovery'}</p>
+          </div>
+        `;
+      }).join('');
+
+      document.querySelectorAll('.framework-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const id = card.dataset.id;
+          const fw = state.frameworks.find(f => f.id === id);
+          if (fw) {
+            state.currentFramework = fw;
+            if (!state.discoveredFrameworks.includes(fw.id)) {
+              state.discoveredFrameworks.push(fw.id);
+              saveToLocalStorage();
+            }
+            switchView('grimoire');
+          }
+        });
+      });
+    }
+
+    function renderProfileView() {
+      const discovered = state.discoveredFrameworks.length;
+      const total = state.frameworks.length;
+      const percentage = Math.round((discovered / total) * 100);
+      const streak = getStreak();
+
+      document.getElementById('altar-streak').textContent = streak;
+      document.getElementById('altar-discovered').textContent = `${discovered}/43`;
+      document.getElementById('altar-percentage').textContent = `${percentage}%`;
+
+      const list = document.getElementById('discovered-list');
+      list.innerHTML = state.discoveredFrameworks.map(id => {
+        const fw = state.frameworks.find(f => f.id === id);
+        return fw ? `
+          <div class="bg-surface-container-high border border-tertiary rounded-lg p-4">
+            <h4 class="font-headline font-extrabold text-tertiary-fixed uppercase">${fw.name}</h4>
+            <p class="text-on-surface-variant text-xs mt-1">${fw.tagline}</p>
+          </div>
+        ` : '';
+      }).join('');
+    }
+
+    function updateProfile() {
+      const discovered = state.discoveredFrameworks.length;
+      const total = state.frameworks.length;
+      const percentage = Math.round((discovered / total) * 100);
+      const streak = getStreak();
+
+      document.getElementById('profile-level').textContent = `Level ${Math.floor(discovered / 5)} Seeker`;
+      document.getElementById('profile-mana').textContent = `${discovered} / 43`;
+      document.getElementById('profile-bar').style.width = `${percentage}%`;
+    }
+
+    loadFrameworks();
+  </script>
+</body>
 </html>
