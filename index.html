@@ -512,10 +512,10 @@
   </head>
   <body>
     <main class="landing">
+      <button class="blessing-button no-print" id="blessBtn" type="button">Receive Today’s Blessing</button>
       <section id="shrineShell">
         <h1>The Shrine of Knowledge</h1>
         <p class="subtitle">Seek your wisdom blessing</p>
-        <button class="blessing-button" id="blessBtn" type="button">Receive Today’s Blessing</button>
         <p class="discovery-count" id="discoveryCount" aria-live="polite"></p>
       </section>
       <section class="framework-view" id="frameworkView" aria-live="polite" hidden></section>
@@ -583,6 +583,10 @@
 
       function setStatus(message) {
         elements.discoveryCount.textContent = message;
+      }
+
+      function hideBlessingButton() {
+        elements.button.hidden = true;
       }
 
       function showView({ detail }) {
@@ -711,6 +715,11 @@
           const today = getTodayString();
           if (blessing.date === today) {
             state.todaysBlessingId = blessing.id;
+            const todaysFramework = state.frameworks.find((item) => item.id === state.todaysBlessingId);
+            if (todaysFramework) {
+              renderBlessing(todaysFramework);
+              hideBlessingButton();
+            }
             setStatus(UI_TEXT.ready);
           } else {
             setStatus("");
@@ -748,6 +757,7 @@
         const framework = resolveTodaysBlessing();
         if (framework) {
           renderBlessing(framework);
+          hideBlessingButton();
           setStatus(UI_TEXT.ready);
         }
 
