@@ -35,6 +35,14 @@
         background: radial-gradient(circle at center, rgba(194, 122, 255, 0.15), transparent 62%);
       }
 
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(135deg, rgba(155, 98, 255, 0.1), rgba(255, 158, 96, 0.08));
+      }
+
       .landing {
         width: min(95vw, 900px);
         text-align: center;
@@ -111,8 +119,8 @@
         padding: 1.2rem;
         text-align: left;
         background: rgba(18, 13, 31, 0.64);
-        border: 1px solid var(--rarity-border);
-        box-shadow: 0 0 16px var(--rarity-glow), inset 0 0 0 1px color-mix(in srgb, var(--rarity-color) 38%, transparent);
+        border: 1px solid color-mix(in srgb, var(--rarity-border) 58%, transparent);
+        box-shadow: 0 10px 24px color-mix(in srgb, var(--rarity-glow) 68%, transparent);
         backdrop-filter: blur(2px);
         transition: box-shadow 170ms ease, transform 170ms ease, border-color 170ms ease;
       }
@@ -127,10 +135,12 @@
       .blessing-card::before {
         content: "";
         position: absolute;
-        inset: 0;
+        inset: -20px -16px;
         border-radius: inherit;
-        border: 1px solid color-mix(in srgb, var(--rarity-color) 58%, transparent);
+        background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--rarity-color) 20%, transparent), transparent 70%);
+        filter: blur(22px);
         pointer-events: none;
+        z-index: -1;
       }
 
       .blessing-card h2 {
@@ -165,7 +175,7 @@
       .framework-image {
         min-height: 170px;
         border-radius: 12px;
-        border: 1px dashed color-mix(in srgb, var(--rarity-color) 70%, #fff 30%);
+        border: 1px solid color-mix(in srgb, var(--rarity-color) 25%, transparent);
         background: linear-gradient(140deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01));
         display: grid;
         place-items: center;
@@ -209,9 +219,9 @@
       }
 
       .framework-section {
-        margin-top: 1.2rem;
-        padding-top: 1rem;
-        border-top: 1px solid color-mix(in srgb, var(--rarity-color) 35%, transparent);
+        margin-top: 1.6rem;
+        padding-top: 1.3rem;
+        border-top: 1px solid color-mix(in srgb, var(--rarity-color) 24%, transparent);
       }
 
       .framework-section h4 {
@@ -228,10 +238,10 @@
 
       .glass-card {
         background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.07);
         border-radius: 16px;
         backdrop-filter: blur(10px);
-        box-shadow: 0 0 40px rgba(128, 0, 255, 0.2);
+        box-shadow: 0 14px 36px rgba(86, 40, 140, 0.22);
       }
 
       .stats-container {
@@ -296,7 +306,7 @@
       .detail-box {
         padding: 0.85rem 0.95rem;
         border-radius: 12px;
-        border: 1px solid color-mix(in srgb, var(--rarity-color) 42%, transparent);
+        border: 1px solid color-mix(in srgb, var(--rarity-color) 26%, transparent);
         background: rgba(17, 12, 31, 0.58);
       }
 
