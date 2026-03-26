@@ -2,12 +2,12 @@
   {
     "id": "inversion",
     "name": "Inversion",
-    "category": "Decision-Making",
+    "category": "How Do I Think More Clearly?",
     "rarity": "Epic",
     "tagline": "Failure-First Decision Lens",
-    "description": "Inversion teaches decision quality by starting from failure cases instead of success fantasies. Learners build stronger judgment when they can name what breaks systems before they choose what to build. This framework is especially useful for high-stakes choices where one preventable error can erase many good moves.",
-    "mechanics": "Begin by writing the target outcome with a measurable result and a deadline so your analysis has boundaries. Flip the question and ask, \"If this fails badly, what most likely caused it?\" then capture concrete failure modes. Separate those failures into categories like assumptions, execution gaps, dependency risks, and human coordination mistakes. Turn each high-risk failure mode into a preventive control such as a checklist item, gating criterion, or rollback trigger. Run a short red-team exercise where someone argues against the plan using evidence from past incidents or comparable projects. Prioritize mitigations with a simple impact-by-likelihood score and address the top tier before launch. During execution, revisit the inversion list at milestones to catch newly emerging risks while they are still cheap to fix. End with a reflection that compares predicted failures to real outcomes so your future inversion quality improves over time.",
-    "application": "Use inversion at the start of each major initiative by requiring a one-page \"failure map\" before approving resources.",
+    "description": "Inversion teaches decision quality by starting from failure cases instead of success fantasies. Instead of 'How do I achieve X?', ask 'How would I guarantee failure?' Then avoid those things.",
+    "mechanics": "Begin with a target outcome. Flip the question and ask, 'If this fails badly, what most likely caused it?' Capture concrete failure modes. Separate those failures into categories like assumptions, execution gaps, dependency risks, and human coordination mistakes. Turn each high-risk failure mode into a preventive control such as a checklist item or gating criterion. Run a short red-team exercise where someone argues against the plan using evidence from past incidents.",
+    "application": "Use inversion at the start of each major initiative by requiring a one-page 'failure map' before approving resources.",
     "flavor": "\"When heroes chase glory, sages study ruins.\"",
     "stats": {
       "adaptability": 84,
@@ -18,11 +18,11 @@
   {
     "id": "second-order-thinking",
     "name": "Second-Order Thinking",
-    "category": "Strategy",
+    "category": "How Do I Think More Clearly?",
     "rarity": "Legendary",
     "tagline": "Consequence Chain Navigator",
     "description": "Second-Order Thinking trains you to evaluate decisions by downstream effects, not just immediate wins. It helps learners see how incentives, behavior, and system constraints shift after the first move. The framework creates strategic depth by revealing outcomes that are invisible to first-order analysis.",
-    "mechanics": "Define each option and state its immediate result in one sentence so first-order effects are explicit. Ask what each immediate result changes in behavior, incentives, and resource flow across stakeholders. Map likely second-order effects on a timeline to distinguish short-term discomfort from long-term value. Extend to third-order effects only for high-impact choices so analysis remains proportional to stakes. Identify adaptation loops by asking how competitors, teammates, or users will respond once your action becomes visible. Attach leading indicators to your map so you can observe whether predicted downstream effects are appearing. Pre-plan countermeasures for the two most damaging side effects before committing to the decision. After implementation, compare predicted chains with actual outcomes and update your strategic heuristics.",
+    "mechanics": "Define each option and state its immediate result in one sentence. Ask what each immediate result changes in behavior, incentives, and resource flow. Map likely second-order effects on a timeline to distinguish short-term discomfort from long-term value. Extend to third-order effects only for high-impact choices. Identify adaptation loops by asking how competitors, teammates, or users will respond once your action becomes visible.",
     "application": "When deciding between alternatives, document one expected effect at 30 days, 90 days, and 12 months before choosing.",
     "flavor": "\"The novice counts the first wave; the strategist reads the tides behind it.\"",
     "stats": {
@@ -32,13 +32,141 @@
     }
   },
   {
+    "id": "map-not-territory",
+    "name": "The Map Is Not the Territory",
+    "category": "How Do I Think More Clearly?",
+    "rarity": "Rare",
+    "tagline": "Reality Versus Representation",
+    "description": "Every dashboard, org chart, process document, and strategic plan is a simplification of reality. This framework teaches you that useful models are not the thing itself. Go see the real territory.",
+    "mechanics": "For any important decision, start with what your map shows. Then go observe the territory: sit with users, walk the warehouse, read the unfiltered feedback. Document gaps between what the map promised and what you see. Ask frontline people what the map gets wrong. Update your mental model based on direct observation.",
+    "application": "Before making a change based on metrics, spend time observing where the work actually happens. Talk to three people doing the work.",
+    "flavor": "\"The model is a lens, not a destination.\"",
+    "stats": {
+      "adaptability": 88,
+      "logic": 82,
+      "efficiency": 79
+    }
+  },
+  {
+    "id": "hanlons-razor",
+    "name": "Hanlon's Razor",
+    "category": "How Do I Think More Clearly?",
+    "rarity": "Common",
+    "tagline": "Assumption of Neglect",
+    "description": "Never attribute to malice what is adequately explained by overwhelm, ignorance, or human limitation. This principle prevents toxic interpretations and keeps relationships intact.",
+    "mechanics": "When someone's action frustrates you, pause. List alternative explanations: Did they miss it? Are they drowning in their own work? Do they lack context you have? Is it a gap in communication, not character? Test the least malicious explanation first. If you are still concerned, ask clarifying questions before escalating.",
+    "application": "Before sending a frustrated email, rewrite it assuming good intent. Often the tone will completely change.",
+    "flavor": "\"The simplest explanation is usually correct.\"",
+    "stats": {
+      "adaptability": 91,
+      "logic": 85,
+      "efficiency": 88
+    }
+  },
+  {
+    "id": "empty-boat",
+    "name": "The Empty Boat",
+    "category": "How Do I Think More Clearly?",
+    "rarity": "Common",
+    "tagline": "Friction Without Villain",
+    "description": "A man on a river is struck by another boat. If empty, he stays calm. If someone is in it, he erupts. The collision is identical. The variable is whether he assumes intent. Most workplace friction has no villain.",
+    "mechanics": "When frustrated by a situation or person, ask: Is there actually a villain here, or is the boat empty? Separate the problem from the person. What if this is just the collision of two busy people with no bad intent? Reframe from accusation to curiosity: 'Help me understand what happened' instead of 'Why did you do this?'",
+    "application": "When you feel wronged, rewrite the narrative removing the villain. Most workplace friction dissolves.",
+    "flavor": "\"The boat strikes. The man's anger comes from within.\"",
+    "stats": {
+      "adaptability": 87,
+      "logic": 79,
+      "efficiency": 85
+    }
+  },
+  {
+    "id": "cobra-effect",
+    "name": "The Cobra Effect",
+    "category": "How Do I Think More Clearly?",
+    "rarity": "Epic",
+    "tagline": "Incentive-Driven Unintended Consequences",
+    "description": "Well-intentioned solutions that make problems worse because incentives are wrong. Before implementing any metric or incentive, ask: How could a rational person game this?",
+    "mechanics": "Define the problem and your intended solution. List all ways someone could optimize for the metric without solving the problem. Identify perverse incentives. Redesign the incentive structure so gaming is either impossible or aligns with your actual goal. Pair quantitative metrics with qualitative feedback.",
+    "application": "Before launching any KPI, red-team it. Ask: What would a clever person do to improve this number without solving the real problem?",
+    "flavor": "\"Good intentions without right incentives create monsters.\"",
+    "stats": {
+      "adaptability": 83,
+      "logic": 89,
+      "efficiency": 76
+    }
+  },
+  {
+    "id": "goodharts-law",
+    "name": "Goodhart's Law",
+    "category": "How Do I Think More Clearly?",
+    "rarity": "Rare",
+    "tagline": "Measurement Degradation",
+    "description": "When a measure becomes a target, it ceases to be a good measure. Use metrics as diagnostic instruments, not goals. Pair quantitative with qualitative.",
+    "mechanics": "For any metric you care about, ask: What happens if someone optimises only for this? Pair it with 2-3 other metrics that would suffer if this one is gamed. Track a cohort of related measures that must move together. When multiple metrics must move in concert, gaming any single one becomes harder.",
+    "application": "Never manage to a single metric. Always use a dashboard of 3-5 related measures that keep each other honest.",
+    "flavor": "\"One metric to rule them all always corrupts. You need a fellowship of metrics.\"",
+    "stats": {
+      "adaptability": 82,
+      "logic": 91,
+      "efficiency": 80
+    }
+  },
+  {
+    "id": "decision-journal",
+    "name": "The Decision Journal",
+    "category": "How Do I Make Better Decisions?",
+    "rarity": "Rare",
+    "tagline": "Decision Tracker for Learning",
+    "description": "Record consequential decisions: what, why, alternatives rejected, confidence level, emotional state. Review quarterly to defeat hindsight bias and improve future judgment.",
+    "mechanics": "For any significant decision, write: the decision, your reasoning, alternatives you rejected and why, confidence level (0-100%), emotional state, and key assumptions. Set a review date. When the outcome is known, revisit the entry. Did the outcome match your prediction? If not, where was your reasoning flawed? Update your decision-making heuristics.",
+    "application": "Keep a shared decision journal with your team. Review quarterly. Celebrate good reasoning, even when outcomes disappoint.",
+    "flavor": "\"Write it down, or you will convince yourself you were right all along.\"",
+    "stats": {
+      "adaptability": 86,
+      "logic": 93,
+      "efficiency": 82
+    }
+  },
+  {
+    "id": "fear-setting",
+    "name": "Fear-Setting",
+    "category": "How Do I Make Better Decisions?",
+    "rarity": "Rare",
+    "tagline": "Define, Prevent, Repair",
+    "description": "Define worst-case scenarios, the steps to prevent them, and the steps to repair if they happen anyway. This Stoic practice converts abstract fear into actionable risk management.",
+    "mechanics": "List 10-20 specific worst-case scenarios. For each: What reduces the probability? What would you do to recover if it happened? Who could help? How quickly could you adapt? Then ask: What is the cost of inaction? Often, the 'safe' option carries hidden costs.",
+    "application": "Before a major decision, spend 30 minutes on fear-setting. You will feel more confident, not because risks disappear, but because you have a response plan.",
+    "flavor": "\"Name the ghosts, and they lose power.\"",
+    "stats": {
+      "adaptability": 85,
+      "logic": 88,
+      "efficiency": 79
+    }
+  },
+  {
+    "id": "premortem",
+    "name": "Pre-Mortem",
+    "category": "How Do I Make Better Decisions?",
+    "rarity": "Rare",
+    "tagline": "Future-Failure Prevention Ritual",
+    "description": "Imagine a project has already failed. Work backwards. This gives people permission to voice concerns that would otherwise stay hidden in meetings.",
+    "mechanics": "Assemble key stakeholders before execution. Ask everyone to imagine the initiative has failed significantly. Have participants write independent failure narratives first. Cluster risks into themes: strategy mismatch, execution gaps, staffing, external dependencies, communication breakdowns. Score by probability and impact. Design mitigations for the top-tier risks.",
+    "application": "Before kickoff, run a 30-minute pre-mortem and require every top risk to include both a detection signal and a named response owner.",
+    "flavor": "\"Imagine the tomb, then build the fortress.\"",
+    "stats": {
+      "adaptability": 86,
+      "logic": 90,
+      "efficiency": 83
+    }
+  },
+  {
     "id": "five-whys",
-    "name": "Five Whys",
-    "category": "Problem Solving",
+    "name": "The Five Whys",
+    "category": "How Do I Make Better Decisions?",
     "rarity": "Common",
     "tagline": "Root-Cause Excavation Method",
-    "description": "Five Whys develops diagnostic discipline by tracing symptoms to structural causes. It teaches teams to replace blame and guesswork with evidence-linked reasoning. The method stays simple on purpose, making it easy to teach and repeat across incidents.",
-    "mechanics": "Start with a specific, observable problem statement that includes time, place, and impact. Ask the first why and answer using verifiable data such as logs, transcripts, screenshots, or direct observation notes. Continue asking why, ensuring each answer causes the next question rather than branching into unrelated narratives. Stop only when you reach a systemic and actionable cause that your team can directly influence. Validate the proposed root cause by checking whether fixing it would prevent similar failures in adjacent scenarios. If any link in the chain is speculative, pause the analysis and gather additional evidence before finalizing conclusions. Convert the root cause into one or two corrective actions with explicit owners, due dates, and success metrics. Revisit the problem over subsequent cycles to confirm recurrence declines, proving you treated cause instead of symptom.",
+    "description": "Five Whys develops diagnostic discipline by tracing symptoms to structural causes. It teaches teams to replace blame and guesswork with evidence-linked reasoning.",
+    "mechanics": "Start with a specific, observable problem statement that includes time, place, and impact. Ask the first why and answer using verifiable data: logs, transcripts, screenshots, direct observation notes. Continue asking why, ensuring each answer causes the next question. Stop only when you reach a systemic and actionable cause your team can directly influence. Validate the root cause by checking whether fixing it would prevent similar failures.",
     "application": "In post-incident reviews, require each why-answer pair to cite one artifact so the chain remains evidence-based.",
     "flavor": "\"Each why is a torch deeper into the mine.\"",
     "stats": {
@@ -48,13 +176,333 @@
     }
   },
   {
+    "id": "three-one-one-method",
+    "name": "The 3-1-1 Method",
+    "category": "How Do I Make Better Decisions?",
+    "rarity": "Common",
+    "tagline": "Problem Solver's Framework",
+    "description": "One problem, three solutions, one recommendation. Never arrive with only a problem. Always bring options.",
+    "mechanics": "State the problem clearly. Propose three distinct solutions, each with pros, cons, and effort estimate. Give a clear recommendation and the reasoning behind it. Be transparent about tradeoffs. If the stakeholder chooses differently, they do so with full information.",
+    "application": "Before escalating a problem, always prepare three solutions. It transforms you from 'someone who brings problems' to 'someone who brings options'.",
+    "flavor": "\"Problems are currency. Solutions are treasure.\"",
+    "stats": {
+      "adaptability": 81,
+      "logic": 87,
+      "efficiency": 84
+    }
+  },
+  {
+    "id": "daci",
+    "name": "DACI",
+    "category": "How Do I Make Better Decisions?",
+    "rarity": "Common",
+    "tagline": "Clear Decision Authority",
+    "description": "Driver, Approver, Contributors, Informed. Clarify who decides, who advises, and who is kept in the loop. This framework eliminates decision paralysis.",
+    "mechanics": "For any decision: assign one Driver (runs the process), one Approver (final call), Contributors (provide expert input, voice but no vote), and Informed (need to know the outcome). Communicate roles clearly upfront. Make decisions in the DACI framework, not by committee.",
+    "application": "For every significant decision, write a one-line DACI assignment. Example: 'Knowledge Manager drives, VP Engineering approves, SMEs contribute, Support/Marketing informed.'",
+    "flavor": "\"One driver, one approver, clarity for all.\"",
+    "stats": {
+      "adaptability": 79,
+      "logic": 86,
+      "efficiency": 89
+    }
+  },
+  {
+    "id": "bias-for-action",
+    "name": "Bias for Action",
+    "category": "How Do I Make Better Decisions?",
+    "rarity": "Rare",
+    "tagline": "Two-Way Doors, One-Way Doors",
+    "description": "Type 2 (reversible, two-way doors): decide fast. Type 1 (irreversible, one-way doors): deliberate carefully. Most knowledge work decisions are Type 2.",
+    "mechanics": "For any decision, ask: Can I undo this in a day or a week? If yes, Type 2 door. Decide in a day. If no, Type 1 door. Slow down. The problem is not rushing one-way decisions; it is treating every two-way door like a one-way door.",
+    "application": "Categorize your decision backlog as Type 1 or Type 2. Spend your deliberation time on Type 1 only.",
+    "flavor": "\"Most doors swing both ways. Move through them faster.\"",
+    "stats": {
+      "adaptability": 84,
+      "logic": 82,
+      "efficiency": 91
+    }
+  },
+  {
+    "id": "kwl",
+    "name": "KWL",
+    "category": "How Do I Make Better Decisions?",
+    "rarity": "Common",
+    "tagline": "Know, Wonder, Learn",
+    "description": "What do I Know? What do I Wonder? What did I Learn? This simple framework keeps you honest during research and evaluation.",
+    "mechanics": "Before investigating: list what you already know. List what you are genuinely uncertain about (wonder). After investigation: list what you learned. Compare your predictions to reality. Were you surprised? Why?",
+    "application": "Use KWL before evaluating any major tool or hire. It prevents confirmation bias and forces you to articulate your assumptions.",
+    "flavor": "\"Humility begins with naming what you do not know.\"",
+    "stats": {
+      "adaptability": 80,
+      "logic": 85,
+      "efficiency": 83
+    }
+  },
+  {
+    "id": "personal-readme",
+    "name": "The Personal README",
+    "category": "How Do I Communicate More Effectively?",
+    "rarity": "Common",
+    "tagline": "User Manual for Working With You",
+    "description": "A one-page document describing your communication preferences, energy patterns, conflict style, and how to work best with you. Transparency builds trust.",
+    "mechanics": "Write one page covering: peak hours and when not to interrupt, communication channels (email, Slack, calls), how you prefer feedback (direct or indirect), conflict resolution style, pronouns, and one thing people often misunderstand about you. Share it on day one. Update it as you evolve.",
+    "application": "Create your Personal README and share it in your team Slack. Encourage others to do the same.",
+    "flavor": "\"Clarity saves everyone time.\"",
+    "stats": {
+      "adaptability": 86,
+      "logic": 78,
+      "efficiency": 87
+    }
+  },
+  {
+    "id": "flip-it-email",
+    "name": "FLIP It Email",
+    "category": "How Do I Communicate More Effectively?",
+    "rarity": "Common",
+    "tagline": "Ask First, Context Second",
+    "description": "Put the ask first, context second. Front-load your email with the action you need, then explain why.",
+    "mechanics": "Line 1: Clear action needed and deadline. Lines 2-4: Why this matters and context. Everything else: supporting detail. This respects the reader's time and makes your intent unmissable.",
+    "application": "Before sending an email with a request, rewrite it with the ask first. Watch response time improve.",
+    "flavor": "\"Respect the recipient's time. Lead with the ask.\"",
+    "stats": {
+      "adaptability": 83,
+      "logic": 81,
+      "efficiency": 92
+    }
+  },
+  {
+    "id": "one-pager",
+    "name": "The One-Pager",
+    "category": "How Do I Communicate More Effectively?",
+    "rarity": "Rare",
+    "tagline": "Executive Summary Discipline",
+    "description": "Condense your update to one page: Status (one sentence), Key Developments (3-5 points), Decisions Needed, Risks. If you cannot fit it, think harder.",
+    "mechanics": "Use concise language. One sentence per concept. Use bold for emphasis. Include numbers. Save space for tradeoffs and risks. If someone reads only the bold, they should understand the gist.",
+    "application": "For any quarterly update or stakeholder communication, start with a one-pager. Build the longer version only if they ask.",
+    "flavor": "\"Brevity is not lazy. It is respectful.\"",
+    "stats": {
+      "adaptability": 81,
+      "logic": 84,
+      "efficiency": 89
+    }
+  },
+  {
+    "id": "weekly-update",
+    "name": "The Weekly Update",
+    "category": "How Do I Communicate More Effectively?",
+    "rarity": "Common",
+    "tagline": "52 Snapshots Equal Your Annual Review",
+    "description": "Every Friday: Completed, In Progress, Blockers, Highlights. Save copies. At annual review time, search your archive for evidence.",
+    "mechanics": "Spend 15 minutes every Friday capturing the week. What shipped? What is in progress and on track? What is blocked? What is one highlight? Save to a folder or Wiki. In November, search your archive and your annual review writes itself.",
+    "application": "Start this week. Make it a calendar reminder. Your future self will be grateful.",
+    "flavor": "\"Memory fades. Documentation prevails.\"",
+    "stats": {
+      "adaptability": 79,
+      "logic": 80,
+      "efficiency": 86
+    }
+  },
+  {
+    "id": "skip-level-meetings",
+    "name": "Skip-Level Meetings",
+    "category": "How Do I Communicate More Effectively?",
+    "rarity": "Rare",
+    "tagline": "Align Upward Strategically",
+    "description": "In skip-level meetings, align to the skip-level person's goals, not your daily tasks. This builds visibility and strategic alignment.",
+    "mechanics": "Research the skip-level person's public goals and recent communications. Frame your update in that context. Instead of 'I have been busy with X,' say 'The X initiative supports goal Y that your team announced. Here is progress and here are the three biggest obstacles.'",
+    "application": "In a skip-level meeting, lead with alignment to their stated priorities. Watch them remember your name.",
+    "flavor": "\"Connect your work to their mission.\"",
+    "stats": {
+      "adaptability": 85,
+      "logic": 83,
+      "efficiency": 84
+    }
+  },
+  {
+    "id": "blue-green-red-speakers",
+    "name": "Blue, Green, and Red Speakers",
+    "category": "How Do I Communicate More Effectively?",
+    "rarity": "Rare",
+    "tagline": "Meeting Contribution Types",
+    "description": "Blue: Nodders. Pleasant, empty. Green: Real input. Moves things forward. Red: Drains. Blocks without proposing. Recognize the pattern and facilitate accordingly.",
+    "mechanics": "In meetings, notice who is adding real value (green), who is cheerleading without substance (blue), and who is blocking without offering alternatives (red). Protect green speakers. Challenge blue speakers to go deeper. Redirect red speakers toward solutions.",
+    "application": "In your next meeting, identify one blue, one green, one red speaker. Adjust your facilitation based on their contribution type.",
+    "flavor": "\"Listen for signal, not just sound.\"",
+    "stats": {
+      "adaptability": 82,
+      "logic": 79,
+      "efficiency": 83
+    }
+  },
+  {
+    "id": "teach-back-method",
+    "name": "The Teach-Back Method",
+    "category": "How Do I Communicate More Effectively?",
+    "rarity": "Common",
+    "tagline": "Confirm Understanding Through Explanation",
+    "description": "Ask them to explain it back in their own words. Replace 'Do you understand?' with 'Walk me through how you would do this.' It reveals gaps before they matter.",
+    "mechanics": "After explaining a process, do not ask 'Any questions?' Instead, ask 'Walk me through how you would do this' or 'Tell me back what I just explained.' Listen to where they get confused or skip steps. Now you know exactly what to clarify.",
+    "application": "Use teach-back with every new process or hire. It cuts rework and reduces errors.",
+    "flavor": "\"Understanding lives in their words, not yours.\"",
+    "stats": {
+      "adaptability": 87,
+      "logic": 84,
+      "efficiency": 85
+    }
+  },
+  {
+    "id": "working-out-loud",
+    "name": "Working Out Loud",
+    "category": "How Do I Communicate More Effectively?",
+    "rarity": "Common",
+    "tagline": "Make Work Visible, Narrate It",
+    "description": "Make work visible, narrate it, frame it as contribution. This builds buy-in, reveals collaboration opportunities, and creates accountability.",
+    "mechanics": "On day one of a project, share the wireframe, outline, or plan. Ask for feedback. As you work, post updates: 'Found three articles on X. Any others I should include?' Invite input early and often. When you publish, people already understand and often defend your work.",
+    "application": "Start your next project by sharing your plan or wireframe before diving in. You will get better feedback, faster.",
+    "flavor": "\"Transparency builds collaboration.\"",
+    "stats": {
+      "adaptability": 88,
+      "logic": 79,
+      "efficiency": 85
+    }
+  },
+  {
+    "id": "one-thing",
+    "name": "The ONE Thing",
+    "category": "How Do I Get More Done with Less Friction?",
+    "rarity": "Rare",
+    "tagline": "The Focusing Question",
+    "description": "What is the ONE Thing I can do such that by doing it, everything else becomes easier or unnecessary? Focus. Stop multitasking.",
+    "mechanics": "Monday morning, brain dump all tasks. Ask the ONE Thing question. What if you could only accomplish one thing this week? Protect time for that. Everything else waits.",
+    "application": "Every Monday, answer the ONE Thing question. Block calendar time for it before anything else.",
+    "flavor": "\"One domino falls. The rest follow.\"",
+    "stats": {
+      "adaptability": 79,
+      "logic": 86,
+      "efficiency": 93
+    }
+  },
+  {
+    "id": "energy-based-scheduling",
+    "name": "Energy-Based Scheduling",
+    "category": "How Do I Get More Done with Less Friction?",
+    "rarity": "Rare",
+    "tagline": "Peak Hours Over Clock Hours",
+    "description": "Schedule by energy, not arbitrary time slots. Track your peak and trough hours for 1-2 weeks. Then structure your day to match.",
+    "mechanics": "For two weeks, note your energy level hourly. Identify peaks and troughs. Restructure: deep work during peaks, meetings and admin during troughs. You get more done, faster, with less friction.",
+    "application": "Track your energy this week. Next week, reorder your calendar based on what you find.",
+    "flavor": "\"Work with your biology, not against it.\"",
+    "stats": {
+      "adaptability": 86,
+      "logic": 80,
+      "efficiency": 89
+    }
+  },
+  {
+    "id": "parkinsons-law",
+    "name": "Parkinson's Law",
+    "category": "How Do I Get More Done with Less Friction?",
+    "rarity": "Common",
+    "tagline": "Work Expands to Fill Time",
+    "description": "Work expands to fill the time available. Give yourself tighter deadlines. Meetings end faster. Projects launch sooner.",
+    "mechanics": "For a meeting or project, set an ambitious but achievable deadline. Default deadlines are often padded. Tighter constraints force focus and eliminate tangents.",
+    "application": "For your next meeting, cut the time in half. Watch how much sharper the discussion becomes.",
+    "flavor": "\"Constraints breed focus.\"",
+    "stats": {
+      "adaptability": 81,
+      "logic": 77,
+      "efficiency": 94
+    }
+  },
+  {
+    "id": "two-minute-rule",
+    "name": "The Two-Minute Rule",
+    "category": "How Do I Get More Done with Less Friction?",
+    "rarity": "Common",
+    "tagline": "Action Over Deferment",
+    "description": "Under two minutes? Do it now. The overhead of deferring exceeds the effort of doing. Small tasks accumulate into inbox debt.",
+    "mechanics": "When a task takes less than two minutes, complete it immediately. Email confirmation, quick approval, brief response. The cognitive and logistical cost of deferring is higher than doing.",
+    "application": "This week, apply the Two-Minute Rule to everything. Notice how much lighter your mental load becomes.",
+    "flavor": "\"Do not defer what you can dismiss.\"",
+    "stats": {
+      "adaptability": 83,
+      "logic": 79,
+      "efficiency": 91
+    }
+  },
+  {
+    "id": "breaking-down-boxes",
+    "name": "Breaking Down the Boxes",
+    "category": "How Do I Get More Done with Less Friction?",
+    "rarity": "Common",
+    "tagline": "Maintenance Over Crisis",
+    "description": "Small boring tasks pile up into crises when deferred. Do them in the moment. Five minutes now beats five hours of damage control later.",
+    "mechanics": "When you notice a small task that needs doing (update an article, fix a broken link, clarify a doc), do it before it becomes a bigger problem. Small preventive work is always cheaper than crisis response.",
+    "application": "This week, do the small maintenance task the moment you notice it. See how it prevents larger problems.",
+    "flavor": "\"The boxes always come for you. Pay them now.\"",
+    "stats": {
+      "adaptability": 78,
+      "logic": 81,
+      "efficiency": 88
+    }
+  },
+  {
+    "id": "fire-and-forget",
+    "name": "Fire and Forget",
+    "category": "How Do I Get More Done with Less Friction?",
+    "rarity": "Rare",
+    "tagline": "Independent Problem-Solving",
+    "description": "Be the employee trusted to handle problems independently. Clarify scope, communicate progress, deliver outcomes, flag risks. Do not wait for permission.",
+    "mechanics": "When you see a problem, do not ask for approval to investigate. Take ownership: 'On it. Findings with recommendations by Thursday.' Communicate progress. Deliver actionable recommendations, not just problems.",
+    "application": "Next time you spot a problem, do not ask for permission. Take ownership and deliver a solution.",
+    "flavor": "\"Solve first. Report second.\"",
+    "stats": {
+      "adaptability": 84,
+      "logic": 85,
+      "efficiency": 87
+    }
+  },
+  {
+    "id": "dont-do-it-list",
+    "name": "The Don't-Do-It List",
+    "category": "How Do I Get More Done with Less Friction?",
+    "rarity": "Common",
+    "tagline": "Negative Commitments",
+    "description": "Write what you will NOT do. Negative commitments are stronger than positive intentions. Each item is a scar from a past lesson.",
+    "mechanics": "List things you will not do: attend meetings without agendas, skip team sync, take on projects without understanding the trade-off. The list grows from experience. Each entry represents something you learned the hard way.",
+    "application": "Write your Don't-Do-It List. Post it where you see it. Add to it when you break a rule and pay the cost.",
+    "flavor": "\"A clear 'no' is more powerful than a vague 'yes'.\"",
+    "stats": {
+      "adaptability": 79,
+      "logic": 82,
+      "efficiency": 86
+    }
+  },
+  {
+    "id": "map-then-automate",
+    "name": "Map Then Automate",
+    "category": "How Do I Get More Done with Less Friction?",
+    "rarity": "Rare",
+    "tagline": "Understanding Before Optimization",
+    "description": "Understand your workflow before optimizing with tools. Automate the right steps, not the wrong ones.",
+    "mechanics": "Draw your workflow as boxes and arrows. Identify where time is actually spent. Only then look for automation. Often, steps 2 and 4 are automatable, but steps 1, 3, and 5 need humans. Generic AI adoption without workflow understanding wastes money and creates frustration.",
+    "application": "Before buying a tool, map your current process. Highlight the bottleneck. Only then look for solutions.",
+    "flavor": "\"Automate the boring parts. Keep the human parts human.\"",
+    "stats": {
+      "adaptability": 85,
+      "logic": 87,
+      "efficiency": 88
+    }
+  },
+  {
     "id": "kaizen",
     "name": "Kaizen",
-    "category": "Continuous Improvement",
+    "category": "How Do I Keep Improving?",
     "rarity": "Rare",
     "tagline": "Compounding Improvement Loop",
-    "description": "Kaizen creates a practical learning culture through frequent, low-risk process experiments. Instead of waiting for a big transformation, learners build capability by improving one repeatable step at a time. Over months, these micro-gains compound into major performance and quality improvements.",
-    "mechanics": "Select one recurring workflow and establish a baseline metric such as lead time, defect rate, or rework frequency. Break the workflow into stages and mark friction points where delays, confusion, or handoff failures occur. Form a small improvement hypothesis that can be tested within days rather than weeks. Implement one change at a time so causal impact stays clear and measurement remains interpretable. Track before-and-after data in a visible log that includes what changed, who changed it, and what result followed. Standardize improvements that work by updating checklists, SOP snippets, or templates used by the team. Invite frontline contributors to propose the next test because they observe process pain in real time. Repeat this cycle continuously, treating each iteration as a short learning sprint that strengthens both results and team judgment.",
+    "description": "Small daily improvements compounded over time. Not overhauls. The people closest to the work know what needs fixing. Make improvement a habit, not an event.",
+    "mechanics": "Every Friday, 15 minutes: What was one unnecessary step this week? One friction point? One thing I looked up that should be documented? Fix it. After a year: 50 small improvements. Collectively, they reshape your workflow. Compound interest for operational excellence.",
     "application": "Run a weekly 20-minute Kaizen standup where each member presents one completed experiment and one next hypothesis.",
     "flavor": "\"A thousand tiny sharpenings can split a mountain.\"",
     "stats": {
@@ -64,14 +512,142 @@
     }
   },
   {
+    "id": "go-to-gemba",
+    "name": "Go to Gemba",
+    "category": "How Do I Keep Improving?",
+    "rarity": "Common",
+    "tagline": "See the Real Work",
+    "description": "Go where work happens. Observe, listen, learn. Metrics never tell the whole story. People do.",
+    "mechanics": "Sit with someone doing the work for 2-4 hours. Watch their workflow. Ask what slows them down. Take notes. Ask clarifying questions. Do not defend your system; understand their experience first.",
+    "application": "This month, spend two hours with someone doing frontline work. Watch one complete workflow. Take notes.",
+    "flavor": "\"The real work lives where you are not.\"",
+    "stats": {
+      "adaptability": 89,
+      "logic": 81,
+      "efficiency": 82
+    }
+  },
+  {
+    "id": "feedback-flywheel",
+    "name": "The Feedback Flywheel",
+    "category": "How Do I Keep Improving?",
+    "rarity": "Rare",
+    "tagline": "Self-Sustaining Improvement",
+    "description": "Embed feedback loops so improvement sustains itself. Every output gets a feedback mechanism. Act on findings. Feed results into the next iteration.",
+    "mechanics": "For every major output (article, tool, process), build in feedback collection: surveys, usage analytics, or direct interviews. Review quarterly. Act on top findings. Communicate changes based on feedback. Repeat next iteration.",
+    "application": "For your next major project, build in one feedback mechanism before launch. Act on it quarterly.",
+    "flavor": "\"Feedback without action is noise. Action without feedback is guessing.\"",
+    "stats": {
+      "adaptability": 86,
+      "logic": 85,
+      "efficiency": 84
+    }
+  },
+  {
+    "id": "experiment-log",
+    "name": "The Experiment Log",
+    "category": "How Do I Keep Improving?",
+    "rarity": "Rare",
+    "tagline": "Evidence-Based Practice",
+    "description": "Hypothesis, method, result, learning. Build your evidence base. Stop relying on opinion and gut feel.",
+    "mechanics": "For any change you want to test: state the hypothesis clearly, describe the method (test vs control), record the result with numbers, and note the learning. Over time, your experiment log becomes your playbook. 'We tested X. It increased Y by 32%. Here is why we think that happened.'",
+    "application": "Start an experiment log this month. Commit to one test per week. Build your evidence base.",
+    "flavor": "\"Data beats opinion.\"",
+    "stats": {
+      "adaptability": 88,
+      "logic": 94,
+      "efficiency": 83
+    }
+  },
+  {
+    "id": "shu-ha-ri",
+    "name": "Shu-Ha-Ri",
+    "category": "How Do I Keep Improving?",
+    "rarity": "Epic",
+    "tagline": "Three Mastery Stages",
+    "description": "Shu (Follow): Learn rules exactly. Ha (Break): Understand why, adapt. Ri (Transcend): Rules internalised, create new. Match management to stage.",
+    "mechanics": "Shu stage: strict templates, checklists, clear rules. Ha stage: understand the 'why', encourage thoughtful adaptation. Ri stage: trust them to break rules in service of the spirit. Many teams fail by giving Shu freedom or imposing Shu rules on Ri experts.",
+    "application": "Assess your team members' mastery stage. Match your management approach accordingly.",
+    "flavor": "\"Rules are training wheels. Eventually, you ride without them.\"",
+    "stats": {
+      "adaptability": 91,
+      "logic": 89,
+      "efficiency": 81
+    }
+  },
+  {
+    "id": "rapid-prototyping",
+    "name": "Rapid Prototyping",
+    "category": "How Do I Keep Improving?",
+    "rarity": "Common",
+    "tagline": "Build Rough, Test Fast",
+    "description": "Build rough, test fast, learn cheap. Errors cost less early. Do not spend two weeks designing before testing.",
+    "mechanics": "Instead of a full project, build a prototype: a rough mockup, a single email, a 10-minute video. Test with 3-5 users. Gather signal. Then decide whether to expand. This cycle is 10x cheaper than building the full thing first.",
+    "application": "For your next idea, spend two hours on a rough prototype. Test with five people. Make a decision based on their feedback.",
+    "flavor": "\"Rough and ready beats perfect and late.\"",
+    "stats": {
+      "adaptability": 87,
+      "logic": 80,
+      "efficiency": 90
+    }
+  },
+  {
+    "id": "red-teaming-dogfooding",
+    "name": "Red Teaming & Dogfooding",
+    "category": "How Do I Keep Improving?",
+    "rarity": "Rare",
+    "tagline": "Attack Your Own Work",
+    "description": "Red team: assign people to attack your work before launch. Dogfood: use what you build. Both reveal blind spots.",
+    "mechanics": "Red team: Have a colleague use your product as a new user and try to break it. Dogfood: Use the thing you built. Use your own onboarding. Read your own documentation like a user would. Problems that seemed invisible from inside become obvious.",
+    "application": "Before any launch, do a red-team session and a dogfooding session. Document findings. Fix the top 5 issues.",
+    "flavor": "\"The creator is blind to what the user sees.\"",
+    "stats": {
+      "adaptability": 85,
+      "logic": 88,
+      "efficiency": 82
+    }
+  },
+  {
+    "id": "customer-journey-mapping",
+    "name": "Customer Journey Mapping",
+    "category": "How Do I Keep Improving?",
+    "rarity": "Rare",
+    "tagline": "Map the Full Experience",
+    "description": "Map the full experience including steps, thoughts, feelings, and pain points. Emotions matter. Friction matters. Numbers alone do not tell the story.",
+    "mechanics": "Interview 3-5 users. Map their journey from trigger to completion: what steps do they take, what do they think at each step, how do they feel, where do they get stuck? Visualize it. Identify the moments of highest friction and emotion. Design interventions.",
+    "application": "Map one user journey end-to-end. Conduct 3-5 interviews. Identify the top three pain points. Design solutions.",
+    "flavor": "\"The user's experience lives in their feelings, not your metrics.\"",
+    "stats": {
+      "adaptability": 89,
+      "logic": 83,
+      "efficiency": 79
+    }
+  },
+  {
+    "id": "johari-window",
+    "name": "The Johari Window",
+    "category": "How Do I Keep Improving?",
+    "rarity": "Common",
+    "tagline": "Self-Awareness Through Feedback",
+    "description": "Open: Known to you and others. Blind Spot: Others see; you do not. Hidden: You know; others do not. Unknown: Neither aware. Expand the Open Area.",
+    "mechanics": "Ask for feedback from multiple people: 'What is one thing I do well that I might not realise?' 'What is one thing I could improve that I am not aware of?' Listen without defending. Expand your open area by bringing blind spots into awareness and strategically disclosing hidden strengths.",
+    "application": "Ask five colleagues two questions: one strength you might not realise, one area for growth. Listen. Update your self-awareness.",
+    "flavor": "\"Others see you more clearly than you see yourself.\"",
+    "stats": {
+      "adaptability": 88,
+      "logic": 84,
+      "efficiency": 81
+    }
+  },
+  {
     "id": "swipe-file",
-    "name": "Swipe File",
-    "category": "Creativity",
+    "name": "The Swipe File",
+    "category": "How Do I Build a Career, Not Just Do a Job?",
     "rarity": "Common",
     "tagline": "Pattern Library for Makers",
-    "description": "A Swipe File supports skill development by turning great examples into reusable creative patterns. Learners avoid blank-page paralysis because they can study proven structures before drafting. Its real value comes from analysis and adaptation, not copying finished work.",
-    "mechanics": "Collect strong examples across channels and keep only entries with clear outcomes or demonstrated audience response. Annotate each example with context fields like audience, objective, format, and why the execution likely performed well. Tag patterns such as opening hook, narrative arc, offer framing, visual layout, or objection handling so retrieval is fast. During planning, select several relevant references and dissect how each one handles attention, trust, and action. Extract the transferable moves and rebuild them with your own voice, constraints, and product truth. Draft quickly using the extracted pattern skeleton, then revise for originality and contextual fit. After publishing, record performance metrics and add your own successful work back into the library. Prune stale entries quarterly so your swipe file reflects current audience expectations and platform norms.",
-    "application": "Before creating content, review three references and note one pattern from each that you will adapt in your own draft.",
+    "description": "A curated collection of excellent examples. Not to copy; to learn patterns. Every great creator has one.",
+    "mechanics": "Collect strong examples: emails that landed, proposals that won, articles that resonated. Annotate: audience, objective, what worked. Tag patterns: opening hook, narrative arc, offer framing. During planning, select references, dissect their moves, rebuild with your voice.",
+    "application": "Start a swipe file this week. Collect 10 excellent examples from your field. Tag and annotate. Use it when you create.",
     "flavor": "\"The archive does not steal fire; it teaches where sparks survive.\"",
     "stats": {
       "adaptability": 85,
@@ -80,83 +656,35 @@
     }
   },
   {
-    "id": "first-principles",
-    "name": "First Principles",
-    "category": "Problem Solving",
-    "rarity": "Epic",
-    "tagline": "Fundamental Truth Rebuilder",
-    "description": "First Principles reasoning teaches you to rebuild solutions from foundational truths instead of inherited assumptions. It is powerful when conventional practices are expensive, slow, or poorly justified. Learners gain breakthrough potential by distinguishing what is truly constrained from what is merely customary.",
-    "mechanics": "Define the problem with precision by naming the objective, hard constraints, and acceptable tradeoffs. List all assumptions currently guiding your approach, especially statements accepted without evidence. Decompose the problem into primitive truths grounded in physics, math, economics, or operational reality. Test each assumption against those truths and discard assumptions that fail causal scrutiny. Reconstruct a fresh solution using only validated truths plus explicit tradeoff decisions. Compare the rebuilt approach with status-quo options for cost, speed, quality, and risk exposure. Prototype the highest-leverage difference early to validate that theory survives real-world constraints. Capture which assumptions changed and why so the team can reuse the learning in adjacent decisions.",
-    "application": "When you hear \"that is how we always do it,\" pause and verify whether the claimed constraint is physical, legal, or just habitual.",
-    "flavor": "\"When old maps fail, return to the bedrock and redraw the world.\"",
-    "stats": {
-      "adaptability": 90,
-      "logic": 96,
-      "efficiency": 74
-    }
-  },
-  {
-    "id": "pareto-principle",
-    "name": "Pareto Principle",
-    "category": "Prioritization",
-    "rarity": "Rare",
-    "tagline": "Vital Few Focus Filter",
-    "description": "The Pareto Principle helps learners identify the minority of actions that produce most measurable results. It prevents diluted effort by making prioritization data-driven rather than intuitive. Used consistently, it improves throughput without increasing total workload.",
-    "mechanics": "Choose a measurable outcome such as revenue growth, churn reduction, error prevention, or cycle-time improvement. List contributing inputs and collect impact data for each over the same observation period. Rank inputs by contribution and calculate cumulative percentages to reveal concentration patterns. Identify the vital few contributors generating the dominant share of the outcome, even when the split is not exactly 80/20. Reallocate attention, budget, and execution capacity toward those high-leverage inputs first. Reduce, automate, or delegate low-yield activities that consume disproportionate effort. Recompute the distribution on a regular cadence because leverage shifts as products, teams, and markets evolve. Pair Pareto focus with quality guardrails so short-term optimization does not erode trust or long-term resilience.",
-    "application": "At month-end, create an impact ranking of your work and intentionally remove at least one low-yield recurring task.",
-    "flavor": "\"Master the vital few, and the trivial many lose their grip.\"",
+    "id": "parking-lot",
+    "name": "The Parking Lot",
+    "category": "How Do I Build a Career, Not Just Do a Job?",
+    "rarity": "Common",
+    "tagline": "Ideas Waiting for Their Moment",
+    "description": "A space for ideas not ready for action but worth preserving. Ideas do not evaporate; they wait. A Parking Lot is not where ideas go to die. It is where they wait for their moment.",
+    "mechanics": "During planning or brainstorms, ideas that are brilliant but out of scope go to the Parking Lot (shared doc or list). Review it quarterly. Sometimes the right moment arrives: 'Remember Sarah's idea? Now is the time.'",
+    "application": "Create a shared Parking Lot for your team. Move out-of-scope ideas there. Review quarterly.",
+    "flavor": "\"Gandalf arrives precisely when he means to.\"",
     "stats": {
       "adaptability": 82,
-      "logic": 88,
-      "efficiency": 94
+      "logic": 76,
+      "efficiency": 84
     }
   },
   {
-    "id": "ooda-loop",
-    "name": "OODA Loop",
-    "category": "Execution",
+    "id": "work-sharing-buddy",
+    "name": "The Work-Sharing Buddy",
+    "category": "How Do I Build a Career, Not Just Do a Job?",
     "rarity": "Rare",
-    "tagline": "Rapid Adaptation Cycle",
-    "description": "OODA Loop builds execution agility through fast cycles of Observe, Orient, Decide, and Act. Learners improve by shortening feedback loops rather than waiting for certainty. The framework rewards teams that update mental models quickly as conditions change.",
-    "mechanics": "Observe by collecting fresh signals from customers, systems, competitors, and internal operations. Orient by interpreting those signals through context, goals, constraints, and known biases. Decide on a near-term action that advances the mission while preserving flexibility for the next cycle. Act quickly with a bounded move, experiment, or operational adjustment rather than a large irreversible commitment. Capture immediate feedback and feed it into the next observation phase without delay. Reduce loop time by clarifying decision rights and removing slow approval bottlenecks. Maintain explicit success and stop criteria so speed does not degrade decision quality. Run periodic after-action reviews to improve orientation accuracy and sharpen future decision heuristics.",
-    "application": "For fast projects, hold a 10-minute daily OODA huddle to update assumptions, choose one decisive action, and define a feedback signal.",
-    "flavor": "\"In the storm, victory belongs to the one who loops faster.\"",
+    "tagline": "Trusted Peer Feedback",
+    "description": "A trusted peer for mutual pre-stakeholder feedback. Not a mentor or manager. Reciprocal. Every creator has blind spots. A second perspective is the cheapest quality assurance.",
+    "mechanics": "Choose a trusted peer. Set a cadence: weekly or bi-weekly. Share work before it goes to stakeholders. They give candid feedback. You do the same for them. No hierarchy. Pure reciprocal accountability.",
+    "application": "Find one work-sharing buddy this month. Commit to sharing one piece of work before it ships.",
+    "flavor": "\"The buddy sees what the creator cannot.\"",
     "stats": {
-      "adaptability": 95,
-      "logic": 83,
-      "efficiency": 87
-    }
-  },
-  {
-    "id": "jobs-to-be-done",
-    "name": "Jobs to Be Done",
-    "category": "Product",
-    "rarity": "Epic",
-    "tagline": "Progress-Centered Design Lens",
-    "description": "Jobs to Be Done teaches product thinking through the progress users seek in real situations. It moves learners beyond demographic assumptions to context, motivation, and friction. Teams build better products when they design for the job users are trying to complete, not just requested features.",
-    "mechanics": "Interview users about specific moments when they switched tools, delayed action, or improvised workarounds. Define the core job and separate its functional, emotional, and social dimensions. Map the journey from trigger to successful completion, highlighting friction, uncertainty, and failure points. Analyze all competing alternatives, including spreadsheets, manual hacks, and doing nothing, to understand true competition. Score opportunities by job importance and current satisfaction to find high-value innovation zones. Design features and onboarding around the critical moments that unblock progress in the job journey. Validate with behavioral evidence such as activation quality, retention movement, and switch intent rather than stated preference alone. Revisit job definitions as markets and user contexts evolve so product strategy stays aligned with real progress needs.",
-    "application": "In discovery calls, ask what users were trying to accomplish before discussing desired features or UI preferences.",
-    "flavor": "\"Hear not the request alone—hear the quest beneath it.\"",
-    "stats": {
-      "adaptability": 91,
-      "logic": 89,
-      "efficiency": 81
-    }
-  },
-  {
-    "id": "premortem",
-    "name": "Pre-Mortem",
-    "category": "Risk Management",
-    "rarity": "Rare",
-    "tagline": "Future-Failure Prevention Ritual",
-    "description": "A Pre-Mortem improves planning by assuming failure in advance and learning from that imagined outcome. It counters optimism bias while there is still time to change course. Learners gain risk literacy by practicing structured anticipation rather than reactive firefighting.",
-    "mechanics": "Assemble key stakeholders before execution and clarify scope, goals, success criteria, and critical dependencies. Ask everyone to imagine a concrete future date when the initiative has failed significantly. Have participants write independent failure narratives first so dominant voices do not anchor the group too early. Cluster risks into themes such as strategy mismatch, execution gaps, staffing, external dependencies, and communication breakdowns. Score each risk by probability and impact, then select the highest-priority set for immediate mitigation design. Convert mitigations into explicit owners, early warning indicators, and contingency actions embedded in the delivery plan. Re-run abbreviated pre-mortems at milestone checkpoints because risk profiles shift as reality unfolds. Close with a post-project comparison of predicted versus actual failures to improve future forecasting and planning discipline.",
-    "application": "Before kickoff, run a 30-minute pre-mortem and require every top risk to include both a detection signal and a named response owner.",
-    "flavor": "\"Name the ghosts before the battle, and fewer will rise.\"",
-    "stats": {
-      "adaptability": 86,
-      "logic": 90,
-      "efficiency": 83
+      "adaptability": 84,
+      "logic": 79,
+      "efficiency": 82
     }
   }
 ]

@@ -702,10 +702,12 @@
       };
 
       const STORAGE_KEY = "dailyBlessing";
+      const DISCOVERED_KEY = "discoveredFrameworks";
 
       const state = {
         frameworks: [],
         todaysBlessingId: null,
+        discoveredFrameworks: [],
       };
 
       const elements = {
@@ -733,6 +735,27 @@
           return parsed && typeof parsed === "object" ? parsed : {};
         } catch {
           return {};
+        }
+      }
+
+      function readDiscoveredFrameworks() {
+        const raw = localStorage.getItem(DISCOVERED_KEY);
+        if (!raw) return [];
+
+        try {
+          const parsed = JSON.parse(raw);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch {
+          return [];
+        }
+      }
+
+      function saveDiscoveredFramework(frameworkId) {
+        const discovered = readDiscoveredFrameworks();
+        if (!discovered.includes(frameworkId)) {
+          discovered.push(frameworkId);
+          localStorage.setItem(DISCOVERED_KEY, JSON.stringify(discovered));
+          state.discoveredFrameworks = discovered;
         }
       }
 
@@ -933,6 +956,7 @@
         try {
           const response = await fetch("./frameworks.json");
           state.frameworks = await response.json();
+          state.discoveredFrameworks = readDiscoveredFrameworks();
 
           const blessing = readSavedBlessing();
           const today = getTodayString();
@@ -942,16 +966,23 @@
             if (todaysFramework) {
               renderBlessing(todaysFramework);
               hideBlessingButton();
+              saveDiscoveredFramework(todaysFramework.id);
             }
             setStatus(UI_TEXT.ready);
           } else {
-            setStatus("");
+            updateProgressCount();
           }
 
           elements.button.disabled = false;
         } catch {
           setStatus(UI_TEXT.loadError);
         }
+      }
+
+      function updateProgressCount() {
+        const discovered = state.discoveredFrameworks.length;
+        const total = state.frameworks.length;
+        elements.discoveryCount.textContent = `${discovered}/${total} frameworks discovered`;
       }
 
       function resolveTodaysBlessing() {
@@ -968,6 +999,7 @@
 
         state.todaysBlessingId = framework.id;
         saveBlessing({ id: framework.id, date: today });
+        saveDiscoveredFramework(framework.id);
         return framework;
       }
 
