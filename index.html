@@ -512,6 +512,36 @@
         background: rgba(255, 255, 255, 0.08);
       }
 
+      .category-filter-buttons {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin: 1.5rem 0;
+        justify-content: center;
+      }
+
+      .filter-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #cbb8f4;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 180ms ease;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .category-icon {
+        display: inline-block;
+        margin-right: 0.3rem;
+      }
+
       .glass-card {
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.07);
@@ -810,7 +840,7 @@
                 </div>
                 <h3 class="framework-name">${framework.name}</h3>
                 <div class="mini-stats">
-                  <span>${framework.category.split('?')[1] || framework.category}</span>
+                  <span>${getCategoryEmoji(framework.category)} ${framework.category.slice(9)}</span>
                   <span>ADP ${adaptability}</span>
                   <span>LOG ${logic}</span>
                   <span>EFF ${efficiency}</span>
@@ -897,18 +927,7 @@
         const discovered = state.frameworks.filter((f) => state.discoveredFrameworks.includes(f.id));
         const undiscovered = state.frameworks.filter((f) => !state.discoveredFrameworks.includes(f.id));
 
-        const groupBy = (arr, key) => {
-          const groups = {};
-          arr.forEach((item) => {
-            const category = item.category;
-            if (!groups[category]) groups[category] = [];
-            groups[category].push(item);
-          });
-          return groups;
-        };
-
-        const discoveredGroups = groupBy(discovered, "category");
-        const undiscoveredGroups = groupBy(undiscovered, "category");
+        const categories = [...new Set(state.frameworks.map((f) => f.category))];
 
         let html = `
           <article class="blessing-card framework-panel rarity-rare">
@@ -916,17 +935,26 @@
             <p style="color: #cbb8f4; margin-top: 1rem;">
               ${state.discoveredFrameworks.length} of ${state.frameworks.length} frameworks discovered
             </p>
+
+            <div class="category-filter-buttons">
+              <button class="filter-btn active" data-category="all">All Categories</button>
+              ${categories.map((cat) => `
+                <button class="filter-btn" data-category="${cat}">
+                  <span class="category-icon">${getCategoryEmoji(cat)}</span>${cat.split('?')[1] || cat.slice(9)}
+                </button>
+              `).join("")}
+            </div>
         `;
 
         if (discovered.length > 0) {
           html += `<h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #34d399;">📚 Discovered</h3>`;
-          html += `<div class="archive-grid">`;
+          html += `<div class="archive-grid" id="discoveredGrid">`;
           discovered.forEach((f) => {
             html += `
-              <div class="archive-card" data-framework-id="${f.id}">
+              <div class="archive-card" data-category="${f.category}" data-framework-id="${f.id}">
                 <h5>${f.name}</h5>
                 <p>"${f.tagline}"</p>
-                <div class="category-tag">${f.category.split('?')[1] || f.category}</div>
+                <div class="category-tag">${getCategoryEmoji(f.category)} ${f.category.slice(9)}</div>
               </div>
             `;
           });
@@ -934,14 +962,14 @@
         }
 
         if (undiscovered.length > 0) {
-          html += `<h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #cbb8f4;">🔒 Awaiting Discovery</h3>`;
-          html += `<div class="archive-grid">`;
+          html += `<h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #cbb8f4;">🔒 Awaiting Discovery (${undiscovered.length})</h3>`;
+          html += `<div class="archive-grid" id="undiscoveredGrid">`;
           undiscovered.forEach((f) => {
             html += `
-              <div class="archive-card" style="opacity: 0.6;">
+              <div class="archive-card" data-category="${f.category}" style="opacity: 0.6;">
                 <h5>${f.name}</h5>
                 <p>"${f.tagline}"</p>
-                <div class="category-tag">Coming soon</div>
+                <div class="category-tag">${getCategoryEmoji(f.category)} Coming soon</div>
               </div>
             `;
           });
@@ -956,7 +984,40 @@
         `;
 
         elements.frameworkView.innerHTML = html;
+
+        // Category filtering
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const cards = document.querySelectorAll(".archive-card");
+
+        filterButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            filterButtons.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            const category = btn.dataset.category;
+            cards.forEach((card) => {
+              if (category === "all" || card.dataset.category === category) {
+                card.style.display = "block";
+              } else {
+                card.style.display = "none";
+              }
+            });
+          });
+        });
+
         document.getElementById("backToShrine").addEventListener("click", () => showView({ detail: false, archive: false }));
+      }
+
+      function getCategoryEmoji(category) {
+        const emojiMap = {
+          "How Do I Think More Clearly?": "🧠",
+          "How Do I Make Better Decisions?": "⚖️",
+          "How Do I Communicate More Effectively?": "💬",
+          "How Do I Get More Done with Less Friction?": "⚡",
+          "How Do I Keep Improving?": "📈",
+          "How Do I Build a Career, Not Just Do a Job?": "🚀",
+        };
+        return emojiMap[category] || "📚";
       }
 
       function bindDetailActions(shareUrl) {
