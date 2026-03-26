@@ -3,568 +3,247 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Shrine of Knowledge</title>
+    <title>The Arcane Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
       :root {
-        color-scheme: dark;
-        --category-thinking: #be8dff;
-        --category-decisions: #7ea7ff;
-        --category-communication: #6dd5ed;
-        --category-execution: #a78bfa;
-        --category-improvement: #34d399;
-        --category-career: #fbbf24;
+        --primary: #edb1ff;
+        --primary-dark: #d291ff;
+        --secondary: #fff9ef;
+        --secondary-container: #ffdb3c;
+        --tertiary: #2ae500;
+        --surface: #111125;
+        --surface-variant: #1a1a2e;
+        --outline: #3a3a5a;
       }
 
       * {
         box-sizing: border-box;
       }
 
-      body {
+      html, body {
         margin: 0;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background:
-          radial-gradient(circle at 50% 22%, rgba(194, 122, 255, 0.35) 0%, rgba(255, 152, 94, 0.23) 20%, rgba(36, 20, 54, 0.7) 44%, #06060c 84%);
-        color: #f3e8ff;
-        position: relative;
-        overflow-x: hidden;
-      }
-
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        background: radial-gradient(circle at center, rgba(194, 122, 255, 0.15), transparent 62%);
-      }
-
-      body::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        background: linear-gradient(135deg, rgba(155, 98, 255, 0.1), rgba(255, 158, 96, 0.08));
-      }
-
-      .landing {
-        width: min(95vw, 900px);
-        text-align: center;
-        padding: 3rem 2rem;
-        position: relative;
-        animation: pageFadeIn 220ms ease-out both;
-      }
-
-      .landing::before {
-        content: "";
-        position: absolute;
-        inset: 8% 9%;
-        border-radius: 30px;
-        background: radial-gradient(circle at center, rgba(188, 118, 255, 0.28), rgba(252, 155, 105, 0.16) 35%, transparent 72%);
-        filter: blur(48px);
-        z-index: -1;
-        pointer-events: none;
-      }
-
-      h1 {
-        margin: 0;
-        font-size: clamp(2rem, 5vw, 3rem);
-        letter-spacing: 0.02em;
-      }
-
-      .subtitle {
-        margin: 0.85rem 0 2rem;
-        font-size: clamp(1rem, 2.3vw, 1.2rem);
-        color: #d8c7ff;
-      }
-
-      .stats-row {
-        display: flex;
-        gap: 1.5rem;
-        justify-content: center;
-        margin: 1rem 0 2rem;
-        flex-wrap: wrap;
-      }
-
-      .stat-badge {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 999px;
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-        text-align: center;
-      }
-
-      .stat-badge strong {
-        display: block;
-        font-size: 1.4rem;
-        color: #fbbf24;
-        margin-bottom: 0.2rem;
-      }
-
-      .stat-badge small {
-        color: #cbb8f4;
-        font-size: 0.75rem;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-      }
-
-      .button-group {
-        display: flex;
-        gap: 0.75rem;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-bottom: 1rem;
-      }
-
-      .blessing-button {
-        padding: 0.85rem 1.8rem;
-        border: 1px solid #c5b3ff;
-        border-radius: 999px;
-        background: linear-gradient(135deg, #7050c7, #4d75d8);
-        color: #f9f5ff;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 180ms ease, box-shadow 220ms ease, filter 220ms ease;
-        box-shadow: 0 0 0 rgba(142, 116, 255, 0);
-      }
-
-      .blessing-button:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.07);
-        box-shadow: 0 0 20px rgba(169, 136, 255, 0.65), 0 0 34px rgba(91, 149, 255, 0.35);
-      }
-
-      .blessing-button:active {
-        transform: translateY(0);
-      }
-
-      .blessing-button:disabled {
-        cursor: wait;
-        opacity: 0.88;
-        transform: none;
-        filter: saturate(0.9);
-      }
-
-      .secondary-button {
-        padding: 0.65rem 1.4rem;
-        border: 1px solid rgba(197, 179, 255, 0.5);
-        border-radius: 999px;
-        background: rgba(112, 80, 199, 0.2);
-        color: #d8c7ff;
-        font-size: 0.9rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 180ms ease;
-      }
-
-      .secondary-button:hover {
-        background: rgba(112, 80, 199, 0.35);
-        border-color: #c5b3ff;
-      }
-
-      .discovery-count {
-        margin-top: 0.85rem;
-        font-size: 0.86rem;
-        color: #cbb8f4;
-      }
-
-      .blessing-card {
-        --rarity-color: #9a9aa4;
-        --rarity-border: rgba(154, 154, 164, 0.5);
-        --rarity-glow: rgba(154, 154, 164, 0.22);
-        position: relative;
-        border-radius: 14px;
-        padding: 1.2rem;
-        text-align: left;
-        background: rgba(18, 13, 31, 0.64);
-        border: 1px solid color-mix(in srgb, var(--rarity-border) 58%, transparent);
-        box-shadow: 0 10px 24px color-mix(in srgb, var(--rarity-glow) 68%, transparent);
-        backdrop-filter: blur(2px);
-        transition: box-shadow 170ms ease, transform 170ms ease, border-color 170ms ease;
-      }
-
-      .blessing-card:hover {
-        transform: translateY(-1px);
-        border-color: color-mix(in srgb, var(--rarity-color) 72%, #fff 28%);
-        box-shadow: 0 0 20px color-mix(in srgb, var(--rarity-glow) 88%, #fff 12%),
-          inset 0 0 0 1px color-mix(in srgb, var(--rarity-color) 46%, transparent);
-      }
-
-      .blessing-card::before {
-        content: "";
-        position: absolute;
-        inset: -20px -16px;
-        border-radius: inherit;
-        background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--rarity-color) 20%, transparent), transparent 70%);
-        filter: blur(22px);
-        pointer-events: none;
-        z-index: -1;
-      }
-
-      .blessing-card h2 {
-        margin: 0;
-        color: var(--rarity-color);
-        font-size: 1.15rem;
-      }
-
-      .blessing-card p {
-        margin: 0.55rem 0 0;
-        color: #e1d8ff;
-        line-height: 1.45;
-      }
-
-      .framework-view {
-        margin-top: 0.8rem;
-        text-align: left;
-        max-height: 90vh;
-        overflow-y: auto;
-      }
-
-      .framework-panel {
-        padding: 1.4rem;
-        border-radius: 16px;
-      }
-
-      .framework-top {
-        display: grid;
-        grid-template-columns: minmax(230px, 320px) minmax(0, 1fr);
-        gap: 1.2rem;
-        align-items: start;
-      }
-
-      .framework-image {
-        min-height: 170px;
-        border-radius: 12px;
-        border: 1px solid color-mix(in srgb, var(--rarity-color) 25%, transparent);
-        background: linear-gradient(140deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01));
-        display: grid;
-        place-items: center;
-        color: #e4d7ff;
-        letter-spacing: 0.03em;
-        font-size: 0.88rem;
-      }
-
-      .framework-name {
-        margin: 0.9rem 0 0;
-        font-size: 1.2rem;
-      }
-
-      .mini-stats {
-        margin-top: 0.72rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.45rem;
-      }
-
-      .mini-stats span {
-        font-size: 0.74rem;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: #e6dcff;
-        border: 1px solid rgba(228, 208, 255, 0.34);
-        padding: 0.32rem 0.5rem;
-        border-radius: 999px;
-        background: rgba(20, 14, 36, 0.62);
-      }
-
-      .framework-title {
-        margin: 0.35rem 0 0;
-        font-size: clamp(1.55rem, 3.8vw, 2.2rem);
-      }
-
-      .framework-tagline {
-        margin-top: 0.55rem;
-        font-size: 1rem;
-        color: #e6dcff;
-      }
-
-      .framework-section {
-        margin-top: 1.6rem;
-        padding-top: 1.3rem;
-        border-top: 1px solid color-mix(in srgb, var(--rarity-color) 24%, transparent);
-      }
-
-      .framework-section h4 {
-        margin: 0;
-        font-size: 0.92rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: color-mix(in srgb, var(--rarity-color) 82%, #fff 18%);
-      }
-
-      .framework-section p {
-        margin-top: 0.6rem;
-        color: #f1e9ff;
-        line-height: 1.72;
-      }
-
-      .reflection-section {
-        margin-top: 1.6rem;
-        padding: 1.2rem;
-        border-radius: 12px;
-        border: 1px solid rgba(106, 213, 237, 0.3);
-        background: rgba(109, 213, 237, 0.08);
-      }
-
-      .reflection-section h4 {
-        margin: 0;
-        font-size: 0.92rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: #6dd5ed;
-      }
-
-      .reflection-section p {
-        margin-top: 0.8rem;
-        color: #e8f4f8;
-        line-height: 1.6;
-        font-style: italic;
-      }
-
-      .action-row {
-        margin-top: 1.5rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 0.75rem;
-      }
-
-      .back-button {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        border: 1px solid rgba(197, 179, 255, 0.4);
-        border-radius: 8px;
-        background: rgba(18, 13, 31, 0.6);
-        color: #d8c7ff;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 180ms ease;
-      }
-
-      .back-button:hover {
-        background: rgba(112, 80, 199, 0.2);
-        border-color: #c5b3ff;
-      }
-
-      .share-button {
-        padding: 0.75rem 1rem;
-        border: 1px solid rgba(106, 213, 237, 0.4);
-        border-radius: 8px;
-        background: rgba(109, 213, 237, 0.1);
-        color: #6dd5ed;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 180ms ease;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-      }
-
-      .share-button:hover {
-        background: rgba(109, 213, 237, 0.2);
-        border-color: #6dd5ed;
-      }
-
-      .stats-container {
-        margin-top: 0.8rem;
-        padding: 1rem;
-      }
-
-      .stat-row {
-        margin-top: 0.9rem;
-      }
-
-      .stat-head {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 0.75rem;
-      }
-
-      .stat-label {
-        font-size: 0.75rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: rgba(231, 220, 255, 0.68);
-      }
-
-      .stat-value {
-        font-size: 0.86rem;
-        color: #f3ecff;
-        font-variant-numeric: tabular-nums;
-      }
-
-      .bar {
-        margin-top: 0.46rem;
-        width: 100%;
-        height: 10px;
-        border-radius: 999px;
-        background: rgba(10, 8, 17, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0;
+        height: 100%;
         overflow: hidden;
       }
 
-      .bar i {
-        display: block;
-        height: 100%;
-        width: 0;
-        border-radius: inherit;
-        background: linear-gradient(90deg, color-mix(in srgb, var(--rarity-color) 70%, #b39cff 30%), var(--rarity-color));
-        transition: width 240ms ease-out;
+      body {
+        background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #0f0f1e 100%);
+        color: #e0e0ff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       }
 
-      .blessing-enter .bar i {
-        width: var(--target-width, 0%);
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
       }
 
-      .rarity-label {
-        margin-top: 0.5rem;
-        font-size: 0.8rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: color-mix(in srgb, var(--rarity-color) 85%, #fff 15%);
+      .material-symbols-outlined.filled {
+        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
       }
 
-      .rarity-common {
-        --rarity-color: #b4bac8;
-        --rarity-border: rgba(164, 172, 187, 0.55);
-        --rarity-glow: rgba(146, 152, 165, 0.2);
+      /* Main layout */
+      .app-container {
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
       }
 
-      .rarity-rare {
-        --rarity-color: #7ea7ff;
-        --rarity-border: rgba(126, 167, 255, 0.62);
-        --rarity-glow: rgba(96, 146, 255, 0.24);
+      @media (min-width: 768px) {
+        .app-container {
+          flex-direction: row;
+        }
       }
 
-      .rarity-epic {
-        --rarity-color: #be8dff;
-        --rarity-border: rgba(190, 141, 255, 0.66);
-        --rarity-glow: rgba(188, 117, 255, 0.32);
-      }
-
-      .rarity-legendary {
-        --rarity-color: #f1cc6a;
-        --rarity-border: rgba(241, 204, 106, 0.75);
-        --rarity-glow: rgba(251, 218, 113, 0.44);
-        box-shadow: 0 0 26px rgba(251, 218, 113, 0.36),
-          0 0 42px rgba(251, 186, 77, 0.2),
-          inset 0 0 0 1px rgba(241, 204, 106, 0.44);
-      }
-
-      .blessing-enter {
-        animation: blessingFade 450ms ease;
-      }
-
-      .rarity-epic.blessing-enter {
-        animation: blessingFade 450ms ease, epicPulse 2.4s ease-in-out infinite;
-      }
-
-      .archive-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
-        margin-top: 1.5rem;
-      }
-
-      .archive-card {
+      /* Header */
+      .app-header {
+        background: linear-gradient(90deg, #0f0f1e 0%, #1a1a2e 50%, #0f0f1e 100%);
+        border-bottom: 1px solid var(--outline);
         padding: 1rem;
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.04);
-        cursor: pointer;
-        transition: all 180ms ease;
-        text-decoration: none;
-        color: inherit;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
 
-      .archive-card:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.2);
-        transform: translateY(-2px);
+      @media (min-width: 768px) {
+        .app-header {
+          display: none;
+        }
       }
 
-      .archive-card h5 {
+      .app-header h1 {
         margin: 0;
-        font-size: 1rem;
-        color: #f3e8ff;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--primary);
       }
 
-      .archive-card p {
-        margin: 0.5rem 0 0;
-        font-size: 0.85rem;
-        color: #cbb8f4;
-      }
-
-      .archive-card .category-tag {
-        display: inline-block;
-        margin-top: 0.75rem;
-        font-size: 0.7rem;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        padding: 0.3rem 0.6rem;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.08);
-      }
-
-      .category-filter-buttons {
+      .header-nav {
         display: flex;
         gap: 0.5rem;
-        flex-wrap: wrap;
-        margin: 1.5rem 0;
-        justify-content: center;
       }
 
-      .filter-btn {
-        padding: 0.5rem 1rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.08);
-        color: #cbb8f4;
-        font-size: 0.85rem;
+      .header-nav button {
+        background: transparent;
+        border: none;
+        color: var(--primary);
         cursor: pointer;
-        transition: all 180ms ease;
+        padding: 0.5rem;
+        font-size: 1.25rem;
+        transition: color 0.2s;
       }
 
-      .filter-btn:hover,
-      .filter-btn.active {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: rgba(255, 255, 255, 0.4);
+      .header-nav button:hover,
+      .header-nav button.active {
+        color: var(--secondary-container);
       }
 
-      .category-icon {
-        display: inline-block;
-        margin-right: 0.3rem;
+      /* Sidebar */
+      .app-sidebar {
+        display: none;
+        width: 280px;
+        background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
+        border-right: 1px solid var(--outline);
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+        overflow-y: auto;
+        gap: 2rem;
       }
 
-      .glass-card {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.07);
-        border-radius: 16px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 14px 36px rgba(86, 40, 140, 0.22);
-      }
-
-      @keyframes epicPulse {
-        0%, 100% {
-          box-shadow: 0 0 15px rgba(188, 117, 255, 0.24),
-            inset 0 0 0 1px rgba(190, 141, 255, 0.34);
-        }
-        50% {
-          box-shadow: 0 0 24px rgba(188, 117, 255, 0.38),
-            inset 0 0 0 1px rgba(190, 141, 255, 0.5);
+      @media (min-width: 768px) {
+        .app-sidebar {
+          display: flex;
         }
       }
 
-      @keyframes blessingFade {
+      .sidebar-header {
+        text-align: center;
+        border-bottom: 1px solid var(--outline);
+        padding-bottom: 1.5rem;
+      }
+
+      .sidebar-header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .sidebar-header .tagline {
+        margin-top: 0.25rem;
+        font-size: 0.85rem;
+        color: #9090a8;
+      }
+
+      .sidebar-profile {
+        background: rgba(237, 177, 255, 0.08);
+        border: 1px solid rgba(237, 177, 255, 0.2);
+        border-radius: 12px;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .sidebar-profile .stat {
+        margin-bottom: 0.75rem;
+      }
+
+      .sidebar-profile .stat-label {
+        font-size: 0.75rem;
+        color: #9090a8;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .sidebar-profile .stat-value {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .sidebar-nav button {
+        width: 100%;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        text-align: left;
+        color: #b0b0c8;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.95rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .sidebar-nav button:hover {
+        background: rgba(237, 177, 255, 0.12);
+        color: var(--primary);
+      }
+
+      .sidebar-nav button.active {
+        background: rgba(237, 177, 255, 0.2);
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .sidebar-nav .material-symbols-outlined {
+        font-size: 1.25rem;
+      }
+
+      .blessing-button-sidebar {
+        width: 100%;
+        background: linear-gradient(135deg, #7e4db8 0%, #5a2f88 100%);
+        border: 1px solid rgba(237, 177, 255, 0.4);
+        border-radius: 8px;
+        padding: 0.85rem 1rem;
+        color: #fff9ef;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-top: auto;
+      }
+
+      .blessing-button-sidebar:hover {
+        background: linear-gradient(135deg, #9260d1 0%, #6e3fa3 100%);
+        box-shadow: 0 0 20px rgba(237, 177, 255, 0.3);
+      }
+
+      /* Main content */
+      .app-main {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1.5rem 1rem;
+      }
+
+      @media (min-width: 768px) {
+        .app-main {
+          padding: 2rem;
+        }
+      }
+
+      /* Views */
+      .view {
+        display: none;
+        animation: fadeIn 0.3s ease-in;
+      }
+
+      .view.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
         from {
           opacity: 0;
-          transform: translateY(8px);
+          transform: translateY(10px);
         }
         to {
           opacity: 1;
@@ -572,538 +251,886 @@
         }
       }
 
-      @keyframes pageFadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
+      /* Grimoire View */
+      .grimoire-hero {
+        margin-bottom: 2rem;
+      }
+
+      .grimoire-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .grimoire-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin: 0;
+      }
+
+      .grimoire-subtitle {
+        color: var(--secondary-container);
+        font-size: 1.1rem;
+        margin: 0.5rem 0 0;
+      }
+
+      .grimoire-card {
+        background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(15, 15, 30, 0.4) 100%);
+        border: 1px solid rgba(237, 177, 255, 0.2);
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .grimoire-description {
+        color: #c0c0d8;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .grimoire-flavor {
+        background: rgba(237, 177, 255, 0.08);
+        border-left: 3px solid var(--primary);
+        padding: 1rem 1.25rem;
+        border-radius: 4px;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: #d0d0e8;
+        font-size: 0.95rem;
+      }
+
+      .grimoire-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .stat-card {
+        background: rgba(237, 177, 255, 0.08);
+        border: 1px solid rgba(237, 177, 255, 0.15);
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .stat-card-label {
+        font-size: 0.8rem;
+        color: #9090a8;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-card-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .grimoire-ritual {
+        margin: 2rem 0;
+      }
+
+      .ritual-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--secondary-container);
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .ritual-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .ritual-step {
+        background: rgba(237, 177, 255, 0.08);
+        border: 1px solid rgba(237, 177, 255, 0.15);
+        border-radius: 12px;
+        padding: 1.5rem;
+        position: relative;
+      }
+
+      .ritual-step::before {
+        content: attr(data-step);
+        position: absolute;
+        top: -12px;
+        left: 20px;
+        background: #111125;
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: var(--primary);
+        font-size: 0.8rem;
+      }
+
+      .ritual-step-title {
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .ritual-step-content {
+        font-size: 0.95rem;
+        color: #c0c0d8;
+        line-height: 1.5;
+      }
+
+      .reflection-box {
+        background: rgba(42, 229, 0, 0.08);
+        border: 1px solid rgba(42, 229, 0, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .reflection-label {
+        font-size: 0.85rem;
+        color: #9090a8;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+
+      .reflection-prompt {
+        font-size: 1rem;
+        color: #d0d0e8;
+        font-style: italic;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #7e4db8 0%, #5a2f88 100%);
+        color: #fff9ef;
+        border-color: rgba(237, 177, 255, 0.3);
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #9260d1 0%, #6e3fa3 100%);
+        box-shadow: 0 0 15px rgba(237, 177, 255, 0.25);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--primary);
+        border-color: var(--primary);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(237, 177, 255, 0.1);
+      }
+
+      /* Quest Grid View */
+      .quest-filters {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        justify-content: center;
+      }
+
+      .filter-btn {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        border: 1px solid rgba(237, 177, 255, 0.3);
+        background: transparent;
+        color: #b0b0c8;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.9rem;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: rgba(237, 177, 255, 0.2);
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .quest-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .framework-card {
+        background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(15, 15, 30, 0.4) 100%);
+        border: 1px solid rgba(237, 177, 255, 0.15);
+        border-radius: 12px;
+        padding: 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .framework-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--primary);
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .framework-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--primary);
+        box-shadow: 0 8px 20px rgba(237, 177, 255, 0.15);
+      }
+
+      .framework-card:hover::before {
+        opacity: 1;
+      }
+
+      .framework-card.discovered {
+        border-color: rgba(42, 229, 0, 0.3);
+      }
+
+      .framework-card.discovered::before {
+        background: var(--tertiary);
+      }
+
+      .framework-card-name {
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .framework-card-tagline {
+        font-size: 0.85rem;
+        color: #a0a0b8;
+        margin-bottom: 1rem;
+      }
+
+      .framework-card-rarity {
+        display: inline-block;
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+        border-radius: 4px;
+        background: rgba(237, 177, 255, 0.1);
+        color: var(--primary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .framework-card.discovered .framework-card-rarity {
+        background: rgba(42, 229, 0, 0.1);
+        color: var(--tertiary);
+      }
+
+      /* Profile View */
+      .profile-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .profile-stat {
+        background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(15, 15, 30, 0.4) 100%);
+        border: 1px solid rgba(237, 177, 255, 0.2);
+        border-radius: 12px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+      }
+
+      .profile-stat-label {
+        font-size: 0.85rem;
+        color: #9090a8;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+      }
+
+      .profile-stat-value {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .profile-frameworks-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+      }
+
+      .profile-frameworks {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+      }
+
+      .profile-framework-item {
+        background: rgba(237, 177, 255, 0.08);
+        border: 1px solid rgba(42, 229, 0, 0.3);
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .profile-framework-name {
+        font-weight: 600;
+        color: var(--tertiary);
+        margin-bottom: 0.25rem;
+      }
+
+      .profile-framework-tagline {
+        font-size: 0.8rem;
+        color: #a0a0b8;
+      }
+
+      /* Mobile bottom nav */
+      .mobile-nav {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background: linear-gradient(180deg, rgba(15, 15, 30, 0.8) 0%, #0f0f1e 100%);
+        border-top: 1px solid var(--outline);
+        justify-content: space-around;
+      }
+
+      @media (min-width: 768px) {
+        .mobile-nav {
+          display: none;
         }
       }
 
-      @media (max-width: 780px) {
-        .landing {
-          padding: 2rem 1rem;
-        }
-
-        .framework-top {
-          grid-template-columns: 1fr;
-        }
-
-        .stats-row {
-          gap: 1rem;
-        }
-
-        .button-group {
-          gap: 0.5rem;
-        }
-
-        .archive-grid {
-          grid-template-columns: 1fr;
-        }
+      .mobile-nav button {
+        background: transparent;
+        border: none;
+        color: #b0b0c8;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 8px;
+        transition: all 0.2s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.75rem;
       }
 
-      @media print {
-        :root {
-          color-scheme: light;
-        }
+      .mobile-nav button.active {
+        color: var(--primary);
+      }
 
-        body {
-          background: #fff;
-          color: #000;
-          display: block;
-          min-height: auto;
-          padding: 0;
-          margin: 0;
-          font-size: 12pt;
-        }
-
-        .landing {
-          width: 100%;
-          max-width: none;
-          padding: 0;
-        }
-
-        .blessing-card {
-          background: #fff;
-          border: 1px solid #111;
-          color: #000;
-          box-shadow: none;
-          backdrop-filter: none;
-        }
-
-        .no-print {
-          display: none !important;
-        }
+      .mobile-nav .material-symbols-outlined {
+        font-size: 1.5rem;
       }
     </style>
   </head>
   <body>
-    <main class="landing">
-      <section id="shrineShell">
-        <h1>The Shrine of Knowledge</h1>
-        <p class="subtitle">Daily wisdom quest—one framework each day</p>
+    <div class="app-container">
+      <!-- Mobile Header -->
+      <div class="app-header">
+        <h1>Arcane Archive</h1>
+        <div class="header-nav">
+          <button id="mobile-menu-btn" class="material-symbols-outlined">menu</button>
+        </div>
+      </div>
 
-        <div class="stats-row">
-          <div class="stat-badge">
-            <strong id="streakCount">0</strong>
-            <small>Day Streak</small>
+      <!-- Sidebar -->
+      <div class="app-sidebar">
+        <div class="sidebar-header">
+          <h1>Arcane Archive</h1>
+          <p class="tagline">Master The Working Playbook</p>
+        </div>
+
+        <div class="sidebar-profile">
+          <div class="stat">
+            <div class="stat-label">Streak</div>
+            <div class="stat-value" id="sidebar-streak">0</div>
           </div>
-          <div class="stat-badge">
-            <strong id="discoveredCount">0</strong>
-            <small>Discovered</small>
-          </div>
-          <div class="stat-badge">
-            <strong id="totalCount">43</strong>
-            <small>Total</small>
+          <div class="stat">
+            <div class="stat-label">Discovered</div>
+            <div class="stat-value"><span id="sidebar-discovered">0</span>/43</div>
           </div>
         </div>
 
-        <div class="button-group">
-          <button class="blessing-button no-print" id="blessBtn" type="button">Receive Today's Blessing</button>
-          <button class="secondary-button no-print" id="archiveBtn" type="button">View Archive</button>
+        <div class="sidebar-nav">
+          <button id="nav-grimoire" class="active">
+            <span class="material-symbols-outlined">book_2</span>
+            Grimoire
+          </button>
+          <button id="nav-quest">
+            <span class="material-symbols-outlined">grid_3x3</span>
+            Quest Grid
+          </button>
+          <button id="nav-profile">
+            <span class="material-symbols-outlined">person</span>
+            Profile
+          </button>
         </div>
 
-        <p class="discovery-count" id="discoveryCount" aria-live="polite"></p>
-      </section>
+        <button class="blessing-button-sidebar" id="blessing-btn-sidebar">
+          <span class="material-symbols-outlined">auto_awesome</span>
+          Daily Blessing
+        </button>
+      </div>
 
-      <section class="framework-view" id="frameworkView" aria-live="polite" hidden></section>
-    </main>
+      <!-- Main Content -->
+      <div class="app-main">
+        <!-- Grimoire View -->
+        <div id="grimoire-view" class="view active">
+          <div class="grimoire-header">
+            <h2 class="grimoire-title" id="grimoire-name">Daily Framework</h2>
+            <p class="grimoire-subtitle" id="grimoire-tagline">Loading...</p>
+          </div>
+
+          <div class="grimoire-card">
+            <p class="grimoire-description" id="grimoire-description"></p>
+
+            <div class="grimoire-flavor" id="grimoire-flavor"></div>
+
+            <h3 class="ritual-title">Framework Stats</h3>
+            <div class="grimoire-stats">
+              <div class="stat-card">
+                <div class="stat-card-label">Adaptability</div>
+                <div class="stat-card-value" id="stat-adaptability">0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card-label">Logic</div>
+                <div class="stat-card-value" id="stat-logic">0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card-label">Efficiency</div>
+                <div class="stat-card-value" id="stat-efficiency">0</div>
+              </div>
+            </div>
+
+            <h3 class="ritual-title">Ritual of Application</h3>
+            <div class="ritual-steps">
+              <div class="ritual-step" data-step="1">
+                <div class="ritual-step-title" id="mechanic-title">Understand</div>
+                <div class="ritual-step-content" id="grimoire-mechanics"></div>
+              </div>
+              <div class="ritual-step" data-step="2">
+                <div class="ritual-step-title">Apply</div>
+                <div class="ritual-step-content" id="grimoire-application"></div>
+              </div>
+              <div class="ritual-step" data-step="3">
+                <div class="ritual-step-title">Reflect</div>
+                <div class="ritual-step-content" id="grimoire-reflection"></div>
+              </div>
+            </div>
+
+            <div class="reflection-box">
+              <div class="reflection-label">Daily Reflection Prompt</div>
+              <div class="reflection-prompt" id="reflection-prompt"></div>
+            </div>
+
+            <div class="action-buttons">
+              <button class="btn btn-primary" id="share-twitter">
+                <span class="material-symbols-outlined">share</span>
+                Share on Twitter
+              </button>
+              <button class="btn btn-secondary" id="copy-link">
+                <span class="material-symbols-outlined">content_copy</span>
+                Copy Link
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quest Grid View -->
+        <div id="quest-view" class="view">
+          <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Quest Grid</h2>
+
+          <div class="quest-filters" id="filters-container"></div>
+
+          <div class="quest-grid" id="quest-grid"></div>
+        </div>
+
+        <!-- Profile View -->
+        <div id="profile-view" class="view">
+          <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Your Journey</h2>
+
+          <div class="profile-grid">
+            <div class="profile-stat">
+              <div class="profile-stat-label">Current Streak</div>
+              <div class="profile-stat-value" id="profile-streak">0</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-label">Frameworks Discovered</div>
+              <div class="profile-stat-value"><span id="profile-discovered">0</span>/<span id="profile-total">43</span></div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-label">Discovery Rate</div>
+              <div class="profile-stat-value" id="profile-percentage">0%</div>
+            </div>
+          </div>
+
+          <h3 class="profile-frameworks-title">Your Discovered Frameworks</h3>
+          <div class="profile-frameworks" id="profile-frameworks-list"></div>
+        </div>
+      </div>
+
+      <!-- Mobile Bottom Navigation -->
+      <div class="mobile-nav">
+        <button id="mobile-nav-grimoire" class="active">
+          <span class="material-symbols-outlined">book_2</span>
+          <span>Grimoire</span>
+        </button>
+        <button id="mobile-nav-quest">
+          <span class="material-symbols-outlined">grid_3x3</span>
+          <span>Quest</span>
+        </button>
+        <button id="mobile-nav-profile">
+          <span class="material-symbols-outlined">person</span>
+          <span>Profile</span>
+        </button>
+      </div>
+    </div>
 
     <script>
-      const UI_TEXT = {
-        loading: "Loading frameworks...",
-        loadError: "Could not load frameworks.",
-        idleButton: "Receive Today's Blessing",
-        loadingButton: "Channeling wisdom...",
-        ready: "Today's blessing is waiting. Enter when ready.",
-      };
+      const categories = [
+        "How Do I Think More Clearly?",
+        "How Do I Make Better Decisions?",
+        "How Do I Communicate More Effectively?",
+        "How Do I Get More Done with Less Friction?",
+        "How Do I Keep Improving?",
+        "How Do I Build a Career, Not Just Do a Job?"
+      ];
 
-      const REFLECTION_PROMPTS = {
-        "How Do I Think More Clearly?": "How could this lens change how you perceive a situation you face?",
-        "How Do I Make Better Decisions?": "What decision could you improve by using this framework?",
-        "How Do I Communicate More Effectively?": "Who could benefit from understanding this concept?",
-        "How Do I Get More Done with Less Friction?": "What task could you complete faster with this mindset?",
-        "How Do I Keep Improving?": "What small experiment could test this idea tomorrow?",
-        "How Do I Build a Career, Not Just Do a Job?": "How does this practice build long-term professional capital?",
+      const reflectionPrompts = {
+        "How Do I Think More Clearly?": [
+          "Where did a clearer perspective shift your decision today?",
+          "What assumption did you challenge this week?",
+          "How did mental clarity improve one situation?"
+        ],
+        "How Do I Make Better Decisions?": [
+          "What decision felt more confident using this framework?",
+          "How did you evaluate your options differently?",
+          "What outcome surprised you positively?"
+        ],
+        "How Do I Communicate More Effectively?": [
+          "How did your message land differently today?",
+          "What feedback helped you refine your communication?",
+          "Who understood you better with this approach?"
+        ],
+        "How Do I Get More Done with Less Friction?": [
+          "What obstacle disappeared with this method?",
+          "How much time or energy did you save?",
+          "What felt easier than before?"
+        ],
+        "How Do I Keep Improving?": [
+          "What progress did you notice this week?",
+          "How did you build on yesterday's learning?",
+          "What will you do differently next time?"
+        ],
+        "How Do I Build a Career, Not Just Do a Job?": [
+          "How did this framework shape your career thinking?",
+          "What opportunity emerged from this perspective?",
+          "How does this align with your career vision?"
+        ]
       };
-
-      const STORAGE_KEY = "dailyBlessing";
-      const DISCOVERED_KEY = "discoveredFrameworks";
-      const LAST_VISIT_KEY = "lastVisitDate";
 
       const state = {
         frameworks: [],
-        todaysBlessingId: null,
+        currentFramework: null,
         discoveredFrameworks: [],
+        currentView: 'grimoire',
+        lastBlessingDate: null,
+        streakStartDate: null,
+        currentFilter: 'all'
       };
 
-      const elements = {
-        button: document.getElementById("blessBtn"),
-        archiveBtn: document.getElementById("archiveBtn"),
-        shrineShell: document.getElementById("shrineShell"),
-        frameworkView: document.getElementById("frameworkView"),
-        discoveryCount: document.getElementById("discoveryCount"),
-        streakCount: document.getElementById("streakCount"),
-        discoveredCount: document.getElementById("discoveredCount"),
-        totalCount: document.getElementById("totalCount"),
-      };
-
-      const toDateString = (date) => date.toISOString().slice(0, 10);
-      const getTodayString = () => toDateString(new Date());
-
-      function getYesterdayString(todayString) {
-        const yesterday = new Date(`${todayString}T00:00:00`);
-        yesterday.setDate(yesterday.getDate() - 1);
-        return toDateString(yesterday);
-      }
-
-      function readSavedBlessing() {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return {};
+      // Load frameworks from JSON
+      async function loadFrameworks() {
         try {
-          const parsed = JSON.parse(raw);
-          return parsed && typeof parsed === "object" ? parsed : {};
-        } catch {
-          return {};
+          const response = await fetch('frameworks.json');
+          state.frameworks = await response.json();
+          initializeApp();
+        } catch (error) {
+          console.error('Error loading frameworks:', error);
         }
       }
 
-      function readDiscoveredFrameworks() {
-        const raw = localStorage.getItem(DISCOVERED_KEY);
-        if (!raw) return [];
-        try {
-          const parsed = JSON.parse(raw);
-          return Array.isArray(parsed) ? parsed : [];
-        } catch {
-          return [];
+      function initializeApp() {
+        loadFromLocalStorage();
+        renderCurrentView();
+        setupEventListeners();
+        pickDailyFramework();
+      }
+
+      function loadFromLocalStorage() {
+        const discovered = localStorage.getItem('discoveredFrameworks');
+        if (discovered) {
+          state.discoveredFrameworks = JSON.parse(discovered);
         }
+        state.lastBlessingDate = localStorage.getItem('lastBlessingDate');
+        state.streakStartDate = localStorage.getItem('streakStartDate');
+      }
+
+      function saveToLocalStorage() {
+        localStorage.setItem('discoveredFrameworks', JSON.stringify(state.discoveredFrameworks));
+        localStorage.setItem('lastBlessingDate', state.lastBlessingDate);
+        localStorage.setItem('streakStartDate', state.streakStartDate);
       }
 
       function getStreak() {
-        const lastVisit = localStorage.getItem(LAST_VISIT_KEY);
-        const today = getTodayString();
-        const yesterday = getYesterdayString(today);
+        if (!state.streakStartDate) return 0;
+        const startDate = new Date(state.streakStartDate);
+        const today = new Date();
+        const days = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+        return Math.max(0, days + 1);
+      }
 
-        if (!lastVisit) {
-          localStorage.setItem(LAST_VISIT_KEY, today);
-          return 1;
+      function pickDailyFramework() {
+        const today = new Date().toDateString();
+        if (state.lastBlessingDate === today && state.currentFramework) {
+          return;
         }
 
-        if (lastVisit === today) {
-          const raw = localStorage.getItem("currentStreak");
-          return parseInt(raw, 10) || 1;
+        const undiscovered = state.frameworks.filter(f => !state.discoveredFrameworks.includes(f.id));
+        const available = undiscovered.length > 0 ? undiscovered : state.frameworks;
+
+        // Exclude yesterday's framework if possible
+        let yesterdayFramework = null;
+        if (state.lastBlessingDate) {
+          const lastDate = new Date(state.lastBlessingDate);
+          const today = new Date();
+          if (today.getTime() - lastDate.getTime() < 24 * 60 * 60 * 1000) {
+            yesterdayFramework = state.currentFramework?.id;
+          }
         }
 
-        if (lastVisit === yesterday) {
-          const raw = localStorage.getItem("currentStreak");
-          const streak = (parseInt(raw, 10) || 1) + 1;
-          localStorage.setItem("currentStreak", streak);
-          localStorage.setItem(LAST_VISIT_KEY, today);
-          return streak;
+        const choices = available.filter(f => f.id !== yesterdayFramework);
+        const selected = choices[Math.floor(Math.random() * choices.length)];
+
+        state.currentFramework = selected;
+        state.lastBlessingDate = today;
+
+        if (!state.discoveredFrameworks.includes(selected.id)) {
+          state.discoveredFrameworks.push(selected.id);
         }
 
-        localStorage.setItem(LAST_VISIT_KEY, today);
-        localStorage.setItem("currentStreak", "1");
-        return 1;
+        if (!state.streakStartDate) {
+          state.streakStartDate = today;
+        }
+
+        saveToLocalStorage();
+        renderCurrentView();
       }
 
-      function saveBlessing(blessing) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(blessing));
+      function setupEventListeners() {
+        // Navigation
+        document.getElementById('nav-grimoire')?.addEventListener('click', () => switchView('grimoire'));
+        document.getElementById('nav-quest')?.addEventListener('click', () => switchView('quest'));
+        document.getElementById('nav-profile')?.addEventListener('click', () => switchView('profile'));
+
+        document.getElementById('mobile-nav-grimoire')?.addEventListener('click', () => switchView('grimoire'));
+        document.getElementById('mobile-nav-quest')?.addEventListener('click', () => switchView('quest'));
+        document.getElementById('mobile-nav-profile')?.addEventListener('click', () => switchView('profile'));
+
+        // Blessing buttons
+        document.getElementById('blessing-btn-sidebar')?.addEventListener('click', pickDailyFramework);
+
+        // Share buttons
+        document.getElementById('share-twitter')?.addEventListener('click', shareTwitter);
+        document.getElementById('copy-link')?.addEventListener('click', copyLink);
+
+        // Quest grid framework cards
+        document.addEventListener('click', (e) => {
+          if (e.target.closest('.framework-card')) {
+            const name = e.target.closest('.framework-card').dataset.framework;
+            const fw = state.frameworks.find(f => f.id === name);
+            if (fw) {
+              state.currentFramework = fw;
+              if (!state.discoveredFrameworks.includes(fw.id)) {
+                state.discoveredFrameworks.push(fw.id);
+                saveToLocalStorage();
+              }
+              switchView('grimoire');
+            }
+          }
+        });
       }
 
-      function saveDiscoveredFramework(frameworkId) {
-        const discovered = readDiscoveredFrameworks();
-        if (!discovered.includes(frameworkId)) {
-          discovered.push(frameworkId);
-          localStorage.setItem(DISCOVERED_KEY, JSON.stringify(discovered));
-          state.discoveredFrameworks = discovered;
+      function switchView(view) {
+        state.currentView = view;
+
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        document.getElementById(`${view}-view`).classList.add('active');
+
+        // Update nav buttons
+        document.querySelectorAll('[id^="nav-"], [id^="mobile-nav-"]').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        document.getElementById(`nav-${view}`)?.classList.add('active');
+        document.getElementById(`mobile-nav-${view}`)?.classList.add('active');
+
+        if (view === 'quest') {
+          renderQuestGrid();
+        } else if (view === 'profile') {
+          renderProfile();
+        } else {
+          renderGrimoire();
         }
       }
 
-      function setStatus(message) {
-        elements.discoveryCount.textContent = message;
+      function renderGrimoire() {
+        if (!state.currentFramework) return;
+        const fw = state.currentFramework;
+
+        document.getElementById('grimoire-name').textContent = fw.name;
+        document.getElementById('grimoire-tagline').textContent = fw.tagline;
+        document.getElementById('grimoire-description').textContent = fw.description;
+        document.getElementById('grimoire-flavor').textContent = fw.flavor;
+        document.getElementById('grimoire-mechanics').textContent = fw.mechanics;
+        document.getElementById('grimoire-application').textContent = fw.application;
+
+        document.getElementById('stat-adaptability').textContent = fw.stats?.adaptability || 0;
+        document.getElementById('stat-logic').textContent = fw.stats?.logic || 0;
+        document.getElementById('stat-efficiency').textContent = fw.stats?.efficiency || 0;
+
+        const prompts = reflectionPrompts[fw.category] || [];
+        const prompt = prompts[Math.floor(Math.random() * prompts.length)];
+        document.getElementById('reflection-prompt').textContent = prompt;
+
+        updateStats();
       }
 
-      function hideBlessingButton() {
-        elements.button.hidden = true;
+      function renderQuestGrid() {
+        const container = document.getElementById('quest-grid');
+        const filtersContainer = document.getElementById('filters-container');
+
+        // Render filters
+        if (!filtersContainer.hasChildNodes()) {
+          const allBtn = document.createElement('button');
+          allBtn.className = 'filter-btn active';
+          allBtn.textContent = 'All Frameworks';
+          allBtn.addEventListener('click', () => {
+            state.currentFilter = 'all';
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            allBtn.classList.add('active');
+            renderQuestGrid();
+          });
+          filtersContainer.appendChild(allBtn);
+
+          categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.textContent = cat.substring(0, 20) + '...';
+            btn.title = cat;
+            btn.addEventListener('click', () => {
+              state.currentFilter = cat;
+              document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+              renderQuestGrid();
+            });
+            filtersContainer.appendChild(btn);
+          });
+        }
+
+        // Render grid
+        const filtered = state.currentFilter === 'all'
+          ? state.frameworks
+          : state.frameworks.filter(f => f.category === state.currentFilter);
+
+        container.innerHTML = filtered.map(fw => {
+          const discovered = state.discoveredFrameworks.includes(fw.id);
+          return `
+            <div class="framework-card ${discovered ? 'discovered' : ''}" data-framework="${fw.id}">
+              <div class="framework-card-name">${fw.name}</div>
+              <div class="framework-card-tagline">${fw.tagline}</div>
+              <span class="framework-card-rarity">${fw.rarity}</span>
+            </div>
+          `;
+        }).join('');
       }
 
-      function showView({ detail, archive }) {
-        elements.frameworkView.hidden = !detail && !archive;
-        elements.shrineShell.hidden = detail || archive;
+      function renderProfile() {
+        const discovered = state.discoveredFrameworks.length;
+        const total = state.frameworks.length;
+        const percentage = Math.round((discovered / total) * 100);
+
+        document.getElementById('profile-streak').textContent = getStreak();
+        document.getElementById('profile-discovered').textContent = discovered;
+        document.getElementById('profile-total').textContent = total;
+        document.getElementById('profile-percentage').textContent = percentage + '%';
+
+        const list = document.getElementById('profile-frameworks-list');
+        list.innerHTML = state.discoveredFrameworks.map(id => {
+          const fw = state.frameworks.find(f => f.id === id);
+          return fw ? `
+            <div class="profile-framework-item">
+              <div class="profile-framework-name">${fw.name}</div>
+              <div class="profile-framework-tagline">${fw.tagline}</div>
+            </div>
+          ` : '';
+        }).join('');
       }
 
-      function pickFramework(excludedId = null) {
-        const candidates =
-          excludedId && state.frameworks.length > 1
-            ? state.frameworks.filter((framework) => framework.id !== excludedId)
-            : state.frameworks;
+      function renderCurrentView() {
+        updateStats();
 
-        if (candidates.length === 0) return null;
-        return candidates[Math.floor(Math.random() * candidates.length)];
+        if (state.currentView === 'grimoire') {
+          renderGrimoire();
+        } else if (state.currentView === 'quest') {
+          renderQuestGrid();
+        } else if (state.currentView === 'profile') {
+          renderProfile();
+        }
       }
 
       function updateStats() {
         const streak = getStreak();
         const discovered = state.discoveredFrameworks.length;
-        const total = state.frameworks.length;
 
-        elements.streakCount.textContent = streak;
-        elements.discoveredCount.textContent = discovered;
-        elements.totalCount.textContent = total;
-        elements.discoveryCount.textContent = `${discovered}/${total} frameworks discovered`;
+        document.getElementById('sidebar-streak').textContent = streak;
+        document.getElementById('sidebar-discovered').textContent = discovered;
       }
 
-      function renderBlessing(framework) {
-        const rarityClass = `rarity-${(framework.rarity || "Common").toLowerCase()}`;
-        const stats = framework.stats || {};
-        const adaptability = Number(stats.adaptability || 0);
-        const logic = Number(stats.logic || 0);
-        const efficiency = Number(stats.efficiency || 0);
-
-        showView({ detail: true });
-        const descriptionText = framework.description || "This framework gives you a structured way to reason about choices.";
-        const mechanicsText = framework.mechanics || descriptionText;
-        const flavorText = framework.flavor || "\"Wisdom sharpens where reflection meets action.\"";
-        const reflectionPrompt = REFLECTION_PROMPTS[framework.category] || "How could you apply this today?";
-
-        const shareUrl = `${window.location.origin}?framework=${framework.id}`;
-        const shareText = `Today's framework: ${framework.name} - "${framework.tagline}" via The Shrine of Knowledge`;
-
-        elements.frameworkView.innerHTML = `
-          <article class="blessing-card blessing-enter framework-panel ${rarityClass}">
-            <div class="framework-top">
-              <div class="framework-left">
-                <div class="framework-image" role="img" aria-label="${framework.name}">
-                  ${framework.category.split('?')[1] || framework.category}
-                </div>
-                <h3 class="framework-name">${framework.name}</h3>
-                <div class="mini-stats">
-                  <span>${getCategoryEmoji(framework.category)} ${framework.category.slice(9)}</span>
-                  <span>ADP ${adaptability}</span>
-                  <span>LOG ${logic}</span>
-                  <span>EFF ${efficiency}</span>
-                </div>
-              </div>
-              <div class="framework-right">
-                <p class="rarity-label">${framework.rarity || "Common"}</p>
-                <h2 class="framework-title">${framework.name}</h2>
-                <p class="framework-tagline">${framework.tagline || "A framework for better thinking."}</p>
-              </div>
-            </div>
-
-            <div class="framework-section">
-              <h4>What It Is</h4>
-              <p>${descriptionText}</p>
-            </div>
-
-            <div class="framework-section">
-              <h4>How To Use It</h4>
-              <p>${mechanicsText}</p>
-            </div>
-
-            <div class="framework-section">
-              <h4>Quick Application</h4>
-              <p>${framework.application || "Apply this framework to your next challenge."}</p>
-            </div>
-
-            <div class="reflection-section">
-              <h4>🤔 Reflection</h4>
-              <p>${reflectionPrompt}</p>
-            </div>
-
-            <section class="framework-section">
-              <h4>Stats</h4>
-              <div class="stats-container glass-card">
-                <div class="stat-row">
-                  <div class="stat-head">
-                    <span class="stat-label">Adaptability</span>
-                    <span class="stat-value">${adaptability}%</span>
-                  </div>
-                  <div class="bar"><i style="--target-width: ${adaptability}%"></i></div>
-                </div>
-                <div class="stat-row">
-                  <div class="stat-head">
-                    <span class="stat-label">Logic Flow</span>
-                    <span class="stat-value">${logic}%</span>
-                  </div>
-                  <div class="bar"><i style="--target-width: ${logic}%"></i></div>
-                </div>
-                <div class="stat-row">
-                  <div class="stat-head">
-                    <span class="stat-label">Efficiency</span>
-                    <span class="stat-value">${efficiency}%</span>
-                  </div>
-                  <div class="bar"><i style="--target-width: ${efficiency}%"></i></div>
-                </div>
-              </div>
-            </section>
-
-            <div class="framework-section" style="opacity: 0.8;">
-              <h4>Wisdom</h4>
-              <p style="font-style: italic; color: #dacdf4;">${flavorText}</p>
-            </div>
-
-            <div class="action-row no-print">
-              <button class="back-button" id="backToShrine" type="button">← Back</button>
-              <a class="share-button" href="https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener">
-                Share 𝕏
-              </a>
-              <button class="share-button" id="copyLink" type="button">
-                Copy Link
-              </button>
-              <button class="back-button" id="saveAsPdf" type="button">Print</button>
-            </div>
-          </article>
-        `;
-
-        bindDetailActions(shareUrl);
+      function shareTwitter() {
+        if (!state.currentFramework) return;
+        const fw = state.currentFramework;
+        const text = `Today's framework from The Arcane Archive: ${fw.name} - "${fw.tagline}" 📚✨`;
+        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+        window.open(url, '_blank');
       }
 
-      function renderArchive() {
-        showView({ detail: false, archive: true });
-
-        const discovered = state.frameworks.filter((f) => state.discoveredFrameworks.includes(f.id));
-        const undiscovered = state.frameworks.filter((f) => !state.discoveredFrameworks.includes(f.id));
-
-        const categories = [...new Set(state.frameworks.map((f) => f.category))];
-
-        let html = `
-          <article class="blessing-card framework-panel rarity-rare">
-            <h2 class="framework-title">Your Knowledge Archive</h2>
-            <p style="color: #cbb8f4; margin-top: 1rem;">
-              ${state.discoveredFrameworks.length} of ${state.frameworks.length} frameworks discovered
-            </p>
-
-            <div class="category-filter-buttons">
-              <button class="filter-btn active" data-category="all">All Categories</button>
-              ${categories.map((cat) => `
-                <button class="filter-btn" data-category="${cat}">
-                  <span class="category-icon">${getCategoryEmoji(cat)}</span>${cat.split('?')[1] || cat.slice(9)}
-                </button>
-              `).join("")}
-            </div>
-        `;
-
-        if (discovered.length > 0) {
-          html += `<h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #34d399;">📚 Discovered</h3>`;
-          html += `<div class="archive-grid" id="discoveredGrid">`;
-          discovered.forEach((f) => {
-            html += `
-              <div class="archive-card" data-category="${f.category}" data-framework-id="${f.id}">
-                <h5>${f.name}</h5>
-                <p>"${f.tagline}"</p>
-                <div class="category-tag">${getCategoryEmoji(f.category)} ${f.category.slice(9)}</div>
-              </div>
-            `;
-          });
-          html += `</div>`;
-        }
-
-        if (undiscovered.length > 0) {
-          html += `<h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #cbb8f4;">🔒 Awaiting Discovery (${undiscovered.length})</h3>`;
-          html += `<div class="archive-grid" id="undiscoveredGrid">`;
-          undiscovered.forEach((f) => {
-            html += `
-              <div class="archive-card" data-category="${f.category}" style="opacity: 0.6;">
-                <h5>${f.name}</h5>
-                <p>"${f.tagline}"</p>
-                <div class="category-tag">${getCategoryEmoji(f.category)} Coming soon</div>
-              </div>
-            `;
-          });
-          html += `</div>`;
-        }
-
-        html += `
-            <div class="action-row" style="margin-top: 2rem;">
-              <button class="back-button" id="backToShrine" type="button">← Back to Shrine</button>
-            </div>
-          </article>
-        `;
-
-        elements.frameworkView.innerHTML = html;
-
-        // Category filtering
-        const filterButtons = document.querySelectorAll(".filter-btn");
-        const cards = document.querySelectorAll(".archive-card");
-
-        filterButtons.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            filterButtons.forEach((b) => b.classList.remove("active"));
-            btn.classList.add("active");
-
-            const category = btn.dataset.category;
-            cards.forEach((card) => {
-              if (category === "all" || card.dataset.category === category) {
-                card.style.display = "block";
-              } else {
-                card.style.display = "none";
-              }
-            });
-          });
+      function copyLink() {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+          alert('Link copied to clipboard!');
         });
-
-        document.getElementById("backToShrine").addEventListener("click", () => showView({ detail: false, archive: false }));
       }
 
-      function getCategoryEmoji(category) {
-        const emojiMap = {
-          "How Do I Think More Clearly?": "🧠",
-          "How Do I Make Better Decisions?": "⚖️",
-          "How Do I Communicate More Effectively?": "💬",
-          "How Do I Get More Done with Less Friction?": "⚡",
-          "How Do I Keep Improving?": "📈",
-          "How Do I Build a Career, Not Just Do a Job?": "🚀",
-        };
-        return emojiMap[category] || "📚";
-      }
-
-      function bindDetailActions(shareUrl) {
-        const backButton = document.getElementById("backToShrine");
-        const copyLink = document.getElementById("copyLink");
-        const saveAsPdfButton = document.getElementById("saveAsPdf");
-
-        backButton?.addEventListener("click", () => showView({ detail: false }));
-        copyLink?.addEventListener("click", () => {
-          navigator.clipboard.writeText(shareUrl);
-          copyLink.textContent = "✓ Copied!";
-          setTimeout(() => {
-            copyLink.textContent = "Copy Link";
-          }, 2000);
-        });
-        saveAsPdfButton?.addEventListener("click", () => window.print());
-      }
-
-      async function loadFrameworks() {
-        elements.button.disabled = true;
-        setStatus(UI_TEXT.loading);
-
-        try {
-          const response = await fetch("./frameworks.json");
-          state.frameworks = await response.json();
-          state.discoveredFrameworks = readDiscoveredFrameworks();
-
-          const blessing = readSavedBlessing();
-          const today = getTodayString();
-          if (blessing.date === today) {
-            state.todaysBlessingId = blessing.id;
-            const todaysFramework = state.frameworks.find((item) => item.id === state.todaysBlessingId);
-            if (todaysFramework) {
-              renderBlessing(todaysFramework);
-              hideBlessingButton();
-              saveDiscoveredFramework(todaysFramework.id);
-            }
-            setStatus(UI_TEXT.ready);
-          } else {
-            updateStats();
-          }
-
-          elements.button.disabled = false;
-        } catch {
-          setStatus(UI_TEXT.loadError);
-        }
-      }
-
-      function resolveTodaysBlessing() {
-        const savedToday = state.frameworks.find((item) => item.id === state.todaysBlessingId);
-        if (savedToday) return savedToday;
-
-        const previous = readSavedBlessing();
-        const today = getTodayString();
-        const yesterday = getYesterdayString(today);
-        const excludedId = previous.date === yesterday ? previous.id : null;
-        const framework = pickFramework(excludedId);
-
-        if (!framework) return null;
-
-        state.todaysBlessingId = framework.id;
-        saveBlessing({ id: framework.id, date: today });
-        saveDiscoveredFramework(framework.id);
-        return framework;
-      }
-
-      async function onBlessClick() {
-        if (state.frameworks.length === 0 || elements.button.disabled) return;
-
-        elements.button.disabled = true;
-        elements.button.textContent = UI_TEXT.loadingButton;
-
-        const framework = resolveTodaysBlessing();
-        if (framework) {
-          renderBlessing(framework);
-          hideBlessingButton();
-          updateStats();
-        }
-
-        await new Promise((resolve) => setTimeout(resolve, 420));
-        elements.button.textContent = UI_TEXT.idleButton;
-        elements.button.disabled = false;
-      }
-
-      elements.button.addEventListener("click", onBlessClick);
-      elements.archiveBtn?.addEventListener("click", renderArchive);
+      // Initialize
       loadFrameworks();
     </script>
   </body>
