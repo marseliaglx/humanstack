@@ -40,6 +40,7 @@
         text-align: center;
         padding: 3rem 2rem;
         position: relative;
+        animation: pageFadeIn 220ms ease-out both;
       }
 
       .landing::before {
@@ -113,6 +114,14 @@
         border: 1px solid var(--rarity-border);
         box-shadow: 0 0 16px var(--rarity-glow), inset 0 0 0 1px color-mix(in srgb, var(--rarity-color) 38%, transparent);
         backdrop-filter: blur(2px);
+        transition: box-shadow 170ms ease, transform 170ms ease, border-color 170ms ease;
+      }
+
+      .blessing-card:hover {
+        transform: translateY(-1px);
+        border-color: color-mix(in srgb, var(--rarity-color) 72%, #fff 28%);
+        box-shadow: 0 0 20px color-mix(in srgb, var(--rarity-glow) 88%, #fff 12%),
+          inset 0 0 0 1px color-mix(in srgb, var(--rarity-color) 46%, transparent);
       }
 
       .blessing-card::before {
@@ -254,8 +263,14 @@
       .bar i {
         display: block;
         height: 100%;
+        width: 0;
         border-radius: inherit;
         background: linear-gradient(90deg, color-mix(in srgb, var(--rarity-color) 70%, #b39cff 30%), var(--rarity-color));
+        transition: width 240ms ease-out;
+      }
+
+      .blessing-enter .bar i {
+        width: var(--target-width, 0%);
       }
 
       .detail-box-grid {
@@ -460,6 +475,15 @@
           transform: translateY(0);
         }
       }
+
+      @keyframes pageFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
     </style>
   </head>
   <body>
@@ -608,15 +632,15 @@
               <div class="stats-container glass-card">
                 <div class="stat-row">
                   <span>Adaptability</span>
-                  <div class="bar"><i style="width: ${adaptability}%"></i></div>
+                  <div class="bar"><i style="--target-width: ${adaptability}%"></i></div>
                 </div>
                 <div class="stat-row">
                   <span>Logic Flow</span>
-                  <div class="bar"><i style="width: ${logic}%"></i></div>
+                  <div class="bar"><i style="--target-width: ${logic}%"></i></div>
                 </div>
                 <div class="stat-row">
                   <span>Efficiency</span>
-                  <div class="bar"><i style="width: ${efficiency}%"></i></div>
+                  <div class="bar"><i style="--target-width: ${efficiency}%"></i></div>
                 </div>
               </div>
             </section>
