@@ -684,18 +684,6 @@
       };
 
       const STORAGE_KEY = "dailyBlessing";
-      const TRY_TODAY_BY_ID = {
-        inversion: "List 3 ways your current project could fail.",
-        "second-order-thinking": "Write 1 likely consequence at 30, 90, and 365 days.",
-        "five-whys": "Pick one issue and ask why five times using evidence only.",
-        kaizen: "Improve one recurring step today and measure the before/after.",
-        "swipe-file": "Study 3 examples and adapt one pattern into your draft.",
-        "first-principles": "Challenge one assumption and restate the problem from facts.",
-        "pareto-principle": "Rank tasks by impact and delete one low-yield task today.",
-        "ooda-loop": "Run one quick Observe→Orient→Decide→Act cycle before lunch.",
-        "jobs-to-be-done": "Ask one user what progress they were trying to make.",
-        premortem: "Name the top 3 risks and assign one owner to each.",
-      };
 
       const state = {
         frameworks: [],
@@ -757,13 +745,6 @@
         return candidates[Math.floor(Math.random() * candidates.length)];
       }
 
-      function getTryThisToday(framework) {
-        if (framework?.id && TRY_TODAY_BY_ID[framework.id]) {
-          return TRY_TODAY_BY_ID[framework.id];
-        }
-
-        return "Pick one decision today and write the next concrete action in one sentence.";
-      }
 
       function getWhatThisHelpsYouDo(framework) {
         return `Use ${framework.name} to turn unclear decisions into clear next actions with less wasted effort.`;
@@ -800,14 +781,12 @@
         const efficiency = Number(stats.efficiency || 0);
 
         showView({ detail: true });
-        const applicationText = framework.application || "Use this framework on your next important choice to stay focused and practical.";
         const descriptionText = framework.description || "This framework gives you a structured way to reason about choices and move forward faster.";
-        const mechanicsText = framework.mechanics || framework.description || "No detailed mechanics provided.";
+        const mechanicsText = framework.mechanics || descriptionText;
         const flavorText = framework.flavor || "\"Wisdom sharpens where reflection meets action.\"";
-        const howItWorksSentences = splitSentences(`${descriptionText} ${mechanicsText}`).slice(0, 3);
-        const howItWorks = howItWorksSentences.length > 0 ? howItWorksSentences.join(" ") : descriptionText;
-        const applyStep = splitSentences(applicationText)[0] || applicationText;
-        const tryTodayStep = getTryThisToday(framework);
+        const visualSteps = ["Situation", "Clarify", "Decide", "Act"];
+        const realExample = getRealExample(framework);
+        const tryNowSteps = getTryThisNowSteps(framework).slice(0, 3);
 
         elements.frameworkView.innerHTML = `
           <article class="blessing-card blessing-enter framework-panel ${rarityClass}">
@@ -831,96 +810,86 @@
               </div>
             </div>
 
-            <section class="framework-section">
-              <h4>What this helps you do</h4>
-              <div class="explanation-grid">
-                <article class="explanation-block">
-                  <p>${getWhatThisHelpsYouDo(framework)}</p>
-                </article>
+            <div class="mt-8 space-y-7">
+              <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/5 p-6 md:p-7 shadow-lg">
+                <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-white/70">What this helps you do</h4>
+                <p class="mt-3 text-xl md:text-2xl leading-snug font-semibold text-white">${getWhatThisHelpsYouDo(framework)}</p>
+              </section>
 
-                <article class="explanation-block">
-                  <h5>Visual Explanation</h5>
-                  <div class="visual-flow" role="img" aria-label="Problem to rebuild flow">
-                    <div class="flow-step">Problem</div>
-                    <div class="flow-arrow" aria-hidden="true">→</div>
-                    <div class="flow-step">Break down</div>
-                    <div class="flow-arrow" aria-hidden="true">→</div>
-                    <div class="flow-step">Core truth</div>
-                    <div class="flow-arrow" aria-hidden="true">→</div>
-                    <div class="flow-step">Rebuild</div>
-                  </div>
-                </article>
+              <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/5 p-6 md:p-7 shadow-lg">
+                <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-white/70">Visual Explanation</h4>
+                <div class="mt-4 flex flex-wrap items-center gap-2 md:gap-3" role="img" aria-label="Framework flow steps">
+                  ${visualSteps
+                    .map(
+                      (step, index) => `
+                        <div class="inline-flex items-center gap-2 md:gap-3">
+                          <div class="rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-sm text-white/90">${step}</div>
+                          ${index < visualSteps.length - 1 ? '<span aria-hidden="true" class="text-white/60">→</span>' : ""}
+                        </div>
+                      `,
+                    )
+                    .join("")}
+                </div>
+              </section>
 
-                <article class="explanation-block">
-                  <h5>Real Example</h5>
-                  <div class="before-after">
-                    <div class="example-side">
-                      <strong>Before</strong>
-                      <p>${getRealExample(framework).before}</p>
-                    </div>
-                    <div class="example-side">
-                      <strong>After</strong>
-                      <p>${getRealExample(framework).after}</p>
-                    </div>
-                  </div>
-                </article>
+              <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/5 p-6 md:p-7 shadow-lg">
+                <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-white/70">Real Example</h4>
+                <div class="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
+                  <article class="rounded-xl border border-white/10 bg-black/15 p-4">
+                    <h5 class="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/60">Before</h5>
+                    <p class="mt-2 text-sm leading-relaxed text-white/90">${realExample.before}</p>
+                  </article>
+                  <article class="rounded-xl border border-white/10 bg-black/15 p-4">
+                    <h5 class="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/60">After</h5>
+                    <p class="mt-2 text-sm leading-relaxed text-white/90">${realExample.after}</p>
+                  </article>
+                </div>
+              </section>
 
-                <article class="explanation-block">
-                  <h5>Try This Now</h5>
-                  <ul class="try-now-list">
-                    ${getTryThisNowSteps(framework)
-                      .map((step) => `<li>${step}</li>`)
-                      .join("")}
-                  </ul>
-                </article>
-              </div>
-            </section>
+              <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/5 p-6 md:p-7 shadow-lg">
+                <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-white/70">Try This Now</h4>
+                <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-white/90">
+                  ${tryNowSteps.map((step) => `<li>${step}</li>`).join("")}
+                </ol>
+              </section>
 
-            <section class="framework-section">
-              <h4>Innate Ability</h4>
-              <p>${framework.application || "No application guidance available yet."}</p>
-            </section>
+              <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-7 shadow-lg opacity-90">
+                <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-white/60">Deeper Understanding</h4>
+                <p class="mt-3 text-sm leading-relaxed text-white/80">${mechanicsText}</p>
+              </section>
+
+              <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-6 shadow-lg opacity-75">
+                <h4 class="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/50">Flavor</h4>
+                <p class="mt-2 text-sm italic text-white/70">${flavorText}</p>
+              </section>
+            </div>
 
             <section class="framework-section">
               <h4>Stats</h4>
               <div class="stats-container glass-card">
                 <div class="stat-row">
-                  <span>Adaptability</span>
+                  <div class="stat-head">
+                    <span class="stat-label">Adaptability</span>
+                    <span class="stat-value">${adaptability}%</span>
+                  </div>
                   <div class="bar"><i style="--target-width: ${adaptability}%"></i></div>
                 </div>
-              </section>
-
-              <section class="framework-section">
-                <h4>Stats</h4>
-                <div class="stats-container glass-card">
-                  <div class="stat-row">
-                    <span>Adaptability</span>
-                    <div class="bar"><i style="--target-width: ${adaptability}%"></i></div>
+                <div class="stat-row">
+                  <div class="stat-head">
+                    <span class="stat-label">Logic Flow</span>
+                    <span class="stat-value">${logic}%</span>
                   </div>
-                  <div class="stat-row">
-                    <span>Logic Flow</span>
-                    <div class="bar"><i style="--target-width: ${logic}%"></i></div>
-                  </div>
-                  <div class="stat-row">
-                    <span>Efficiency</span>
-                    <div class="bar"><i style="--target-width: ${efficiency}%"></i></div>
-                  </div>
-                  <div class="bar"><i style="width: ${efficiency}%; --bar-gradient: linear-gradient(90deg, #f7d670 0%, #d7a939 100%);"></i></div>
+                  <div class="bar"><i style="--target-width: ${logic}%"></i></div>
                 </div>
-              </section>
-
-              <section class="framework-section secondary-section">
-                <h4>Deeper understanding</h4>
-                <div class="paragraph-stack">
-                  ${renderParagraphStack(mechanicsText, "No detailed mechanics provided.")}
+                <div class="stat-row">
+                  <div class="stat-head">
+                    <span class="stat-label">Efficiency</span>
+                    <span class="stat-value">${efficiency}%</span>
+                  </div>
+                  <div class="bar"><i style="--target-width: ${efficiency}%"></i></div>
                 </div>
-              </section>
-
-              <div class="flavor-text">
-                <h5>Flavor Text</h5>
-                <p>${flavorText}</p>
               </div>
-            </div>
+            </section>
 
             <div class="action-row no-print">
               <button class="back-button" id="backToShrine" type="button">Back to Shrine</button>
@@ -931,6 +900,7 @@
 
         bindDetailActions();
       }
+
 
       async function loadFrameworks() {
         elements.button.disabled = true;
