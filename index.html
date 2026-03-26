@@ -40,6 +40,7 @@
         text-align: center;
         padding: 3rem 2rem;
         position: relative;
+        animation: pageFadeIn 220ms ease-out both;
       }
 
       .landing::before {
@@ -113,6 +114,14 @@
         border: 1px solid var(--rarity-border);
         box-shadow: 0 0 16px var(--rarity-glow), inset 0 0 0 1px color-mix(in srgb, var(--rarity-color) 38%, transparent);
         backdrop-filter: blur(2px);
+        transition: box-shadow 170ms ease, transform 170ms ease, border-color 170ms ease;
+      }
+
+      .blessing-card:hover {
+        transform: translateY(-1px);
+        border-color: color-mix(in srgb, var(--rarity-color) 72%, #fff 28%);
+        box-shadow: 0 0 20px color-mix(in srgb, var(--rarity-glow) 88%, #fff 12%),
+          inset 0 0 0 1px color-mix(in srgb, var(--rarity-color) 46%, transparent);
       }
 
       .blessing-card::before {
@@ -267,8 +276,14 @@
       .bar i {
         display: block;
         height: 100%;
+        width: 0;
         border-radius: inherit;
-        background: var(--bar-gradient, linear-gradient(90deg, #79c56f, #4cae6d));
+        background: linear-gradient(90deg, color-mix(in srgb, var(--rarity-color) 70%, #b39cff 30%), var(--rarity-color));
+        transition: width 240ms ease-out;
+      }
+
+      .blessing-enter .bar i {
+        width: var(--target-width, 0%);
       }
 
       .detail-box-grid {
@@ -474,6 +489,15 @@
           transform: translateY(0);
         }
       }
+
+      @keyframes pageFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
     </style>
   </head>
   <body>
@@ -619,24 +643,18 @@
 
             <section class="framework-section">
               <h4>Stats</h4>
-              <div class="stat-row">
-                <div class="stat-head">
-                  <span class="stat-label">Adaptability</span>
-                  <span class="stat-value">${adaptability}%</span>
+              <div class="stats-container glass-card">
+                <div class="stat-row">
+                  <span>Adaptability</span>
+                  <div class="bar"><i style="--target-width: ${adaptability}%"></i></div>
                 </div>
-                <div class="bar"><i style="width: ${adaptability}%; --bar-gradient: linear-gradient(90deg, #68d58d 0%, #3fae67 100%);"></i></div>
-              </div>
-              <div class="stat-row">
-                <div class="stat-head">
-                  <span class="stat-label">Logic Flow</span>
-                  <span class="stat-value">${logic}%</span>
+                <div class="stat-row">
+                  <span>Logic Flow</span>
+                  <div class="bar"><i style="--target-width: ${logic}%"></i></div>
                 </div>
-                <div class="bar"><i style="width: ${logic}%; --bar-gradient: linear-gradient(90deg, #c183ff 0%, #7f59df 100%);"></i></div>
-              </div>
-              <div class="stat-row">
-                <div class="stat-head">
-                  <span class="stat-label">Efficiency</span>
-                  <span class="stat-value">${efficiency}%</span>
+                <div class="stat-row">
+                  <span>Efficiency</span>
+                  <div class="bar"><i style="--target-width: ${efficiency}%"></i></div>
                 </div>
                 <div class="bar"><i style="width: ${efficiency}%; --bar-gradient: linear-gradient(90deg, #f7d670 0%, #d7a939 100%);"></i></div>
               </div>
