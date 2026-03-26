@@ -231,23 +231,36 @@
       }
 
       .stat-row {
-        margin-top: 0.8rem;
-        display: grid;
-        grid-template-columns: 135px minmax(0, 1fr);
-        align-items: center;
+        margin-top: 0.9rem;
+      }
+
+      .stat-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
         gap: 0.75rem;
       }
 
-      .stat-row span {
-        font-size: 0.88rem;
-        color: #eee4ff;
+      .stat-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(231, 220, 255, 0.68);
+      }
+
+      .stat-value {
+        font-size: 0.86rem;
+        color: #f3ecff;
+        font-variant-numeric: tabular-nums;
       }
 
       .bar {
+        margin-top: 0.46rem;
         width: 100%;
         height: 10px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.14);
+        background: rgba(10, 8, 17, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         overflow: hidden;
       }
 
@@ -255,7 +268,7 @@
         display: block;
         height: 100%;
         border-radius: inherit;
-        background: linear-gradient(90deg, color-mix(in srgb, var(--rarity-color) 70%, #b39cff 30%), var(--rarity-color));
+        background: var(--bar-gradient, linear-gradient(90deg, #79c56f, #4cae6d));
       }
 
       .detail-box-grid {
@@ -349,7 +362,8 @@
         .detail-box p,
         .mini-stats span,
         .rarity-label,
-        .stat-row span {
+        .stat-label,
+        .stat-value {
           color: #000;
         }
 
@@ -605,19 +619,26 @@
 
             <section class="framework-section">
               <h4>Stats</h4>
-              <div class="stats-container glass-card">
-                <div class="stat-row">
-                  <span>Adaptability</span>
-                  <div class="bar"><i style="width: ${adaptability}%"></i></div>
+              <div class="stat-row">
+                <div class="stat-head">
+                  <span class="stat-label">Adaptability</span>
+                  <span class="stat-value">${adaptability}%</span>
                 </div>
-                <div class="stat-row">
-                  <span>Logic Flow</span>
-                  <div class="bar"><i style="width: ${logic}%"></i></div>
+                <div class="bar"><i style="width: ${adaptability}%; --bar-gradient: linear-gradient(90deg, #68d58d 0%, #3fae67 100%);"></i></div>
+              </div>
+              <div class="stat-row">
+                <div class="stat-head">
+                  <span class="stat-label">Logic Flow</span>
+                  <span class="stat-value">${logic}%</span>
                 </div>
-                <div class="stat-row">
-                  <span>Efficiency</span>
-                  <div class="bar"><i style="width: ${efficiency}%"></i></div>
+                <div class="bar"><i style="width: ${logic}%; --bar-gradient: linear-gradient(90deg, #c183ff 0%, #7f59df 100%);"></i></div>
+              </div>
+              <div class="stat-row">
+                <div class="stat-head">
+                  <span class="stat-label">Efficiency</span>
+                  <span class="stat-value">${efficiency}%</span>
                 </div>
+                <div class="bar"><i style="width: ${efficiency}%; --bar-gradient: linear-gradient(90deg, #f7d670 0%, #d7a939 100%);"></i></div>
               </div>
             </section>
 
