@@ -7,6 +7,12 @@
     <style>
       :root {
         color-scheme: dark;
+        --category-thinking: #be8dff;
+        --category-decisions: #7ea7ff;
+        --category-communication: #6dd5ed;
+        --category-execution: #a78bfa;
+        --category-improvement: #34d399;
+        --category-career: #fbbf24;
       }
 
       * {
@@ -74,6 +80,45 @@
         color: #d8c7ff;
       }
 
+      .stats-row {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin: 1rem 0 2rem;
+        flex-wrap: wrap;
+      }
+
+      .stat-badge {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
+      .stat-badge strong {
+        display: block;
+        font-size: 1.4rem;
+        color: #fbbf24;
+        margin-bottom: 0.2rem;
+      }
+
+      .stat-badge small {
+        color: #cbb8f4;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .button-group {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+      }
+
       .blessing-button {
         padding: 0.85rem 1.8rem;
         border: 1px solid #c5b3ff;
@@ -102,6 +147,23 @@
         opacity: 0.88;
         transform: none;
         filter: saturate(0.9);
+      }
+
+      .secondary-button {
+        padding: 0.65rem 1.4rem;
+        border: 1px solid rgba(197, 179, 255, 0.5);
+        border-radius: 999px;
+        background: rgba(112, 80, 199, 0.2);
+        color: #d8c7ff;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 180ms ease;
+      }
+
+      .secondary-button:hover {
+        background: rgba(112, 80, 199, 0.35);
+        border-color: #c5b3ff;
       }
 
       .discovery-count {
@@ -158,15 +220,13 @@
       .framework-view {
         margin-top: 0.8rem;
         text-align: left;
+        max-height: 90vh;
+        overflow-y: auto;
       }
 
       .framework-panel {
         padding: 1.4rem;
         border-radius: 16px;
-      }
-
-      .framework-reading {
-        max-width: 66ch;
       }
 
       .framework-top {
@@ -242,109 +302,72 @@
         line-height: 1.72;
       }
 
-      .explanation-grid {
-        margin-top: 0.9rem;
-        display: grid;
-        gap: 1rem;
-      }
-
-      .explanation-block {
-        padding: 1rem;
+      .reflection-section {
+        margin-top: 1.6rem;
+        padding: 1.2rem;
         border-radius: 12px;
-        border: 1px solid color-mix(in srgb, var(--rarity-color) 26%, transparent);
-        background: rgba(17, 12, 31, 0.58);
+        border: 1px solid rgba(106, 213, 237, 0.3);
+        background: rgba(109, 213, 237, 0.08);
       }
 
-      .explanation-block h5 {
+      .reflection-section h4 {
         margin: 0;
-        font-size: 0.8rem;
+        font-size: 0.92rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: color-mix(in srgb, var(--rarity-color) 84%, #fff 16%);
+        color: #6dd5ed;
       }
 
-      .explanation-block p,
-      .explanation-block ul {
-        margin: 0.6rem 0 0;
+      .reflection-section p {
+        margin-top: 0.8rem;
+        color: #e8f4f8;
+        line-height: 1.6;
+        font-style: italic;
       }
 
-      .visual-flow {
-        margin-top: 0.9rem;
+      .action-row {
+        margin-top: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 0.75rem;
+      }
+
+      .back-button {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(197, 179, 255, 0.4);
+        border-radius: 8px;
+        background: rgba(18, 13, 31, 0.6);
+        color: #d8c7ff;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 180ms ease;
+      }
+
+      .back-button:hover {
+        background: rgba(112, 80, 199, 0.2);
+        border-color: #c5b3ff;
+      }
+
+      .share-button {
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(106, 213, 237, 0.4);
+        border-radius: 8px;
+        background: rgba(109, 213, 237, 0.1);
+        color: #6dd5ed;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 180ms ease;
+        text-decoration: none;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.55rem;
-        flex-wrap: wrap;
-        list-style: none;
-        padding: 0;
+        gap: 0.5rem;
       }
 
-      .visual-flow-step {
-        min-width: 96px;
-        padding: 0.6rem 0.85rem;
-        border-radius: 999px;
-        border: 1px solid color-mix(in srgb, var(--rarity-color) 32%, transparent);
-        background: rgba(255, 255, 255, 0.04);
-        font-size: 0.82rem;
-        line-height: 1.3;
-        text-align: center;
-        color: #f4ebff;
-        transition: box-shadow 160ms ease, border-color 160ms ease, transform 160ms ease;
-      }
-
-      .visual-flow-step:hover {
-        border-color: color-mix(in srgb, var(--rarity-color) 65%, #fff 35%);
-        box-shadow: 0 0 14px color-mix(in srgb, var(--rarity-glow) 78%, transparent);
-        transform: translateY(-1px);
-      }
-
-      .visual-flow-divider {
-        color: color-mix(in srgb, var(--rarity-color) 78%, #fff 22%);
-        font-size: 0.95rem;
-        line-height: 1;
-        user-select: none;
-      }
-
-      .before-after {
-        margin-top: 0.7rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.7rem;
-      }
-
-      .example-side {
-        padding: 0.75rem;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.03);
-      }
-
-      .example-side strong {
-        display: block;
-        font-size: 0.78rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      .example-side p {
-        margin: 0.42rem 0 0;
-        font-size: 0.9rem;
-      }
-
-      .try-now-list {
-        padding-left: 1.1rem;
-      }
-
-      .try-now-list li + li {
-        margin-top: 0.45rem;
-      }
-
-      .glass-card {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.07);
-        border-radius: 16px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 14px 36px rgba(86, 40, 140, 0.22);
+      .share-button:hover {
+        background: rgba(109, 213, 237, 0.2);
+        border-color: #6dd5ed;
       }
 
       .stats-container {
@@ -399,212 +422,6 @@
         width: var(--target-width, 0%);
       }
 
-      .detail-box-grid {
-        margin-top: 0.95rem;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.85rem;
-      }
-
-      .detail-box {
-        padding: 0.85rem 0.95rem;
-        border-radius: 12px;
-        border: 1px solid color-mix(in srgb, var(--rarity-color) 26%, transparent);
-        background: rgba(17, 12, 31, 0.58);
-      }
-
-      .detail-box.glass-card {
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.05);
-      }
-
-      .detail-box h5 {
-        margin: 0;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: color-mix(in srgb, var(--rarity-color) 84%, #fff 16%);
-      }
-
-      .detail-box p {
-        margin: 0.5rem 0 0;
-        font-size: 0.92rem;
-        color: #efe6ff;
-        line-height: 1.62;
-      }
-
-      .action-list {
-        margin: 0.72rem 0 0;
-        padding-left: 1.1rem;
-        display: grid;
-        gap: 0.52rem;
-      }
-
-      .action-list li {
-        color: #f1e9ff;
-        line-height: 1.6;
-      }
-
-      .paragraph-stack {
-        display: grid;
-        gap: 0.7rem;
-        margin-top: 0.68rem;
-      }
-
-      .paragraph-stack p {
-        margin: 0;
-      }
-
-      .secondary-section {
-        opacity: 0.86;
-      }
-
-      .flavor-text {
-        margin-top: 1.9rem;
-        padding-top: 1.2rem;
-        border-top: 1px solid color-mix(in srgb, var(--rarity-color) 18%, transparent);
-        opacity: 0.74;
-      }
-
-      .flavor-text h5 {
-        margin: 0;
-        font-size: 0.74rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: color-mix(in srgb, var(--rarity-color) 68%, #fff 32%);
-      }
-
-      .flavor-text p {
-        margin-top: 0.44rem;
-        color: #dacdf4;
-        line-height: 1.58;
-      }
-
-      .back-button {
-        margin-top: 1.3rem;
-        width: 100%;
-      }
-
-      .action-row {
-        margin-top: 1rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-      }
-
-      @media print {
-        :root {
-          color-scheme: light;
-        }
-
-        body {
-          background: #fff;
-          color: #000;
-          display: block;
-          min-height: auto;
-          padding: 0;
-          margin: 0;
-          font-size: 12pt;
-        }
-
-        .landing {
-          width: 100%;
-          max-width: none;
-          padding: 0;
-        }
-
-        .blessing-card,
-        .framework-image,
-        .detail-box {
-          background: #fff;
-          border: 1px solid #111;
-          color: #000;
-          box-shadow: none;
-          backdrop-filter: none;
-        }
-
-        .blessing-card::before,
-        .bar,
-        .bar i {
-          display: none;
-        }
-
-        .framework-title,
-        .framework-name,
-        .framework-tagline,
-        .framework-section h4,
-        .framework-section p,
-        .detail-box h5,
-        .detail-box p,
-        .mini-stats span,
-        .rarity-label,
-        .stat-label,
-        .stat-value {
-          color: #000;
-        }
-
-        .framework-top,
-        .detail-box-grid {
-          gap: 0.6rem;
-        }
-
-        .framework-section {
-          margin-top: 0.8rem;
-          padding-top: 0.8rem;
-          border-top: 1px solid #111;
-        }
-
-        .mini-stats span {
-          background: #fff;
-          border-color: #111;
-        }
-
-        .stat-row {
-          grid-template-columns: 1fr;
-          gap: 0.3rem;
-          margin-top: 0.45rem;
-        }
-
-        .no-print,
-        #shrineShell {
-          display: none !important;
-        }
-      }
-
-      @media (max-width: 780px) {
-        .landing {
-          padding: 2rem 1rem;
-        }
-
-        .framework-top {
-          grid-template-columns: 1fr;
-        }
-
-        .visual-flow {
-          flex-direction: column;
-          align-items: stretch;
-          gap: 0.35rem;
-        }
-
-        .visual-flow-step {
-          width: 100%;
-        }
-
-        .visual-flow-divider {
-          text-align: center;
-          transform: rotate(90deg);
-        }
-
-        .detail-box-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .before-after {
-          grid-template-columns: 1fr;
-        }
-      }
-
       .rarity-label {
         margin-top: 0.5rem;
         font-size: 0.8rem;
@@ -648,9 +465,63 @@
         animation: blessingFade 450ms ease, epicPulse 2.4s ease-in-out infinite;
       }
 
+      .archive-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .archive-card {
+        padding: 1rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        cursor: pointer;
+        transition: all 180ms ease;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .archive-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .archive-card h5 {
+        margin: 0;
+        font-size: 1rem;
+        color: #f3e8ff;
+      }
+
+      .archive-card p {
+        margin: 0.5rem 0 0;
+        font-size: 0.85rem;
+        color: #cbb8f4;
+      }
+
+      .archive-card .category-tag {
+        display: inline-block;
+        margin-top: 0.75rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.6rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 14px 36px rgba(86, 40, 140, 0.22);
+      }
+
       @keyframes epicPulse {
-        0%,
-        100% {
+        0%, 100% {
           box-shadow: 0 0 15px rgba(188, 117, 255, 0.24),
             inset 0 0 0 1px rgba(190, 141, 255, 0.34);
         }
@@ -679,16 +550,93 @@
           opacity: 1;
         }
       }
+
+      @media (max-width: 780px) {
+        .landing {
+          padding: 2rem 1rem;
+        }
+
+        .framework-top {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-row {
+          gap: 1rem;
+        }
+
+        .button-group {
+          gap: 0.5rem;
+        }
+
+        .archive-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media print {
+        :root {
+          color-scheme: light;
+        }
+
+        body {
+          background: #fff;
+          color: #000;
+          display: block;
+          min-height: auto;
+          padding: 0;
+          margin: 0;
+          font-size: 12pt;
+        }
+
+        .landing {
+          width: 100%;
+          max-width: none;
+          padding: 0;
+        }
+
+        .blessing-card {
+          background: #fff;
+          border: 1px solid #111;
+          color: #000;
+          box-shadow: none;
+          backdrop-filter: none;
+        }
+
+        .no-print {
+          display: none !important;
+        }
+      }
     </style>
   </head>
   <body>
     <main class="landing">
-      <button class="blessing-button no-print" id="blessBtn" type="button">Receive Today’s Blessing</button>
       <section id="shrineShell">
         <h1>The Shrine of Knowledge</h1>
-        <p class="subtitle">Seek your wisdom blessing</p>
+        <p class="subtitle">Daily wisdom quest—one framework each day</p>
+
+        <div class="stats-row">
+          <div class="stat-badge">
+            <strong id="streakCount">0</strong>
+            <small>Day Streak</small>
+          </div>
+          <div class="stat-badge">
+            <strong id="discoveredCount">0</strong>
+            <small>Discovered</small>
+          </div>
+          <div class="stat-badge">
+            <strong id="totalCount">43</strong>
+            <small>Total</small>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button class="blessing-button no-print" id="blessBtn" type="button">Receive Today's Blessing</button>
+          <button class="secondary-button no-print" id="archiveBtn" type="button">View Archive</button>
+        </div>
+
         <p class="discovery-count" id="discoveryCount" aria-live="polite"></p>
       </section>
+
       <section class="framework-view" id="frameworkView" aria-live="polite" hidden></section>
     </main>
 
@@ -696,13 +644,23 @@
       const UI_TEXT = {
         loading: "Loading frameworks...",
         loadError: "Could not load frameworks.",
-        idleButton: "Receive Today’s Blessing",
+        idleButton: "Receive Today's Blessing",
         loadingButton: "Channeling wisdom...",
         ready: "Today's blessing is waiting. Enter when ready.",
       };
 
+      const REFLECTION_PROMPTS = {
+        "How Do I Think More Clearly?": "How could this lens change how you perceive a situation you face?",
+        "How Do I Make Better Decisions?": "What decision could you improve by using this framework?",
+        "How Do I Communicate More Effectively?": "Who could benefit from understanding this concept?",
+        "How Do I Get More Done with Less Friction?": "What task could you complete faster with this mindset?",
+        "How Do I Keep Improving?": "What small experiment could test this idea tomorrow?",
+        "How Do I Build a Career, Not Just Do a Job?": "How does this practice build long-term professional capital?",
+      };
+
       const STORAGE_KEY = "dailyBlessing";
       const DISCOVERED_KEY = "discoveredFrameworks";
+      const LAST_VISIT_KEY = "lastVisitDate";
 
       const state = {
         frameworks: [],
@@ -712,9 +670,13 @@
 
       const elements = {
         button: document.getElementById("blessBtn"),
+        archiveBtn: document.getElementById("archiveBtn"),
         shrineShell: document.getElementById("shrineShell"),
         frameworkView: document.getElementById("frameworkView"),
         discoveryCount: document.getElementById("discoveryCount"),
+        streakCount: document.getElementById("streakCount"),
+        discoveredCount: document.getElementById("discoveredCount"),
+        totalCount: document.getElementById("totalCount"),
       };
 
       const toDateString = (date) => date.toISOString().slice(0, 10);
@@ -729,7 +691,6 @@
       function readSavedBlessing() {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return {};
-
         try {
           const parsed = JSON.parse(raw);
           return parsed && typeof parsed === "object" ? parsed : {};
@@ -741,13 +702,44 @@
       function readDiscoveredFrameworks() {
         const raw = localStorage.getItem(DISCOVERED_KEY);
         if (!raw) return [];
-
         try {
           const parsed = JSON.parse(raw);
           return Array.isArray(parsed) ? parsed : [];
         } catch {
           return [];
         }
+      }
+
+      function getStreak() {
+        const lastVisit = localStorage.getItem(LAST_VISIT_KEY);
+        const today = getTodayString();
+        const yesterday = getYesterdayString(today);
+
+        if (!lastVisit) {
+          localStorage.setItem(LAST_VISIT_KEY, today);
+          return 1;
+        }
+
+        if (lastVisit === today) {
+          const raw = localStorage.getItem("currentStreak");
+          return parseInt(raw, 10) || 1;
+        }
+
+        if (lastVisit === yesterday) {
+          const raw = localStorage.getItem("currentStreak");
+          const streak = (parseInt(raw, 10) || 1) + 1;
+          localStorage.setItem("currentStreak", streak);
+          localStorage.setItem(LAST_VISIT_KEY, today);
+          return streak;
+        }
+
+        localStorage.setItem(LAST_VISIT_KEY, today);
+        localStorage.setItem("currentStreak", "1");
+        return 1;
+      }
+
+      function saveBlessing(blessing) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(blessing));
       }
 
       function saveDiscoveredFramework(frameworkId) {
@@ -759,10 +751,6 @@
         }
       }
 
-      function saveBlessing(blessing) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(blessing));
-      }
-
       function setStatus(message) {
         elements.discoveryCount.textContent = message;
       }
@@ -771,9 +759,9 @@
         elements.button.hidden = true;
       }
 
-      function showView({ detail }) {
-        elements.frameworkView.hidden = !detail;
-        elements.shrineShell.hidden = detail;
+      function showView({ detail, archive }) {
+        elements.frameworkView.hidden = !detail && !archive;
+        elements.shrineShell.hidden = detail || archive;
       }
 
       function pickFramework(excludedId = null) {
@@ -786,49 +774,15 @@
         return candidates[Math.floor(Math.random() * candidates.length)];
       }
 
+      function updateStats() {
+        const streak = getStreak();
+        const discovered = state.discoveredFrameworks.length;
+        const total = state.frameworks.length;
 
-      function getWhatThisHelpsYouDo(framework) {
-        return `Use ${framework.name} to turn unclear decisions into clear next actions with less wasted effort.`;
-      }
-
-      function getRealExample(framework) {
-        return {
-          before: `Before ${framework.name}: We jump into execution with assumptions and fix mistakes late.`,
-          after: `After ${framework.name}: We break the problem down first, validate the core truth, and execute with fewer surprises.`,
-        };
-      }
-
-      function getTryThisNowSteps(framework) {
-        return [
-          `Pick one current challenge and define the exact problem in one sentence.`,
-          `Break it into parts and identify the core truth that must be true for success.`,
-          `Rebuild your next action plan using that core truth and test it today with one small step.`,
-        ];
-      }
-
-      function renderVisualFlow(steps) {
-        const normalizedSteps = Array.isArray(steps) ? steps.filter(Boolean) : [];
-        if (normalizedSteps.length === 0) return "";
-
-        const flowItems = normalizedSteps
-          .map((step, index) => {
-            const divider =
-              index < normalizedSteps.length - 1
-                ? '<span class="visual-flow-divider" aria-hidden="true">→</span>'
-                : "";
-            return `<li class="visual-flow-step">${step}</li>${divider}`;
-          })
-          .join("");
-
-        return `<ol class="visual-flow" aria-label="Framework flow">${flowItems}</ol>`;
-      }
-
-      function bindDetailActions() {
-        const backButton = document.getElementById("backToShrine");
-        const saveAsPdfButton = document.getElementById("saveAsPdf");
-
-        backButton?.addEventListener("click", () => showView({ detail: false }));
-        saveAsPdfButton?.addEventListener("click", () => window.print());
+        elements.streakCount.textContent = streak;
+        elements.discoveredCount.textContent = discovered;
+        elements.totalCount.textContent = total;
+        elements.discoveryCount.textContent = `${discovered}/${total} frameworks discovered`;
       }
 
       function renderBlessing(framework) {
@@ -839,23 +793,24 @@
         const efficiency = Number(stats.efficiency || 0);
 
         showView({ detail: true });
-        const descriptionText = framework.description || "This framework gives you a structured way to reason about choices and move forward faster.";
+        const descriptionText = framework.description || "This framework gives you a structured way to reason about choices.";
         const mechanicsText = framework.mechanics || descriptionText;
         const flavorText = framework.flavor || "\"Wisdom sharpens where reflection meets action.\"";
-        const visualSteps = ["Situation", "Clarify", "Decide", "Act"];
-        const realExample = getRealExample(framework);
-        const tryNowSteps = getTryThisNowSteps(framework).slice(0, 3);
+        const reflectionPrompt = REFLECTION_PROMPTS[framework.category] || "How could you apply this today?";
+
+        const shareUrl = `${window.location.origin}?framework=${framework.id}`;
+        const shareText = `Today's framework: ${framework.name} - "${framework.tagline}" via The Shrine of Knowledge`;
 
         elements.frameworkView.innerHTML = `
           <article class="blessing-card blessing-enter framework-panel ${rarityClass}">
             <div class="framework-top">
               <div class="framework-left">
-                <div class="framework-image" role="img" aria-label="${framework.name} visual placeholder">
-                  Visual Placeholder
+                <div class="framework-image" role="img" aria-label="${framework.name}">
+                  ${framework.category.split('?')[1] || framework.category}
                 </div>
                 <h3 class="framework-name">${framework.name}</h3>
                 <div class="mini-stats">
-                  <span>${framework.category || "General"}</span>
+                  <span>${framework.category.split('?')[1] || framework.category}</span>
                   <span>ADP ${adaptability}</span>
                   <span>LOG ${logic}</span>
                   <span>EFF ${efficiency}</span>
@@ -864,51 +819,28 @@
               <div class="framework-right">
                 <p class="rarity-label">${framework.rarity || "Common"}</p>
                 <h2 class="framework-title">${framework.name}</h2>
-                <p class="framework-tagline">${framework.tagline || "A framework for better decisions and execution."}</p>
+                <p class="framework-tagline">${framework.tagline || "A framework for better thinking."}</p>
               </div>
             </div>
 
-            <div class="mt-8 space-y-7">
-              <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/5 p-6 md:p-7 shadow-lg">
-                <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-white/70">What this helps you do</h4>
-                <p class="mt-3 text-xl md:text-2xl leading-snug font-semibold text-white">${getWhatThisHelpsYouDo(framework)}</p>
-              </section>
+            <div class="framework-section">
+              <h4>What It Is</h4>
+              <p>${descriptionText}</p>
+            </div>
 
-              <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/5 p-6 md:p-7 shadow-lg">
-                <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-white/70">Visual Explanation</h4>
-                ${renderVisualFlow(visualSteps)}
-              </section>
+            <div class="framework-section">
+              <h4>How To Use It</h4>
+              <p>${mechanicsText}</p>
+            </div>
 
-              <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/5 p-6 md:p-7 shadow-lg">
-                <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-white/70">Real Example</h4>
-                <div class="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
-                  <article class="rounded-xl border border-white/10 bg-black/15 p-4">
-                    <h5 class="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/60">Before</h5>
-                    <p class="mt-2 text-sm leading-relaxed text-white/90">${realExample.before}</p>
-                  </article>
-                  <article class="rounded-xl border border-white/10 bg-black/15 p-4">
-                    <h5 class="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/60">After</h5>
-                    <p class="mt-2 text-sm leading-relaxed text-white/90">${realExample.after}</p>
-                  </article>
-                </div>
-              </section>
+            <div class="framework-section">
+              <h4>Quick Application</h4>
+              <p>${framework.application || "Apply this framework to your next challenge."}</p>
+            </div>
 
-              <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/5 p-6 md:p-7 shadow-lg">
-                <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-white/70">Try This Now</h4>
-                <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-white/90">
-                  ${tryNowSteps.map((step) => `<li>${step}</li>`).join("")}
-                </ol>
-              </section>
-
-              <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-7 shadow-lg opacity-90">
-                <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-white/60">Deeper Understanding</h4>
-                <p class="mt-3 text-sm leading-relaxed text-white/80">${mechanicsText}</p>
-              </section>
-
-              <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-6 shadow-lg opacity-75">
-                <h4 class="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/50">Flavor</h4>
-                <p class="mt-2 text-sm italic text-white/70">${flavorText}</p>
-              </section>
+            <div class="reflection-section">
+              <h4>🤔 Reflection</h4>
+              <p>${reflectionPrompt}</p>
             </div>
 
             <section class="framework-section">
@@ -938,16 +870,110 @@
               </div>
             </section>
 
+            <div class="framework-section" style="opacity: 0.8;">
+              <h4>Wisdom</h4>
+              <p style="font-style: italic; color: #dacdf4;">${flavorText}</p>
+            </div>
+
             <div class="action-row no-print">
-              <button class="back-button" id="backToShrine" type="button">Back to Shrine</button>
-              <button class="back-button" id="saveAsPdf" type="button">Save as PDF</button>
+              <button class="back-button" id="backToShrine" type="button">← Back</button>
+              <a class="share-button" href="https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener">
+                Share 𝕏
+              </a>
+              <button class="share-button" id="copyLink" type="button">
+                Copy Link
+              </button>
+              <button class="back-button" id="saveAsPdf" type="button">Print</button>
             </div>
           </article>
         `;
 
-        bindDetailActions();
+        bindDetailActions(shareUrl);
       }
 
+      function renderArchive() {
+        showView({ detail: false, archive: true });
+
+        const discovered = state.frameworks.filter((f) => state.discoveredFrameworks.includes(f.id));
+        const undiscovered = state.frameworks.filter((f) => !state.discoveredFrameworks.includes(f.id));
+
+        const groupBy = (arr, key) => {
+          const groups = {};
+          arr.forEach((item) => {
+            const category = item.category;
+            if (!groups[category]) groups[category] = [];
+            groups[category].push(item);
+          });
+          return groups;
+        };
+
+        const discoveredGroups = groupBy(discovered, "category");
+        const undiscoveredGroups = groupBy(undiscovered, "category");
+
+        let html = `
+          <article class="blessing-card framework-panel rarity-rare">
+            <h2 class="framework-title">Your Knowledge Archive</h2>
+            <p style="color: #cbb8f4; margin-top: 1rem;">
+              ${state.discoveredFrameworks.length} of ${state.frameworks.length} frameworks discovered
+            </p>
+        `;
+
+        if (discovered.length > 0) {
+          html += `<h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #34d399;">📚 Discovered</h3>`;
+          html += `<div class="archive-grid">`;
+          discovered.forEach((f) => {
+            html += `
+              <div class="archive-card" data-framework-id="${f.id}">
+                <h5>${f.name}</h5>
+                <p>"${f.tagline}"</p>
+                <div class="category-tag">${f.category.split('?')[1] || f.category}</div>
+              </div>
+            `;
+          });
+          html += `</div>`;
+        }
+
+        if (undiscovered.length > 0) {
+          html += `<h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #cbb8f4;">🔒 Awaiting Discovery</h3>`;
+          html += `<div class="archive-grid">`;
+          undiscovered.forEach((f) => {
+            html += `
+              <div class="archive-card" style="opacity: 0.6;">
+                <h5>${f.name}</h5>
+                <p>"${f.tagline}"</p>
+                <div class="category-tag">Coming soon</div>
+              </div>
+            `;
+          });
+          html += `</div>`;
+        }
+
+        html += `
+            <div class="action-row" style="margin-top: 2rem;">
+              <button class="back-button" id="backToShrine" type="button">← Back to Shrine</button>
+            </div>
+          </article>
+        `;
+
+        elements.frameworkView.innerHTML = html;
+        document.getElementById("backToShrine").addEventListener("click", () => showView({ detail: false, archive: false }));
+      }
+
+      function bindDetailActions(shareUrl) {
+        const backButton = document.getElementById("backToShrine");
+        const copyLink = document.getElementById("copyLink");
+        const saveAsPdfButton = document.getElementById("saveAsPdf");
+
+        backButton?.addEventListener("click", () => showView({ detail: false }));
+        copyLink?.addEventListener("click", () => {
+          navigator.clipboard.writeText(shareUrl);
+          copyLink.textContent = "✓ Copied!";
+          setTimeout(() => {
+            copyLink.textContent = "Copy Link";
+          }, 2000);
+        });
+        saveAsPdfButton?.addEventListener("click", () => window.print());
+      }
 
       async function loadFrameworks() {
         elements.button.disabled = true;
@@ -970,19 +996,13 @@
             }
             setStatus(UI_TEXT.ready);
           } else {
-            updateProgressCount();
+            updateStats();
           }
 
           elements.button.disabled = false;
         } catch {
           setStatus(UI_TEXT.loadError);
         }
-      }
-
-      function updateProgressCount() {
-        const discovered = state.discoveredFrameworks.length;
-        const total = state.frameworks.length;
-        elements.discoveryCount.textContent = `${discovered}/${total} frameworks discovered`;
       }
 
       function resolveTodaysBlessing() {
@@ -1013,7 +1033,7 @@
         if (framework) {
           renderBlessing(framework);
           hideBlessingButton();
-          setStatus(UI_TEXT.ready);
+          updateStats();
         }
 
         await new Promise((resolve) => setTimeout(resolve, 420));
@@ -1022,6 +1042,7 @@
       }
 
       elements.button.addEventListener("click", onBlessClick);
+      elements.archiveBtn?.addEventListener("click", renderArchive);
       loadFrameworks();
     </script>
   </body>
