@@ -269,28 +269,40 @@
       }
 
       .visual-flow {
-        margin-top: 0.8rem;
-        display: grid;
-        grid-template-columns: repeat(7, minmax(0, 1fr));
-        gap: 0.45rem;
+        margin-top: 0.9rem;
+        display: flex;
         align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
       }
 
-      .flow-step {
-        grid-column: span 1;
-        padding: 0.7rem 0.45rem;
-        border-radius: 10px;
-        border: 1px solid color-mix(in srgb, var(--rarity-color) 28%, transparent);
+      .visual-flow-step {
+        min-width: 96px;
+        padding: 0.6rem 0.85rem;
+        border-radius: 999px;
+        border: 1px solid color-mix(in srgb, var(--rarity-color) 32%, transparent);
         background: rgba(255, 255, 255, 0.04);
-        text-align: center;
         font-size: 0.82rem;
         line-height: 1.3;
+        text-align: center;
+        color: #f4ebff;
+        transition: box-shadow 160ms ease, border-color 160ms ease, transform 160ms ease;
       }
 
-      .flow-arrow {
-        text-align: center;
+      .visual-flow-step:hover {
+        border-color: color-mix(in srgb, var(--rarity-color) 65%, #fff 35%);
+        box-shadow: 0 0 14px color-mix(in srgb, var(--rarity-glow) 78%, transparent);
+        transform: translateY(-1px);
+      }
+
+      .visual-flow-divider {
         color: color-mix(in srgb, var(--rarity-color) 78%, #fff 22%);
-        font-size: 1rem;
+        font-size: 0.95rem;
+        line-height: 1;
+        user-select: none;
       }
 
       .before-after {
@@ -570,12 +582,18 @@
         }
 
         .visual-flow {
-          grid-template-columns: 1fr;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0.35rem;
         }
 
-        .flow-step,
-        .flow-arrow {
-          grid-column: auto;
+        .visual-flow-step {
+          width: 100%;
+        }
+
+        .visual-flow-divider {
+          text-align: center;
+          transform: rotate(90deg);
         }
 
         .detail-box-grid {
@@ -765,6 +783,23 @@
         ];
       }
 
+      function renderVisualFlow(steps) {
+        const normalizedSteps = Array.isArray(steps) ? steps.filter(Boolean) : [];
+        if (normalizedSteps.length === 0) return "";
+
+        const flowItems = normalizedSteps
+          .map((step, index) => {
+            const divider =
+              index < normalizedSteps.length - 1
+                ? '<span class="visual-flow-divider" aria-hidden="true">→</span>'
+                : "";
+            return `<li class="visual-flow-step">${step}</li>${divider}`;
+          })
+          .join("");
+
+        return `<ol class="visual-flow" aria-label="Framework flow">${flowItems}</ol>`;
+      }
+
       function bindDetailActions() {
         const backButton = document.getElementById("backToShrine");
         const saveAsPdfButton = document.getElementById("saveAsPdf");
@@ -818,18 +853,7 @@
 
               <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/5 p-6 md:p-7 shadow-lg">
                 <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-white/70">Visual Explanation</h4>
-                <div class="mt-4 flex flex-wrap items-center gap-2 md:gap-3" role="img" aria-label="Framework flow steps">
-                  ${visualSteps
-                    .map(
-                      (step, index) => `
-                        <div class="inline-flex items-center gap-2 md:gap-3">
-                          <div class="rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-sm text-white/90">${step}</div>
-                          ${index < visualSteps.length - 1 ? '<span aria-hidden="true" class="text-white/60">→</span>' : ""}
-                        </div>
-                      `,
-                    )
-                    .join("")}
-                </div>
+                ${renderVisualFlow(visualSteps)}
               </section>
 
               <section class="mx-auto w-full max-w-[680px] rounded-2xl border border-white/10 bg-white/5 p-6 md:p-7 shadow-lg">
